@@ -26,7 +26,7 @@ public class MusicPlayerScript : MonoBehaviour
     private float effectVolume = 0.25f;
     private float tempVolume = 0f;
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update.
     void Start()
     {
         //PlayerPrefs.SetFloat("volume", musicVolume);

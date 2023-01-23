@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MusicActivation : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Start is called before the first frame update.
     void Start()
     {
         
