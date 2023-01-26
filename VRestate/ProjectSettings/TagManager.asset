@@ -7,11 +7,12 @@ TagManager:
   - GameMusic
   - MusicButton
   - ButtonClickSound
+  - ItemMenuSlider
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Models
   - Water
   - UI
   - 
@@ -43,4 +44,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Models
+    uniqueID: 2752168253
     locked: 0
