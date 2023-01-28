@@ -29,6 +29,10 @@ app.get('/testapi', (req,res) => {
     
 });
 
+app.get('/loaderio-0ea84b7e34801498d9390d93deb66294', (req,res) => {
+    res.send('loaderio-0ea84b7e34801498d9390d93deb66294');
+})
+
 app.listen(5002, () => {
     connection.connect(function(err) {
         if (err) {
