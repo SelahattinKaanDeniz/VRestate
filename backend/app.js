@@ -33,7 +33,7 @@ app.get('/loaderio-0ea84b7e34801498d9390d93deb66294', (req,res) => {
     res.send('loaderio-0ea84b7e34801498d9390d93deb66294');
 })
 
-app.get('apitest_json', (req,res) => {
+app.get('/apitest', (req,res) => {
     res.json({
         "keys": ["id"] ,
         "values": [
@@ -48,8 +48,8 @@ app.get('apitest_json', (req,res) => {
           ["9"],
           ["41"]
         ]
-      })
-})
+      });
+});
 
 app.listen(5002, () => {
     connection.connect(function(err) {
