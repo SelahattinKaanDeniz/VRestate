@@ -16,8 +16,14 @@ app.get('/testapi', (req,res) => {
         if(error){
             return console.error(error);
         }
-        res.send((req.query.id)+ ' nolu id ye sahip kullanici ' + results[0].name);
-        console.log(results[0].name)
+        if(results.length == 0){
+            res.send('Kullanici Bulunamadi!');
+        }
+        else{
+            res.send((req.query.id)+ ' nolu id ye sahip kullanici ' + results[0].name);
+            console.log(results[0].name)
+        }
+        
     });
     
     
