@@ -1,6 +1,7 @@
 import './App.css';
 import { useEffect, useState } from 'react'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import MainPage from './routes/MainPage'
 import { gapi } from 'gapi-script';
 import img from './images/vr_img.png';
 import Button from 'react-bootstrap/Button';
@@ -38,7 +39,7 @@ function App() {
     <div>
       {
         profile ?
-          <div>Logged IN</div> :
+          <MainPage/> :
           <div className="App">
             <div className="Container-1">
               <img src={img} alt="Person with a VR" className="image" />
