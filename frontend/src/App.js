@@ -1,41 +1,39 @@
 import './App.css';
-import { useEffect } from 'react'
-import { GoogleLogin } from 'react-google-login';
-import { gapi } from 'gapi-script';
-
+import ErrorPage from "./routes/ErrorPage";
+import MainPage from "./routes/MainPage"
+import Login from "./routes/Login"
+import { AuthProvider } from "./utils/Auth";
+import { ProtectedRoute } from "./utils/ProtectedRoute";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.css';
 function App() {
 
-  const CLIENT_ID = "274099276048-43j68lpe4k7penrqkttnmrj10bjd9r3q.apps.googleusercontent.com";
-
-  useEffect(()=>{
-    const initClient = () => {
-      gapi.client.init({
-      clientId: CLIENT_ID,
-      scope: ''
-      });
-    };
-  gapi.load('client:auth2', initClient);
-  })
-
-  const onSuccess = (res) => {
-    console.log('success:', res);
-};
-const onFailure = (err) => {
-    console.log('failed:', err);
-};
+  const router = createBrowserRouter([
+    {
+      exact: true,
+      path: "/",
+      element: <ProtectedRoute>
+          <MainPage />
+        </ProtectedRoute>,
+      errorElement: <ErrorPage />
+    },
+    {
+      exact: true,
+      path: "/login",
+      element: <Login />,
+      errorElement: <ErrorPage />
+    },
+  ]);
 
   return (
-    <div className="App">
-      Hello World from APP!
-      <GoogleLogin
-          clientId={CLIENT_ID}
-          buttonText="Sign in with Google"
-          onSuccess={onSuccess}
-          onFailure={onFailure}
-          cookiePolicy={'single_host_origin'}
-          isSignedIn={true}
-      />
-    </div>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+
   );
 }
 
