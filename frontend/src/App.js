@@ -1,65 +1,39 @@
 import './App.css';
-import { useEffect, useState } from 'react'
+import { useEffect, useState, createContext } from 'react'
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import MainPage from './routes/MainPage'
-import { gapi } from 'gapi-script';
-import img from './images/vr_img.png';
+import ErrorPage from "./routes/ErrorPage";
+import MainPage from "./routes/MainPage"
+import Login from "./routes/Login"
+import { AuthProvider } from "./utils/Auth";
+import { ProtectedRoute } from "./utils/ProtectedRoute";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.css';
 function App() {
 
-  const [profile, setProfile] = useState(null);
-
-  const CLIENT_ID = "274099276048-43j68lpe4k7penrqkttnmrj10bjd9r3q.apps.googleusercontent.com";
-
-  useEffect(() => {
-    const initClient = () => {
-      gapi.client.init({
-        clientId: CLIENT_ID,
-        scope: ''
-      });
-    };
-    gapi.load('client:auth2', initClient);
-  })
-
-  const onSuccess = (res) => {
-    console.log(res);
-    setProfile(res.profileObj)
-  };
-  const onFailure = (err) => {
-    console.log('failed:', err);
-  };
-
-
-  const onLogOutSuccess = (res) => {
-    setProfile(null);
-  };
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <ProtectedRoute>
+          <MainPage />
+        </ProtectedRoute>,
+      errorElement: <ErrorPage />
+    },
+    {
+      path: "/login",
+      element: <Login />,
+      errorElement: <ErrorPage />
+    },
+  ]);
 
   return (
-    <div>
-      {
-        profile ?
-          <MainPage/> :
-          <div className="App">
-            <div className="Container-1">
-              <img src={img} alt="Person with a VR" className="image" />
-            </div>
-              {/* <GoogleLogout clientId={CLIENT_ID} buttonText="Log out" onLogoutSuccess={onLogOutSuccess} /> */}
-            <div className="Container-1">
-              <h1> VRestate</h1>
-              <GoogleLogin
-                clientId={CLIENT_ID}
-                buttonText="Sign in with Google"
-                onSuccess={onSuccess}
-                onFailure={onFailure}
-                cookiePolicy={'single_host_origin'}
-                isSignedIn={true}
-              />
-            </div>
-            
-          </div>
-      }
-    </div>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+
   );
 }
 
