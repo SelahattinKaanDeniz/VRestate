@@ -79,19 +79,38 @@ app.get('/login/getById', (req,res) => {
 });
 
 
-app.post('/login/create', (req,res) => {
-    let query = 'INSERT INTO user (name,surname,phone,mail) values (\''+req.body.name+'\',\''+req.body.surname+'\',\''+req.body.phone+'\',\''+req.body.mail+'\')';
+app.post('/login', (req,res) => {
+    let query = 'SELECT * FROM vrestate.user WHERE mail = \''+req.query.mail+'\'';
+    
     connection.query(query, (error, results, fields) => {
         if(error){
             res.statusMessage = 'Database Query Error: '+error;
             res.status(500).end();
             return console.error(error);
         }
+        if(results.length == 0){
+            let query2 = 'INSERT INTO user (id,name,surname,mail) values (\''+req.body.id+'\',\''+req.body.name+'\',\''+req.body.surname+'\',\''+req.body.mail+'\')';
+            connection.query(query2, (error, results, fields) => {
+                if(error){
+                    res.statusMessage = 'Database Query Error: '+error;
+                    res.status(500).end();
+                    return console.error(error);
+                }
+                else{
+
+                    res.status(200);
+                    res.send('User Successfully Created!');
+                }
+        
+            });
+        }
         else{
-            res.status(200).end();
+            res.send(results[0]);
         }
         
     });
+
+    
 });
 
 app.get('/loaderio-0ea84b7e34801498d9390d93deb66294', (req,res) => {
