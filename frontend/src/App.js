@@ -1,6 +1,4 @@
 import './App.css';
-import { useEffect, useState, createContext } from 'react'
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import ErrorPage from "./routes/ErrorPage";
 import MainPage from "./routes/MainPage"
 import Login from "./routes/Login"
@@ -16,6 +14,7 @@ function App() {
 
   const router = createBrowserRouter([
     {
+      exact: true,
       path: "/",
       element: <ProtectedRoute>
           <MainPage />
@@ -23,6 +22,7 @@ function App() {
       errorElement: <ErrorPage />
     },
     {
+      exact: true,
       path: "/login",
       element: <Login />,
       errorElement: <ErrorPage />

@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import { GoogleLogin } from 'react-google-login';
 import { gapi } from 'gapi-script';
 import { useNavigate } from "react-router-dom";
+import {
+  Navigate,
+} from 'react-router-dom';
 import img from '../images/vr_img.png';
 import { useAuth } from "../utils/Auth";
 
@@ -9,9 +12,6 @@ import { useAuth } from "../utils/Auth";
 const Login = () => {
   const { clientId, onSuccess, onFailure, profile } = useAuth();
   const navigate = useNavigate();
-  if (profile) {
-    navigate("/");
-  }
   useEffect(() => {
     const initClient = () => {
       gapi.client.init({
@@ -21,6 +21,9 @@ const Login = () => {
     };
     gapi.load('client:auth2', initClient);
   })
+  if (profile) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <div className="LoginContainer">
@@ -36,7 +39,7 @@ const Login = () => {
           onSuccess={onSuccess}
           onFailure={onFailure}
           cookiePolicy={'single_host_origin'}
-          isSignedIn={true}
+          
         />
       </div>
     </div>

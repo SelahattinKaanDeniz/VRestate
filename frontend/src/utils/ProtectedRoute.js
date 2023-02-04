@@ -7,6 +7,7 @@ export const ProtectedRoute = ({ children }) => {
   const { profile } = useAuth();
 
   if (!profile) {
+    console.log("no profile")
     return <Navigate to="/login" replace />;
   }
 

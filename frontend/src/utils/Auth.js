@@ -1,9 +1,11 @@
 import { createContext, useContext, useState } from "react";
+import { useLocalStorage } from "./useLocalStorage";
+
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const CLIENT_ID = "274099276048-43j68lpe4k7penrqkttnmrj10bjd9r3q.apps.googleusercontent.com";
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useLocalStorage("user", null);
 
 
   const onSuccess = (res) => {
