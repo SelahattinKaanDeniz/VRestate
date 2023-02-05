@@ -80,7 +80,7 @@ app.get('/login/getById', (req,res) => {
 
 
 app.post('/login', (req,res) => {
-    let query = 'SELECT * FROM vrestate.user WHERE mail = \''+req.query.mail+'\'';
+    let query = 'SELECT * FROM vrestate.user WHERE mail = \''+req.body.mail+'\'';
     
     connection.query(query, (error, results, fields) => {
         if(error){

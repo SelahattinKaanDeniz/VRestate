@@ -8,9 +8,24 @@ export const AuthProvider = ({ children }) => {
   const [profile, setProfile] = useLocalStorage("user", null);
 
 
-  const onSuccess = (res) => {
+  const onSuccess = async (res) => {
     console.log(res);
-    setProfile(res.profileObj)
+    setProfile(res.profileObj);
+    let profile = {
+      id:res.googleId,
+      name: res.profileObj.givenName,
+      surname: res.profileObj.familyName,
+      mail: res.profileObj.email
+    };
+    const response = await fetch("http://localhost:5002/login", { // LOOK CORS POLICY!
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(profile)
+    }).then((a)=>{
+      console.log(a);
+    });
   };
   const onFailure = (err) => {
     console.log('failed:', err);
