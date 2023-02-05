@@ -11,6 +11,7 @@ public class ClientButtonFunctions : MonoBehaviour
     public GameObject BedRoomMenuPanel;
     public GameObject DecorationMenuPanel;
     public GameObject LampMenuPanel;
+    public GameObject DiningRoomMenuPanel;
 
     public GameObject ItemMenuPanel;
 
@@ -131,6 +132,23 @@ public class ClientButtonFunctions : MonoBehaviour
     {
 
         LampMenuPanel.GetComponent<RectTransform>().localPosition = new Vector3(-11460f, 127f);
+
+        ItemMenuPanel.GetComponent<RectTransform>().localPosition = new Vector3(-660f, 127f);
+    }
+
+    //Ana kategoriden Dining Room butonuna týklandýðýnda
+    public void DiningRoomButtonClicked()
+    {
+
+        DiningRoomMenuPanel.GetComponent<RectTransform>().localPosition = new Vector3(-660f, 127f);
+
+        ItemMenuPanel.GetComponent<RectTransform>().localPosition = new Vector3(-13620f, 127f);
+    }
+    //Dining Room alt kategoriden Back butonuna týklandýðýnda
+    public void DiningRoomBackButtonClicked()
+    {
+
+        DiningRoomMenuPanel.GetComponent<RectTransform>().localPosition = new Vector3(-13620f, 127f);
 
         ItemMenuPanel.GetComponent<RectTransform>().localPosition = new Vector3(-660f, 127f);
     }
