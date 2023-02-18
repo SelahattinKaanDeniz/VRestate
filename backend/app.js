@@ -35,8 +35,9 @@ app.use(function(req, res, next) {
     next();
 });
 
-
+//test için html donen endpoint. frontendi tamamlandığında silinecek
 app.get('/imageupload', function (req, res) {
+    console.log(req.socket.remoteAddress);
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.write('<form action="/upload" enctype="multipart/form-data" method="post">');
     res.write(' <input type="file" name="image">');
@@ -65,17 +66,20 @@ app.post('/upload', upload.single("image"), (req,res) =>{
 }); 
 
 app.get('/getImage', (req,res) => {
-    if(req.query.id == null){
+    if(req.query.id == null || req.query.id == ''){
         res.status(400).send({message:'FileID can not be null'})
+        return;
     }
     let query = 'select * from photos where file_id =' +req.query.id;
     connection.query(query, (error, results) => {
         if(error){
-            res.statusMessage('Database Query Error')
-            res.status(400).send({message:error});
+            res.statusMessage ='Database Query Error';
+            res.status(500).send({message:error});
+            return;
         }
         if(results.length == 0){
             res.send('Image Not Found');
+            return;
         }
         res.sendFile('images/'+results[0].file_src, {root:'.'});
     })
