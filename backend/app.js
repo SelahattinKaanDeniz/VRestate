@@ -150,7 +150,7 @@ app.get('/login/getById', (req,res) => {
 });
 app.get('/checkLocation', (req,res) => {
     let ip = req.socket.remoteAddress.substring(req.socket.remoteAddress.indexOf(':',2)+1);
-    request('http://ip-api.com/json/'+ip, (error, res, body) => {
+    request('http://ip-api.com/json/'+ip, (error, response, body) => {
         if(error){
             res.status(400).send({message:error});
             return;
