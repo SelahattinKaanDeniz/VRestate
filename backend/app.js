@@ -40,7 +40,7 @@ app.use(function(req, res, next) {
 app.get('/imageupload', function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.write('<form action="/upload" enctype="multipart/form-data" method="post">');
-    res.write(' <input type="file" name="image">');
+    res.write(' <input type="file" name="image" accept="image/*">');
     res.write('<input type="submit" value="Upload">');
     res.write('</form>');
     return res.end();
