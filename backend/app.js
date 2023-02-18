@@ -149,8 +149,15 @@ app.get('/login/getById', (req,res) => {
     
 });
 app.get('/checkLocation', (req,res) => {
-    let ip = req.socket.remoteAddress.substring(req.socket.remoteAddress.indexOf(':',2))
-    console.log(ip)
+    let ip = req.socket.remoteAddress.substring(req.socket.remoteAddress.indexOf(':',2)+1);
+    request('http://ip-api.com/json/'+ip, (error, res, body) => {
+        if(error){
+            res.status(400).send({message:error});
+            return;
+        }
+        console.log(body)
+    })
+
 })
 
 app.post('/login', (req,res) => {
