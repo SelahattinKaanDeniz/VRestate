@@ -155,7 +155,7 @@ app.get('/checkLocation', (req,res) => {
             res.status(400).send({message:error});
             return;
         }
-        console.log(body)
+        res.send({country:body.country,region:body.regionName});
     })
 
 })
