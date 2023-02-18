@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require('path');
+const request = require('request');
 const multer = require("multer");
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
@@ -37,7 +38,6 @@ app.use(function(req, res, next) {
 
 //test için html donen endpoint. frontendi tamamlandığında silinecek
 app.get('/imageupload', function (req, res) {
-    console.log(req.socket.remoteAddress);
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.write('<form action="/upload" enctype="multipart/form-data" method="post">');
     res.write(' <input type="file" name="image">');
@@ -148,7 +148,10 @@ app.get('/login/getById', (req,res) => {
     
     
 });
-
+app.get('/checkLocation', (req,res) => {
+    let ip = req.socket.remoteAddress.substring(req.socket.remoteAddress.indexOf(':',2))
+    console.log(ip)
+})
 
 app.post('/login', (req,res) => {
     let query = 'SELECT * FROM vrestate.user WHERE mail = \''+req.body.mail+'\'';
