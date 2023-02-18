@@ -1,5 +1,18 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require('path');
+const multer = require("multer");
+const storage = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, 'images');
+    },
+    filename: (req, file, callback) =>{
+        console.log(file);
+        callback(null, Date.now()+path.extname(file.originalname));
+    }
+    
+})
+const upload =multer({storage:storage});
 
 let mysql = require("mysql");
 
@@ -22,6 +35,51 @@ app.use(function(req, res, next) {
     next();
 });
 
+
+app.get('/imageupload', function (req, res) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write('<form action="/upload" enctype="multipart/form-data" method="post">');
+    res.write(' <input type="file" name="image">');
+    res.write('<input type="submit" value="Upload">');
+    res.write('</form>');
+    return res.end();
+})
+
+app.post('/upload', upload.single("image"), (req,res) =>{
+    if (!req.file) {
+        console.log("No file upload");
+    } else {
+        console.log(req.file.filename)
+        var imgsrc = req.file.filename
+        var insertData = "INSERT INTO photos(file_src) VALUES (?)"
+        connection.query(insertData, [imgsrc], (err, result) => {
+            if (err) throw err
+            console.log("file uploaded")
+            connection.query('select file_id from photos order by 1 desc', (error, results, fields) => {
+                if(err) throw err
+                res.send({message: "File Uploaded",
+                    id: results[0].file_id});
+            })
+        })
+    }
+}); 
+
+app.get('/getImage', (req,res) => {
+    if(req.query.id == null){
+        res.status(400).send({message:'FileID can not be null'})
+    }
+    let query = 'select * from photos where file_id =' +req.query.id;
+    connection.query(query, (error, results) => {
+        if(error){
+            res.statusMessage('Database Query Error')
+            res.status(400).send({message:error});
+        }
+        if(results.length == 0){
+            res.send('Image Not Found');
+        }
+        res.sendFile('images/'+results[0].file_src, {root:'.'});
+    })
+})
 
 app.get('/testapi', (req,res) => {
     let query = 'SELECT name FROM vrestate.test WHERE id = '+req.query.id;
