@@ -24,8 +24,9 @@ export const AuthProvider = ({ children }) => {
       },
       body: JSON.stringify(profile)
     }).then((a)=>{
+      console.log("adadad");
       console.log(a);
-    });
+    }).catch(e=>{console.log(e)});
   };
   const onFailure = (err) => {
     console.log('failed:', err);
