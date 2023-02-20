@@ -55,6 +55,10 @@ public class SizeMenuFunctions : MonoBehaviour
             {
                 itemMenuFunctions.CabinetBase1.transform.localScale = new Vector3(length/100,height/100, width/100);
             }
+            else if (whichButtonClicked == "Cabinet_Base_2")
+            {
+                itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);
+            }
         }
         lengthInputField.text = "";
         widthInputField.text = "";

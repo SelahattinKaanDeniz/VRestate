@@ -12763,6 +12763,9 @@ MonoBehaviour:
   mainCamera: {fileID: 2135651141}
   CabinetBase1: {fileID: 2868528133336848329, guid: b943b4a3e62e4ac42b6eb660371ac887,
     type: 3}
+  CabinetBase2: {fileID: 5223258223208516488, guid: 33580f154f75d0643949886306d54d0a,
+    type: 3}
+  itemModelCount: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &1156356218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19316,7 +19319,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1156356217}
         m_TargetAssemblyTypeName: ItemMenuButtonFunctions, Assembly-CSharp
-        m_MethodName: CabinetBase1ButtonClicked
+        m_MethodName: ItemMenuButtonsLeftClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -22258,7 +22261,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1979549809}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ItemMenuButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1979549809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22326,6 +22341,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 790785468}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   onMiddleClick:
     m_PersistentCalls:

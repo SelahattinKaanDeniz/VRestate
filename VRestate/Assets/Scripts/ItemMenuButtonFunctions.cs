@@ -15,9 +15,13 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     [SerializeField] private Camera mainCamera;
 
     private GameObject ObjectFollowsMouse;
-
+    private bool isButtonClicked = true;
     public GameObject CabinetBase1;
+    public GameObject CabinetBase2;
+    public int[] itemModelCount = new int[10];
     private int cabinetbase1count = 0;
+    private int cabinetbase2count = 0;
+   
     Vector3 mousepos;
 
     //Ana kategoriden Bathroom butonuna týklandýðýnda
@@ -76,12 +80,46 @@ public class ItemMenuButtonFunctions : MonoBehaviour
 
 
     //buton ismine göre bu metottan prefab oluþtur
-    public void CabinetBase1ButtonClicked() 
+    public void ItemMenuButtonsLeftClicked() 
     {
-        //leftClickedButtonName = EventSystem.current.currentSelectedGameObject.name;
+        leftClickedButtonName = EventSystem.current.currentSelectedGameObject.name;
+        for (int i = 0; i < itemModelCount.Length; i++)
+        {
+            itemModelCount[i] = 0;
+        }
 
-        ObjectFollowsMouse = Instantiate(CabinetBase1, new Vector3(4f, 2f, -18f), Quaternion.identity);
-        cabinetbase1count = 1;
+        if (leftClickedButtonName == "Cabinet_Base_1")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);               
+            }
+            if(isButtonClicked == false)
+            {
+                isButtonClicked =true;
+            }
+
+            ObjectFollowsMouse = Instantiate(CabinetBase1, new Vector3(4f, 2f, -18f), Quaternion.identity);
+            //cabinetbase1count = 1;
+            itemModelCount[0]= 1;
+        }
+        else if (leftClickedButtonName == "Cabinet_Base_2")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(CabinetBase2, new Vector3(4f, 2f, -18f), Quaternion.identity);
+            //cabinetbase2count = 1;
+            itemModelCount[1] = 1;
+        }
+
+        
         
     }
     public void CabinetBase1ButtonRightClicked()
@@ -125,17 +163,27 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     }
     public void Update()
     {
+        bool foundcount = false;
+        for (int i = 0; i < itemModelCount.Length; i++)
+        {
+            if (itemModelCount[i] == 1)
+            {
+                foundcount = true;
+            }
+        }
         //SEÇÝLEN OBJE OLUÞUP MOUSEU TAKÝP EDÝYOR
-        if (cabinetbase1count == 1)
+        if (foundcount)
         {
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray, out RaycastHit raycastHit))
             {
-                ObjectFollowsMouse.transform.position = raycastHit.point;
+                //Debug.Log(raycastHit.collider.gameObject.name);
+                //if(raycastHit.collider.gameObject.name == "Plane"){
+                    ObjectFollowsMouse.transform.position = raycastHit.point;
+               // }
+                
             }
 
-            //mousepos.z = ObjectFollowsMouse.transform.position.z;
-            //ObjectFollowsMouse.transform.position = Camera.main.ScreenToWorldPoint(mousepos); 
 
             //Rotate
             if (MouseInputUIBlocker.BlockedByUI == false)
@@ -151,12 +199,22 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                 // Sol týk koyma
                 if (Input.GetMouseButtonDown(0))
                 {
-                    cabinetbase1count = 0;
+                    //cabinetbase1count = 0;
+                    isButtonClicked = false;
+                    for (int i = 0; i < itemModelCount.Length; i++)
+                    {
+                        itemModelCount[i] = 0;
+                    }
+                    
                 }
                 // Sað týk delete
                 if (Input.GetMouseButtonDown(1))
                 {
-                    cabinetbase1count = 0;
+                    //cabinetbase1count = 0;
+                    for (int i = 0; i < itemModelCount.Length; i++)
+                    {
+                        itemModelCount[i] = 0;
+                    }
                     Destroy(ObjectFollowsMouse);
                 }
             }
