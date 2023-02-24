@@ -8,6 +8,8 @@ TagManager:
   - MusicButton
   - ButtonClickSound
   - ItemMenuSlider
+  - 3DModel
+  - InteractionCanvas
   layers:
   - Default
   - TransparentFX

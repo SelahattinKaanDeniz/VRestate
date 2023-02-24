@@ -8,7 +8,7 @@ public class SizeMenuFunctions : MonoBehaviour
 {
     
     private ItemMenuButtonFunctions itemMenuFunctions;
-
+    public GameObject sizeMenuPopUp;
     private string whichButtonClicked;
     public TMP_InputField lengthInputField;
     public TMP_InputField widthInputField;
@@ -48,23 +48,60 @@ public class SizeMenuFunctions : MonoBehaviour
         float.TryParse(heightInputField.text, out float heightresult);
         height = heightresult;
 
-
+        //HER BÝR MODEL ÝÇÝN BAÞLANGIÇTA bounds size'ýný(e.g. CabinetBase1Size) alýp küpe göre orantýsýný alýp(e.g. CabinetBase1Size.x) scalelarýný ayarla 
+        // UYGULAMA KAPANDIÐINDA BÜTÜN PREFABLERÝN BOYUTLARINI EN BAÞTAKÝ BOYUTLARINA DÖNDÜR
         if (length > 0 && width >0 && height > 0)
-        {
+        { 
             if(whichButtonClicked == "Cabinet_Base_1")
             {
-                itemMenuFunctions.CabinetBase1.transform.localScale = new Vector3(length/100,height/100, width/100);
+                //itemMenuFunctions.CabinetBase1.transform.localScale = new Vector3(length / 100, height / 100, width / 100);
+                itemMenuFunctions.CabinetBase1.transform.localScale = new Vector3((length/100)*(1f/ ItemMenuButtonFunctions.CabinetBase1Size.x), (height/100) * (1f / ItemMenuButtonFunctions.CabinetBase1Size.y), ( width/100) * (1f / ItemMenuButtonFunctions.CabinetBase1Size.z));
             }
             else if (whichButtonClicked == "Cabinet_Base_2")
             {
-                itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3((length / 100) * (1f / ItemMenuButtonFunctions.CabinetBase2Size.x), (height / 100) * (1f / ItemMenuButtonFunctions.CabinetBase2Size.y), (width / 100) * (1f / ItemMenuButtonFunctions.CabinetBase2Size.z));
             }
+            else if (whichButtonClicked == "Cabinet_Base_Corner")
+            {
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                itemMenuFunctions.CabinetBaseCorner.transform.localScale = new Vector3((length / 100) * (1f / ItemMenuButtonFunctions.CabinetBaseCornerSize.x), (height / 100) * (1f / ItemMenuButtonFunctions.CabinetBaseCornerSize.y), (width / 100) * (1f / ItemMenuButtonFunctions.CabinetBaseCornerSize.z));
+            }
+            else if (whichButtonClicked == "Cabinet_Base_Sink")
+            {
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                itemMenuFunctions.CabinetBaseSink.transform.localScale = new Vector3((length / 100) * (1f / ItemMenuButtonFunctions.CabinetBaseSinkSize.x), (height / 100) * (1f / ItemMenuButtonFunctions.CabinetBaseSinkSize.y), (width / 100) * (1f / ItemMenuButtonFunctions.CabinetBaseSinkSize.z));
+            }
+            else if (whichButtonClicked == "Cabinet_Tall")
+            {
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                itemMenuFunctions.CabinetTall.transform.localScale = new Vector3((length / 100) * (1f / ItemMenuButtonFunctions.CabinetTallSize.x), (height / 100) * (1f / ItemMenuButtonFunctions.CabinetTallSize.y), (width / 100) * (1f / ItemMenuButtonFunctions.CabinetTallSize.z));
+            }
+            else if (whichButtonClicked == "Cabinet_Wall_1")
+            {
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                itemMenuFunctions.CabinetWall1.transform.localScale = new Vector3((length / 100) * (1f / ItemMenuButtonFunctions.CabinetWall1Size.x), (height / 100) * (1f / ItemMenuButtonFunctions.CabinetWall1Size.y), (width / 100) * (1f / ItemMenuButtonFunctions.CabinetWall1Size.z));
+            }
+            else if (whichButtonClicked == "Cabinet_Wall_2")
+            {
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                itemMenuFunctions.CabinetWall2.transform.localScale = new Vector3((length / 100) * (1f / ItemMenuButtonFunctions.CabinetWall2Size.x), (height / 100) * (1f / ItemMenuButtonFunctions.CabinetWall2Size.y), (width / 100) * (1f / ItemMenuButtonFunctions.CabinetWall2Size.z));
+            }
+            GameObject sizeMenu = GameObject.Find("SizeMenu");
+            sizeMenu.SetActive(false);
         }
+        else
+        {
+            sizeMenuPopUp.SetActive(true);
+        }
+        cleanInputField();
+    }
+    public void cleanInputField()
+    {
         lengthInputField.text = "";
         widthInputField.text = "";
         heightInputField.text = "";
     }
-
     // Update is called once per frame
     void Update()
     {
