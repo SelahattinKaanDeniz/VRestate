@@ -12,7 +12,36 @@ public class ItemMenuButtonFunctions : MonoBehaviour
 
     public  static string clickedButtonName = "";
     private string leftClickedButtonName;
+
     [SerializeField] private Camera mainCamera;
+    public GameObject cameraRig;
+    Vector3 camerarigpos;
+    Quaternion camerarigrotation;
+    Vector3 cameraZoom;
+    Vector3 camerapos;
+    public float movementSpeed;
+    public float movementTime;
+    public float cameraRotationAmount;
+    //public Vector3 cameraZoomAmount;
+
+    Vector3 dragStartPosition;
+    Vector3 dragCurrentPosition;
+
+    Vector3 rotateStartPosition;
+    Vector3 rotateCurrentPosition;
+
+
+
+
+    public float cameraScrollSpeed = 20f;
+    
+    public float panBorderThickness = 10f;
+    public Vector2 panLimit;
+    public float cameraMinY = 3f;
+    public float cameraMaxY = 30f;
+
+    
+   
 
     public GameObject ObjectFollowsMouse;
     public GameObject Selected3DObject;
@@ -50,6 +79,12 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     Vector3 mousepos;
     public void Start()
     {
+        camerarigpos = cameraRig.transform.position;
+        camerarigrotation = cameraRig.transform.rotation;
+        cameraZoom = mainCamera.transform.localPosition;
+        camerapos = mainCamera.transform.localPosition;
+
+
         CabinetBase1.transform.localScale = new Vector3(1f, 1f, 1f);
         CabinetBase1Size = CabinetBase1.GetComponent<MeshRenderer>().bounds.size;
         CabinetBase2.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -238,14 +273,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
 
 
     }
-    /*public void CabinetBase1ButtonRightClicked()
-    {
-        //CabinetBase1.transform.localScale = new Vector3(5f, 5f, 5f);
-        //CabinetBase1.transform.localScale = new Vector3(1f, 1f, 1f);
-        clickedButtonName = "Cabinet_Base_1";
-        Debug.Log(clickedButtonName);
-
-    }*/
+  
     public void ItemMenuButtonsRightClicked()
     {
         //CabinetBase1.transform.localScale = new Vector3(5f, 5f, 5f);
@@ -279,6 +307,8 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     }
     public void Update()
     {
+
+        
         bool foundcount = false;
         for (int i = 0; i < itemModelCount.Length; i++)
         {
@@ -287,6 +317,108 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                 foundcount = true;
             }
         }
+        //KAMERA HAREKET ETMESÝ
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            camerarigpos += (cameraRig.transform.forward * movementSpeed);
+        }
+            
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            camerarigpos += (cameraRig.transform.forward * -movementSpeed);
+        }
+               
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            camerarigpos += (cameraRig.transform.right * movementSpeed);
+        }
+                   
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            camerarigpos += (cameraRig.transform.right *- movementSpeed);
+        }
+
+        //KAMERA DÖNDÜRMESÝ
+        if (Input.GetKey(KeyCode.Q))
+        {
+            camerarigrotation *= Quaternion.Euler(Vector3.up * -cameraRotationAmount);
+            //camerarigrotation *= Quaternion.AngleAxis(-cameraRotationAmount, transform.up);
+        }
+        if (Input.GetKey(KeyCode.E))
+        {
+            camerarigrotation *= Quaternion.Euler(Vector3.up * cameraRotationAmount);
+            //camerarigrotation *= Quaternion.AngleAxis(cameraRotationAmount, transform.up);
+        }
+
+        //Mouse üzerinden hareket etme ve rotation yapýlmasý
+        if (MouseInputUIBlocker.BlockedByUI == false)
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+                float entry;
+                Plane plane = new Plane(Vector3.up, Vector3.zero);
+                if (plane.Raycast(ray, out entry))
+                {
+                    dragStartPosition = ray.GetPoint(entry);
+                }
+            }
+            if (Input.GetMouseButton(1))
+            {
+                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+                float entry;
+                Plane plane = new Plane(Vector3.up, Vector3.zero);
+                if (plane.Raycast(ray, out entry))
+                {
+                    dragCurrentPosition = ray.GetPoint(entry);
+                    camerarigpos = cameraRig.transform.position + dragStartPosition - dragCurrentPosition;
+                }
+            }
+            if (Input.GetMouseButtonDown(2))
+            {
+                rotateStartPosition = Input.mousePosition;
+            }
+            if (Input.GetMouseButton(2))
+            {
+                rotateCurrentPosition = Input.mousePosition;
+                Vector3 difference = rotateStartPosition - rotateCurrentPosition;
+                rotateStartPosition = rotateCurrentPosition;
+                camerarigrotation *= Quaternion.Euler(Vector3.up * (-difference.x /5f));
+            }
+        }
+        //KAMERA HAREKET ETMESÝ (MOUSE ÝLE)
+        /*if (MouseInputUIBlocker.BlockedByUI == false)
+        {
+            if (Input.mousePosition.y >= Screen.height - panBorderThickness)
+            {
+                camerarigpos += (cameraRig.transform.forward * movementSpeed);
+            }
+
+            if (Input.mousePosition.y <= panBorderThickness)
+            {
+                camerarigpos += (cameraRig.transform.forward * -movementSpeed);
+            }
+
+            if (Input.mousePosition.x >= Screen.width - panBorderThickness)
+            {
+                camerarigpos += (cameraRig.transform.right * movementSpeed);
+            }
+
+            if (Input.mousePosition.x <= panBorderThickness)
+            {
+                camerarigpos += (cameraRig.transform.right * -movementSpeed);
+            }
+        }*/
+        //KAMERANIN SINIRLARI
+        camerarigpos.x = Mathf.Clamp(camerarigpos.x, -panLimit.x, panLimit.x);
+        cameraZoom.y = Mathf.Clamp(cameraZoom.y, cameraMinY, cameraMaxY);
+        camerarigpos.z = Mathf.Clamp(camerarigpos.z, -panLimit.y-30, panLimit.y-40);
+
+        //cameraRig.transform.position = Vector3.Lerp(cameraRig.transform.position, camerarigpos, Time.deltaTime * movementTime);
+        cameraRig.transform.position = camerarigpos;
+        cameraRig.transform.rotation = Quaternion.Lerp(camerarigrotation, cameraRig.transform.rotation,  Time.deltaTime * movementTime );
+        
+
         //SEÇÝLEN OBJE OLUÞUP MOUSEU TAKÝP EDÝYOR
         if (foundcount)
         {
@@ -356,7 +488,17 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             // WORLD SPACETE CANVAS UI BUTTONA NASIL TIKLANILIR ONA BAK
             // BÜTÜN MODELLERE 3DModel TAG'I EKLE
 
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+
+            // KAMERANIN YAKINLAÞTIRILIP UZAKLAÞTIRILABÝLMESÝ  BURA ÝÇÝN YENÝ VÝDEOYA BAK
+            if (MouseInputUIBlocker.BlockedByUI == false)
+            {
+                 float camerascroll = Input.GetAxis("Mouse ScrollWheel");
+                 cameraZoom.y -= camerascroll* cameraScrollSpeed* 100f* Time.deltaTime;
+                 mainCamera.transform.localPosition = cameraZoom;
+            }
+
+
+                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit raycastHit))
             {
                 //Debug.Log(raycastHit.point);
