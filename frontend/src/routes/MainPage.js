@@ -6,13 +6,21 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useAuth } from "../utils/Auth";
+import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import CorporateFareIcon from '@mui/icons-material/CorporateFare';
 import { useNavigate } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 function MainPage() {
   const { clientId, onSuccess, onFailure, profile, onLogOutSuccess } = useAuth();
   const navigate = useNavigate();
   return(
-      <Navbar expand="lg">
+    <>
+     <Navbar expand="lg">
       <Container>
         <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -35,6 +43,25 @@ function MainPage() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    <Box sx={{ width: '100%', maxWidth: 1200, margin: '0 auto', bgcolor: 'background.paper' }}>
+      <nav aria-label="main mailbox folders">
+        <List>
+          {ESTATES.map((estate, index) => {
+            return <ListItem key={estate.estateName} onClick={() => { navigate(`/estate/${estate.id}`); }} disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <CorporateFareIcon />
+                </ListItemIcon>
+                <ListItemText primary={estate.estateName} />
+              </ListItemButton>
+            </ListItem>
+          })}
+        </List>
+      </nav>
+    </Box>
+    
+    </>
+   
   )
     
 }
