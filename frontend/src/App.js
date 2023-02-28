@@ -8,8 +8,6 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.css';
 function App() {
 
   const router = createBrowserRouter([
