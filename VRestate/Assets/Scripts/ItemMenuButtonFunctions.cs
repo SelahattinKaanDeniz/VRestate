@@ -10,6 +10,9 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     public GameObject ConstructionMenuPanel;
     public GameObject ItemMenuPanel;
 
+    public GameObject sizeMenu;
+    public GameObject settingsMenu;
+
     public  static string clickedButtonName = "";
     private string leftClickedButtonName;
 
@@ -22,6 +25,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     public float movementSpeed;
     public float movementTime;
     public float cameraRotationAmount;
+     bool followmouse = true;
     //public Vector3 cameraZoomAmount;
 
     Vector3 dragStartPosition;
@@ -29,6 +33,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
 
     Vector3 rotateStartPosition;
     Vector3 rotateCurrentPosition;
+    
 
 
 
@@ -37,7 +42,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     
     public float panBorderThickness = 10f;
     public Vector2 panLimit;
-    public float cameraMinY = 3f;
+    public float cameraMinY = 1.5f;
     public float cameraMaxY = 30f;
 
     
@@ -46,6 +51,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     public GameObject ObjectFollowsMouse;
     public GameObject Selected3DObject;
     public bool isButtonClicked = true;
+
     public GameObject CabinetBase1;
     public static Vector3 CabinetBase1Size; 
     public GameObject CabinetBase2;
@@ -60,18 +66,43 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     public static Vector3 CabinetWall1Size;
     public GameObject CabinetWall2;
     public static Vector3 CabinetWall2Size;
+    public GameObject Stove;
+    public static Vector3 StoveSize;
+    public GameObject Floor;
+    public static Vector3 FloorSize;
+
+
+    public GameObject Wall;
+    public static Vector3 WallSize;
+
+
+    // Dynamic Wall Creation
+    bool creatingWall = false;
+    GameObject startPole;
+    GameObject endPole;
+    GameObject wall;
+    public GameObject wallPrefab;
+
+
+
     public GameObject cube;
     public GameObject InteractionCanvas;
-    public int[] itemModelCount = new int[10];
+    public int[] itemModelCount = new int[40];
     /* itemModelCount indexes:
      * 0 -> CabinetBase1
      * 1 -> CabinetBase2
      * 2 -> CabinetBaseCorner
      * 3 -> CabinetBaseSink
      * 4 -> CabinetTall
-     * 5 -> CabinetBase1
-     * 6 -> CabinetBase1
+     * 5 -> CabinetWall1
+     * 6 -> CabinetWall2
      * 7 -> CabinetBase1
+     * 9 -> WallPrefab
+     * 
+     * 15 -> Stove
+     * 20 -> Floor
+     * 
+     * 
      */
     private int cabinetbase1count = 0;
     private int cabinetbase2count = 0;
@@ -98,7 +129,17 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         CabinetWall1.transform.localScale = new Vector3(1f, 1f, 1f);
         CabinetWall1Size = CabinetWall1.GetComponent<MeshRenderer>().bounds.size;
         CabinetWall2.transform.localScale = new Vector3(1f, 1f, 1f);
-        CabinetWall2Size = CabinetWall1.GetComponent<MeshRenderer>().bounds.size;
+        CabinetWall2Size = CabinetWall2.GetComponent<MeshRenderer>().bounds.size;
+
+        Stove.transform.localScale = new Vector3(1f, 1f, 1f);
+        StoveSize = Stove.GetComponent<MeshRenderer>().bounds.size;
+
+        Floor.transform.localScale = new Vector3(0.2f, 1f, 0.2f);
+        FloorSize = Floor.GetComponent<MeshRenderer>().bounds.size;
+
+
+        Wall.transform.localScale = new Vector3(1f, 1f, 1f);
+        WallSize = Wall.GetComponent<MeshRenderer>().bounds.size;
     }
     //Ana kategoriden Bathroom butonuna týklandýðýnda
     public void BathroomButtonClicked()
@@ -167,7 +208,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         if (leftClickedButtonName == "Cabinet_Base_1")
         {
             if (isButtonClicked == true)
-            {
+            {                
                 Destroy(ObjectFollowsMouse);               
             }
             if(isButtonClicked == false)
@@ -175,7 +216,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                 isButtonClicked =true;
             }
 
-            ObjectFollowsMouse = Instantiate(CabinetBase1, new Vector3(4f, 2f, -18f), Quaternion.identity);
+            ObjectFollowsMouse = Instantiate(CabinetBase1, new Vector3(4f, 2f, -18f), Quaternion.Euler( new Vector3(0, 90, 0)));
             
             itemModelCount[0]= 1;
         }
@@ -269,6 +310,51 @@ public class ItemMenuButtonFunctions : MonoBehaviour
 
             itemModelCount[6] = 1;
         }
+        else if (leftClickedButtonName == "Wall")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(wallPrefab, new Vector3(4f, 10f, -18f), Quaternion.identity);
+
+            itemModelCount[9] = 1;
+        }
+        else if (leftClickedButtonName == "Stove")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Stove, new Vector3(4f, 10f, -18f), Quaternion.identity);
+
+            itemModelCount[15] = 1;
+        }
+        else if (leftClickedButtonName == "Floor")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Floor, new Vector3(4f, 10f, -18f), Quaternion.identity);
+
+            itemModelCount[20] = 1;
+        }
 
 
 
@@ -305,8 +391,72 @@ public class ItemMenuButtonFunctions : MonoBehaviour
 
 
     }
+
+
+    // Dynamic Wall Creation metotlarý
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    void SetStart()
+    {
+        creatingWall = true;
+        followmouse = false;
+        startPole = Instantiate(wallPrefab, new Vector3(4f, 10f, -18f), ObjectFollowsMouse.transform.rotation);
+        endPole = Instantiate(wallPrefab, new Vector3(1000f, 10f, 1000f), startPole.transform.rotation);
+        ObjectFollowsMouse.transform.position = new Vector3(1000, 1000, 1000);
+        Vector3 mousepos = getWorldPoint();
+        startPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
+        //startPole.transform.position = new Vector3(mousepos.x, mousepos.y, mousepos.z);
+        wall = (GameObject)Instantiate(wallPrefab, new Vector3(1000f, 10f, 1000f), Quaternion.identity);
+        //Destroy(ObjectFollowsMouse);
+
+    }
+    void setEnd()
+    {
+        creatingWall = false;
+        Vector3 mousepos = getWorldPoint();
+        endPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
+        //endPole.transform.position = new Vector3(mousepos.x, mousepos.y, mousepos.z);
+        for (int i = 0; i < itemModelCount.Length; i++)
+        {
+            itemModelCount[i] = 0;
+        }
+        Destroy(ObjectFollowsMouse);
+        followmouse = true;
+        startPole.AddComponent<BoxCollider>();
+        endPole.AddComponent<BoxCollider>();
+        wall.AddComponent<BoxCollider>();
+
+    }
+    void adjust()
+    {
+        Vector3 mousepos = getWorldPoint();
+        endPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
+       // endPole.transform.position = new Vector3(mousepos.x, mousepos.y, mousepos.z);
+        startPole.transform.LookAt(endPole.transform.position);
+        endPole.transform.LookAt(startPole.transform.position);
+        //endPole.transform.rotation = new Quaternion(startPole.transform.rotation.x, startPole.transform.rotation.y, startPole.transform.rotation.z, startPole.transform.rotation.w);
+       
+        float distance = Vector3.Distance(startPole.transform.position, endPole.transform.position);
+        Debug.Log(distance);
+        wall.transform.position = startPole.transform.position + distance / 2 * startPole.transform.forward;
+        wall.transform.rotation = startPole.transform.rotation;
+        wall.transform.localScale = new Vector3(wall.transform.localScale.x, wall.transform.localScale.y, (2*distance-1f)*(startPole.transform.localScale.z));
+        //wall.transform.localScale = new Vector3(wall.transform.localScale.x, wall.transform.localScale.y, (2*distance-1)*startPole.transform.localScale.z);
+    }
+    Vector3 getWorldPoint()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit))
+        {
+            return hit.point;
+        }
+        return Vector3.zero;
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
     public void Update()
     {
+        //Debug.Log(MouseInputUIBlocker.BlockedByUI + " BLOCKEDBYUI");
 
         
         bool foundcount = false;
@@ -342,12 +492,12 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         if (Input.GetKey(KeyCode.Q))
         {
             camerarigrotation *= Quaternion.Euler(Vector3.up * -cameraRotationAmount);
-            //camerarigrotation *= Quaternion.AngleAxis(-cameraRotationAmount, transform.up);
+            
         }
         if (Input.GetKey(KeyCode.E))
         {
             camerarigrotation *= Quaternion.Euler(Vector3.up * cameraRotationAmount);
-            //camerarigrotation *= Quaternion.AngleAxis(cameraRotationAmount, transform.up);
+            
         }
 
         //Mouse üzerinden hareket etme ve rotation yapýlmasý
@@ -409,6 +559,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                 camerarigpos += (cameraRig.transform.right * -movementSpeed);
             }
         }*/
+
         //KAMERANIN SINIRLARI
         camerarigpos.x = Mathf.Clamp(camerarigpos.x, -panLimit.x, panLimit.x);
         cameraZoom.y = Mathf.Clamp(cameraZoom.y, cameraMinY, cameraMaxY);
@@ -423,28 +574,48 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         if (foundcount)
         {
             InteractionCanvas.SetActive(false);
-            Debug.Log(MouseInputUIBlocker.BlockedByUI + "  blockedbyUI");
+          
+           
+
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray, out RaycastHit raycastHit))
             {
                 //Debug.Log(raycastHit.point);
-                if (ObjectFollowsMouse.name == "Cabinet_Wall_1(Clone)" || ObjectFollowsMouse.name == "Cabinet_Wall_2(Clone)")
+                if (ObjectFollowsMouse != null)
                 {
-                    
-                    ObjectFollowsMouse.transform.position = new Vector3 (raycastHit.point.x, raycastHit.point.y +1.5f, raycastHit.point.z);
-                    
-                }
-                else
-                {
-                    ObjectFollowsMouse.transform.position = raycastHit.point;
+                    if (ObjectFollowsMouse.name == "Cabinet_Wall_1(Clone)" || ObjectFollowsMouse.name == "Cabinet_Wall_2(Clone)")
+                    {
+                        if (followmouse == true)
+                        {
+                            ObjectFollowsMouse.transform.position = new Vector3(raycastHit.point.x, raycastHit.point.y + 1.5f, raycastHit.point.z);
+                        }
+                        
+
+                    }
+                    else if ( ObjectFollowsMouse.name == "CubeWall(Clone)")
+                    {
+                        if (followmouse == true)
+                        {
+                            ObjectFollowsMouse.transform.position = new Vector3(raycastHit.point.x, raycastHit.point.y+ wallPrefab.transform.localScale.y /2, raycastHit.point.z);
+                            //ObjectFollowsMouse.transform.position = new Vector3(raycastHit.point.x, raycastHit.point.y, raycastHit.point.z);
+                        }
+                    }
+                    else
+                    {
+                        if (followmouse == true)
+                        {
+                            ObjectFollowsMouse.transform.position = raycastHit.point;
+                        }
+                    }
                 }
                 
             }
 
 
-            //Rotate
+           
             if (MouseInputUIBlocker.BlockedByUI == false)
             {
+                //Rotate
                 if (Input.GetAxis("Mouse ScrollWheel") > 0)
                 {
                     ObjectFollowsMouse.transform.Rotate(0, 90f, 0, Space.Self);
@@ -453,23 +624,54 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                 {
                     ObjectFollowsMouse.transform.Rotate(0, -90f, 0, Space.Self);
                 }
+
                 // Sol týk koyma
-                if (Input.GetMouseButtonDown(0))
+                if (ObjectFollowsMouse.name == "CubeWall(Clone)")
                 {
-                    //cabinetbase1count = 0;
-                    ObjectFollowsMouse.AddComponent<BoxCollider>();
-                                       
-                    Debug.Log(ObjectFollowsMouse.GetComponent<MeshRenderer>().bounds.size);                    
-                    Debug.Log(cube.GetComponent<MeshRenderer>().bounds.size);
-
-
-                    isButtonClicked = false;
-                    for (int i = 0; i < itemModelCount.Length; i++)
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        itemModelCount[i] = 0;
+                        Debug.Log("START");
+                        SetStart();
                     }
-                    
+                    else if ((Input.GetMouseButtonUp(0)))
+                    {
+                        Debug.Log("END");
+                        setEnd();
+                    }
+                    else
+                    {
+                        Debug.Log("ELSE");
+                        if (creatingWall)
+                        {
+                            Debug.Log("ADJUST");
+                            adjust();
+                        }
+                    }
+
+
                 }
+                else
+                {
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        //cabinetbase1count = 0;
+
+                        ObjectFollowsMouse.AddComponent<BoxCollider>();
+
+                        Debug.Log(ObjectFollowsMouse.GetComponent<MeshRenderer>().bounds.size);
+                        Debug.Log(cube.GetComponent<MeshRenderer>().bounds.size);
+
+
+                        isButtonClicked = false;
+                        for (int i = 0; i < itemModelCount.Length; i++)
+                        {
+                            itemModelCount[i] = 0;
+                        }
+
+                    }
+                }
+                
+              
                 // Sað týk delete
                 if (Input.GetMouseButtonDown(1))
                 {
@@ -485,11 +687,11 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         }
         else
         {
-            // WORLD SPACETE CANVAS UI BUTTONA NASIL TIKLANILIR ONA BAK
+            
             // BÜTÜN MODELLERE 3DModel TAG'I EKLE
 
 
-            // KAMERANIN YAKINLAÞTIRILIP UZAKLAÞTIRILABÝLMESÝ  BURA ÝÇÝN YENÝ VÝDEOYA BAK
+            
             if (MouseInputUIBlocker.BlockedByUI == false)
             {
                  float camerascroll = Input.GetAxis("Mouse ScrollWheel");
@@ -498,20 +700,20 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             }
 
 
-                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit raycastHit))
             {
                 //Debug.Log(raycastHit.point);
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (raycastHit.collider.tag == "3DModel")
+                    if (raycastHit.collider.tag == "3DModel" && sizeMenu.active == false && settingsMenu.active == false)
                     {
                         Selected3DObject = raycastHit.transform.gameObject;
                         Debug.Log(Selected3DObject);
                         InteractionCanvas.SetActive(true);
                        // InteractionCanvas.transform.SetParent(raycastHit.transform);
                        
-                        InteractionCanvas.transform.position = new Vector3(raycastHit.transform.position.x, raycastHit.transform.position.y + raycastHit.transform.gameObject.GetComponent<MeshRenderer>().bounds.size.y + 0.7f, raycastHit.transform.position.z);
+                        InteractionCanvas.transform.position = new Vector3(raycastHit.transform.position.x, raycastHit.transform.position.y + raycastHit.transform.gameObject.GetComponent<MeshRenderer>().bounds.size.y + 0.4f, raycastHit.transform.position.z);
 
                     }
                    

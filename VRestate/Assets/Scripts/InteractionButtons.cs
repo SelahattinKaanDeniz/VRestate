@@ -8,6 +8,14 @@ public class InteractionButtons : MonoBehaviour
     [SerializeField]
     private Transform mainCamera;
     private ItemMenuButtonFunctions itemMenuFunctions;
+    public GameObject cameraRig;
+    float minDistance = 2f;
+    float maxDistance = 45f;
+
+    float minScale = 1f;
+    float maxScale = 4f;
+
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +31,6 @@ public class InteractionButtons : MonoBehaviour
         if (itemMenuFunctions.Selected3DObject.name == "Cabinet_Base_1(Clone)")
         {
             itemMenuFunctions.itemModelCount[0] = 1;
-            Debug.Log("BUTON MENÜSÜNDEN OBJE MOVE SEÇÝLDÝ");
         }
         else if (itemMenuFunctions.Selected3DObject.name == "Cabinet_Base_2(Clone)")
         {
@@ -49,16 +56,26 @@ public class InteractionButtons : MonoBehaviour
         {
             itemMenuFunctions.itemModelCount[6] = 1;
         }
+        else if (itemMenuFunctions.Selected3DObject.name == "Stove(Clone)")
+        {
+            itemMenuFunctions.itemModelCount[15] = 1;
+        }
+        else if (itemMenuFunctions.Selected3DObject.name == "Floor(Clone)")
+        {
+            itemMenuFunctions.itemModelCount[20] = 1;
+        }
         MouseInputUIBlocker.BlockedByUI = false;
         itemMenuFunctions.Selected3DObject = null;
     }
     public void RotateButtonClicked()
     {
         itemMenuFunctions.Selected3DObject.transform.Rotate(0, 90f, 0, Space.Self);
+        MouseInputUIBlocker.BlockedByUI = false;
     }
     public void DeleteButtonClicked()
     {
         Destroy(itemMenuFunctions.Selected3DObject);
+        MouseInputUIBlocker.BlockedByUI = false;
         this.gameObject.SetActive(false);
     }
 
@@ -66,6 +83,12 @@ public class InteractionButtons : MonoBehaviour
     void Update()
     {
         transform.LookAt(mainCamera);
+              
+        float mdistance =  Vector3.Distance(mainCamera.position, this.transform.position);
+        //Debug.Log("mdistance " + mdistance);
+        float scale = Mathf.Lerp(minScale, maxScale, Mathf.InverseLerp(minDistance, maxDistance, mdistance));
+        this.transform.localScale = new Vector3(scale, scale, scale);
+
     }
 
     
