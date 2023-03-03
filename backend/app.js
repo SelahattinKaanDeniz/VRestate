@@ -36,6 +36,49 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.get('/testapi', (req,res) => {
+    let query = 'SELECT name FROM vrestate.test WHERE id = '+req.query.id;
+    
+    connection.query(query, (error, results, fields) => {
+        if(error){
+            return console.error(error);
+        }
+        if(results.length == 0){
+            res.send('Kullanici Bulunamadi!');
+        }
+        else{
+            res.send((req.query.id)+ ' nolu id ye sahip kullanici ' + results[0].name);
+            console.log(results[0].name)
+        }
+        
+    });
+    
+    
+});
+
+app.get('/loaderio-0ea84b7e34801498d9390d93deb66294', (req,res) => {
+    res.send('loaderio-0ea84b7e34801498d9390d93deb66294');
+})
+
+app.get('/apitest', (req,res) => {
+    res.json({
+        "keys": ["id"] ,
+        "values": [
+          ["1"],
+          ["2"],
+          ["3"],
+          ["4"],
+          ["5"],
+          ["6"],
+          ["7"],
+          ["8"],
+          ["9"],
+          ["41"]
+        ]
+      });
+});
+
+
 //test için html donen endpoint. frontendi tamamlandığında silinecek
 app.get('/imageupload', function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
@@ -85,25 +128,6 @@ app.get('/getImage', (req,res) => {
     })
 })
 
-app.get('/testapi', (req,res) => {
-    let query = 'SELECT name FROM vrestate.test WHERE id = '+req.query.id;
-    
-    connection.query(query, (error, results, fields) => {
-        if(error){
-            return console.error(error);
-        }
-        if(results.length == 0){
-            res.send('Kullanici Bulunamadi!');
-        }
-        else{
-            res.send((req.query.id)+ ' nolu id ye sahip kullanici ' + results[0].name);
-            console.log(results[0].name)
-        }
-        
-    });
-    
-    
-});
 
 app.get('/login/check', (req,res) => {
     let query = 'SELECT * FROM vrestate.user WHERE mail = \''+req.query.mail+'\'';
@@ -148,18 +172,6 @@ app.get('/login/getById', (req,res) => {
     
     
 });
-app.get('/checkLocation', (req,res) => {
-    let ip = req.socket.remoteAddress.substring(req.socket.remoteAddress.indexOf(':',2)+1);
-    request('http://ip-api.com/json/'+ip, (error, response, body) => {
-        if(error){
-            res.status(400).send({message:error});
-            return;
-        }
-        res.send(body)
-        //res.send({country:body.country,region:body.regionName});
-    })
-
-})
 
 app.post('/login', (req,res) => {
     let query = 'SELECT * FROM vrestate.user WHERE mail = \''+req.body.mail+'\'';
@@ -195,27 +207,69 @@ app.post('/login', (req,res) => {
     
 });
 
-app.get('/loaderio-0ea84b7e34801498d9390d93deb66294', (req,res) => {
-    res.send('loaderio-0ea84b7e34801498d9390d93deb66294');
+//girilmeyen değerleri apiye null gönderelim.
+app.post('/estate/create', (req,res) => {
+    let query = "INSERT INTO estate (title, head_photo_id, estate_type, category, price, create_date, last_update, location_ilce, location_il, coordX, coordY, room_type, m2, vr_id, owner_id) VALUES ?;"
+    let values = [];
+    values[values.length] = req.body.title;
+    values[values.length] = req.body.head_photo_id;
+    values[values.length] = req.body.estate_type;
+    values[values.length] = req.body.category;
+    values[values.length] = req.body.price;
+    let date = new Date().toISOString()
+    values[values.length] = date;
+    values[values.length] = date;
+    values[values.length] = req.body.ilce;
+    values[values.length] = req.body.il;
+    values[values.length] = req.body.coordX;
+    values[values.length] = req.body.coordY;
+    values[values.length] = req.body.room_type;
+    values[values.length] = req.body.m2;
+    values[values.length] = req.body.vr_id;
+    values[values.length] = req.body.owner_id;
+    
+    let createdId;
+    connection.query(query, values, (error, results, fields) => {
+        if(error){
+            res.statusMessage ='Database Query Error';
+            res.status(500).send({message:error});
+            return;
+        }
+        query = 'select * from estate order by 1 desc'
+        connection.query(query, (error, results, fields) => {
+            if(error){
+                res.statusMessage ='Database Query Error';
+                res.status(500).send({message:error});
+                return;
+            }
+            createdId = results[0].id;
+        })
+        //estate detail oluşturma.
+        query = "INSERT INTO estate_detail (title, head_photo_id, estate_type, category, price, create_date, last_update, location_ilce, location_il, coordX, coordY, room_type, m2, vr_id, owner_id) VALUES ?;"
+    })    
+});
+
+app.post('/estate/update');
+
+app.post('/estate/delete');
+
+app.get('/estate/getEstates');
+
+//json mu gidiyor control.
+app.get('/checkLocation', (req,res) => {
+    let ip = req.socket.remoteAddress.substring(req.socket.remoteAddress.indexOf(':',2)+1);
+    request('http://ip-api.com/json/'+ip, (error, response, body) => {
+        if(error){
+            res.status(400).send({message:error});
+            return;
+        }
+        res.send(body)
+        //res.send({country:body.country,region:body.regionName});
+    })
+
 })
 
-app.get('/apitest', (req,res) => {
-    res.json({
-        "keys": ["id"] ,
-        "values": [
-          ["1"],
-          ["2"],
-          ["3"],
-          ["4"],
-          ["5"],
-          ["6"],
-          ["7"],
-          ["8"],
-          ["9"],
-          ["41"]
-        ]
-      });
-});
+
 
 app.listen(5002, () => {
     connection.connect(function(err) {
