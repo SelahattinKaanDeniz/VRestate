@@ -18,7 +18,7 @@ public class BuildingSystem : MonoBehaviour
 
     public static float posx;
     public static float posz;
-    private PlaceableObject objectToPlace;
+    //private PlaceableObject objectToPlace;
 
     public GameObject SizeMenu;
     private SizeMenuFunctions sizeMenuFunctions;
@@ -39,13 +39,13 @@ public class BuildingSystem : MonoBehaviour
         {
             float.TryParse(sizeMenuFunctions.widthInputField.text, out float widthresult);
             posx = widthresult;
-            Debug.Log(posx + " posx");
+            //Debug.Log(posx + " posx");
             float.TryParse(sizeMenuFunctions.lengthInputField.text, out float lengthresult);
             posz = lengthresult;
         }
         
 
-        if (Input.GetKeyDown(KeyCode.A))
+        /*if (Input.GetKeyDown(KeyCode.A))
         {
             InitializeWithObject(prefab1);
         }else if (Input.GetKeyDown(KeyCode.B))
@@ -55,28 +55,30 @@ public class BuildingSystem : MonoBehaviour
         if (!objectToPlace)
         {
             return;
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            objectToPlace.Rotate();
+            ItemMenuButtonFunctions.objectToPlace.Rotate();
         }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        else if (Input.GetKeyDown(KeyCode.P))
         {
-            if (CanBePlaced(objectToPlace))
+           
+            if (CanBePlaced(ItemMenuButtonFunctions.objectToPlace))
             {
-                objectToPlace.Place();
-                Vector3Int start = gridLayout.WorldToCell(objectToPlace.GetStartPosition());
-                TakeArea(start, objectToPlace.Size);
+                Debug.Log("BOYANDI");
+                ItemMenuButtonFunctions.objectToPlace.Place();
+                Vector3Int start = gridLayout.WorldToCell(ItemMenuButtonFunctions.objectToPlace.GetStartPosition());
+                TakeArea(start, ItemMenuButtonFunctions.objectToPlace.Size);
             }
             else
             {
-                Destroy(objectToPlace.gameObject);
+                Destroy(ItemMenuButtonFunctions.objectToPlace.gameObject);
             }
         }
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Destroy(objectToPlace.gameObject);
+            Destroy(ItemMenuButtonFunctions.objectToPlace.gameObject);
         }
     }
 
@@ -98,15 +100,50 @@ public class BuildingSystem : MonoBehaviour
     }
     
 
-    public Vector3 SnapCoordinateToGrid(Vector3 position)
+    public Vector3 SnapCoordinateToGrid(RaycastHit hit)
     {
-        Vector3Int cellPos = gridLayout.WorldToCell(position);
-        
-        position = grid.GetCellCenterWorld(cellPos);
-        position = new Vector3(position.x - 0.25f, position.y, position.z - 0.25f);
-        Debug.Log(cellPos + "cellpos");
-        Debug.Log(position + "AAAAAAA");
-        return position;
+        //Debug.Log(hit + " position");
+        RaycastHit originalHit = hit;
+        Vector3Int cellPos = gridLayout.WorldToCell(hit.point);
+        //Debug.Log(cellPos + " cellpos");
+        hit.point = grid.GetCellCenterWorld(cellPos);
+        //Debug.Log(hit.point + " newposition");
+        //Debug.Log(originalHit.collider.gameObject.name);
+        /* if(originalHit.collider.tag == "3DModel")
+         {
+             hit.point = new Vector3(hit.point.x - 0.25f,   hit.point.y + originalHit.collider.gameObject.GetComponent<BoxCollider>().size.y, hit.point.z - 0.25f);
+         }*/
+        //else
+        //{
+        if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 0f)
+        {
+           
+            hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
+            Debug.Log("snapcoordinate 1.if" + hit.point);
+        }
+        else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 90f)
+        {
+            
+            hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
+            Debug.Log("snapcoordinate 2.if" + hit.point);
+        }
+        else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 180f)
+        {
+           
+            hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
+            Debug.Log("snapcoordinate 3.if" + hit.point);
+        }
+        else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 270f)
+        {
+          
+            hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
+            Debug.Log("snapcoordinate 4.if" + hit.point);
+        }
+
+        //}
+
+
+        return hit.point;
     }
 
     private static TileBase[] GetTilesBlock(BoundsInt area, Tilemap tilemap)
@@ -127,19 +164,19 @@ public class BuildingSystem : MonoBehaviour
 
     #region Building Placement
     
-    public void InitializeWithObject(GameObject prefab)
+    /*public void InitializeWithObject(GameObject prefab)
     {
         Vector3 position = SnapCoordinateToGrid(Vector3.zero);
 
         GameObject obj = Instantiate(prefab, position, Quaternion.identity);
         objectToPlace = obj.GetComponent<PlaceableObject>();
         obj.AddComponent<ObjectDrag>();
-    }
+    }*/
 
     private bool CanBePlaced(PlaceableObject placeableObject)
     {
         BoundsInt area = new BoundsInt();
-        area.position = gridLayout.WorldToCell(objectToPlace.GetStartPosition());
+        area.position = gridLayout.WorldToCell(ItemMenuButtonFunctions.objectToPlace.GetStartPosition());
         area.size = placeableObject.Size;
 
         TileBase[] baseArray = GetTilesBlock(area, MainTilemap);
@@ -154,9 +191,14 @@ public class BuildingSystem : MonoBehaviour
         return true;
     }
     public void TakeArea(Vector3Int start, Vector3Int size)
+
     {
-        MainTilemap.BoxFill(start, whiteTile, start.x + size.x / 2,  start.y + size.y / 2, 
-                            start.x - size.x / 2, start.y - size.y / 2 );
+        Debug.Log("TAKEAREA GÝRDÝ");
+        Debug.Log(start + " start"); 
+        Debug.Log(size.x + " takearea x");
+        Debug.Log(size.y + " takearea y");
+        MainTilemap.BoxFill(start, whiteTile, start.x, start.y,
+                            start.x + size.x -1, start.y + size.y -1);
 
     }
     #endregion

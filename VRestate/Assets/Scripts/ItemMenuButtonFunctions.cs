@@ -44,12 +44,13 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     public Vector2 panLimit;
     public float cameraMinY = 1.5f;
     public float cameraMaxY = 30f;
-    private PlaceableObject objectToPlace;
+    public static PlaceableObject objectToPlace;
 
     
    
 
     public GameObject ObjectFollowsMouse;
+    public static GameObject buildingSystemObjectFollowMouse;
     public GameObject Selected3DObject;
     public bool isButtonClicked = true;
 
@@ -370,6 +371,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
         ObjectFollowsMouse.layer = LayerIgnoreRaycast;
         ObjectFollowsMouse.AddComponent<BoxCollider>();
+        buildingSystemObjectFollowMouse = ObjectFollowsMouse;
 
 
 
@@ -426,11 +428,11 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         wall.layer = LayerIgnoreRaycast;
 
         ObjectFollowsMouse.transform.position = new Vector3(1000, 1000, 1000);
-        
+
         //Vector3 mousepos = getWorldPoint();
         //startPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
 
-        Vector3 pos = getWorldPoint();
+        RaycastHit pos = getWorldPoint();
 
         BoxCollider b = startPole.GetComponent<BoxCollider>();
 
@@ -448,10 +450,10 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     {
         creatingWall = false;
 
-       // Vector3 mousepos = getWorldPoint();
-       // endPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
+        // Vector3 mousepos = getWorldPoint();
+        // endPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
 
-        Vector3 pos = getWorldPoint();
+        RaycastHit pos = getWorldPoint();
 
         BoxCollider b = endPole.GetComponent<BoxCollider>();
 
@@ -483,7 +485,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         //Vector3 mousepos = getWorldPoint();
         //endPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
 
-        Vector3 pos = getWorldPoint();
+        RaycastHit pos = getWorldPoint();
 
         BoxCollider b = endPole.GetComponent<BoxCollider>();
 
@@ -506,15 +508,15 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         wall.transform.localScale = new Vector3(wall.transform.localScale.x, wall.transform.localScale.y, (2*distance-1f)*(startPole.transform.localScale.z));
         //wall.transform.localScale = new Vector3(wall.transform.localScale.x, wall.transform.localScale.y, (2*distance-1)*startPole.transform.localScale.z);
     }
-    Vector3 getWorldPoint()
+    RaycastHit getWorldPoint()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit))
         {
-            return hit.point;
+            return hit;
         }
-        return Vector3.zero;
+        return hit;
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -651,7 +653,16 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                     {
                         if (followmouse == true)
                         {
-                            ObjectFollowsMouse.transform.position = new Vector3(raycastHit.point.x, raycastHit.point.y + 1.5f, raycastHit.point.z);
+                            //ObjectFollowsMouse.transform.position = new Vector3(raycastHit.point.x, raycastHit.point.y + 1.5f, raycastHit.point.z);
+                            RaycastHit raycastHitObject = raycastHit;
+
+                            BoxCollider b = ObjectFollowsMouse.GetComponent<BoxCollider>();
+
+                            Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(raycastHitObject);
+                            //Debug.Log(a + " aaa");
+                            //Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
+                            Vector3 objectposition = new Vector3(a.x + BuildingSystem.posx / 200, a.y + 1.5f, a.z + BuildingSystem.posz / 200);
+                            ObjectFollowsMouse.transform.position = objectposition;
                         }
                         
 
@@ -662,11 +673,11 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                         {
                             //bir önceki buydu
                             //ObjectFollowsMouse.transform.position = new Vector3(raycastHit.point.x, raycastHit.point.y+ wallPrefab.transform.localScale.y /2, raycastHit.point.z);
-                            Vector3 pos = raycastHit.point;
-
+                            //Vector3 pos = raycastHit.point;
+                            RaycastHit raycastHitObject = raycastHit;
                             BoxCollider b = ObjectFollowsMouse.GetComponent<BoxCollider>();
 
-                            Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(pos);
+                            Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(raycastHitObject);
                             Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
                             Vector3 objectposition = new Vector3(a.x + 0.25f, a.y + wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
                             ObjectFollowsMouse.transform.position = objectposition;
@@ -681,13 +692,40 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                         if (followmouse == true)
                         {
                             //ObjectFollowsMouse.transform.position = raycastHit.point;
-                            Vector3 pos = raycastHit.point;
+                            RaycastHit raycastHitObject = raycastHit;
 
                             BoxCollider b = ObjectFollowsMouse.GetComponent<BoxCollider>();
 
-                            Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(pos);
-                            Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
-                            Vector3 objectposition = new Vector3(a.x + BuildingSystem.posx / 200, a.y, a.z + BuildingSystem.posz / 200);
+                            Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(raycastHitObject);
+                            //Debug.Log(a + " aaa");
+                            //Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
+                            Vector3 objectposition= Vector3.zero;
+                            Debug.Log(ObjectFollowsMouse.transform.eulerAngles.y + " obje rotation y");
+                            if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 0f)
+                            {
+                                Debug.Log("1. if");
+                                //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
+                                objectposition = new Vector3(a.x - BuildingSystem.posx / 200, a.y, a.z + BuildingSystem.posz / 200);
+                            }
+                            else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 90f)
+                            {
+                                Debug.Log("2. if");
+                                //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
+                                objectposition = new Vector3(a.x + BuildingSystem.posz / 200, a.y, a.z + BuildingSystem.posx / 200);
+                            }
+                            else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 180f)
+                            {
+                                Debug.Log("3. if");
+                                //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
+                                objectposition = new Vector3(a.x + BuildingSystem.posx / 200, a.y, a.z - BuildingSystem.posz / 200);
+                            }
+                            else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 270f)
+                            {
+                                Debug.Log("4. if");
+                                //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
+                                objectposition = new Vector3(a.x - BuildingSystem.posz / 200, a.y, a.z - BuildingSystem.posx / 200);
+                            }
+                            //Vector3 objectposition = new Vector3(a.x + BuildingSystem.posx / 200, a.y, a.z + BuildingSystem.posz / 200);
                             ObjectFollowsMouse.transform.position = objectposition;
                         }
                     }

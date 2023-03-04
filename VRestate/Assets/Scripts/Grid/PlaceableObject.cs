@@ -13,6 +13,7 @@ public class PlaceableObject : MonoBehaviour
     {
         BoxCollider b = gameObject.GetComponent<BoxCollider>();
         Vertices = new Vector3[4];
+       
         Vertices[0] = b.center + new Vector3(-b.size.x, -b.size.y, -b.size.z) * 0.5f;
         Vertices[1] = b.center + new Vector3(b.size.x, -b.size.y, -b.size.z) * 0.5f;
         Vertices[2] = b.center + new Vector3(b.size.x, -b.size.y, b.size.z) * 0.5f;
@@ -22,7 +23,7 @@ public class PlaceableObject : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(transform.TransformPoint(Vertices[0]) + " Vertices[0]");
+        Debug.Log(transform.TransformPoint(Vertices[0]) + " Vertices[0]");
     }
     private void CalculateSizeInCells()
     {
@@ -32,10 +33,13 @@ public class PlaceableObject : MonoBehaviour
             Vector3 worldPos = transform.TransformPoint(Vertices[i]);
             Debug.Log(worldPos + " worldpos");
             vertices[i] = BuildingSystem.current.gridLayout.WorldToCell(worldPos);
-            Debug.Log(vertices[i] + " vertices i");
+            Debug.Log(vertices[i] + " vertices " + i);
+            BoxCollider b = gameObject.GetComponent<BoxCollider>();
+            Debug.Log(b.center + " b.center");
 
         }
-
+        Debug.Log(Math.Abs((vertices[0] - vertices[1]).x) + " SIZE X");
+        Debug.Log(Math.Abs((vertices[0] - vertices[3]).y) + " SIZE Y");
         Size = new Vector3Int(Math.Abs((vertices[0] - vertices[1]).x),
                               Math.Abs((vertices[0] - vertices[3]).y), 
                               1);
