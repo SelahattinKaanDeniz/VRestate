@@ -245,7 +245,33 @@ app.post('/estate/create', (req,res) => {
             createdId = results[0].id;
         })
         //estate detail oluşturma.
-        query = "INSERT INTO estate_detail (title, head_photo_id, estate_type, category, price, create_date, last_update, location_ilce, location_il, coordX, coordY, room_type, m2, vr_id, owner_id) VALUES ?;"
+        query = "INSERT INTO estate_detail (id, photo_ids, m2_brut, buildingAge, floors, buildingFloors, heatingSystem, balconyCount, bathroomCount, isFurnished, isBuildingComplex, buildingFees, complexName, isTradeable) VALUES ?;"
+        values = [];
+        values[values.length] = createdId;
+        values[values.length] = req.body.photo_ids;
+        values[values.length] = req.body.m2_brut;
+        values[values.length] = req.body.buildingAge;
+        values[values.length] = req.body.floors;
+        values[values.length] = req.body.buildingFloors;
+        values[values.length] = req.body.heatingSystem;
+        values[values.length] = req.body.balconyCount;
+        values[values.length] = req.body.bathroomCount;
+        values[values.length] = req.body.isFurnished;
+        values[values.length] = req.body.isBuildingComplex;
+        values[values.length] = req.body.buildingFees;
+        values[values.length] = req.body.complexName;
+        values[values.length] = req.body.isTradeable;
+
+        connection.query(query, values, (error, results, fields) => {
+            if(error){
+                res.statusMessage ='Database Query Error';
+                res.status(500).send({message:error});
+                return;
+            }
+            res.status(200).send({id:createdId,message:'Estate Successfully Created'});
+            return;
+        })
+        
     })    
 });
 
@@ -253,7 +279,66 @@ app.post('/estate/update');
 
 app.post('/estate/delete');
 
-app.get('/estate/getEstates');
+app.get('/estate/getEstates', (req,res) => {
+    let query = 'Select * from estate'
+    if(req.query.searchFilter == true){
+        query = query + ' where'
+        if(req.query.id != null || req.query.id != undefined ){
+            query+= ' id = '+req.query.id+' and';
+        }
+        
+        if(req.query.title != null || req.query.title != undefined ){
+            query+= ' title like %'+req.query.title+'% and';
+        }
+        
+        if(req.query.estate_type != null || req.query.estate_type != undefined ){
+            query+= ' estate_type = '+req.query.estate_type+' and';
+        }
+        
+        if(req.query.category != null || req.query.category != undefined ){
+            query+= ' category = '+req.query.category+' and';
+        }
+        
+        if(req.query.priceMin != null || req.query.priceMin != undefined ){
+            query+= ' price >= '+req.query.priceMin+' and';
+        }
+        
+        if(req.query.priceMax != null || req.query.priceMax != undefined ){
+            query+= ' price <= '+req.query.priceMax+' and';
+        }
+        
+        if(req.query.create_date != null || req.query.create_date != undefined ){//todo date min max
+            //query+= ' id = '+req.query.id+' and';
+        }
+        
+        if(req.query.location_il != null || req.query.location_il != undefined ){
+            query+= ' location_il = '+req.query.location_il+' and';
+        }
+        
+        if(req.query.location_ilce != null || req.query.location_ilce != undefined ){
+            query+= ' location_ilce = '+req.query.location_ilce+' and';
+        }
+        
+        if(req.query.room_type != null || req.query.room_type != undefined ){
+            query+= ' room_type = '+req.query.room_type+' and';
+        }
+        
+        if(req.query.price != null || req.query.price != undefined ){//todo minmax
+            //query+= ' id = '+req.query.id+' and';
+        }
+    }
+    console.log(query);
+    connection.query(query, (error, results, fields) => {
+        if(error){
+            res.statusMessage ='Database Query Error';
+            res.status(500).send({message:error});
+            return;
+        }
+        res.status(200).send({
+            results
+        })
+    })
+});
 
 //json mu gidiyor control.
 app.get('/checkLocation', (req,res) => {
