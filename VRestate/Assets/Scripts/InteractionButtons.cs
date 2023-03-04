@@ -26,7 +26,10 @@ public class InteractionButtons : MonoBehaviour
     {
         itemMenuFunctions.isButtonClicked = true;
         itemMenuFunctions.ObjectFollowsMouse = itemMenuFunctions.Selected3DObject;
-        Destroy(itemMenuFunctions.ObjectFollowsMouse.GetComponent<BoxCollider>());
+        int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
+        itemMenuFunctions.ObjectFollowsMouse.layer = LayerIgnoreRaycast;
+           
+        //Destroy(itemMenuFunctions.ObjectFollowsMouse.GetComponent<BoxCollider>());
         this.gameObject.SetActive(false);
         if (itemMenuFunctions.Selected3DObject.name == "Cabinet_Base_1(Clone)")
         {

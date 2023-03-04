@@ -44,6 +44,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     public Vector2 panLimit;
     public float cameraMinY = 1.5f;
     public float cameraMaxY = 30f;
+    private PlaceableObject objectToPlace;
 
     
    
@@ -82,6 +83,11 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     GameObject endPole;
     GameObject wall;
     public GameObject wallPrefab;
+
+
+
+   
+
 
 
 
@@ -216,8 +222,11 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                 isButtonClicked =true;
             }
 
-            ObjectFollowsMouse = Instantiate(CabinetBase1, new Vector3(4f, 2f, -18f), Quaternion.Euler( new Vector3(0, 90, 0)));
-            
+            //ObjectFollowsMouse = Instantiate(CabinetBase1, new Vector3(4f, 2f, -18f), Quaternion.Euler( new Vector3(0, 90, 0)));
+            ObjectFollowsMouse = Instantiate(CabinetBase1, new Vector3(4f, 2f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
             itemModelCount[0]= 1;
         }
         else if (leftClickedButtonName == "Cabinet_Base_2")
@@ -322,6 +331,8 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             }
 
             ObjectFollowsMouse = Instantiate(wallPrefab, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
 
             itemModelCount[9] = 1;
         }
@@ -355,6 +366,10 @@ public class ItemMenuButtonFunctions : MonoBehaviour
 
             itemModelCount[20] = 1;
         }
+        
+        int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
+        ObjectFollowsMouse.layer = LayerIgnoreRaycast;
+        ObjectFollowsMouse.AddComponent<BoxCollider>();
 
 
 
@@ -401,19 +416,52 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         followmouse = false;
         startPole = Instantiate(wallPrefab, new Vector3(4f, 10f, -18f), ObjectFollowsMouse.transform.rotation);
         endPole = Instantiate(wallPrefab, new Vector3(1000f, 10f, 1000f), startPole.transform.rotation);
-        ObjectFollowsMouse.transform.position = new Vector3(1000, 1000, 1000);
-        Vector3 mousepos = getWorldPoint();
-        startPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
-        //startPole.transform.position = new Vector3(mousepos.x, mousepos.y, mousepos.z);
         wall = (GameObject)Instantiate(wallPrefab, new Vector3(1000f, 10f, 1000f), Quaternion.identity);
+        startPole.AddComponent<BoxCollider>();
+        endPole.AddComponent<BoxCollider>();
+        wall.AddComponent<BoxCollider>();
+        int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
+        startPole.layer = LayerIgnoreRaycast;
+        endPole.layer = LayerIgnoreRaycast;
+        wall.layer = LayerIgnoreRaycast;
+
+        ObjectFollowsMouse.transform.position = new Vector3(1000, 1000, 1000);
+        
+        //Vector3 mousepos = getWorldPoint();
+        //startPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
+
+        Vector3 pos = getWorldPoint();
+
+        BoxCollider b = startPole.GetComponent<BoxCollider>();
+
+        Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(pos);
+        Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
+        Vector3 objectposition = new Vector3(a.x + 0.25f, a.y + wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
+        startPole.transform.position = objectposition;
+        
+        //startPole.transform.position = new Vector3(mousepos.x, mousepos.y, mousepos.z);
+
         //Destroy(ObjectFollowsMouse);
 
     }
     void setEnd()
     {
         creatingWall = false;
-        Vector3 mousepos = getWorldPoint();
-        endPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
+
+       // Vector3 mousepos = getWorldPoint();
+       // endPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
+
+        Vector3 pos = getWorldPoint();
+
+        BoxCollider b = endPole.GetComponent<BoxCollider>();
+
+        Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(pos);
+        Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
+        Vector3 objectposition = new Vector3(a.x + 0.25f, a.y + wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
+        endPole.transform.position = objectposition;
+
+
+
         //endPole.transform.position = new Vector3(mousepos.x, mousepos.y, mousepos.z);
         for (int i = 0; i < itemModelCount.Length; i++)
         {
@@ -421,16 +469,32 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         }
         Destroy(ObjectFollowsMouse);
         followmouse = true;
-        startPole.AddComponent<BoxCollider>();
-        endPole.AddComponent<BoxCollider>();
-        wall.AddComponent<BoxCollider>();
+       
+        int LayerDefault = LayerMask.NameToLayer("Default");
+        startPole.layer = LayerDefault;
+        endPole.layer = LayerDefault;
+        wall.layer = LayerDefault;
+
+
 
     }
     void adjust()
     {
-        Vector3 mousepos = getWorldPoint();
-        endPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
-       // endPole.transform.position = new Vector3(mousepos.x, mousepos.y, mousepos.z);
+        //Vector3 mousepos = getWorldPoint();
+        //endPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
+
+        Vector3 pos = getWorldPoint();
+
+        BoxCollider b = endPole.GetComponent<BoxCollider>();
+
+        Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(pos);
+        Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
+        Vector3 objectposition = new Vector3(a.x + 0.25f, a.y + wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
+        endPole.transform.position = objectposition;
+
+
+
+        // endPole.transform.position = new Vector3(mousepos.x, mousepos.y, mousepos.z);
         startPole.transform.LookAt(endPole.transform.position);
         endPole.transform.LookAt(startPole.transform.position);
         //endPole.transform.rotation = new Quaternion(startPole.transform.rotation.x, startPole.transform.rotation.y, startPole.transform.rotation.z, startPole.transform.rotation.w);
@@ -596,7 +660,19 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                     {
                         if (followmouse == true)
                         {
-                            ObjectFollowsMouse.transform.position = new Vector3(raycastHit.point.x, raycastHit.point.y+ wallPrefab.transform.localScale.y /2, raycastHit.point.z);
+                            //bir önceki buydu
+                            //ObjectFollowsMouse.transform.position = new Vector3(raycastHit.point.x, raycastHit.point.y+ wallPrefab.transform.localScale.y /2, raycastHit.point.z);
+                            Vector3 pos = raycastHit.point;
+
+                            BoxCollider b = ObjectFollowsMouse.GetComponent<BoxCollider>();
+
+                            Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(pos);
+                            Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
+                            Vector3 objectposition = new Vector3(a.x + 0.25f, a.y + wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
+                            ObjectFollowsMouse.transform.position = objectposition;
+
+
+
                             //ObjectFollowsMouse.transform.position = new Vector3(raycastHit.point.x, raycastHit.point.y, raycastHit.point.z);
                         }
                     }
@@ -604,7 +680,15 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                     {
                         if (followmouse == true)
                         {
-                            ObjectFollowsMouse.transform.position = raycastHit.point;
+                            //ObjectFollowsMouse.transform.position = raycastHit.point;
+                            Vector3 pos = raycastHit.point;
+
+                            BoxCollider b = ObjectFollowsMouse.GetComponent<BoxCollider>();
+
+                            Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(pos);
+                            Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
+                            Vector3 objectposition = new Vector3(a.x + BuildingSystem.posx / 200, a.y, a.z + BuildingSystem.posz / 200);
+                            ObjectFollowsMouse.transform.position = objectposition;
                         }
                     }
                 }
@@ -656,8 +740,9 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                     {
                         //cabinetbase1count = 0;
 
-                        ObjectFollowsMouse.AddComponent<BoxCollider>();
-
+                        //ObjectFollowsMouse.AddComponent<BoxCollider>();
+                        int LayerDefault = LayerMask.NameToLayer("Default");                      
+                        ObjectFollowsMouse.layer = LayerDefault;
                         Debug.Log(ObjectFollowsMouse.GetComponent<MeshRenderer>().bounds.size);
                         Debug.Log(cube.GetComponent<MeshRenderer>().bounds.size);
 
