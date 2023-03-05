@@ -12,6 +12,8 @@ public class ItemMenuButtonFunctions : MonoBehaviour
 
     public GameObject sizeMenu;
     public GameObject settingsMenu;
+    public MeshRenderer rend;
+    public Material material;
 
     public  static string clickedButtonName = "";
     private string leftClickedButtonName;
@@ -34,6 +36,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     Vector3 rotateStartPosition;
     Vector3 rotateCurrentPosition;
     
+
 
 
 
@@ -878,8 +881,34 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                                 //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
                                 objectposition = new Vector3(a.x - BuildingSystem.posz / 200, a.y, a.z - BuildingSystem.posx / 200);
                             }
+                           
                             //Vector3 objectposition = new Vector3(a.x + BuildingSystem.posx / 200, a.y, a.z + BuildingSystem.posz / 200);
                             ObjectFollowsMouse.transform.position = objectposition;
+
+                            if (ObjectFollowsMouse.GetComponent<PlaceableObject>().isColliding == true)
+                            {
+                                ObjectFollowsMouse.transform.GetComponent<MeshRenderer>().material.color = Color.red;
+                                for (int i = 0; i < ObjectFollowsMouse.transform.childCount; i++)
+                                {
+                                    rend = ObjectFollowsMouse.transform.GetChild(i).GetComponent<MeshRenderer>();
+                                    for (int j = 0; j < rend.materials.Length; j++)
+                                    {
+                                        rend.materials[j].color = Color.red;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ObjectFollowsMouse.transform.GetComponent<MeshRenderer>().material.color = Color.white;
+                                for (int i = 0; i < ObjectFollowsMouse.transform.childCount; i++)
+                                {
+                                    rend = ObjectFollowsMouse.transform.GetChild(i).GetComponent<MeshRenderer>();
+                                    for (int j = 0; j < rend.materials.Length; j++)
+                                    {
+                                        rend.materials[j].color = Color.white;
+                                    }
+                                }
+                            }
                         }
                     }
                 }

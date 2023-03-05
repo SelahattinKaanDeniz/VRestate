@@ -11889,7 +11889,6 @@ GameObject:
   - component: {fileID: 1040060792}
   - component: {fileID: 1040060791}
   - component: {fileID: 1040060794}
-  - component: {fileID: 1040060795}
   m_Layer: 5
   m_Name: Cabinet2_Base_5
   m_TagString: Untagged
@@ -11962,19 +11961,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1040060792}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1156356217}
-        m_TargetAssemblyTypeName: ItemMenuButtonFunctions, Assembly-CSharp
-        m_MethodName: ItemMenuButtonsLeftClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1040060792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12014,27 +12001,6 @@ CanvasRenderer:
   m_GameObject: {fileID: 1040060789}
   m_CullTransparentMesh: 1
 --- !u!114 &1040060794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040060789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onLeftClick:
-    m_PersistentCalls:
-      m_Calls: []
-  onRightClick:
-    m_PersistentCalls:
-      m_Calls: []
-  onMiddleClick:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1040060795
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13562,6 +13528,8 @@ MonoBehaviour:
   ItemMenuPanel: {fileID: 1547524616}
   sizeMenu: {fileID: 790785468}
   settingsMenu: {fileID: 670104587}
+  rend: {fileID: 0}
+  material: {fileID: 0}
   mainCamera: {fileID: 2135651141}
   cameraRig: {fileID: 2040810739}
   movementSpeed: 0.05
@@ -13590,13 +13558,13 @@ MonoBehaviour:
   CabinetWall2: {fileID: 2598695457691825753, guid: 9099fe81828bfba4e8b095444ddbd7e7,
     type: 3}
   Stove: {fileID: 6563838313664328344, guid: 661c50ebae266fd40a46d34eee6e9a44, type: 3}
-  Floor: {fileID: 1538395214881474747, guid: 705eca4d4818ecc4f87f2b45466ab4b1, type: 3}
+  Floor: {fileID: 4388314611279343880, guid: ea08895399095d74cab7a1a9960c0b6b, type: 3}
   Wall: {fileID: 4027410733452808839, guid: f239b9af7d445fb4982f2dc3871e6467, type: 3}
   wallPrefab: {fileID: 2903521717756332882, guid: 7d3d7393bcf0f594b8c746c628485ce8,
     type: 3}
   Bathtub: {fileID: 8298061255843332469, guid: a62125c747ffc61498b5b7442ec85b00, type: 3}
   Shower: {fileID: 25174191219830205, guid: 658f65f59ffbf344d8ed3cffeb064dd9, type: 3}
-  Sink: {fileID: 6824471103924477376, guid: 51868a8d2ec2f7b4cbcc6e39fb248c5f, type: 3}
+  Vanity3: {fileID: 6824471103924477376, guid: 51868a8d2ec2f7b4cbcc6e39fb248c5f, type: 3}
   Toilet: {fileID: 4073640349705554942, guid: 056fd149f9aa9c94185253239c40d15a, type: 3}
   Vanity1: {fileID: 7261456135864374567, guid: 2e5ee4133898c1b44a943ba086ad86a8, type: 3}
   cube: {fileID: 254663336}
