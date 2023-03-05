@@ -67,6 +67,30 @@ public class InteractionButtons : MonoBehaviour
         {
             itemMenuFunctions.itemModelCount[20] = 1;
         }
+        else if (itemMenuFunctions.Selected3DObject.name == "Bathtub(Clone)")
+        {
+            itemMenuFunctions.itemModelCount[30] = 1;
+        }
+        else if (itemMenuFunctions.Selected3DObject.name == "Shower(Clone)")
+        {
+            itemMenuFunctions.itemModelCount[31] = 1;
+        }
+        else if (itemMenuFunctions.Selected3DObject.name == "Sink(Clone)")
+        {
+            itemMenuFunctions.itemModelCount[32] = 1;
+        }
+        else if (itemMenuFunctions.Selected3DObject.name == "Toilet(Clone)")
+        {
+            itemMenuFunctions.itemModelCount[33] = 1;
+        }
+        else if (itemMenuFunctions.Selected3DObject.name == "Vanity_1(Clone)")
+        {
+            itemMenuFunctions.itemModelCount[34] = 1;
+        }
+        else if (itemMenuFunctions.Selected3DObject.name == "Vanity_3(Clone)")
+        {
+            itemMenuFunctions.itemModelCount[35] = 1;
+        }
         MouseInputUIBlocker.BlockedByUI = false;
         itemMenuFunctions.Selected3DObject = null;
     }
