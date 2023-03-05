@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 4386541270052191603}
   m_Layer: 0
   m_Name: Cabinet_Tall
-  m_TagString: Untagged
+  m_TagString: 3DModel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -54,6 +54,8 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     public GameObject Selected3DObject;
     public bool isButtonClicked = true;
 
+
+    // Kitchen
     public GameObject CabinetBase1;
     public static Vector3 CabinetBase1Size; 
     public GameObject CabinetBase2;
@@ -70,6 +72,8 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     public static Vector3 CabinetWall2Size;
     public GameObject Stove;
     public static Vector3 StoveSize;
+    
+    //Construction
     public GameObject Floor;
     public static Vector3 FloorSize;
 
@@ -84,6 +88,21 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     GameObject endPole;
     GameObject wall;
     public GameObject wallPrefab;
+
+    //Bathroom
+    public GameObject Bathtub;
+    public static Vector3 BathtubSize;
+    public GameObject Shower;
+    public static Vector3 ShowerSize;
+    public GameObject Vanity3;
+    public static Vector3 Vanity3Size;
+    public GameObject Toilet;
+    public static Vector3 ToiletSize;
+    public GameObject Vanity1;
+    public static Vector3 Vanity1Size;
+
+
+
 
 
 
@@ -147,6 +166,17 @@ public class ItemMenuButtonFunctions : MonoBehaviour
 
         Wall.transform.localScale = new Vector3(1f, 1f, 1f);
         WallSize = Wall.GetComponent<MeshRenderer>().bounds.size;
+
+        Bathtub.transform.localScale = new Vector3(1f, 1f, 1f);
+        BathtubSize = Bathtub.GetComponent<MeshRenderer>().bounds.size;
+        Shower.transform.localScale = new Vector3(1f, 1f, 1f);
+        ShowerSize = Shower.GetComponent<MeshRenderer>().bounds.size;
+        Vanity3.transform.localScale = new Vector3(100f, 100f, 100f);
+        Vanity3Size = Vanity3.GetComponent<MeshRenderer>().bounds.size;
+        Toilet.transform.localScale = new Vector3(1f, 1f, 1f);
+        ToiletSize = Toilet.GetComponent<MeshRenderer>().bounds.size;
+        Vanity1.transform.localScale = new Vector3(1f, 1f, 1f);
+        Vanity1Size = Vanity1.GetComponent<MeshRenderer>().bounds.size;
     }
     //Ana kategoriden Bathroom butonuna týklandýðýnda
     public void BathroomButtonClicked()
@@ -226,6 +256,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             //ObjectFollowsMouse = Instantiate(CabinetBase1, new Vector3(4f, 2f, -18f), Quaternion.Euler( new Vector3(0, 90, 0)));
             ObjectFollowsMouse = Instantiate(CabinetBase1, new Vector3(4f, 2f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
 
             itemModelCount[0]= 1;
@@ -242,7 +273,10 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             }
 
             ObjectFollowsMouse = Instantiate(CabinetBase2, new Vector3(4f, 2f, -18f), Quaternion.identity);
-            
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+
             itemModelCount[1] = 1;
         }
         else if (leftClickedButtonName == "Cabinet_Base_Corner")
@@ -257,7 +291,9 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             }
 
             ObjectFollowsMouse = Instantiate(CabinetBaseCorner, new Vector3(4f, 2f, -18f), Quaternion.identity);
-            
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
             itemModelCount[2] = 1;
         }
         else if (leftClickedButtonName == "Cabinet_Base_Sink")
@@ -272,7 +308,9 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             }
 
             ObjectFollowsMouse = Instantiate(CabinetBaseSink, new Vector3(4f, 2f, -18f), Quaternion.identity);
-            
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
             itemModelCount[3] = 1;
         }
         else if (leftClickedButtonName == "Cabinet_Tall")
@@ -287,7 +325,9 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             }
 
             ObjectFollowsMouse = Instantiate(CabinetTall, new Vector3(4f, 2f, -18f), Quaternion.identity);
-           
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
             itemModelCount[4] = 1;
         }
         else if (leftClickedButtonName == "Cabinet_Wall_1")
@@ -302,6 +342,8 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             }
 
             ObjectFollowsMouse = Instantiate(CabinetWall1, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
 
             itemModelCount[5] = 1;
         }
@@ -317,6 +359,8 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             }
 
             ObjectFollowsMouse = Instantiate(CabinetWall2, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
 
             itemModelCount[6] = 1;
         }
@@ -349,6 +393,8 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             }
 
             ObjectFollowsMouse = Instantiate(Stove, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
 
             itemModelCount[15] = 1;
         }
@@ -364,10 +410,113 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             }
 
             ObjectFollowsMouse = Instantiate(Floor, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
 
             itemModelCount[20] = 1;
         }
-        
+        else if (leftClickedButtonName == "Bathtub")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Bathtub, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            itemModelCount[30] = 1;
+        }
+        else if (leftClickedButtonName == "Shower")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Shower, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            itemModelCount[31] = 1;
+        }
+        else if (leftClickedButtonName == "Sink")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Vanity3, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            itemModelCount[32] = 1;
+        }
+        else if (leftClickedButtonName == "Toilet")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Toilet, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            itemModelCount[33] = 1;
+        }
+        else if (leftClickedButtonName == "Vanity_1")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Vanity1, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            itemModelCount[34] = 1;
+        }
+        else if (leftClickedButtonName == "Vanity_3")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Vanity3, new Vector3(4f, 10f, -18f), Quaternion.Euler(new Vector3(-90, 180, 0)));
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            itemModelCount[35] = 1;
+        }
         int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
         ObjectFollowsMouse.layer = LayerIgnoreRaycast;
         ObjectFollowsMouse.AddComponent<BoxCollider>();
@@ -441,7 +590,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         BoxCollider b = startPole.GetComponent<BoxCollider>();
 
         Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(pos);
-        Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
+        //Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
         Vector3 objectposition = new Vector3(a.x + 0.25f, a.y + wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
         startPole.transform.position = objectposition;
         
@@ -462,7 +611,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         BoxCollider b = endPole.GetComponent<BoxCollider>();
 
         Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(pos);
-        Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
+        //Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
         Vector3 objectposition = new Vector3(a.x + 0.25f, a.y + wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
         endPole.transform.position = objectposition;
 
@@ -494,7 +643,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         BoxCollider b = endPole.GetComponent<BoxCollider>();
 
         Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(pos);
-        Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
+        //Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
         Vector3 objectposition = new Vector3(a.x + 0.25f, a.y + wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
         endPole.transform.position = objectposition;
 
@@ -506,7 +655,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         //endPole.transform.rotation = new Quaternion(startPole.transform.rotation.x, startPole.transform.rotation.y, startPole.transform.rotation.z, startPole.transform.rotation.w);
        
         float distance = Vector3.Distance(startPole.transform.position, endPole.transform.position);
-        Debug.Log(distance);
+        //Debug.Log(distance);
         wall.transform.position = startPole.transform.position + distance / 2 * startPole.transform.forward;
         wall.transform.rotation = startPole.transform.rotation;
         wall.transform.localScale = new Vector3(wall.transform.localScale.x, wall.transform.localScale.y, (2*distance-1f)*(startPole.transform.localScale.z));
@@ -682,7 +831,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                             BoxCollider b = ObjectFollowsMouse.GetComponent<BoxCollider>();
 
                             Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(raycastHitObject);
-                            Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
+                            //Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
                             Vector3 objectposition = new Vector3(a.x + 0.25f, a.y + wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
                             ObjectFollowsMouse.transform.position = objectposition;
 
@@ -744,11 +893,25 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                 //Rotate
                 if (Input.GetAxis("Mouse ScrollWheel") > 0)
                 {
-                    ObjectFollowsMouse.transform.Rotate(0, 90f, 0, Space.Self);
+                    if (ObjectFollowsMouse.name == "Vanity_3(Clone)")
+                    {
+                        ObjectFollowsMouse.transform.Rotate(0, 0, 90f, Space.Self);
+                    }
+                    else
+                    {
+                        ObjectFollowsMouse.transform.Rotate(0, 90f, 0, Space.Self);
+                    }
                 }
                 if (Input.GetAxis("Mouse ScrollWheel") < 0)
                 {
-                    ObjectFollowsMouse.transform.Rotate(0, -90f, 0, Space.Self);
+                    if (ObjectFollowsMouse.name == "Vanity_3(Clone)")
+                    {
+                        ObjectFollowsMouse.transform.Rotate(0, 0, -90f, Space.Self);
+                    }
+                    else
+                    {
+                        ObjectFollowsMouse.transform.Rotate(0, -90f, 0, Space.Self);
+                    }
                 }
 
                 // Sol týk koyma

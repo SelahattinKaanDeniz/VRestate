@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 1134489537926103584}
   m_Layer: 0
   m_Name: Cabinet_Wall_4
-  m_TagString: Untagged
+  m_TagString: 3DModel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
