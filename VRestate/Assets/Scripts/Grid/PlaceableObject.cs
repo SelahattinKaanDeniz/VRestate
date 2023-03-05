@@ -8,6 +8,7 @@ public class PlaceableObject : MonoBehaviour
     public bool Placed { get; private set; }
     public Vector3Int Size { get; private set; }
     private Vector3[] Vertices;
+    public bool isColliding = false;
 
     private void GetColliderVertexPositionsLocal()
     {
@@ -74,5 +75,15 @@ public class PlaceableObject : MonoBehaviour
         Placed = true;
 
         //invoke events of placement
+    }
+    void OnTriggerExit(Collider other)
+    {
+        // Destroy everything that leaves the trigger
+        isColliding = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        isColliding = true;
     }
 }

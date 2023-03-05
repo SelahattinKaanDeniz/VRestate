@@ -371,6 +371,10 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
         ObjectFollowsMouse.layer = LayerIgnoreRaycast;
         ObjectFollowsMouse.AddComponent<BoxCollider>();
+        ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size  - new Vector3(0.1f, 0.1f, 0.1f);
+       
+
+        ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
         buildingSystemObjectFollowMouse = ObjectFollowsMouse;
 
 
@@ -776,21 +780,29 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        //cabinetbase1count = 0;
-
-                        //ObjectFollowsMouse.AddComponent<BoxCollider>();
-                        int LayerDefault = LayerMask.NameToLayer("Default");                      
-                        ObjectFollowsMouse.layer = LayerDefault;
-                        Debug.Log(ObjectFollowsMouse.GetComponent<MeshRenderer>().bounds.size);
-                        Debug.Log(cube.GetComponent<MeshRenderer>().bounds.size);
-
-
-                        isButtonClicked = false;
-                        for (int i = 0; i < itemModelCount.Length; i++)
+                        if (ObjectFollowsMouse.GetComponent<PlaceableObject>().isColliding == false)
                         {
-                            itemModelCount[i] = 0;
-                        }
+                            //cabinetbase1count = 0;
 
+                            //ObjectFollowsMouse.AddComponent<BoxCollider>();
+                            int LayerDefault = LayerMask.NameToLayer("Default");
+                            ObjectFollowsMouse.layer = LayerDefault;
+                            Debug.Log(ObjectFollowsMouse.GetComponent<MeshRenderer>().bounds.size);
+                            Debug.Log(cube.GetComponent<MeshRenderer>().bounds.size);
+
+                            ObjectFollowsMouse.AddComponent<Rigidbody>();
+                            ObjectFollowsMouse.GetComponent<Rigidbody>().isKinematic = true;
+
+                            isButtonClicked = false;
+                            for (int i = 0; i < itemModelCount.Length; i++)
+                            {
+                                itemModelCount[i] = 0;
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log("OBJE KOYULAMAZ");
+                        }
                     }
                 }
                 
