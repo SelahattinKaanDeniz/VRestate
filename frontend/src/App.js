@@ -1,6 +1,7 @@
 import './App.css';
 import ErrorPage from "./routes/ErrorPage";
-import MainPage from "./routes/MainPage"
+import MainPage from "./routes/MainPage";
+import EstatePage from "./routes/EstatePage";
 import Login from "./routes/Login"
 import { AuthProvider } from "./utils/Auth";
 import { ProtectedRoute } from "./utils/ProtectedRoute";
@@ -24,6 +25,11 @@ function App() {
       exact: true,
       path: "/login",
       element: <Login />,
+      errorElement: <ErrorPage />
+    },
+    {
+      path: "/estate/:id",
+      element: <EstatePage />,
       errorElement: <ErrorPage />
     },
   ]);
