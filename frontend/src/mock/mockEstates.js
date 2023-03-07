@@ -1,12 +1,14 @@
 const ESTATES= [
     {
         id:"1",
-        estateName:"first Estate",
+        title:"first Estate",
+        location_il:"ankara",
         estatePrice:"283482",
     },
     {
         id:"2",
-        estateName:"Second Estate",
+        title:"Second Estate",
+        location_il:"ankara",
         estatePrice:"283482"
     }
 ]

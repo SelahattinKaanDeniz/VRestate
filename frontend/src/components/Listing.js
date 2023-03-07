@@ -27,10 +27,10 @@ export default function Listing(){
 
   useEffect(()=>{console.log(estates)},[estates])
     return(
-    <Box sx={{ bgcolor: 'background.paper'}}>
+    <Box sx={{ bgcolor: '#EBF6F5', color: 'black'}}>
       <nav aria-label="main mailbox folders">
         <List >
-          {estates.map((estate, index) => {
+          {ESTATES.map((estate, index) => {
             return <ListItem sx={{ marginTop:"10px"}} key={estate.title} onClick={() => { navigate(`/estate/${estate.id}`); }} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
