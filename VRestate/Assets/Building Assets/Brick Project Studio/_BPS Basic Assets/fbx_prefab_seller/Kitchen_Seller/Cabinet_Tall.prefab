@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 6842125601515324412}
   - component: {fileID: 1933361657268031384}
   - component: {fileID: 4386541270052191603}
+  - component: {fileID: 5621930076479344818}
   m_Layer: 0
   m_Name: Cabinet_Tall
   m_TagString: 3DModel
@@ -336,6 +337,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5621930076479344818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6733698948246245244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55467d7fcc46c3046aed8c860bb224c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isColliding: 0
 --- !u!1 &8819345197597729087
 GameObject:
   m_ObjectHideFlags: 0

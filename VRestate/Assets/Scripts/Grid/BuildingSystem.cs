@@ -115,29 +115,59 @@ public class BuildingSystem : MonoBehaviour
          }*/
         //else
         //{
-        if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 0f)
+        if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "CubeWall(Clone)" || ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "NewDoor1(Clone)" || ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "NewDoor2(Clone)" || ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "NewWindow2(Clone)")
         {
-           
-            hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
-            Debug.Log("snapcoordinate 1.if" + hit.point);
+            if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 0f)
+            {
+
+                hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
+                Debug.Log("snapcoordinate 1.if" + hit.point);
+            }
+            else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 90f)
+            {
+
+                hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z -0.25f);
+                Debug.Log("snapcoordinate 2.if" + hit.point);
+            }
+            else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 180f)
+            {
+
+                hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
+                Debug.Log("snapcoordinate 3.if" + hit.point);
+            }
+            else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 270f)
+            {
+
+                hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
+                Debug.Log("snapcoordinate 4.if" + hit.point);
+            }
         }
-        else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 90f)
+        else
         {
-            
-            hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
-            Debug.Log("snapcoordinate 2.if" + hit.point);
-        }
-        else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 180f)
-        {
-           
-            hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
-            Debug.Log("snapcoordinate 3.if" + hit.point);
-        }
-        else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 270f)
-        {
-          
-            hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
-            Debug.Log("snapcoordinate 4.if" + hit.point);
+            if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 0f)
+            {
+
+                hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
+                Debug.Log("snapcoordinate 1.if" + hit.point);
+            }
+            else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 90f)
+            {
+
+                hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
+                Debug.Log("snapcoordinate 2.if" + hit.point);
+            }
+            else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 180f)
+            {
+
+                hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
+                Debug.Log("snapcoordinate 3.if" + hit.point);
+            }
+            else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 270f)
+            {
+
+                hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
+                Debug.Log("snapcoordinate 4.if" + hit.point);
+            }
         }
 
         //}

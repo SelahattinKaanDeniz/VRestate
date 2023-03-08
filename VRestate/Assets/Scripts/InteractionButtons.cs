@@ -91,6 +91,18 @@ public class InteractionButtons : MonoBehaviour
         {
             itemMenuFunctions.itemModelCount[35] = 1;
         }
+        else if (itemMenuFunctions.Selected3DObject.name == "NewDoor1(Clone)")
+        {
+            itemMenuFunctions.itemModelCount[36] = 1;
+        }
+        else if (itemMenuFunctions.Selected3DObject.name == "NewDoor2(Clone)")
+        {
+            itemMenuFunctions.itemModelCount[37] = 1;
+        }
+        else if (itemMenuFunctions.Selected3DObject.name == "NewWindow2(Clone)")
+        {
+            itemMenuFunctions.itemModelCount[38] = 1;
+        }
         MouseInputUIBlocker.BlockedByUI = false;
         itemMenuFunctions.Selected3DObject = null;
     }
@@ -110,7 +122,12 @@ public class InteractionButtons : MonoBehaviour
     void Update()
     {
         transform.LookAt(mainCamera);
-              
+        if (this.gameObject.activeSelf == true)
+        {
+            Debug.Log("DrawingLine");
+            //Debug.DrawLine(Vector3.zero, Vector3.one, Color.red, 10, false, 0.1f)
+            Debug.DrawLine(this.gameObject.transform.position, this.gameObject.transform.position - new Vector3(0f, this.gameObject.transform.position.y - itemMenuFunctions.Selected3DObject.GetComponent<MeshRenderer>().bounds.size.y,0f), Color.green);
+        }
         float mdistance =  Vector3.Distance(mainCamera.position, this.transform.position);
         //Debug.Log("mdistance " + mdistance);
         float scale = Mathf.Lerp(minScale, maxScale, Mathf.InverseLerp(minDistance, maxDistance, mdistance));

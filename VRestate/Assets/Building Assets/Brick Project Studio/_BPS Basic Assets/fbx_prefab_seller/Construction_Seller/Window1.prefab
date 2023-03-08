@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f6fcd9c90985c984f9450c17e6c8eff6,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.75527775
+      value: 0.7552778
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f6fcd9c90985c984f9450c17e6c8eff6,
         type: 3}
@@ -157,6 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55467d7fcc46c3046aed8c860bb224c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isColliding: 0
 --- !u!1 &6355515624582117561 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f6fcd9c90985c984f9450c17e6c8eff6,
@@ -213,3 +214,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55467d7fcc46c3046aed8c860bb224c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isColliding: 0

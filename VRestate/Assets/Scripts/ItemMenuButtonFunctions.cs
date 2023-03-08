@@ -16,7 +16,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     public Material material;
 
     public  static string clickedButtonName = "";
-    private string leftClickedButtonName;
+    public string leftClickedButtonName;
 
     [SerializeField] private Camera mainCamera;
     public GameObject cameraRig;
@@ -83,10 +83,18 @@ public class ItemMenuButtonFunctions : MonoBehaviour
 
     public GameObject Wall;
     public static Vector3 WallSize;
+    public GameObject Door1;
+    //public static Vector3 Door1Size;
+    public GameObject Door2;
+    //public static Vector3 Door2Size;
+    public GameObject Window;
+    //public static Vector3 WindowSize;
+
 
 
     // Dynamic Wall Creation
     bool creatingWall = false;
+    bool deleteAfterWallHold = false;
     GameObject startPole;
     GameObject endPole;
     GameObject wall;
@@ -180,6 +188,11 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         ToiletSize = Toilet.GetComponent<MeshRenderer>().bounds.size;
         Vanity1.transform.localScale = new Vector3(1f, 1f, 1f);
         Vanity1Size = Vanity1.GetComponent<MeshRenderer>().bounds.size;
+
+
+        Door1.transform.localScale = new Vector3(0.5f, 3f, 0.5f);
+        Door2.transform.localScale = new Vector3(0.5f, 3f, 0.5f);
+        Window.transform.localScale = new Vector3(0.5f, 3f, 0.5f);
     }
     //Ana kategoriden Bathroom butonuna týklandýðýnda
     public void BathroomButtonClicked()
@@ -520,10 +533,76 @@ public class ItemMenuButtonFunctions : MonoBehaviour
 
             itemModelCount[35] = 1;
         }
+        else if (leftClickedButtonName == "Door_1")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Door1, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            itemModelCount[36] = 1;
+        }
+        else if (leftClickedButtonName == "Door_2")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Door2, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            itemModelCount[37] = 1;
+        }
+        else if (leftClickedButtonName == "Window")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Window, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            itemModelCount[38] = 1;
+        }
         int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
         ObjectFollowsMouse.layer = LayerIgnoreRaycast;
-        ObjectFollowsMouse.AddComponent<BoxCollider>();
-        ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size  - new Vector3(0.1f, 0.1f, 0.1f);
+        if (ObjectFollowsMouse.name == "NewDoor1(Clone)" || ObjectFollowsMouse.name == "NewDoor2(Clone)" || ObjectFollowsMouse.name == "NewWindow2(Clone)")
+        {
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            for (int i = 0; i < ObjectFollowsMouse.transform.childCount; i++)
+            {
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.AddComponent<BoxCollider>() ;
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size = ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+
+            }
+            
+        }
+        else
+        {
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+        }
        
 
         ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
@@ -571,6 +650,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     void SetStart()
     {
         creatingWall = true;
+        deleteAfterWallHold = false;
         followmouse = false;
         startPole = Instantiate(wallPrefab, new Vector3(4f, 10f, -18f), ObjectFollowsMouse.transform.rotation);
         endPole = Instantiate(wallPrefab, new Vector3(1000f, 10f, 1000f), startPole.transform.rotation);
@@ -823,7 +903,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                         
 
                     }
-                    else if ( ObjectFollowsMouse.name == "CubeWall(Clone)")
+                    else if ( ObjectFollowsMouse.name == "CubeWall(Clone)" || ObjectFollowsMouse.name == "NewDoor1(Clone)" || ObjectFollowsMouse.name == "NewDoor2(Clone)" || ObjectFollowsMouse.name == "NewWindow2(Clone)")
                     {
                         if (followmouse == true)
                         {
@@ -832,10 +912,27 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                             //Vector3 pos = raycastHit.point;
                             RaycastHit raycastHitObject = raycastHit;
                             BoxCollider b = ObjectFollowsMouse.GetComponent<BoxCollider>();
-
+                            
                             Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(raycastHitObject);
                             //Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
-                            Vector3 objectposition = new Vector3(a.x + 0.25f, a.y + wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
+                            Vector3 objectposition = Vector3.zero;
+                            if (ObjectFollowsMouse.name == "CubeWall(Clone)")
+                             {
+                                
+                                objectposition = new Vector3(a.x + 0.25f, a.y + wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
+                            }
+                            if (ObjectFollowsMouse.name == "NewDoor1(Clone)")
+                            {
+                                 objectposition = new Vector3(a.x + 0.25f, +wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
+                            }
+                            if (ObjectFollowsMouse.name == "NewDoor2(Clone)")
+                            {
+                                 objectposition = new Vector3(a.x + 0.25f, +wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
+                            }
+                            if (ObjectFollowsMouse.name == "NewWindow2(Clone)")
+                            {
+                                 objectposition = new Vector3(a.x + 0.25f, +wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
+                            }
                             ObjectFollowsMouse.transform.position = objectposition;
 
 
@@ -862,6 +959,9 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                                 Debug.Log("1. if");
                                 //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
                                 objectposition = new Vector3(a.x - BuildingSystem.posx / 200, a.y, a.z + BuildingSystem.posz / 200);
+                                //Debug.Log(" abc " + objectposition);
+                                //objectposition = new Vector3(a.x - b.size.x, a.y, a.z + b.size.z);
+                                //Debug.Log(" abc " + objectposition);
                             }
                             else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 90f)
                             {
@@ -953,13 +1053,17 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                     }
                     else if ((Input.GetMouseButtonUp(0)))
                     {
-                        Debug.Log("END");
-                        setEnd();
+                        if (deleteAfterWallHold == false)
+                        {
+                            Debug.Log("END");
+                            setEnd();
+                        }
                     }
                     else
                     {
+                        
                         Debug.Log("ELSE");
-                        if (creatingWall)
+                        if (creatingWall == true && deleteAfterWallHold== false)
                         {
                             Debug.Log("ADJUST");
                             adjust();
@@ -1007,7 +1111,19 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                     {
                         itemModelCount[i] = 0;
                     }
-                    Destroy(ObjectFollowsMouse);
+                    if (ObjectFollowsMouse.name == "CubeWall(Clone)")
+                    {
+                        deleteAfterWallHold = true;
+                        Destroy(startPole);
+                        Destroy(endPole);
+                        Destroy(wall);
+                        Destroy(ObjectFollowsMouse);
+                        followmouse = true;
+                    }
+                    else
+                    {
+                        Destroy(ObjectFollowsMouse);
+                    }
                 }
             }
             
@@ -1038,9 +1154,10 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                         Selected3DObject = raycastHit.transform.gameObject;
                         Debug.Log(Selected3DObject);
                         InteractionCanvas.SetActive(true);
-                       // InteractionCanvas.transform.SetParent(raycastHit.transform);
-                       
-                        InteractionCanvas.transform.position = new Vector3(raycastHit.transform.position.x, raycastHit.transform.position.y + raycastHit.transform.gameObject.GetComponent<MeshRenderer>().bounds.size.y + 0.4f, raycastHit.transform.position.z);
+                        // InteractionCanvas.transform.SetParent(raycastHit.transform);
+
+                        //InteractionCanvas.transform.position = new Vector3(raycastHit.transform.position.x, raycastHit.transform.position.y + raycastHit.transform.gameObject.GetComponent<MeshRenderer>().bounds.size.y + 0.4f, raycastHit.transform.position.z);
+                        InteractionCanvas.transform.position = new Vector3(raycastHit.transform.position.x, raycastHit.transform.position.y + 4f, raycastHit.transform.position.z);
 
                     }
                    

@@ -932,6 +932,7 @@ GameObject:
   - component: {fileID: 4239868082639920897}
   - component: {fileID: 3053972844288249125}
   - component: {fileID: 820903065485710407}
+  - component: {fileID: -6514522715544770144}
   m_Layer: 0
   m_Name: Vanity_2
   m_TagString: Untagged
@@ -1011,6 +1012,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-6514522715544770144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7183014926408117173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55467d7fcc46c3046aed8c860bb224c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isColliding: 0
 --- !u!1 &7520699918354725332
 GameObject:
   m_ObjectHideFlags: 0

@@ -3274,7 +3274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &254663337
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3517,7 +3517,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 257770728}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ItemMenuButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &257770728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4956,7 +4968,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 376019677}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ItemMenuButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &376019677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13530,6 +13554,7 @@ MonoBehaviour:
   settingsMenu: {fileID: 670104587}
   rend: {fileID: 0}
   material: {fileID: 0}
+  leftClickedButtonName: 
   mainCamera: {fileID: 2135651141}
   cameraRig: {fileID: 2040810739}
   movementSpeed: 0.05
@@ -13560,6 +13585,9 @@ MonoBehaviour:
   Stove: {fileID: 6563838313664328344, guid: 661c50ebae266fd40a46d34eee6e9a44, type: 3}
   Floor: {fileID: 4388314611279343880, guid: ea08895399095d74cab7a1a9960c0b6b, type: 3}
   Wall: {fileID: 4027410733452808839, guid: f239b9af7d445fb4982f2dc3871e6467, type: 3}
+  Door1: {fileID: 5846597318128675477, guid: b04c8465905c0c7498a1eccda8d17e25, type: 3}
+  Door2: {fileID: 8082928284063907970, guid: 4951a121f7840094796de6336254f760, type: 3}
+  Window: {fileID: 7768092944136288496, guid: 6c3526324bee66848ae29972041dcaef, type: 3}
   wallPrefab: {fileID: 2903521717756332882, guid: 7d3d7393bcf0f594b8c746c628485ce8,
     type: 3}
   Bathtub: {fileID: 8298061255843332469, guid: a62125c747ffc61498b5b7442ec85b00, type: 3}
@@ -15621,7 +15649,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1273000752}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ItemMenuButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1273000752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17980,31 +18020,7 @@ MonoBehaviour:
       m_Calls: []
   onRightClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1156356217}
-        m_TargetAssemblyTypeName: ItemMenuButtonFunctions, Assembly-CSharp
-        m_MethodName: ItemMenuButtonsRightClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 790785468}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   onMiddleClick:
     m_PersistentCalls:
       m_Calls: []
@@ -24324,7 +24340,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!136 &1985279749
 CapsuleCollider:
   m_ObjectHideFlags: 0
