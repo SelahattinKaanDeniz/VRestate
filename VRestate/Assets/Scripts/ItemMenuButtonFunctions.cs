@@ -171,7 +171,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         Stove.transform.localScale = new Vector3(1f, 1f, 1f);
         StoveSize = Stove.GetComponent<MeshRenderer>().bounds.size;
 
-        Floor.transform.localScale = new Vector3(0.2f, 1f, 0.2f);
+        Floor.transform.localScale = new Vector3(0.2f, 0.1f, 0.2f);
         FloorSize = Floor.GetComponent<MeshRenderer>().bounds.size;
 
 
@@ -658,6 +658,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         startPole.AddComponent<BoxCollider>();
         endPole.AddComponent<BoxCollider>();
         wall.AddComponent<BoxCollider>();
+
         int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
         startPole.layer = LayerIgnoreRaycast;
         endPole.layer = LayerIgnoreRaycast;
@@ -697,6 +698,12 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         //Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
         Vector3 objectposition = new Vector3(a.x + 0.25f, a.y + wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
         endPole.transform.position = objectposition;
+        startPole.AddComponent<Rigidbody>();
+        startPole.GetComponent<Rigidbody>().isKinematic = true;
+        endPole.AddComponent<Rigidbody>();
+        endPole.GetComponent<Rigidbody>().isKinematic = true;
+        wall.AddComponent<Rigidbody>();
+        wall.GetComponent<Rigidbody>().isKinematic = true;
 
 
 
@@ -897,13 +904,65 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                             Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(raycastHitObject);
                             //Debug.Log(a + " aaa");
                             //Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
-                            Vector3 objectposition = new Vector3(a.x + BuildingSystem.posx / 200, a.y + 1.5f, a.z + BuildingSystem.posz / 200);
+                            Vector3 objectposition = Vector3.zero;
+                            if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 0f)
+                            {
+                                Debug.Log("1. if");
+                                //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
+                                objectposition = new Vector3(a.x - 0.25f - 0.25f, a.y + 2.5f - BuildingSystem.posy / 200, a.z + BuildingSystem.posz / 200);
+                                //Debug.Log(" abc " + objectposition);
+                                //objectposition = new Vector3(a.x - b.size.x, a.y, a.z + b.size.z);
+                                //Debug.Log(" abc " + objectposition);
+                            }
+                            else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 90f)
+                            {
+                                Debug.Log("2. if");
+                                //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
+                                objectposition = new Vector3(a.x  + BuildingSystem.posz / 200, a.y + 2.5f - BuildingSystem.posy / 200, a.z + 0.25f + 0.25f);
+                            }
+                            else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 180f)
+                            {
+                                Debug.Log("3. if");
+                                //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
+                                objectposition = new Vector3(a.x +0.25f + 0.25f, a.y + 2.5f - BuildingSystem.posy / 200, a.z - BuildingSystem.posz / 200 );
+                            }
+                            else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 270f)
+                            {
+                                Debug.Log("4. if");
+                                //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
+                                objectposition = new Vector3(a.x  - BuildingSystem.posz / 200, a.y + 2.5f - BuildingSystem.posy / 200, a.z - 0.25f - 0.25f);
+                            }
+                            //Vector3 objectposition = new Vector3(a.x + BuildingSystem.posx / 200, a.y + 2f, a.z + BuildingSystem.posz / 200);
                             ObjectFollowsMouse.transform.position = objectposition;
+                            if (ObjectFollowsMouse.GetComponent<PlaceableObject>().isColliding == true)
+                            {
+                                ObjectFollowsMouse.transform.GetComponent<MeshRenderer>().material.color = Color.red;
+                                for (int i = 0; i < ObjectFollowsMouse.transform.childCount; i++)
+                                {
+                                    rend = ObjectFollowsMouse.transform.GetChild(i).GetComponent<MeshRenderer>();
+                                    for (int j = 0; j < rend.materials.Length; j++)
+                                    {
+                                        rend.materials[j].color = Color.red;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ObjectFollowsMouse.transform.GetComponent<MeshRenderer>().material.color = Color.white;
+                                for (int i = 0; i < ObjectFollowsMouse.transform.childCount; i++)
+                                {
+                                    rend = ObjectFollowsMouse.transform.GetChild(i).GetComponent<MeshRenderer>();
+                                    for (int j = 0; j < rend.materials.Length; j++)
+                                    {
+                                        rend.materials[j].color = Color.white;
+                                    }
+                                }
+                            }
                         }
                         
 
                     }
-                    else if ( ObjectFollowsMouse.name == "CubeWall(Clone)" || ObjectFollowsMouse.name == "NewDoor1(Clone)" || ObjectFollowsMouse.name == "NewDoor2(Clone)" || ObjectFollowsMouse.name == "NewWindow2(Clone)")
+                    else if ( ObjectFollowsMouse.name == "CubeWall(Clone)" || ObjectFollowsMouse.name == "NewDoor1(Clone)" || ObjectFollowsMouse.name == "NewDoor2(Clone)" || ObjectFollowsMouse.name == "NewWindow2(Clone)" || ObjectFollowsMouse.name == "Floor(Clone)")
                     {
                         if (followmouse == true)
                         {
@@ -923,15 +982,19 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                             }
                             if (ObjectFollowsMouse.name == "NewDoor1(Clone)")
                             {
-                                 objectposition = new Vector3(a.x + 0.25f, +wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
+                                 objectposition = new Vector3(a.x + 0.25f, a.y + +wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
                             }
                             if (ObjectFollowsMouse.name == "NewDoor2(Clone)")
                             {
-                                 objectposition = new Vector3(a.x + 0.25f, +wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
+                                 objectposition = new Vector3(a.x + 0.25f, a.y + +wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
                             }
                             if (ObjectFollowsMouse.name == "NewWindow2(Clone)")
                             {
-                                 objectposition = new Vector3(a.x + 0.25f, +wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
+                                 objectposition = new Vector3(a.x + 0.25f, a.y + +wallPrefab.transform.localScale.y / 2, a.z + 0.25f);
+                            }
+                            if (ObjectFollowsMouse.name == "Floor(Clone)")
+                            {
+                                objectposition = new Vector3(a.x + 0.25f, a.y, a.z + 0.25f);
                             }
                             ObjectFollowsMouse.transform.position = objectposition;
 

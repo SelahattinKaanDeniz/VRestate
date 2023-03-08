@@ -81,12 +81,12 @@ public class SizeMenuFunctions : MonoBehaviour
             else if (whichButtonClicked == "Cabinet_Wall_1")
             {
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
-                itemMenuFunctions.CabinetWall1.transform.localScale = new Vector3((width / 100) * (1f / ItemMenuButtonFunctions.CabinetWall1Size.x), (height / 100) * (1f / ItemMenuButtonFunctions.CabinetWall1Size.y), (length / 100) * (1f / ItemMenuButtonFunctions.CabinetWall1Size.z));
+                itemMenuFunctions.CabinetWall1.transform.localScale = new Vector3((50f / 100f) * (1f / ItemMenuButtonFunctions.CabinetWall1Size.x), (height / 100) * (1f / ItemMenuButtonFunctions.CabinetWall1Size.y), (length / 100) * (1f / ItemMenuButtonFunctions.CabinetWall1Size.z));
             }
             else if (whichButtonClicked == "Cabinet_Wall_2")
             {
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
-                itemMenuFunctions.CabinetWall2.transform.localScale = new Vector3((width / 100) * (1f / ItemMenuButtonFunctions.CabinetWall2Size.x), (height / 100) * (1f / ItemMenuButtonFunctions.CabinetWall2Size.y), (length / 100) * (1f / ItemMenuButtonFunctions.CabinetWall2Size.z));
+                itemMenuFunctions.CabinetWall2.transform.localScale = new Vector3((50f / 100f) * (1f / ItemMenuButtonFunctions.CabinetWall2Size.x), (height / 100) * (1f / ItemMenuButtonFunctions.CabinetWall2Size.y), (length / 100) * (1f / ItemMenuButtonFunctions.CabinetWall2Size.z));
             }
             else if (whichButtonClicked == "Wall")
             {
@@ -113,11 +113,7 @@ public class SizeMenuFunctions : MonoBehaviour
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
                 itemMenuFunctions.Shower.transform.localScale = new Vector3((width / 100) * (1f / ItemMenuButtonFunctions.ShowerSize.x), (height / 100) * (1f / ItemMenuButtonFunctions.ShowerSize.y), (length / 100) * (1f / ItemMenuButtonFunctions.ShowerSize.z));
             }
-            else if (whichButtonClicked == "Sink")
-            {
-                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
-                itemMenuFunctions.Vanity3.transform.localScale = new Vector3((width / 100) * (1f / ItemMenuButtonFunctions.Vanity3Size.x), (height / 100) * (1f / ItemMenuButtonFunctions.Vanity3Size.y), (length / 100) * (1f / ItemMenuButtonFunctions.Vanity3Size.z));
-            }
+            
             else if (whichButtonClicked == "Toilet")
             {
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
@@ -137,7 +133,7 @@ public class SizeMenuFunctions : MonoBehaviour
             {
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
                 //itemMenuFunctions.Floor.transform.localScale = new Vector3((width / 100) * (1f / ItemMenuButtonFunctions.FloorSize.x), 1f, (length / 100) * (1f / ItemMenuButtonFunctions.FloorSize.z));
-                itemMenuFunctions.Floor.transform.localScale = new Vector3(0.2f, 1f, 0.2f);
+                itemMenuFunctions.Floor.transform.localScale = new Vector3(0.2f, 0.1f, 0.2f);
             }
             GameObject sizeMenu = GameObject.Find("SizeMenu");
             sizeMenu.SetActive(false);
