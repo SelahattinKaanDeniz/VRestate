@@ -9,6 +9,7 @@ public class PlaceableObject : MonoBehaviour
     public Vector3Int Size { get; private set; }
     private Vector3[] Vertices;
     public bool isColliding = false;
+    private List<GameObject> CollidingObjects = new List<GameObject>();
 
     private void GetColliderVertexPositionsLocal()
     {
@@ -24,7 +25,7 @@ public class PlaceableObject : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(transform.TransformPoint(Vertices[0]) + " Vertices[0]");
+        //Debug.Log(transform.TransformPoint(Vertices[0]) + " Vertices[0]");
     }
     private void CalculateSizeInCells()
     {
@@ -32,15 +33,15 @@ public class PlaceableObject : MonoBehaviour
         for (int i = 0; i < vertices.Length; i++)
         {
             Vector3 worldPos = transform.TransformPoint(Vertices[i]);
-            Debug.Log(worldPos + " worldpos");
+            //Debug.Log(worldPos + " worldpos");
             vertices[i] = BuildingSystem.current.gridLayout.WorldToCell(worldPos);
-            Debug.Log(vertices[i] + " vertices " + i);
+            //Debug.Log(vertices[i] + " vertices " + i);
             BoxCollider b = gameObject.GetComponent<BoxCollider>();
-            Debug.Log(b.center + " b.center");
+            //Debug.Log(b.center + " b.center");
 
         }
-        Debug.Log(Math.Abs((vertices[0] - vertices[1]).x) + " SIZE X");
-        Debug.Log(Math.Abs((vertices[0] - vertices[3]).y) + " SIZE Y");
+        //Debug.Log(Math.Abs((vertices[0] - vertices[1]).x) + " SIZE X");
+        //Debug.Log(Math.Abs((vertices[0] - vertices[3]).y) + " SIZE Y");
         Size = new Vector3Int(Math.Abs((vertices[0] - vertices[1]).x),
                               Math.Abs((vertices[0] - vertices[3]).y), 
                               1);
@@ -74,16 +75,33 @@ public class PlaceableObject : MonoBehaviour
 
         Placed = true;
 
-        //invoke events of placement
+       
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!CollidingObjects.Contains(other.gameObject))
+        {
+            CollidingObjects.Add(other.gameObject);
+        }
+        
+        Debug.Log(this.gameObject.name + " ontrigger this");
+        Debug.Log(other.gameObject.name + " ontrigger other");
+        isColliding = true;
     }
     void OnTriggerExit(Collider other)
     {
-        // Destroy everything that leaves the trigger
-        isColliding = false;
+        
+        CollidingObjects.Remove(other.gameObject);
+        if(CollidingObjects.Count == 0)
+        {
+            isColliding = false;
+        }
+        
+
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        isColliding = true;
-    }
+    
+
+    
 }
+

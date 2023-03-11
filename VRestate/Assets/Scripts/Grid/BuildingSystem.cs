@@ -36,17 +36,7 @@ public class BuildingSystem : MonoBehaviour
     private void Update()
     {
         //Debug.Log(BuildingSystem.GetMouseWorldPosition() + " MOUSE POZÝSYONU");
-        if (SizeMenu.active == true)
-        {
-            float.TryParse(sizeMenuFunctions.widthInputField.text, out float widthresult);
-            posx = widthresult;
-            //Debug.Log(posx + " posx");
-            float.TryParse(sizeMenuFunctions.lengthInputField.text, out float lengthresult);
-            posz = lengthresult;
-            float.TryParse(sizeMenuFunctions.heightInputField.text, out float heightresult);
-            posy = heightresult;
-        }
-        
+             
 
         /*if (Input.GetKeyDown(KeyCode.A))
         {
@@ -118,31 +108,32 @@ public class BuildingSystem : MonoBehaviour
          }*/
         //else
         //{
-        if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "CubeWall(Clone)" || ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "NewDoor1(Clone)" || ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "NewDoor2(Clone)" || ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "NewWindow2(Clone)" || ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "Floor(Clone)")
+        if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "CubeWall(Clone)" || ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "NewDoor1(Clone)" || ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "NewDoor2(Clone)" || ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "NewWindow2(Clone)" 
+            || ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "Floor(Clone)" || ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "Frame(Clone)" || ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "Rail(Clone)")
         {
             if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 0f)
             {
 
                 hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
-                Debug.Log("snapcoordinate 1.if" + hit.point);
+                //Debug.Log("snapcoordinate 1.if" + hit.point);
             }
             else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 90f)
             {
 
                 hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z -0.25f);
-                Debug.Log("snapcoordinate 2.if" + hit.point);
+                //Debug.Log("snapcoordinate 2.if" + hit.point);
             }
             else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 180f)
             {
 
                 hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
-                Debug.Log("snapcoordinate 3.if" + hit.point);
+                //Debug.Log("snapcoordinate 3.if" + hit.point);
             }
             else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 270f)
             {
 
                 hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
-                Debug.Log("snapcoordinate 4.if" + hit.point);
+                //Debug.Log("snapcoordinate 4.if" + hit.point);
             }
         }
         /*else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "Cabinet_Wall_1(Clone)" || ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.name == "Cabinet_Wall_2(Clone)")
@@ -178,25 +169,25 @@ public class BuildingSystem : MonoBehaviour
             {
 
                 hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
-                Debug.Log("snapcoordinate 1.if" + hit.point);
+                //Debug.Log("snapcoordinate 1.if" + hit.point);
             }
             else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 90f)
             {
 
                 hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
-                Debug.Log("snapcoordinate 2.if" + hit.point);
+                //Debug.Log("snapcoordinate 2.if" + hit.point);
             }
             else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 180f)
             {
 
                 hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
-                Debug.Log("snapcoordinate 3.if" + hit.point);
+                //Debug.Log("snapcoordinate 3.if" + hit.point);
             }
             else if (ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ItemMenuButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 270f)
             {
 
                 hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
-                Debug.Log("snapcoordinate 4.if" + hit.point);
+                //Debug.Log("snapcoordinate 4.if" + hit.point);
             }
         }
 
@@ -253,10 +244,10 @@ public class BuildingSystem : MonoBehaviour
     public void TakeArea(Vector3Int start, Vector3Int size)
 
     {
-        Debug.Log("TAKEAREA GÝRDÝ");
+        /*Debug.Log("TAKEAREA GÝRDÝ");
         Debug.Log(start + " start"); 
         Debug.Log(size.x + " takearea x");
-        Debug.Log(size.y + " takearea y");
+        Debug.Log(size.y + " takearea y");*/
         MainTilemap.BoxFill(start, whiteTile, start.x, start.y,
                             start.x + size.x -1, start.y + size.y -1);
 
