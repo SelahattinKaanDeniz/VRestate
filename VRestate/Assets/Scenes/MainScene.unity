@@ -7941,6 +7941,7 @@ GameObject:
   - component: {fileID: 733815099}
   - component: {fileID: 733815098}
   - component: {fileID: 733815097}
+  - component: {fileID: 733815102}
   m_Layer: 5
   m_Name: KitchenMenuPanel
   m_TagString: Untagged
@@ -8045,6 +8046,18 @@ RectTransform:
   m_AnchoredPosition: {x: 3660, y: -128}
   m_SizeDelta: {x: 1620, y: 254.37}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &733815102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733815096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca05204dfff8317449cb33d3b41caf5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &735932708
 GameObject:
   m_ObjectHideFlags: 0
@@ -12832,9 +12845,9 @@ MonoBehaviour:
   Vanity3: {fileID: 6824471103924477376, guid: 51868a8d2ec2f7b4cbcc6e39fb248c5f, type: 3}
   Toilet: {fileID: 4073640349705554942, guid: 056fd149f9aa9c94185253239c40d15a, type: 3}
   Vanity1: {fileID: 7261456135864374567, guid: 2e5ee4133898c1b44a943ba086ad86a8, type: 3}
+  foundcount: 0
   cube: {fileID: 254663336}
   InteractionCanvas: {fileID: 2076731268}
-  itemModelCount: 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 --- !u!114 &1156356218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17103,6 +17116,7 @@ GameObject:
   - component: {fileID: 1547524618}
   - component: {fileID: 1547524620}
   - component: {fileID: 1547524621}
+  - component: {fileID: 1547524622}
   m_Layer: 5
   m_Name: ItemMenuPanel
   m_TagString: Untagged
@@ -17207,6 +17221,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PanelMenu: {fileID: 1547524616}
   SliderImage: {fileID: 1128720983}
+--- !u!114 &1547524622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547524616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca05204dfff8317449cb33d3b41caf5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1554681104
 GameObject:
   m_ObjectHideFlags: 0
@@ -21412,6 +21438,7 @@ GameObject:
   - component: {fileID: 1899180028}
   - component: {fileID: 1899180027}
   - component: {fileID: 1899180026}
+  - component: {fileID: 1899180030}
   m_Layer: 5
   m_Name: BathroomMenuPanel
   m_TagString: Untagged
@@ -21516,6 +21543,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1899180024}
   m_CullTransparentMesh: 1
+--- !u!114 &1899180030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1899180024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca05204dfff8317449cb33d3b41caf5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1902659740
 GameObject:
   m_ObjectHideFlags: 0
@@ -21925,6 +21964,7 @@ GameObject:
   - component: {fileID: 1926080772}
   - component: {fileID: 1926080771}
   - component: {fileID: 1926080770}
+  - component: {fileID: 1926080775}
   m_Layer: 5
   m_Name: ConstructionMenuPanel
   m_TagString: Untagged
@@ -22029,6 +22069,18 @@ RectTransform:
   m_AnchoredPosition: {x: -2820, y: -128}
   m_SizeDelta: {x: 1620, y: 254.37}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &1926080775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1926080769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca05204dfff8317449cb33d3b41caf5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1941799143
 GameObject:
   m_ObjectHideFlags: 0
