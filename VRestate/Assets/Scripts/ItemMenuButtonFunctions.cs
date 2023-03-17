@@ -145,8 +145,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
      * 
      * 
      */
-    private int cabinetbase1count = 0;
-    private int cabinetbase2count = 0;
+    
    
     Vector3 mousepos;
     public void Start()

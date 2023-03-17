@@ -9,11 +9,11 @@ public class InteractionButtons : MonoBehaviour
     //private Transform mainCamera;  // World spaceteyse buralar açýlacak
     private ItemMenuButtonFunctions itemMenuFunctions;
     //public GameObject cameraRig;  // World spaceteyse buralar açýlacak
-    float minDistance = 2f;
+    /*float minDistance = 2f;
     float maxDistance = 45f;
 
     float minScale = 1f;
-    float maxScale = 4f;
+    float maxScale = 4f;*/
 
     
     // Start is called before the first frame update
