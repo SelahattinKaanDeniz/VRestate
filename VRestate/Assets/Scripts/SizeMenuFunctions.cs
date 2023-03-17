@@ -8,8 +8,10 @@ public class SizeMenuFunctions : MonoBehaviour
 {
     
     private ItemMenuButtonFunctions itemMenuFunctions;
+    private ClientButtonFunctions clientMenuFunctions;
     public GameObject sizeMenuPopUp;
     private string whichButtonClicked;
+    private string whichButtonClickedClient;
     public TMP_InputField lengthInputField;
     public TMP_InputField widthInputField;
     public TMP_InputField heightInputField;
@@ -69,12 +71,20 @@ public class SizeMenuFunctions : MonoBehaviour
     public  float Vanity3x;
     public  float Vanity3y;
     public  float Vanity3z;
+
+
+    public float Sofa1x;
+    public float Sofa1y;
+    public float Sofa1z;
     // Start is called before the first frame update
     void Start()
     {
         GameObject canvas = GameObject.Find("Canvas");
         itemMenuFunctions = canvas.GetComponent<ItemMenuButtonFunctions>();
-        
+        clientMenuFunctions = canvas.GetComponent<ClientButtonFunctions>();
+        Debug.Log(itemMenuFunctions + " itemmenufunctions");
+        Debug.Log(clientMenuFunctions + " clientmenufunctions");
+
 
     }
     public void lengthValueChanged(string txt)
@@ -242,6 +252,16 @@ public class SizeMenuFunctions : MonoBehaviour
             {
                 itemMenuFunctions.Frame.transform.localScale = new Vector3(0.5f, 1f, 0.5f);
             }
+            //CLIENT MODELLERÝ ÝÇÝN
+            else if (whichButtonClickedClient == "Sofa_1")
+            {
+                Debug.Log("sofa1 button clicked");
+                Sofa1x = width;
+                Sofa1y = height;
+                Sofa1z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Sofa1.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.Sofa1Size.x), (height / 100) * (1f / ClientButtonFunctions.Sofa1Size.y), (length / 100) * (1f / ClientButtonFunctions.Sofa1Size.z));
+            }
             GameObject sizeMenu = GameObject.Find("SizeMenu");
             //sizeMenu.SetActive(false);
             //sizeMenu.transform.position = new Vector3(0f, 50f, -2.6759e-05f);
@@ -277,6 +297,7 @@ public class SizeMenuFunctions : MonoBehaviour
     void Update()
     {
         whichButtonClicked = ItemMenuButtonFunctions.clickedButtonName;
+        whichButtonClickedClient = ClientButtonFunctions.clickedButtonName;
         Debug.Log(CabinetBase1x + " " + CabinetBase1y + CabinetBase1z + "size cabinetbase1");
         
 

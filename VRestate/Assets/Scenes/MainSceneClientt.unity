@@ -12100,6 +12100,7 @@ GameObject:
   - component: {fileID: 660704930}
   - component: {fileID: 660704929}
   - component: {fileID: 660704928}
+  - component: {fileID: 660704931}
   m_Layer: 5
   m_Name: Sofa_1
   m_TagString: Untagged
@@ -12211,6 +12212,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 660704926}
   m_CullTransparentMesh: 1
+--- !u!114 &660704931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660704926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &684138930
 GameObject:
   m_ObjectHideFlags: 0
@@ -20579,6 +20637,7 @@ MonoBehaviour:
   Toilet: {fileID: 0}
   Vanity1: {fileID: 0}
   foundcount: 0
+  Sofa1: {fileID: 8886124330212641047, guid: 0757f540218025b4a8dcda2ff1006b2e, type: 3}
   cube: {fileID: 4582951929869739942}
   InteractionCanvas: {fileID: 1882135878937342524}
 --- !u!114 &1156356218
@@ -38433,6 +38492,9 @@ MonoBehaviour:
   Vanity3x: 0
   Vanity3y: 0
   Vanity3z: 0
+  Sofa1x: 0
+  Sofa1y: 0
+  Sofa1z: 0
 --- !u!224 &182304708423301766
 RectTransform:
   m_ObjectHideFlags: 0

@@ -9003,6 +9003,9 @@ MonoBehaviour:
   Vanity3x: 0
   Vanity3y: 0
   Vanity3z: 0
+  Sofa1x: 0
+  Sofa1y: 0
+  Sofa1z: 0
 --- !u!1 &797990235
 GameObject:
   m_ObjectHideFlags: 0
@@ -12805,9 +12808,9 @@ MonoBehaviour:
   leftClickedButtonName: 
   mainCamera: {fileID: 2135651141}
   cameraRig: {fileID: 2040810739}
-  movementSpeed: 0.05
+  movementSpeed: 0.2
   movementTime: 1.5
-  cameraRotationAmount: 0.4
+  cameraRotationAmount: 1
   cameraScrollSpeed: 20
   panBorderThickness: 10
   panLimit: {x: 50, y: 50}

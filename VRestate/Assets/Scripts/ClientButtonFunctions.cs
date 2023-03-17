@@ -69,7 +69,7 @@ public class ClientButtonFunctions : MonoBehaviour
 
 
     // Kitchen
-    public GameObject CabinetBase1;
+    /*public GameObject CabinetBase1;
     public static Vector3 CabinetBase1Size;
     public GameObject CabinetBase2;
     public static Vector3 CabinetBase2Size;
@@ -119,8 +119,13 @@ public class ClientButtonFunctions : MonoBehaviour
     public GameObject Toilet;
     public static Vector3 ToiletSize;
     public GameObject Vanity1;
-    public static Vector3 Vanity1Size;
+    public static Vector3 Vanity1Size;*/
     public bool foundcount = false;
+
+    //Living Room
+    public GameObject Sofa1;
+    public static Vector3 Sofa1Size;
+
 
 
 
@@ -162,7 +167,7 @@ public class ClientButtonFunctions : MonoBehaviour
         camerapos = mainCamera.transform.localPosition;
 
 
-        CabinetBase1.transform.localScale = new Vector3(1f, 1f, 1f);
+        /*CabinetBase1.transform.localScale = new Vector3(1f, 1f, 1f);
         CabinetBase1Size = CabinetBase1.GetComponent<MeshRenderer>().bounds.size;
         CabinetBase2.transform.localScale = new Vector3(1f, 1f, 1f);
         CabinetBase2Size = CabinetBase2.GetComponent<MeshRenderer>().bounds.size;
@@ -178,9 +183,13 @@ public class ClientButtonFunctions : MonoBehaviour
         CabinetWall2Size = CabinetWall2.GetComponent<MeshRenderer>().bounds.size;
 
         Stove.transform.localScale = new Vector3(1f, 1f, 1f);
-        StoveSize = Stove.GetComponent<MeshRenderer>().bounds.size;
+        StoveSize = Stove.GetComponent<MeshRenderer>().bounds.size;*/
 
-        Floor.transform.localScale = new Vector3(0.2f, 0.1f, 0.2f);
+
+        Sofa1.transform.localScale = new Vector3(1f, 1f, 1f);
+        Sofa1Size = Sofa1.GetComponent<MeshRenderer>().bounds.size;
+
+        /*Floor.transform.localScale = new Vector3(0.2f, 0.1f, 0.2f);
         FloorSize = Floor.GetComponent<MeshRenderer>().bounds.size;
 
 
@@ -203,7 +212,7 @@ public class ClientButtonFunctions : MonoBehaviour
         Door2.transform.localScale = new Vector3(0.5f, 3f, 0.5f);
         Window.transform.localScale = new Vector3(0.5f, 3f, 0.5f);
         Frame.transform.localScale = new Vector3(0.5f, 3f, 0.5f);
-        Rail.transform.localScale = new Vector3(0.5f, 1f, 0.5f);
+        Rail.transform.localScale = new Vector3(0.5f, 1f, 0.5f);*/
         //RailSize = Rail.GetComponent<MeshRenderer>().bounds.size;
     }
 
@@ -353,7 +362,7 @@ public class ClientButtonFunctions : MonoBehaviour
         }*/
         foundcount = false;
 
-        if (leftClickedButtonName == "Cabinet_Base_1")
+        /*if (leftClickedButtonName == "Cabinet_Base_1")
         {
             if (isButtonClicked == true)
             {
@@ -733,6 +742,24 @@ public class ClientButtonFunctions : MonoBehaviour
 
             //itemModelCount[40] = 1;
             foundcount = true;
+        }*/
+         if (leftClickedButtonName == "Sofa_1")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Sofa1, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            //itemModelCount[40] = 1;
+            foundcount = true;
         }
 
 
@@ -761,6 +788,7 @@ public class ClientButtonFunctions : MonoBehaviour
 
         ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
         buildingSystemObjectFollowMouse = ObjectFollowsMouse;
+        Debug.Log(buildingSystemObjectFollowMouse + " BUILDINGSYSTEMOBJECTFOLLOWSMOUSE");
 
 
 
@@ -1023,7 +1051,7 @@ public class ClientButtonFunctions : MonoBehaviour
 
 
                     }
-                    else if (ObjectFollowsMouse.name == "CubeWall(Clone)" || ObjectFollowsMouse.name == "NewDoor1(Clone)" || ObjectFollowsMouse.name == "NewDoor2(Clone)" || ObjectFollowsMouse.name == "NewWindow2(Clone)" || ObjectFollowsMouse.name == "Floor(Clone)" || ObjectFollowsMouse.name == "Frame(Clone)" || ObjectFollowsMouse.name == "Rail(Clone)")
+                    /*else if (ObjectFollowsMouse.name == "CubeWall(Clone)" || ObjectFollowsMouse.name == "NewDoor1(Clone)" || ObjectFollowsMouse.name == "NewDoor2(Clone)" || ObjectFollowsMouse.name == "NewWindow2(Clone)" || ObjectFollowsMouse.name == "Floor(Clone)" || ObjectFollowsMouse.name == "Frame(Clone)" || ObjectFollowsMouse.name == "Rail(Clone)")
                     {
                         if (followmouse == true)
                         {
@@ -1071,7 +1099,7 @@ public class ClientButtonFunctions : MonoBehaviour
 
                             //ObjectFollowsMouse.transform.position = new Vector3(raycastHit.point.x, raycastHit.point.y, raycastHit.point.z);
                         }
-                    }
+                    }*/
                     else
                     {
                         if (followmouse == true)
@@ -1154,6 +1182,12 @@ public class ClientButtonFunctions : MonoBehaviour
                                 gridposx = sizeMenu.Vanity2x;
                                 gridposy = sizeMenu.Vanity2z;
                                 gridposz = sizeMenu.Vanity2y;
+                            }
+                            else if (ObjectFollowsMouse.name == "Sofa_1(Clone)")
+                            {
+                                gridposx = sizeMenu.Sofa1x;
+                                gridposy = sizeMenu.Sofa1y;
+                                gridposz = sizeMenu.Sofa1z;
                             }
                             if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 0f)
                             {
