@@ -852,10 +852,17 @@ public class ClientButtonFunctions : MonoBehaviour
         else
         {
             ObjectFollowsMouse.AddComponent<BoxCollider>();
+            /*if(ObjectFollowsMouse.name == "Chair_Study(Clone)")
+            {
+                ObjectFollowsMouse.GetComponent<BoxCollider>().size = new Vector3(0.8118632f, 1.4f, 0.7751738f);
+                ObjectFollowsMouse.GetComponent<BoxCollider>().center = new Vector3(0f, 0.75f, 0.03668194f);
+
+            }*/
             if (ObjectFollowsMouse.name == "Sofa_4(Clone)" || ObjectFollowsMouse.name == "Shelf_2(Clone)" || ObjectFollowsMouse.name == "Chair_2(Clone)" || ObjectFollowsMouse.name == "Chair_3(Clone)" || ObjectFollowsMouse.name == "Fridge_2(Clone)" 
                 || ObjectFollowsMouse.name == "Dish_Washer(Clone)" || ObjectFollowsMouse.name == "Coffee_Table_2(Clone)")
             {
                 ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.001f, 0.001f, 0.001f);
+                //ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size;
             }
             else {
                 ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
@@ -1075,7 +1082,7 @@ public class ClientButtonFunctions : MonoBehaviour
                             {
                                 Debug.Log("1. if");
                                 //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
-                                objectposition = new Vector3(a.x - 0.25f - 0.25f, a.y + 1.5f - gridposy / 200, a.z + gridposz / 200);
+                                objectposition = new Vector3(a.x - 0.25f - 0.25f, a.y + 1.75f - gridposy / 200, a.z + gridposz / 200);
                                 //Debug.Log(" abc " + objectposition);
                                 //objectposition = new Vector3(a.x - b.size.x, a.y, a.z + b.size.z);
                                 //Debug.Log(" abc " + objectposition);
@@ -1084,19 +1091,19 @@ public class ClientButtonFunctions : MonoBehaviour
                             {
                                 Debug.Log("2. if");
                                 //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
-                                objectposition = new Vector3(a.x + gridposz / 200, a.y + 1.5f - gridposy / 200, a.z + 0.25f + 0.25f);
+                                objectposition = new Vector3(a.x + gridposz / 200, a.y + 1.75f - gridposy / 200, a.z + 0.25f + 0.25f);
                             }
                             else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 180f)
                             {
                                 Debug.Log("3. if");
                                 //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
-                                objectposition = new Vector3(a.x + 0.25f + 0.25f, a.y + 1.5f - gridposy / 200, a.z - gridposz / 200);
+                                objectposition = new Vector3(a.x + 0.25f + 0.25f, a.y + 1.75f - gridposy / 200, a.z - gridposz / 200);
                             }
                             else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 270f)
                             {
                                 Debug.Log("4. if");
                                 //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
-                                objectposition = new Vector3(a.x - gridposz / 200, a.y + 1.5f - gridposy / 200, a.z - 0.25f - 0.25f);
+                                objectposition = new Vector3(a.x - gridposz / 200, a.y + 1.75f - gridposy / 200, a.z - 0.25f - 0.25f);
                             }
                             //Vector3 objectposition = new Vector3(a.x + BuildingSystem.posx / 200, a.y + 2f, a.z + BuildingSystem.posz / 200);
                             ObjectFollowsMouse.transform.position = objectposition;
@@ -1252,7 +1259,7 @@ public class ClientButtonFunctions : MonoBehaviour
                                 gridposy = sizeMenu.Shelf1y;
                                 gridposz = sizeMenu.Shelf1z;
                             }
-                            else if (ObjectFollowsMouse.name == "TV_Stand(Clone)")
+                            else if (ObjectFollowsMouse.name == "TV_Stand_1(Clone)")
                             {
                                 gridposx = sizeMenu.TVStandx;
                                 gridposy = sizeMenu.TVStandy;
@@ -1367,7 +1374,11 @@ public class ClientButtonFunctions : MonoBehaviour
                                     objectposition = new Vector3(a.x - gridposz / 200, a.y, a.z - gridposx / 200);
                                 }
                             }
-
+                            if(ObjectFollowsMouse.name == "Chair_Study(Clone)")
+                            {
+                                objectposition = objectposition + new Vector3(0f, gridposy / 100f * 0.4f, 0f);
+                               
+                            }
                             //Vector3 objectposition = new Vector3(a.x + BuildingSystem.posx / 200, a.y, a.z + BuildingSystem.posz / 200);
                             ObjectFollowsMouse.transform.position = objectposition;
 
@@ -1458,6 +1469,7 @@ public class ClientButtonFunctions : MonoBehaviour
                         int LayerDefault = LayerMask.NameToLayer("Default");
                         ObjectFollowsMouse.layer = LayerDefault;
                         Debug.Log(ObjectFollowsMouse.GetComponent<MeshRenderer>().bounds.size);
+                        Debug.Log(ObjectFollowsMouse.GetComponent<BoxCollider>().bounds.size);
                         Debug.Log(cube.GetComponent<MeshRenderer>().bounds.size);
 
 
@@ -1539,6 +1551,7 @@ public class ClientButtonFunctions : MonoBehaviour
                     if (raycastHit.collider.tag == "3DModel" && (sizeMenu.transform.position == new Vector3(3960f, 3540f, 3000f)) && settingsMenu.active == false && IsMouseHoveringOnButton.onButton == false)
                     {
                         Selected3DObject = raycastHit.transform.gameObject;
+                        ObjectFollowsMouse = Selected3DObject;
                         Debug.Log(Selected3DObject + "selected 3d object");
                         InteractionCanvas.SetActive(true);
 

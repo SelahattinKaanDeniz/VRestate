@@ -368,7 +368,7 @@ public class SizeMenuFunctions : MonoBehaviour
                 DishWashery = height;
                 DishWasherz = length;
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
-                clientMenuFunctions.DishWasher.transform.localScale = new Vector3((width / 100) * (121.6511f / ClientButtonFunctions.DishWasherSize.x), (length / 100) * (100f / ClientButtonFunctions.DishWasherSize.z), (height / 100) * (100f / ClientButtonFunctions.DishWasherSize.y));
+                clientMenuFunctions.DishWasher.transform.localScale = new Vector3((length / 100) * (121.6511f / ClientButtonFunctions.DishWasherSize.x), (width / 100) * (100f / ClientButtonFunctions.DishWasherSize.z), (height / 100) * (100f / ClientButtonFunctions.DishWasherSize.y));
             }
             else if (whichButtonClickedClient == "Fridge_1")
             {
@@ -384,7 +384,7 @@ public class SizeMenuFunctions : MonoBehaviour
                 Fridge2y = height;
                 Fridge2z = length;
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
-                clientMenuFunctions.Fridge2.transform.localScale = new Vector3((width / 100) * (50f / ClientButtonFunctions.Fridge2Size.x), (length / 100) * (50f / ClientButtonFunctions.Fridge2Size.z), (height / 100) * (50f / ClientButtonFunctions.Fridge2Size.y));
+                clientMenuFunctions.Fridge2.transform.localScale = new Vector3((length / 100) * (50f / ClientButtonFunctions.Fridge2Size.x), (width / 100) * (50f / ClientButtonFunctions.Fridge2Size.z), (height / 100) * (50f / ClientButtonFunctions.Fridge2Size.y));
             }
             else if (whichButtonClickedClient == "Range_Hood")
             {
@@ -425,7 +425,7 @@ public class SizeMenuFunctions : MonoBehaviour
                 Sofa4y = height;
                 Sofa4z = length;
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
-                clientMenuFunctions.Sofa4.transform.localScale = new Vector3((width / 100) * (127.3344f / ClientButtonFunctions.Sofa4Size.x), (length / 100) * (127.3344f / ClientButtonFunctions.Sofa4Size.z), (height / 100) * (127.3344f / ClientButtonFunctions.Sofa4Size.y));
+                clientMenuFunctions.Sofa4.transform.localScale = new Vector3((length / 100) * (127.3344f / ClientButtonFunctions.Sofa4Size.x), (width / 100) * (127.3344f / ClientButtonFunctions.Sofa4Size.z), (height / 100) * (127.3344f / ClientButtonFunctions.Sofa4Size.y));
             }
             else if (whichButtonClickedClient == "Chair_2")
             {
@@ -433,7 +433,7 @@ public class SizeMenuFunctions : MonoBehaviour
                 Chair2y = height;
                 Chair2z = length;
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
-                clientMenuFunctions.Chair2.transform.localScale = new Vector3((width / 100) * (80f / ClientButtonFunctions.Chair2Size.x), (length / 100) * (76f / ClientButtonFunctions.Chair2Size.z), (height / 100) * (80f / ClientButtonFunctions.Chair2Size.y));
+                clientMenuFunctions.Chair2.transform.localScale = new Vector3((length / 100) * (80f / ClientButtonFunctions.Chair2Size.x), (width / 100) * (76f / ClientButtonFunctions.Chair2Size.z), (height / 100) * (80f / ClientButtonFunctions.Chair2Size.y));
             }
             else if (whichButtonClickedClient == "Chair_3")
             {
@@ -441,7 +441,7 @@ public class SizeMenuFunctions : MonoBehaviour
                 Chair3y = height;
                 Chair3z = length;
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
-                clientMenuFunctions.Chair3.transform.localScale = new Vector3((width / 100) * (100f / ClientButtonFunctions.Chair3Size.x), (length / 100) * (100f / ClientButtonFunctions.Chair3Size.z), (height / 100) * (100f / ClientButtonFunctions.Chair3Size.y));
+                clientMenuFunctions.Chair3.transform.localScale = new Vector3((length / 100) * (100f / ClientButtonFunctions.Chair3Size.x), (width / 100) * (100f / ClientButtonFunctions.Chair3Size.z), (height / 100) * (100f / ClientButtonFunctions.Chair3Size.y));
             }
             else if (whichButtonClickedClient == "Bar_Cabinet")
             {
@@ -465,7 +465,7 @@ public class SizeMenuFunctions : MonoBehaviour
                 CoffeeTable2y = height;
                 CoffeeTable2z = length;
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
-                clientMenuFunctions.CoffeeTable2.transform.localScale = new Vector3((width / 100) * (100f / ClientButtonFunctions.CoffeeTable2Size.x), (length / 100) * (100f / ClientButtonFunctions.CoffeeTable2Size.z), (height / 100) * (100f / ClientButtonFunctions.CoffeeTable2Size.y));
+                clientMenuFunctions.CoffeeTable2.transform.localScale = new Vector3((length / 100) * (100f / ClientButtonFunctions.CoffeeTable2Size.x), (width / 100) * (100f / ClientButtonFunctions.CoffeeTable2Size.z), (height / 100) * (100f / ClientButtonFunctions.CoffeeTable2Size.y));
             }
             else if (whichButtonClickedClient == "Modular_Cabinet")
             {
@@ -537,7 +537,7 @@ public class SizeMenuFunctions : MonoBehaviour
                 ComputerTabley = height;
                 ComputerTablez = length;
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
-                clientMenuFunctions.ComputerTable.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.ComputerTableSize.x), (height / 100) * (1f / ClientButtonFunctions.ComputerTableSize.y), (length / 100) * (1f / ClientButtonFunctions.ComputerTableSize.z));
+                clientMenuFunctions.ComputerTable.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.ComputerTableSize.x), (height / 100) * (1f / ClientButtonFunctions.ComputerTableSize.y)/1.5f, (length / 100) * (1f / ClientButtonFunctions.ComputerTableSize.z));
             }
             else if (whichButtonClickedClient == "Computer")
             {
@@ -552,8 +552,10 @@ public class SizeMenuFunctions : MonoBehaviour
                 ChairStudyx = width;
                 ChairStudyy = height;
                 ChairStudyz = length;
+             
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
-                clientMenuFunctions.ChairStudy.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.ChairStudySize.x), (height / 100) * (1f / ClientButtonFunctions.ChairStudySize.y), (length / 100) * (1f / ClientButtonFunctions.ChairStudySize.z));
+                clientMenuFunctions.ChairStudy.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.ChairStudySize.x)/1.25f, (height / 100) * (1f / ClientButtonFunctions.ChairStudySize.y) / 1.25f, (length / 100) * (1f / ClientButtonFunctions.ChairStudySize.z) / 1.25f);
+                
             }
             else if (whichButtonClickedClient == "Shelf_2")
             {
@@ -561,7 +563,7 @@ public class SizeMenuFunctions : MonoBehaviour
                 Shelf2y = height;
                 Shelf2z = length;
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
-                clientMenuFunctions.Shelf2.transform.localScale = new Vector3((width / 100) * (51.34407f / ClientButtonFunctions.Shelf2Size.x), (length / 100) * (63.60788f / ClientButtonFunctions.Shelf2Size.z), (height / 100) * (63.60788f / ClientButtonFunctions.Shelf2Size.y));
+                clientMenuFunctions.Shelf2.transform.localScale = new Vector3((length / 100) * (51.34407f / ClientButtonFunctions.Shelf2Size.x), (width / 100) * (63.60788f / ClientButtonFunctions.Shelf2Size.z), (height / 100) * (63.60788f / ClientButtonFunctions.Shelf2Size.y));
             }
 
 

@@ -8,6 +8,8 @@ public class InteractionButtons : MonoBehaviour
     //[SerializeField]               // World spaceteyse buralar açýlacak
     //private Transform mainCamera;  // World spaceteyse buralar açýlacak
     private ItemMenuButtonFunctions itemMenuFunctions;
+    private ClientButtonFunctions clientMenuFunctions;
+    bool client = false;
     //public GameObject cameraRig;  // World spaceteyse buralar açýlacak
     /*float minDistance = 2f;
     float maxDistance = 45f;
@@ -15,126 +17,99 @@ public class InteractionButtons : MonoBehaviour
     float minScale = 1f;
     float maxScale = 4f;*/
 
-    
+
     // Start is called before the first frame update
     void Start()
     {
         GameObject canvas = GameObject.Find("Canvas");
         itemMenuFunctions = canvas.GetComponent<ItemMenuButtonFunctions>();
-        Debug.Log(itemMenuFunctions + " ITEMMENUFUNCTIONS");
-        Debug.Log(itemMenuFunctions.Selected3DObject + " ITEMMENUFUNCTIONS selected 3d object");
+        clientMenuFunctions = canvas.GetComponent<ClientButtonFunctions>();
+        
+        if (itemMenuFunctions == null)
+        {
+            client = true;
+        }
+       
+       
     }
     public void MoveButtonClicked()
     {
-        itemMenuFunctions.isButtonClicked = true;
-        itemMenuFunctions.ObjectFollowsMouse = itemMenuFunctions.Selected3DObject;
-        ItemMenuButtonFunctions.buildingSystemObjectFollowMouse = itemMenuFunctions.ObjectFollowsMouse;
-        int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
-        itemMenuFunctions.ObjectFollowsMouse.layer = LayerIgnoreRaycast;
-           
-        //Destroy(itemMenuFunctions.ObjectFollowsMouse.GetComponent<BoxCollider>());
-        this.gameObject.SetActive(false);
+        if (client)
+        {
+            clientMenuFunctions.isButtonClicked = true;
+            clientMenuFunctions.ObjectFollowsMouse = clientMenuFunctions.Selected3DObject;
+            ClientButtonFunctions.buildingSystemObjectFollowMouse = clientMenuFunctions.ObjectFollowsMouse;
+            int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
+            clientMenuFunctions.ObjectFollowsMouse.layer = LayerIgnoreRaycast;
 
-        // itemModelCount yerine sadece bool foundcount kullanýlýyor
+            //Destroy(itemMenuFunctions.ObjectFollowsMouse.GetComponent<BoxCollider>());
+            this.gameObject.SetActive(false);
+            clientMenuFunctions.foundcount = true;
 
-        /* if (itemMenuFunctions.Selected3DObject.name == "Cabinet_Base_1(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[0] = 1;
+            MouseInputUIBlocker.BlockedByUI = false;
+            IsMouseHoveringOnButton.onButton = false;
+            clientMenuFunctions.Selected3DObject = null;
         }
-        else if (itemMenuFunctions.Selected3DObject.name == "Cabinet_Base_2(Clone)")
+        else
         {
-            itemMenuFunctions.itemModelCount[1] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "Cabinet_Base_Corner(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[2] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "Cabinet_Base_Sink(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[3] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "Cabinet_Tall(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[4] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "Cabinet_Wall_1(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[5] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "Cabinet_Wall_2(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[6] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "Stove(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[15] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "Floor(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[20] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "Bathtub(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[30] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "Shower(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[31] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "Sink(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[32] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "Toilet(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[33] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "Vanity_1(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[34] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "Vanity_3(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[35] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "NewDoor1(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[36] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "NewDoor2(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[37] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "NewWindow2(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[38] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "Frame(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[39] = 1;
-        }
-        else if (itemMenuFunctions.Selected3DObject.name == "Rail(Clone)")
-        {
-            itemMenuFunctions.itemModelCount[40] = 1;
-        }*/
-        itemMenuFunctions.foundcount = true;
+            itemMenuFunctions.isButtonClicked = true;
+            itemMenuFunctions.ObjectFollowsMouse = itemMenuFunctions.Selected3DObject;
+            ItemMenuButtonFunctions.buildingSystemObjectFollowMouse = itemMenuFunctions.ObjectFollowsMouse;
+            int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
+            itemMenuFunctions.ObjectFollowsMouse.layer = LayerIgnoreRaycast;
 
-        MouseInputUIBlocker.BlockedByUI = false;
-        IsMouseHoveringOnButton.onButton = false;
-        itemMenuFunctions.Selected3DObject = null;
+            //Destroy(itemMenuFunctions.ObjectFollowsMouse.GetComponent<BoxCollider>());
+            this.gameObject.SetActive(false);
+            itemMenuFunctions.foundcount = true;
+
+            MouseInputUIBlocker.BlockedByUI = false;
+            IsMouseHoveringOnButton.onButton = false;
+            itemMenuFunctions.Selected3DObject = null;
+        }
+        
     }
     public void RotateButtonClicked()
     {
-        itemMenuFunctions.Selected3DObject.transform.Rotate(0, 90f, 0, Space.Self);
-        MouseInputUIBlocker.BlockedByUI = false;
+        if (client)
+        {
+            if (clientMenuFunctions.ObjectFollowsMouse.name == "Sofa_4(Clone)" || clientMenuFunctions.ObjectFollowsMouse.name == "Shelf_2(Clone)" || clientMenuFunctions.ObjectFollowsMouse.name == "Chair_2(Clone)" || clientMenuFunctions.ObjectFollowsMouse.name == "Chair_3(Clone)" 
+                || clientMenuFunctions.ObjectFollowsMouse.name == "Fridge_2(Clone)"
+                || clientMenuFunctions.ObjectFollowsMouse.name == "Dish_Washer(Clone)" || clientMenuFunctions.ObjectFollowsMouse.name == "Coffee_Table_2(Clone)")
+            {
+                clientMenuFunctions.Selected3DObject.transform.Rotate(0, 0, 90f, Space.Self); 
+                MouseInputUIBlocker.BlockedByUI = false;
+            }
+            else
+            {
+                clientMenuFunctions.Selected3DObject.transform.Rotate(0, 90f, 0, Space.Self);
+                MouseInputUIBlocker.BlockedByUI = false;
+            }
+        }
+        else
+        {
+            itemMenuFunctions.Selected3DObject.transform.Rotate(0, 90f, 0, Space.Self);
+            MouseInputUIBlocker.BlockedByUI = false;
+        }
+        
     }
     public void DeleteButtonClicked()
     {
-        Destroy(itemMenuFunctions.Selected3DObject);
-        MouseInputUIBlocker.BlockedByUI = false;
-        IsMouseHoveringOnButton.onButton = false;
-        this.gameObject.SetActive(false);
+        if (client)
+        {
+            Destroy(clientMenuFunctions.Selected3DObject);
+            MouseInputUIBlocker.BlockedByUI = false;
+            IsMouseHoveringOnButton.onButton = false;
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            Destroy(itemMenuFunctions.Selected3DObject);
+            MouseInputUIBlocker.BlockedByUI = false;
+            IsMouseHoveringOnButton.onButton = false;
+            this.gameObject.SetActive(false);
+        }
     }
+        
 
     // Update is called once per frame
     void Update()
@@ -145,7 +120,18 @@ public class InteractionButtons : MonoBehaviour
             Debug.Log("DrawingLine");
             //Debug.DrawLine(Vector3.zero, Vector3.one, Color.red, 10, false, 0.1f)
             //Debug.DrawLine(this.gameObject.transform.position, this.gameObject.transform.position - new Vector3(0f, this.gameObject.transform.position.y - itemMenuFunctions.Selected3DObject.GetComponent<MeshRenderer>().bounds.size.y,0f), Color.green);  // World spaceteyse buralar açýlacak
-            Debug.DrawLine(itemMenuFunctions.Selected3DObject.transform.position + new Vector3 (0f,6f,0f), (itemMenuFunctions.Selected3DObject.transform.position + new Vector3(0f, 6f, 0f)) - new Vector3(0f, (itemMenuFunctions.Selected3DObject.transform.position.y+ 6f) - itemMenuFunctions.Selected3DObject.GetComponent<MeshRenderer>().bounds.size.y,0f), Color.green);
+
+            if (client)
+            {
+                Debug.DrawLine(clientMenuFunctions.Selected3DObject.transform.position + new Vector3(0f, 6f, 0f), (clientMenuFunctions.Selected3DObject.transform.position 
+                    + new Vector3(0f, 6f, 0f)) - new Vector3(0f, (clientMenuFunctions.Selected3DObject.transform.position.y + 6f) - clientMenuFunctions.Selected3DObject.GetComponent<MeshRenderer>().bounds.size.y, 0f), Color.green);
+            }
+            else
+            {
+                Debug.DrawLine(itemMenuFunctions.Selected3DObject.transform.position + new Vector3(0f, 6f, 0f), (itemMenuFunctions.Selected3DObject.transform.position 
+                    + new Vector3(0f, 6f, 0f)) - new Vector3(0f, (itemMenuFunctions.Selected3DObject.transform.position.y + 6f) - itemMenuFunctions.Selected3DObject.GetComponent<MeshRenderer>().bounds.size.y, 0f), Color.green);
+            }
+            
         }
         //float mdistance =  Vector3.Distance(mainCamera.position, this.transform.position); // World spaceteyse buralar açýlacak
         //Debug.Log("mdistance " + mdistance);

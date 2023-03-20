@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4387158110466982303}
   - component: {fileID: 4425123570643652246}
   - component: {fileID: 5964043020088962105}
-  - component: {fileID: 3101481090441544540}
   m_Layer: 0
   m_Name: Chair_2
   m_TagString: 3DModel
@@ -98,16 +97,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isColliding: 0
---- !u!65 &3101481090441544540
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8721174018069334436}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.037658643, y: 0.033080544, z: 0.035623796}
-  m_Center: {x: 0, y: 0.0017343271, z: 0.01723314}

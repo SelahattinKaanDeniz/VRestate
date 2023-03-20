@@ -21519,7 +21519,7 @@ MonoBehaviour:
     type: 3}
   Computer: {fileID: 8834555463695471288, guid: 5c1734f6092bcdd41a8e6c1282127bf4,
     type: 3}
-  ChairStudy: {fileID: 1356081994056113427, guid: a07c5d7ea7323c7458328364abac771c,
+  ChairStudy: {fileID: 6734625961916197926, guid: 45de0e37ae72e6b448238af101d030bf,
     type: 3}
   Shelf2: {fileID: 4587601146940044803, guid: 85dbb15214e95da44899e7e11536325a, type: 3}
   foundcount: 0

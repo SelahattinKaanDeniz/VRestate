@@ -1438,6 +1438,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                     if (raycastHit.collider.tag == "3DModel" && (sizeMenu.transform.position == new Vector3(3960f,3540f,3000f)) && settingsMenu.active == false && IsMouseHoveringOnButton.onButton == false)
                     {
                         Selected3DObject = raycastHit.transform.gameObject;
+                        ObjectFollowsMouse = Selected3DObject;  // BURA CLIENTTAN SONRA EKLENDÝ
                         Debug.Log(Selected3DObject + "selected 3d object");
                         InteractionCanvas.SetActive(true);
 
