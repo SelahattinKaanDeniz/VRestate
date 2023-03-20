@@ -85,7 +85,31 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c415700e57f9b44448fa9027bfca65a0,
         type: 3}
       propertyPath: m_Name
-      value: TV_Stand
+      value: TV_Stand_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c415700e57f9b44448fa9027bfca65a0,
+        type: 3}
+      propertyPath: m_TagString
+      value: 3DModel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c415700e57f9b44448fa9027bfca65a0, type: 3}
+--- !u!1 &5704400384080787611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c415700e57f9b44448fa9027bfca65a0,
+    type: 3}
+  m_PrefabInstance: {fileID: 4894128827123467722}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-5620721792829191315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5704400384080787611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55467d7fcc46c3046aed8c860bb224c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isColliding: 0

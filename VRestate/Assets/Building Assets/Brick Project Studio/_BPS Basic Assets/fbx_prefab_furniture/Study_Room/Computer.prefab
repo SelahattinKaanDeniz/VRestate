@@ -580,9 +580,10 @@ GameObject:
   - component: {fileID: 4092834999759328390}
   - component: {fileID: 3687657492072406819}
   - component: {fileID: 4736093337396899636}
+  - component: {fileID: -2660317722130840515}
   m_Layer: 0
   m_Name: Computer
-  m_TagString: Untagged
+  m_TagString: 3DModel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -671,3 +672,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.23145308, y: 0.68612796, z: 0.96159303}
   m_Center: {x: -0.000000007450581, y: 0.343064, z: -0.000000014901161}
+--- !u!114 &-2660317722130840515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8834555463695471288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55467d7fcc46c3046aed8c860bb224c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isColliding: 0

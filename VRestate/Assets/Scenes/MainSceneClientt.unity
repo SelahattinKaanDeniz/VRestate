@@ -1196,8 +1196,9 @@ GameObject:
   - component: {fileID: 57460976}
   - component: {fileID: 57460975}
   - component: {fileID: 57460974}
+  - component: {fileID: 57460977}
   m_Layer: 5
-  m_Name: Chair
+  m_Name: Chair_Study
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1268,7 +1269,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 57460975}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &57460975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,6 +1320,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 57460972}
   m_CullTransparentMesh: 1
+--- !u!114 &57460977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57460972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &63443988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1757,6 +1815,7 @@ GameObject:
   - component: {fileID: 92659827}
   - component: {fileID: 92659826}
   - component: {fileID: 92659825}
+  - component: {fileID: 92659828}
   m_Layer: 5
   m_Name: Sofa_4
   m_TagString: Untagged
@@ -1829,7 +1888,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 92659826}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &92659826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1868,6 +1939,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 92659823}
   m_CullTransparentMesh: 1
+--- !u!114 &92659828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92659823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &94293765
 GameObject:
   m_ObjectHideFlags: 0
@@ -3180,7 +3296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &172552344
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3198,10 +3314,10 @@ RectTransform:
   m_Father: {fileID: 780312179}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 190, y: -125}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &172552345
 MonoBehaviour:
@@ -3500,6 +3616,7 @@ GameObject:
   - component: {fileID: 181528513}
   - component: {fileID: 181528512}
   - component: {fileID: 181528511}
+  - component: {fileID: 181528514}
   m_Layer: 5
   m_Name: Shelf_2
   m_TagString: Untagged
@@ -3572,7 +3689,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 181528512}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &181528512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3611,6 +3740,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181528509}
   m_CullTransparentMesh: 1
+--- !u!114 &181528514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181528509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &181916774
 GameObject:
   m_ObjectHideFlags: 0
@@ -5070,8 +5244,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 251602623}
   m_HandleRect: {fileID: 251602622}
   m_Direction: 0
-  m_Value: 1.0000014
-  m_Size: 0.5187347
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5401,6 +5575,7 @@ GameObject:
   - component: {fileID: 257770729}
   - component: {fileID: 257770728}
   - component: {fileID: 257770727}
+  - component: {fileID: 257770730}
   m_Layer: 5
   m_Name: Corner_Cabinet
   m_TagString: Untagged
@@ -5473,7 +5648,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 257770728}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &257770728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5512,6 +5699,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257770725}
   m_CullTransparentMesh: 1
+--- !u!114 &257770730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257770725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &261646175
 GameObject:
   m_ObjectHideFlags: 0
@@ -6950,7 +7182,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 990590019}
   m_Direction: 0
   m_Value: 0.99999994
-  m_Size: 0.26204124
+  m_Size: 0.34819177
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7551,7 +7783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &376019675
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7569,10 +7801,10 @@ RectTransform:
   m_Father: {fileID: 278736728}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 670, y: -125}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &376019676
 MonoBehaviour:
@@ -8986,6 +9218,7 @@ GameObject:
   - component: {fileID: 434885470}
   - component: {fileID: 434885469}
   - component: {fileID: 434885468}
+  - component: {fileID: 434885471}
   m_Layer: 5
   m_Name: TV_Stand_1
   m_TagString: Untagged
@@ -9058,7 +9291,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 434885469}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &434885469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9097,6 +9342,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 434885466}
   m_CullTransparentMesh: 1
+--- !u!114 &434885471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434885466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &438627398
 GameObject:
   m_ObjectHideFlags: 0
@@ -9758,6 +10048,7 @@ GameObject:
   - component: {fileID: 486969822}
   - component: {fileID: 486969821}
   - component: {fileID: 486969820}
+  - component: {fileID: 486969823}
   m_Layer: 5
   m_Name: Shelf_1
   m_TagString: Untagged
@@ -9830,7 +10121,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 486969821}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &486969821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9869,6 +10172,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486969818}
   m_CullTransparentMesh: 1
+--- !u!114 &486969823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486969818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &498247296
 GameObject:
   m_ObjectHideFlags: 0
@@ -12491,6 +12839,7 @@ GameObject:
   - component: {fileID: 690980420}
   - component: {fileID: 690980419}
   - component: {fileID: 690980418}
+  - component: {fileID: 690980421}
   m_Layer: 5
   m_Name: Coffee_Table_2
   m_TagString: Untagged
@@ -12563,7 +12912,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 690980419}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &690980419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12602,6 +12963,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 690980416}
   m_CullTransparentMesh: 1
+--- !u!114 &690980421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690980416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &716868253
 GameObject:
   m_ObjectHideFlags: 0
@@ -15221,6 +15627,7 @@ GameObject:
   - component: {fileID: 838730898}
   - component: {fileID: 838730897}
   - component: {fileID: 838730896}
+  - component: {fileID: 838730899}
   m_Layer: 5
   m_Name: Chair_3
   m_TagString: Untagged
@@ -15293,7 +15700,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 838730897}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &838730897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15332,6 +15751,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838730894}
   m_CullTransparentMesh: 1
+--- !u!114 &838730899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838730894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &846636811
 GameObject:
   m_ObjectHideFlags: 0
@@ -15344,6 +15808,7 @@ GameObject:
   - component: {fileID: 846636815}
   - component: {fileID: 846636814}
   - component: {fileID: 846636813}
+  - component: {fileID: 846636816}
   m_Layer: 5
   m_Name: TV
   m_TagString: Untagged
@@ -15416,7 +15881,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 846636814}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &846636814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15455,6 +15932,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 846636811}
   m_CullTransparentMesh: 1
+--- !u!114 &846636816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 846636811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &852418521
 GameObject:
   m_ObjectHideFlags: 0
@@ -16255,7 +16777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &917276229
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16273,10 +16795,10 @@ RectTransform:
   m_Father: {fileID: 278736728}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 430, y: -125}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &917276230
 MonoBehaviour:
@@ -16764,6 +17286,7 @@ GameObject:
   - component: {fileID: 977202384}
   - component: {fileID: 977202383}
   - component: {fileID: 977202382}
+  - component: {fileID: 977202385}
   m_Layer: 5
   m_Name: Stove
   m_TagString: Untagged
@@ -16836,7 +17359,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 977202383}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &977202383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16875,6 +17410,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 977202380}
   m_CullTransparentMesh: 1
+--- !u!114 &977202385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977202380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &978016812
 GameObject:
   m_ObjectHideFlags: 0
@@ -17250,13 +17830,14 @@ GameObject:
   - component: {fileID: 988265024}
   - component: {fileID: 988265023}
   - component: {fileID: 988265022}
+  - component: {fileID: 988265025}
   m_Layer: 5
   m_Name: Books
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &988265021
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17274,10 +17855,10 @@ RectTransform:
   m_Father: {fileID: 1610790812}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1390, y: -125}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &988265022
 MonoBehaviour:
@@ -17322,7 +17903,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 988265023}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &988265023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17361,6 +17954,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 988265020}
   m_CullTransparentMesh: 1
+--- !u!114 &988265025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988265020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &989146317
 GameObject:
   m_ObjectHideFlags: 0
@@ -17379,7 +18017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &989146318
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17397,10 +18035,10 @@ RectTransform:
   m_Father: {fileID: 278736728}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 430, y: -125}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &989146319
 MonoBehaviour:
@@ -18788,6 +19426,7 @@ GameObject:
   - component: {fileID: 1087784252}
   - component: {fileID: 1087784251}
   - component: {fileID: 1087784250}
+  - component: {fileID: 1087784253}
   m_Layer: 5
   m_Name: Table_1
   m_TagString: Untagged
@@ -18860,7 +19499,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1087784251}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1087784251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18899,6 +19550,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087784248}
   m_CullTransparentMesh: 1
+--- !u!114 &1087784253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087784248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1093393535
 GameObject:
   m_ObjectHideFlags: 0
@@ -18994,7 +19690,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1094804906
 RectTransform:
   m_ObjectHideFlags: 0
@@ -19012,10 +19708,10 @@ RectTransform:
   m_Father: {fileID: 780312179}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 670, y: -125}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1094804907
 MonoBehaviour:
@@ -19583,6 +20279,7 @@ GameObject:
   - component: {fileID: 1104561519}
   - component: {fileID: 1104561518}
   - component: {fileID: 1104561517}
+  - component: {fileID: 1104561520}
   m_Layer: 5
   m_Name: Computer_Table
   m_TagString: Untagged
@@ -19655,7 +20352,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1104561518}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1104561518
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19694,6 +20403,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1104561515}
   m_CullTransparentMesh: 1
+--- !u!114 &1104561520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104561515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1105600916
 GameObject:
   m_ObjectHideFlags: 0
@@ -19761,6 +20515,7 @@ GameObject:
   - component: {fileID: 1111534457}
   - component: {fileID: 1111534456}
   - component: {fileID: 1111534455}
+  - component: {fileID: 1111534458}
   m_Layer: 5
   m_Name: Table_2
   m_TagString: Untagged
@@ -19833,7 +20588,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1111534456}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1111534456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19872,6 +20639,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111534453}
   m_CullTransparentMesh: 1
+--- !u!114 &1111534458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111534453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1123327640
 GameObject:
   m_ObjectHideFlags: 0
@@ -20270,6 +21082,7 @@ GameObject:
   - component: {fileID: 1135819274}
   - component: {fileID: 1135819273}
   - component: {fileID: 1135819272}
+  - component: {fileID: 1135819275}
   m_Layer: 5
   m_Name: Bench
   m_TagString: Untagged
@@ -20342,7 +21155,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1135819273}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1135819273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20381,6 +21206,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135819270}
   m_CullTransparentMesh: 1
+--- !u!114 &1135819275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135819270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1147403320
 GameObject:
   m_ObjectHideFlags: 0
@@ -20615,29 +21485,44 @@ MonoBehaviour:
   ObjectFollowsMouse: {fileID: 0}
   Selected3DObject: {fileID: 0}
   isButtonClicked: 1
-  CabinetBase1: {fileID: 0}
-  CabinetBase2: {fileID: 0}
-  CabinetBaseCorner: {fileID: 0}
-  CabinetBaseSink: {fileID: 0}
-  CabinetTall: {fileID: 0}
-  CabinetWall1: {fileID: 0}
-  CabinetWall2: {fileID: 0}
-  Stove: {fileID: 0}
-  Floor: {fileID: 0}
-  Wall: {fileID: 0}
-  Door1: {fileID: 0}
-  Door2: {fileID: 0}
-  Window: {fileID: 0}
-  Frame: {fileID: 0}
-  Rail: {fileID: 0}
-  wallPrefab: {fileID: 0}
-  Bathtub: {fileID: 0}
-  Shower: {fileID: 0}
-  Vanity3: {fileID: 0}
-  Toilet: {fileID: 0}
-  Vanity1: {fileID: 0}
-  foundcount: 0
+  CornerCabinet: {fileID: 1022410160599469327, guid: f007a45d7456c9f4ba5a0b4c32764ecc,
+    type: 3}
+  DishWasher: {fileID: 358036684768153495, guid: 4671850598a64b844b6b01a3344176aa,
+    type: 3}
+  Fridge1: {fileID: 6188987316711906047, guid: f6525a0a372ceaf4aa6fc9a88f0ed4c3, type: 3}
+  Fridge2: {fileID: 5432802984506527975, guid: 92be9bf21d3b703408c3335961fc3a29, type: 3}
+  RangeHood: {fileID: 1548351387706910476, guid: d1ae44bd93cca9d42a5a9887709694b8,
+    type: 3}
+  Stove: {fileID: 6563838313664328344, guid: a4ac7a1790b66fd4ca703d0c4ba51022, type: 3}
+  TV: {fileID: 4689226894193179518, guid: c54dfe29bcb517a4ebc38225c41a7fd9, type: 3}
   Sofa1: {fileID: 8886124330212641047, guid: 0757f540218025b4a8dcda2ff1006b2e, type: 3}
+  Sofa4: {fileID: 3301342839811228629, guid: 2a4e9a48cc851584eaa3a0e411e66e6a, type: 3}
+  Chair2: {fileID: 8721174018069334436, guid: fe5f1944027a9fa4dbf083f2836ea80b, type: 3}
+  Chair3: {fileID: 935122611725642288, guid: beee1faeba947a74bb164a6942ab7a1b, type: 3}
+  BarCabinet: {fileID: 5751674052234766896, guid: 3f5aead6fd55e9746ad8cda4ca2d222c,
+    type: 3}
+  CoffeeTable1: {fileID: 8938021002170031477, guid: 4d1e8544bf913cf40b29eb914dd1085c,
+    type: 3}
+  CoffeeTable2: {fileID: 1244238613712191358, guid: 6580ee6e438fb714bb05101a804011df,
+    type: 3}
+  ModularCabinet: {fileID: 7199927355807206896, guid: 7c61fe34f34b695408d891c28a3f187b,
+    type: 3}
+  Shelf1: {fileID: 1276530813171489729, guid: 0e99b1771d58ed747b20c3a5a1b88f03, type: 3}
+  TVStand: {fileID: 8785394304037200178, guid: c81c1e67419f98b4b827c54198d18769, type: 3}
+  Table1: {fileID: 3049558954230743570, guid: 4fa1dccc3a5c09b4ab6074e0fc140a92, type: 3}
+  Table2: {fileID: 8286159240867770889, guid: 33db7751e6bacc94096164a2d4b1fe1a, type: 3}
+  Bench: {fileID: 1862998171075469701, guid: 20f435967f3bd9a4cb54a2bc416f308c, type: 3}
+  Hamper: {fileID: 49466371236599065, guid: 034d8c917434bba47b6067c252685453, type: 3}
+  TowelRack2: {fileID: 8279955937161603826, guid: 3b71a6ab5fe34e74c9d56ecc8a301d6f,
+    type: 3}
+  ComputerTable: {fileID: 6059311969288204754, guid: 81244e3a2ee04a3479068d870d0aee00,
+    type: 3}
+  Computer: {fileID: 8834555463695471288, guid: 5c1734f6092bcdd41a8e6c1282127bf4,
+    type: 3}
+  ChairStudy: {fileID: 1356081994056113427, guid: a07c5d7ea7323c7458328364abac771c,
+    type: 3}
+  Shelf2: {fileID: 4587601146940044803, guid: 85dbb15214e95da44899e7e11536325a, type: 3}
+  foundcount: 0
   cube: {fileID: 4582951929869739942}
   InteractionCanvas: {fileID: 1882135878937342524}
 --- !u!114 &1156356218
@@ -21035,6 +21920,7 @@ GameObject:
   - component: {fileID: 1187761526}
   - component: {fileID: 1187761525}
   - component: {fileID: 1187761524}
+  - component: {fileID: 1187761527}
   m_Layer: 5
   m_Name: Modular_Cabinet
   m_TagString: Untagged
@@ -21107,7 +21993,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1187761525}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1187761525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21146,6 +22044,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187761522}
   m_CullTransparentMesh: 1
+--- !u!114 &1187761527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187761522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1188605716
 GameObject:
   m_ObjectHideFlags: 0
@@ -22532,6 +23475,7 @@ GameObject:
   - component: {fileID: 1273000753}
   - component: {fileID: 1273000752}
   - component: {fileID: 1273000751}
+  - component: {fileID: 1273000754}
   m_Layer: 5
   m_Name: Coffee_Table_1
   m_TagString: Untagged
@@ -22604,7 +23548,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1273000752}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1273000752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22643,6 +23599,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1273000749}
   m_CullTransparentMesh: 1
+--- !u!114 &1273000754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273000749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1275622531
 GameObject:
   m_ObjectHideFlags: 0
@@ -23374,7 +24375,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1304633934
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23392,10 +24393,10 @@ RectTransform:
   m_Father: {fileID: 278736728}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 190, y: -605}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1304633935
 MonoBehaviour:
@@ -25815,6 +26816,7 @@ GameObject:
   - component: {fileID: 1428782151}
   - component: {fileID: 1428782150}
   - component: {fileID: 1428782149}
+  - component: {fileID: 1428782152}
   m_Layer: 5
   m_Name: Dish_Washer
   m_TagString: Untagged
@@ -25887,7 +26889,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1428782150}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1428782150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25926,6 +26940,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1428782147}
   m_CullTransparentMesh: 1
+--- !u!114 &1428782152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428782147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1440841895
 GameObject:
   m_ObjectHideFlags: 0
@@ -25945,7 +27004,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1440841896
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25963,10 +27022,10 @@ RectTransform:
   m_Father: {fileID: 780312179}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 670, y: -125}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1440841897
 MonoBehaviour:
@@ -26569,6 +27628,7 @@ GameObject:
   - component: {fileID: 1487685240}
   - component: {fileID: 1487685239}
   - component: {fileID: 1487685238}
+  - component: {fileID: 1487685241}
   m_Layer: 5
   m_Name: Bar_Cabinet
   m_TagString: Untagged
@@ -26641,7 +27701,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1487685239}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1487685239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26680,6 +27752,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1487685236}
   m_CullTransparentMesh: 1
+--- !u!114 &1487685241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1487685236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1489671086
 GameObject:
   m_ObjectHideFlags: 0
@@ -28705,6 +29822,7 @@ GameObject:
   - component: {fileID: 1657782196}
   - component: {fileID: 1657782195}
   - component: {fileID: 1657782194}
+  - component: {fileID: 1657782197}
   m_Layer: 5
   m_Name: Shelf_1
   m_TagString: Untagged
@@ -28777,7 +29895,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1657782195}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1657782195
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28816,6 +29946,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1657782192}
   m_CullTransparentMesh: 1
+--- !u!114 &1657782197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657782192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1659873792
 GameObject:
   m_ObjectHideFlags: 0
@@ -28828,6 +30003,7 @@ GameObject:
   - component: {fileID: 1659873796}
   - component: {fileID: 1659873795}
   - component: {fileID: 1659873794}
+  - component: {fileID: 1659873797}
   m_Layer: 5
   m_Name: TV
   m_TagString: Untagged
@@ -28900,7 +30076,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1659873795}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1659873795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28939,6 +30127,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1659873792}
   m_CullTransparentMesh: 1
+--- !u!114 &1659873797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1659873792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1660729887
 GameObject:
   m_ObjectHideFlags: 0
@@ -29517,7 +30750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1716088153
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29535,10 +30768,10 @@ RectTransform:
   m_Father: {fileID: 780312179}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 670, y: -125}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1716088154
 MonoBehaviour:
@@ -30134,6 +31367,7 @@ GameObject:
   - component: {fileID: 1735893960}
   - component: {fileID: 1735893959}
   - component: {fileID: 1735893958}
+  - component: {fileID: 1735893961}
   m_Layer: 5
   m_Name: Fridge_1
   m_TagString: Untagged
@@ -30206,7 +31440,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1735893959}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1735893959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30245,6 +31491,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1735893956}
   m_CullTransparentMesh: 1
+--- !u!114 &1735893961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735893956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1738952795
 GameObject:
   m_ObjectHideFlags: 0
@@ -31198,6 +32489,7 @@ GameObject:
   - component: {fileID: 1835168517}
   - component: {fileID: 1835168516}
   - component: {fileID: 1835168515}
+  - component: {fileID: 1835168518}
   m_Layer: 5
   m_Name: Chair_2
   m_TagString: Untagged
@@ -31270,7 +32562,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1835168516}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1835168516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31309,6 +32613,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835168513}
   m_CullTransparentMesh: 1
+--- !u!114 &1835168518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1835168513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1837253274
 GameObject:
   m_ObjectHideFlags: 0
@@ -31473,6 +32822,7 @@ GameObject:
   - component: {fileID: 1852162340}
   - component: {fileID: 1852162339}
   - component: {fileID: 1852162338}
+  - component: {fileID: 1852162341}
   m_Layer: 5
   m_Name: Corner_Cabinet
   m_TagString: Untagged
@@ -31545,7 +32895,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1852162339}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1852162339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31584,6 +32946,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1852162336}
   m_CullTransparentMesh: 1
+--- !u!114 &1852162341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852162336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1855228887
 GameObject:
   m_ObjectHideFlags: 0
@@ -32277,6 +33684,7 @@ GameObject:
   - component: {fileID: 1902659744}
   - component: {fileID: 1902659743}
   - component: {fileID: 1902659742}
+  - component: {fileID: 1902659745}
   m_Layer: 5
   m_Name: Range_Hood
   m_TagString: Untagged
@@ -32349,7 +33757,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1902659743}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1902659743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32388,6 +33808,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902659740}
   m_CullTransparentMesh: 1
+--- !u!114 &1902659745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902659740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1902705170
 GameObject:
   m_ObjectHideFlags: 0
@@ -34015,6 +35480,7 @@ GameObject:
   - component: {fileID: 1979549810}
   - component: {fileID: 1979549809}
   - component: {fileID: 1979549808}
+  - component: {fileID: 1979549811}
   m_Layer: 5
   m_Name: Fridge_2
   m_TagString: Untagged
@@ -34087,7 +35553,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1979549809}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1979549809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34126,6 +35604,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979549806}
   m_CullTransparentMesh: 1
+--- !u!114 &1979549811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979549806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1981234641
 GameObject:
   m_ObjectHideFlags: 0
@@ -34221,7 +35744,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1982711414
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34239,10 +35762,10 @@ RectTransform:
   m_Father: {fileID: 278736728}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1150, y: -365}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1982711415
 MonoBehaviour:
@@ -36089,6 +37612,7 @@ GameObject:
   - component: {fileID: 2085337049}
   - component: {fileID: 2085337048}
   - component: {fileID: 2085337047}
+  - component: {fileID: 2085337050}
   m_Layer: 5
   m_Name: Computer
   m_TagString: Untagged
@@ -36161,7 +37685,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2085337048}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsLeftClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2085337048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36200,6 +37736,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2085337045}
   m_CullTransparentMesh: 1
+--- !u!114 &2085337050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085337045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638df1c85ec35b641b7a05da7644ed88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onLeftClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onRightClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156356217}
+        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
+        m_MethodName: ItemMenuButtonsRightClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 182304708423301765}
+        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
+        m_MethodName: sizeMenuOpenFunction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onMiddleClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2086083200
 GameObject:
   m_ObjectHideFlags: 0
@@ -38492,9 +40073,81 @@ MonoBehaviour:
   Vanity3x: 0
   Vanity3y: 0
   Vanity3z: 0
+  CornerCabinetx: 0
+  CornerCabinety: 0
+  CornerCabinetz: 0
+  DishWasherx: 0
+  DishWashery: 0
+  DishWasherz: 0
+  Fridge1x: 0
+  Fridge1y: 0
+  Fridge1z: 0
+  Fridge2x: 0
+  Fridge2y: 0
+  Fridge2z: 0
+  RangeHoodx: 0
+  RangeHoody: 0
+  RangeHoodz: 0
+  TVx: 0
+  TVy: 0
+  TVz: 0
   Sofa1x: 0
   Sofa1y: 0
   Sofa1z: 0
+  Sofa4x: 0
+  Sofa4y: 0
+  Sofa4z: 0
+  Chair2x: 0
+  Chair2y: 0
+  Chair2z: 0
+  Chair3x: 0
+  Chair3y: 0
+  Chair3z: 0
+  BarCabinetx: 0
+  BarCabinety: 0
+  BarCabinetz: 0
+  CoffeeTable1x: 0
+  CoffeeTable1y: 0
+  CoffeeTable1z: 0
+  CoffeeTable2x: 0
+  CoffeeTable2y: 0
+  CoffeeTable2z: 0
+  ModularCabinetx: 0
+  ModularCabinety: 0
+  ModularCabinetz: 0
+  Shelf1x: 0
+  Shelf1y: 0
+  Shelf1z: 0
+  TVStandx: 0
+  TVStandy: 0
+  TVStandz: 0
+  Table1x: 0
+  Table1y: 0
+  Table1z: 0
+  Table2x: 0
+  Table2y: 0
+  Table2z: 0
+  Benchx: 0
+  Benchy: 0
+  Benchz: 0
+  Hamperx: 0
+  Hampery: 0
+  Hamperz: 0
+  TowelRack2x: 0
+  TowelRack2y: 0
+  TowelRack2z: 0
+  ComputerTablex: 0
+  ComputerTabley: 0
+  ComputerTablez: 0
+  Computerx: 0
+  Computery: 0
+  Computerz: 0
+  ChairStudyx: 0
+  ChairStudyy: 0
+  ChairStudyz: 0
+  Shelf2x: 0
+  Shelf2y: 0
+  Shelf2z: 0
 --- !u!224 &182304708423301766
 RectTransform:
   m_ObjectHideFlags: 0

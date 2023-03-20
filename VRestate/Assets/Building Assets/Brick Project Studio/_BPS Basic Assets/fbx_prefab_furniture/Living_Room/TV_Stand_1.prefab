@@ -87,6 +87,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TV_Stand_1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0846893e73ab8fa40a1b6aa69a68d721,
+        type: 3}
+      propertyPath: m_TagString
+      value: 3DModel
+      objectReference: {fileID: 0}
     - target: {fileID: 1159827754152971970, guid: 0846893e73ab8fa40a1b6aa69a68d721,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -124,3 +129,22 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 7da2ca09a1cb9e94eb805faaa3ac9147, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0846893e73ab8fa40a1b6aa69a68d721, type: 3}
+--- !u!1 &8785394304037200178 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0846893e73ab8fa40a1b6aa69a68d721,
+    type: 3}
+  m_PrefabInstance: {fileID: 8442723468753869923}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-2576156335047642241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8785394304037200178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55467d7fcc46c3046aed8c860bb224c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isColliding: 0

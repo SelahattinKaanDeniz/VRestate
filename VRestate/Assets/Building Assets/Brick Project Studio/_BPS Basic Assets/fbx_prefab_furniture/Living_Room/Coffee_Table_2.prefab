@@ -87,5 +87,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coffee_Table_2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 21d6225fa164b9b47a93de9adb2e4327,
+        type: 3}
+      propertyPath: m_TagString
+      value: 3DModel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21d6225fa164b9b47a93de9adb2e4327, type: 3}
+--- !u!1 &1244238613712191358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 21d6225fa164b9b47a93de9adb2e4327,
+    type: 3}
+  m_PrefabInstance: {fileID: 2127112706936701487}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-5099900729046012462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244238613712191358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55467d7fcc46c3046aed8c860bb224c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isColliding: 0

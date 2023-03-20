@@ -72,10 +72,111 @@ public class SizeMenuFunctions : MonoBehaviour
     public  float Vanity3y;
     public  float Vanity3z;
 
+    public float CornerCabinetx;
+    public float CornerCabinety;
+    public float CornerCabinetz;
+
+    public float DishWasherx;
+    public float DishWashery;
+    public float DishWasherz;
+    
+    public float Fridge1x;
+    public float Fridge1y;
+    public float Fridge1z;
+
+    public float Fridge2x;
+    public float Fridge2y;
+    public float Fridge2z;
+
+    public float RangeHoodx;
+    public float RangeHoody;
+    public float RangeHoodz;
+
+    //public float Stovex;
+    //public float Stovey;
+    //public float Stovez;
+
+    public float TVx;
+    public float TVy;
+    public float TVz;
 
     public float Sofa1x;
     public float Sofa1y;
     public float Sofa1z;
+
+    public float Sofa4x;
+    public float Sofa4y;
+    public float Sofa4z;
+
+    public float Chair2x;
+    public float Chair2y;
+    public float Chair2z;
+
+    public float Chair3x;
+    public float Chair3y;
+    public float Chair3z;
+
+    public float BarCabinetx;
+    public float BarCabinety;
+    public float BarCabinetz;
+
+    public float CoffeeTable1x;
+    public float CoffeeTable1y;
+    public float CoffeeTable1z;
+
+    public float CoffeeTable2x;
+    public float CoffeeTable2y;
+    public float CoffeeTable2z;
+
+    public float ModularCabinetx;
+    public float ModularCabinety;
+    public float ModularCabinetz;
+
+    public float Shelf1x;
+    public float Shelf1y;
+    public float Shelf1z;
+
+    public float TVStandx;
+    public float TVStandy;
+    public float TVStandz;
+
+    public float Table1x;
+    public float Table1y;
+    public float Table1z;
+
+    public float Table2x;
+    public float Table2y;
+    public float Table2z;
+
+    public float Benchx;
+    public float Benchy;
+    public float Benchz;
+
+    public float Hamperx;
+    public float Hampery;
+    public float Hamperz;
+
+    public float TowelRack2x;
+    public float TowelRack2y;
+    public float TowelRack2z;
+
+    public float ComputerTablex;
+    public float ComputerTabley;
+    public float ComputerTablez;
+
+    public float Computerx;
+    public float Computery;
+    public float Computerz;
+
+    public float ChairStudyx;
+    public float ChairStudyy;
+    public float ChairStudyz;
+
+    public float Shelf2x;
+    public float Shelf2y;
+    public float Shelf2z;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -253,6 +354,62 @@ public class SizeMenuFunctions : MonoBehaviour
                 itemMenuFunctions.Frame.transform.localScale = new Vector3(0.5f, 1f, 0.5f);
             }
             //CLIENT MODELLERÝ ÝÇÝN
+            else if (whichButtonClickedClient == "Corner_Cabinet")
+            {
+                CornerCabinetx = width;
+                CornerCabinety = height;
+                CornerCabinetz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.CornerCabinet.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.CornerCabinetSize.x), (height / 100) * (1f / ClientButtonFunctions.CornerCabinetSize.y), (length / 100) * (1f / ClientButtonFunctions.CornerCabinetSize.z));
+            }
+            else if (whichButtonClickedClient == "Dish_Washer")
+            {
+                DishWasherx = width;
+                DishWashery = height;
+                DishWasherz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.DishWasher.transform.localScale = new Vector3((width / 100) * (121.6511f / ClientButtonFunctions.DishWasherSize.x), (length / 100) * (100f / ClientButtonFunctions.DishWasherSize.z), (height / 100) * (100f / ClientButtonFunctions.DishWasherSize.y));
+            }
+            else if (whichButtonClickedClient == "Fridge_1")
+            {
+                Fridge1x = width;
+                Fridge1y = height;
+                Fridge1z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Fridge1.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.Fridge1Size.x), (height / 100) * (1f / ClientButtonFunctions.Fridge1Size.y), (length / 100) * (1f / ClientButtonFunctions.Fridge1Size.z));
+            }
+            else if (whichButtonClickedClient == "Fridge_2")
+            {
+                Fridge2x = width;
+                Fridge2y = height;
+                Fridge2z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Fridge2.transform.localScale = new Vector3((width / 100) * (50f / ClientButtonFunctions.Fridge2Size.x), (length / 100) * (50f / ClientButtonFunctions.Fridge2Size.z), (height / 100) * (50f / ClientButtonFunctions.Fridge2Size.y));
+            }
+            else if (whichButtonClickedClient == "Range_Hood")
+            {
+                RangeHoodx = width;
+                RangeHoody = height;
+                RangeHoodz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.RangeHood.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.RangeHoodSize.x), (height / 100) * (1f / ClientButtonFunctions.RangeHoodSize.y), (length / 100) * (1f / ClientButtonFunctions.RangeHoodSize.z));
+            }
+            else if (whichButtonClickedClient == "Stove")
+            {
+                Stovex = width;
+                Stovey = height;
+                Stovez = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Stove.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.StoveSize.x), (height / 100) * (1f / ClientButtonFunctions.StoveSize.y), (length / 100) * (1f / ClientButtonFunctions.StoveSize.z));
+            }
+            else if (whichButtonClickedClient == "TV")
+            {
+                TVx = width;
+                TVy = height;
+                TVz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.TV.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.TVSize.x), (height / 100) * (1f / ClientButtonFunctions.TVSize.y), (length / 100) * (1f / ClientButtonFunctions.TVSize.z));
+            }
             else if (whichButtonClickedClient == "Sofa_1")
             {
                 Debug.Log("sofa1 button clicked");
@@ -262,6 +419,152 @@ public class SizeMenuFunctions : MonoBehaviour
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
                 clientMenuFunctions.Sofa1.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.Sofa1Size.x), (height / 100) * (1f / ClientButtonFunctions.Sofa1Size.y), (length / 100) * (1f / ClientButtonFunctions.Sofa1Size.z));
             }
+            else if (whichButtonClickedClient == "Sofa_4")
+            {
+                Sofa4x = width;
+                Sofa4y = height;
+                Sofa4z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Sofa4.transform.localScale = new Vector3((width / 100) * (127.3344f / ClientButtonFunctions.Sofa4Size.x), (length / 100) * (127.3344f / ClientButtonFunctions.Sofa4Size.z), (height / 100) * (127.3344f / ClientButtonFunctions.Sofa4Size.y));
+            }
+            else if (whichButtonClickedClient == "Chair_2")
+            {
+                Chair2x = width;
+                Chair2y = height;
+                Chair2z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Chair2.transform.localScale = new Vector3((width / 100) * (80f / ClientButtonFunctions.Chair2Size.x), (length / 100) * (76f / ClientButtonFunctions.Chair2Size.z), (height / 100) * (80f / ClientButtonFunctions.Chair2Size.y));
+            }
+            else if (whichButtonClickedClient == "Chair_3")
+            {
+                Chair3x = width;
+                Chair3y = height;
+                Chair3z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Chair3.transform.localScale = new Vector3((width / 100) * (100f / ClientButtonFunctions.Chair3Size.x), (length / 100) * (100f / ClientButtonFunctions.Chair3Size.z), (height / 100) * (100f / ClientButtonFunctions.Chair3Size.y));
+            }
+            else if (whichButtonClickedClient == "Bar_Cabinet")
+            {
+                BarCabinetx = width;
+                BarCabinety = height;
+                BarCabinetz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.BarCabinet.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.BarCabinetSize.x), (height / 100) * (1f / ClientButtonFunctions.BarCabinetSize.y), (length / 100) * (1f / ClientButtonFunctions.BarCabinetSize.z));
+            }
+            else if (whichButtonClickedClient == "Coffee_Table_1")
+            {
+                CoffeeTable1x = width;
+                CoffeeTable1y = height;
+                CoffeeTable1z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.CoffeeTable1.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.CoffeeTable1Size.x), (height / 100) * (1f / ClientButtonFunctions.CoffeeTable1Size.y), (length / 100) * (1f / ClientButtonFunctions.CoffeeTable1Size.z));
+            }
+            else if (whichButtonClickedClient == "Coffee_Table_2")
+            {
+                CoffeeTable2x = width;
+                CoffeeTable2y = height;
+                CoffeeTable2z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.CoffeeTable2.transform.localScale = new Vector3((width / 100) * (100f / ClientButtonFunctions.CoffeeTable2Size.x), (length / 100) * (100f / ClientButtonFunctions.CoffeeTable2Size.z), (height / 100) * (100f / ClientButtonFunctions.CoffeeTable2Size.y));
+            }
+            else if (whichButtonClickedClient == "Modular_Cabinet")
+            {
+                ModularCabinetx = width;
+                ModularCabinety = height;
+                ModularCabinetz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.ModularCabinet.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.ModularCabinetSize.x), (height / 100) * (1f / ClientButtonFunctions.ModularCabinetSize.y), (length / 100) * (1f / ClientButtonFunctions.ModularCabinetSize.z));
+            }
+            else if (whichButtonClickedClient == "Shelf_1")
+            {
+                Shelf1x = width;
+                Shelf1y = height;
+                Shelf1z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Shelf1.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.Shelf1Size.x), (height / 100) * (1f / ClientButtonFunctions.Shelf1Size.y), (length / 100) * (1f / ClientButtonFunctions.Shelf1Size.z));
+            }
+            else if (whichButtonClickedClient == "TV_Stand_1")
+            {
+                TVStandx = width;
+                TVStandy = height;
+                TVStandz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.TVStand.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.TVStandSize.x), (height / 100) * (1f / ClientButtonFunctions.TVStandSize.y), (length / 100) * (1f / ClientButtonFunctions.TVStandSize.z));
+            }
+            else if (whichButtonClickedClient == "Table_1")
+            {
+                Table1x = width;
+                Table1y = height;
+                Table1z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Table1.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.Table1Size.x), (height / 100) * (1f / ClientButtonFunctions.Table1Size.y), (length / 100) * (1f / ClientButtonFunctions.Table1Size.z));
+            }
+            else if (whichButtonClickedClient == "Table_2")
+            {
+                Table2x = width;
+                Table2y = height;
+                Table2z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Table2.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.Table2Size.x), (height / 100) * (1f / ClientButtonFunctions.Table2Size.y), (length / 100) * (1f / ClientButtonFunctions.Table2Size.z));
+            }
+            else if (whichButtonClickedClient == "Bench")
+            {
+                Benchx = width;
+                Benchy = height;
+                Benchz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Bench.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.BenchSize.x), (height / 100) * (1f / ClientButtonFunctions.BenchSize.y), (length / 100) * (1f / ClientButtonFunctions.BenchSize.z));
+            }
+            else if (whichButtonClickedClient == "Hamper")
+            {
+                Hamperx = width;
+                Hampery = height;
+                Hamperz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Hamper.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.HamperSize.x), (height / 100) * (1f / ClientButtonFunctions.HamperSize.y), (length / 100) * (1f / ClientButtonFunctions.HamperSize.z));
+            }
+            else if (whichButtonClickedClient == "Towel_Rack_2")
+            {
+                TowelRack2x = width;
+                TowelRack2y = height;
+                TowelRack2z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.TowelRack2.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.TowelRack2Size.x), (height / 100) * (1f / ClientButtonFunctions.TowelRack2Size.y), (length / 100) * (1f / ClientButtonFunctions.TowelRack2Size.z));
+            }
+            else if (whichButtonClickedClient == "Computer_Table")
+            {
+                ComputerTablex = width;
+                ComputerTabley = height;
+                ComputerTablez = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.ComputerTable.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.ComputerTableSize.x), (height / 100) * (1f / ClientButtonFunctions.ComputerTableSize.y), (length / 100) * (1f / ClientButtonFunctions.ComputerTableSize.z));
+            }
+            else if (whichButtonClickedClient == "Computer")
+            {
+                Computerx = width;
+                Computery = height;
+                Computerz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Computer.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.ComputerSize.x), (height / 100) * (1f / ClientButtonFunctions.ComputerSize.y), (length / 100) * (1f / ClientButtonFunctions.ComputerSize.z));
+            }
+            else if (whichButtonClickedClient == "Chair_Study")
+            {
+                ChairStudyx = width;
+                ChairStudyy = height;
+                ChairStudyz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.ChairStudy.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.ChairStudySize.x), (height / 100) * (1f / ClientButtonFunctions.ChairStudySize.y), (length / 100) * (1f / ClientButtonFunctions.ChairStudySize.z));
+            }
+            else if (whichButtonClickedClient == "Shelf_2")
+            {
+                Shelf2x = width;
+                Shelf2y = height;
+                Shelf2z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Shelf2.transform.localScale = new Vector3((width / 100) * (51.34407f / ClientButtonFunctions.Shelf2Size.x), (length / 100) * (63.60788f / ClientButtonFunctions.Shelf2Size.z), (height / 100) * (63.60788f / ClientButtonFunctions.Shelf2Size.y));
+            }
+
+
             GameObject sizeMenu = GameObject.Find("SizeMenu");
             //sizeMenu.SetActive(false);
             //sizeMenu.transform.position = new Vector3(0f, 50f, -2.6759e-05f);

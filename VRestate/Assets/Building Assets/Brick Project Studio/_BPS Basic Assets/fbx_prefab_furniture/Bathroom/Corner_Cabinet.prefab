@@ -95,7 +95,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3b95cfaa127d7414283cc8cb3465f7ba,
         type: 3}
       propertyPath: m_Name
-      value: Corner Wall Cabinet
+      value: Corner_Cabinet
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3b95cfaa127d7414283cc8cb3465f7ba,
+        type: 3}
+      propertyPath: m_TagString
+      value: 3DModel
       objectReference: {fileID: 0}
     - target: {fileID: 1805314328353115971, guid: 3b95cfaa127d7414283cc8cb3465f7ba,
         type: 3}
@@ -134,3 +139,22 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 7da2ca09a1cb9e94eb805faaa3ac9147, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b95cfaa127d7414283cc8cb3465f7ba, type: 3}
+--- !u!1 &3423825250713542193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3b95cfaa127d7414283cc8cb3465f7ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 2540794612508140384}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7504853778480838141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3423825250713542193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55467d7fcc46c3046aed8c860bb224c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isColliding: 0
