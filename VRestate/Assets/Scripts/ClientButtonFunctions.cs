@@ -1376,7 +1376,7 @@ public class ClientButtonFunctions : MonoBehaviour
                             }
                             if(ObjectFollowsMouse.name == "Chair_Study(Clone)")
                             {
-                                objectposition = objectposition + new Vector3(0f, gridposy / 100f * 0.4f, 0f);
+                                objectposition = objectposition + new Vector3(0f, gridposy / 100f * 0.33f, 0f);
                                
                             }
                             //Vector3 objectposition = new Vector3(a.x + BuildingSystem.posx / 200, a.y, a.z + BuildingSystem.posz / 200);
