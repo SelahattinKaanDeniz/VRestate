@@ -130,7 +130,59 @@ public class ClientButtonFunctions : MonoBehaviour
     //public static Vector3 Shelf1Size;
     public GameObject Shelf2;
     public static Vector3 Shelf2Size;
- 
+
+    //Bedroom
+    public GameObject Bed1;
+    public static Vector3 Bed1Size;
+    public GameObject Bed2;
+    public static Vector3 Bed2Size;
+    public GameObject Closet;
+    public static Vector3 ClosetSize;
+    public GameObject Dresser;
+    public static Vector3 DresserSize;
+    public GameObject Nightstand1;
+    public static Vector3 Nightstand1Size;
+    public GameObject Nightstand2;
+    public static Vector3 Nightstand2Size;
+    public GameObject Nightstand3;
+    public static Vector3 Nightstand3Size;
+
+    //Decoration
+    public GameObject Carpet;
+    public static Vector3 CarpetSize;
+    public GameObject Rug;
+    public static Vector3 RugSize;
+    public GameObject Mirror;
+    public static Vector3 MirrorSize;
+    public GameObject Painting3;
+    public static Vector3 Painting3Size;
+    public GameObject Plant;
+    public static Vector3 PlantSize;
+    public GameObject WineRack;
+    public static Vector3 WineRackSize;
+    public GameObject WallShelf;
+    public static Vector3 WallShelfSize;
+
+    //Lamp
+    public GameObject FloorLamp1;
+    public static Vector3 FloorLamp1Size;
+    public GameObject FloorLamp2;
+    public static Vector3 FloorLamp2Size;
+    public GameObject TableLamp;
+    public static Vector3 TableLampSize;
+    public GameObject WallLamp1;
+    public static Vector3 WallLamp1Size;
+    public GameObject WallLamp2;
+    public static Vector3 WallLamp2Size;
+
+    //Dining Room
+    public GameObject DTable1;
+    public static Vector3 DTable1Size;
+    public GameObject DTable2;
+    public static Vector3 DTable2Size;
+    public GameObject Chair1;
+    public static Vector3 Chair1Size;
+
 
     public bool foundcount = false;
     public GameObject cube;
@@ -165,16 +217,16 @@ public class ClientButtonFunctions : MonoBehaviour
         //kitchen
         CornerCabinet.transform.localScale = new Vector3(1f, 1f, 1f);
         CornerCabinetSize = CornerCabinet.GetComponent<MeshRenderer>().bounds.size;
-        
-        DishWasher.transform.localScale = new Vector3(121.6511f, 100f, 100f);
-        DishWasherSize = DishWasher.GetComponent<MeshRenderer>().bounds.size; 
 
-        Fridge1.transform.localScale = new Vector3(1f, 1f, 1f); 
+        DishWasher.transform.localScale = new Vector3(121.6511f, 100f, 100f);
+        DishWasherSize = DishWasher.GetComponent<MeshRenderer>().bounds.size;
+
+        Fridge1.transform.localScale = new Vector3(1f, 1f, 1f);
         Fridge1Size = Fridge1.GetComponent<MeshRenderer>().bounds.size;
 
         Fridge2.transform.localScale = new Vector3(50f, 50f, 50f);
         Fridge2Size = Fridge2.GetComponent<MeshRenderer>().bounds.size;
-        
+
         RangeHood.transform.localScale = new Vector3(1f, 1f, 1f);
         RangeHoodSize = RangeHood.GetComponent<MeshRenderer>().bounds.size;
 
@@ -183,7 +235,7 @@ public class ClientButtonFunctions : MonoBehaviour
 
         TV.transform.localScale = new Vector3(1f, 1f, 1f);
         TVSize = TV.GetComponent<MeshRenderer>().bounds.size;
-        
+
         //Living Room
         Sofa1.transform.localScale = new Vector3(1f, 1f, 1f);
         Sofa1Size = Sofa1.GetComponent<MeshRenderer>().bounds.size;
@@ -244,6 +296,75 @@ public class ClientButtonFunctions : MonoBehaviour
         Shelf2.transform.localScale = new Vector3(51.34407f, 63.60788f, 63.60788f);
         Shelf2Size = Shelf2.GetComponent<MeshRenderer>().bounds.size;
 
+        //Bedroom
+        Bed1.transform.localScale = new Vector3(1f, 1f, 1f);
+        Bed1Size = Bed1.GetComponent<MeshRenderer>().bounds.size;
+
+        Bed2.transform.localScale = new Vector3(1f, 1f, 1f);
+        Bed2Size = Bed2.GetComponent<MeshRenderer>().bounds.size;
+
+        Closet.transform.localScale = new Vector3(1f, 1f, 1f);
+        ClosetSize = Closet.GetComponent<MeshRenderer>().bounds.size;
+
+        Dresser.transform.localScale = new Vector3(1f, 1f, 1f);
+        DresserSize = Dresser.GetComponent<MeshRenderer>().bounds.size;
+
+        Nightstand1.transform.localScale = new Vector3(1f, 1f, 1f);
+        Nightstand1Size = Nightstand1.GetComponent<MeshRenderer>().bounds.size;
+
+        Nightstand2.transform.localScale = new Vector3(1f, 1f, 1f);
+        Nightstand2Size = Nightstand2.GetComponent<MeshRenderer>().bounds.size;
+
+        Nightstand3.transform.localScale = new Vector3(1f, 1f, 1f);
+        Nightstand3Size = Nightstand3.GetComponent<MeshRenderer>().bounds.size;
+
+        //Decoration
+        Carpet.transform.localScale = new Vector3(1f, 1f, 1f);
+        CarpetSize = Carpet.GetComponent<MeshRenderer>().bounds.size;
+
+        Rug.transform.localScale = new Vector3(1f, 1f, 1f);
+        RugSize = Rug.GetComponent<MeshRenderer>().bounds.size;
+
+        Mirror.transform.localScale = new Vector3(1f, 1f, 1f);
+        MirrorSize = Mirror.GetComponent<MeshRenderer>().bounds.size;
+
+        Painting3.transform.localScale = new Vector3(1f, 1f, 1f);
+        Painting3Size = Painting3.GetComponent<MeshRenderer>().bounds.size;
+
+        Plant.transform.localScale = new Vector3(50f, 50f, 50f);
+        PlantSize = Plant.GetComponent<MeshRenderer>().bounds.size;
+
+        WineRack.transform.localScale = new Vector3(1f, 1f, 1f);
+        WineRackSize = WineRack.GetComponent<MeshRenderer>().bounds.size;
+
+        WallShelf.transform.localScale = new Vector3(1f, 1f, 1f);
+        WallShelfSize = WallShelf.GetComponent<MeshRenderer>().bounds.size;
+
+        //Lamp
+        FloorLamp1.transform.localScale = new Vector3(1f, 1f, 1f);
+        FloorLamp1Size = FloorLamp1.GetComponent<MeshRenderer>().bounds.size;
+
+        FloorLamp2.transform.localScale = new Vector3(1f, 1f, 1f);
+        FloorLamp2Size = FloorLamp2.GetComponent<MeshRenderer>().bounds.size;
+
+        TableLamp.transform.localScale = new Vector3(1f, 1f, 1f);
+        TableLampSize = TableLamp.GetComponent<MeshRenderer>().bounds.size;
+
+        WallLamp1.transform.localScale = new Vector3(1f, 1f, 1f);
+        WallLamp1Size = WallLamp1.GetComponent<MeshRenderer>().bounds.size;
+
+        WallLamp2.transform.localScale = new Vector3(1f, 1f, 1f);
+        WallLamp2Size = WallLamp2.GetComponent<MeshRenderer>().bounds.size;
+
+        //Dining Room
+        DTable1.transform.localScale = new Vector3(1f, 1f, 1f);
+        DTable1Size = DTable1.GetComponent<MeshRenderer>().bounds.size;
+
+        DTable2.transform.localScale = new Vector3(1f, 1f, 1f);
+        DTable2Size = DTable2.GetComponent<MeshRenderer>().bounds.size;
+
+        Chair1.transform.localScale = new Vector3(1f, 1f, 1f);
+        Chair1Size = Chair1.GetComponent<MeshRenderer>().bounds.size;
     }
 
     //Ana kategoriden Bathroom butonuna týklandýðýnda
@@ -832,7 +953,381 @@ public class ClientButtonFunctions : MonoBehaviour
 
             foundcount = true;
         }
+        else if (leftClickedButtonName == "Bed_1")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
 
+            ObjectFollowsMouse = Instantiate(Bed1, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Bed_2")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Bed2, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Closet")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Closet, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Dresser")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Dresser, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Nightstand_1")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Nightstand1, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Nightstand_2")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Nightstand2, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Nightstand_3")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Nightstand3, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Carpet")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Carpet, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Rug")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Rug, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Wall_Shelf")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(WallShelf, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Mirror")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Mirror, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Painting_3")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Painting3, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Plant")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Plant, new Vector3(4f, 10f, -18f), Quaternion.Euler(new Vector3(-90, 90, 0)));
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Wine_Rack")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(WineRack, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Floor_Lamp_1")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(FloorLamp1, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Floor_Lamp_2")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(FloorLamp2, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Table_Lamp")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(TableLamp, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Wall_Lamp_1")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(WallLamp1, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Wall_Lamp_2")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(WallLamp2, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "D_Table_1")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(DTable1, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "D_Table_2")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(DTable2, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        else if (leftClickedButtonName == "Chair_1")
+        {
+            if (isButtonClicked == true)
+            {
+                Destroy(ObjectFollowsMouse);
+            }
+            if (isButtonClicked == false)
+            {
+                isButtonClicked = true;
+            }
+
+            ObjectFollowsMouse = Instantiate(Chair1, new Vector3(4f, 10f, -18f), Quaternion.identity);
+            objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
+            ObjectFollowsMouse.AddComponent<ObjectDrag>();
+
+            foundcount = true;
+        }
+        
         //????
         int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
         ObjectFollowsMouse.layer = LayerIgnoreRaycast;
@@ -859,7 +1354,7 @@ public class ClientButtonFunctions : MonoBehaviour
 
             }*/
             if (ObjectFollowsMouse.name == "Sofa_4(Clone)" || ObjectFollowsMouse.name == "Shelf_2(Clone)" || ObjectFollowsMouse.name == "Chair_2(Clone)" || ObjectFollowsMouse.name == "Chair_3(Clone)" || ObjectFollowsMouse.name == "Fridge_2(Clone)" 
-                || ObjectFollowsMouse.name == "Dish_Washer(Clone)" || ObjectFollowsMouse.name == "Coffee_Table_2(Clone)")
+                || ObjectFollowsMouse.name == "Dish_Washer(Clone)" || ObjectFollowsMouse.name == "Coffee_Table_2(Clone)" || ObjectFollowsMouse.name == "Plant(Clone)")
             {
                 ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.001f, 0.001f, 0.001f);
                 //ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size;
@@ -1050,7 +1545,8 @@ public class ClientButtonFunctions : MonoBehaviour
                 //Debug.Log(raycastHit.point);
                 if (ObjectFollowsMouse != null)
                 {
-                    if (ObjectFollowsMouse.name == "TV(Clone)" || ObjectFollowsMouse.name == "Towel_Rack_2(Clone)")
+                    if (ObjectFollowsMouse.name == "TV(Clone)" || ObjectFollowsMouse.name == "Towel_Rack_2(Clone)" || ObjectFollowsMouse.name == "Painting_3(Clone)" || ObjectFollowsMouse.name == "Mirror(Clone)" || 
+                        ObjectFollowsMouse.name == "Wine_Rack(Clone)" || ObjectFollowsMouse.name == "Wall_Shelf(Clone)" || ObjectFollowsMouse.name == "Wall_Lamp_1(Clone)" || ObjectFollowsMouse.name == "Wall_Lamp_2(Clone)")
                     {
                         if (followmouse == true)
                         {
@@ -1078,6 +1574,43 @@ public class ClientButtonFunctions : MonoBehaviour
                                 gridposy = sizeMenu.TowelRack2y;
                                 gridposz = sizeMenu.TowelRack2z;
                             }
+                            else if (ObjectFollowsMouse.name == "Wall_Shelf(Clone)")
+                            {
+                                gridposx = sizeMenu.WallShelfx;
+                                gridposy = sizeMenu.WallShelfy;
+                                gridposz = sizeMenu.WallShelfz;
+                            }
+                            else if (ObjectFollowsMouse.name == "Mirror(Clone)")
+                            {
+                                gridposx = sizeMenu.Mirrorx;
+                                gridposy = sizeMenu.Mirrory;
+                                gridposz = sizeMenu.Mirrorz;
+                            }
+                            else if (ObjectFollowsMouse.name == "Painting_3(Clone)")
+                            {
+                                gridposx = sizeMenu.Painting3x;
+                                gridposy = sizeMenu.Painting3y;
+                                gridposz = sizeMenu.Painting3z;
+                            }
+                            else if (ObjectFollowsMouse.name == "Wall_Lamp_1(Clone)")
+                            {
+                                gridposx = sizeMenu.WallLamp1x;
+                                gridposy = sizeMenu.WallLamp1y;
+                                gridposz = sizeMenu.WallLamp1z;
+                            }
+                            else if (ObjectFollowsMouse.name == "Wall_Lamp_2(Clone)")
+                            {
+                                gridposx = sizeMenu.WallLamp2x;
+                                gridposy = sizeMenu.WallLamp2y;
+                                gridposz = sizeMenu.WallLamp2z;
+                            }
+                            else if (ObjectFollowsMouse.name == "Wine_Rack(Clone)")
+                            {
+                                gridposx = sizeMenu.WineRackx;
+                                gridposy = sizeMenu.WineRacky;
+                                gridposz = sizeMenu.WineRackz;
+                            }
+
                             if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 0f)
                             {
                                 Debug.Log("1. if");
@@ -1313,14 +1846,111 @@ public class ClientButtonFunctions : MonoBehaviour
                                 gridposy = sizeMenu.Shelf2y;
                                 gridposz = sizeMenu.Shelf2z;
                             }
+                            else if (ObjectFollowsMouse.name == "Bed_1(Clone)")
+                            {
+                                gridposx = sizeMenu.Bed1x;
+                                gridposy = sizeMenu.Bed1y;
+                                gridposz = sizeMenu.Bed1z;
+                            }
+                            else if (ObjectFollowsMouse.name == "Bed_2(Clone)")
+                            {
+                                gridposx = sizeMenu.Bed2x;
+                                gridposy = sizeMenu.Bed2y;
+                                gridposz = sizeMenu.Bed2z;
+                            }
+                            else if (ObjectFollowsMouse.name == "Closet(Clone)")
+                            {
+                                gridposx = sizeMenu.Closetx;
+                                gridposy = sizeMenu.Closety;
+                                gridposz = sizeMenu.Closetz;
+                            }
+                            else if (ObjectFollowsMouse.name == "Dresser(Clone)")
+                            {
+                                gridposx = sizeMenu.Dresserx;
+                                gridposy = sizeMenu.Dressery;
+                                gridposz = sizeMenu.Dresserz;
+                            }
+                            else if (ObjectFollowsMouse.name == "Nightstand_1(Clone)")
+                            {
+                                gridposx = sizeMenu.Nightstand1x;
+                                gridposy = sizeMenu.Nightstand1y;
+                                gridposz = sizeMenu.Nightstand1z;
+                            }
+                            else if (ObjectFollowsMouse.name == "Nightstand_2(Clone)")
+                            {
+                                gridposx = sizeMenu.Nightstand2x;
+                                gridposy = sizeMenu.Nightstand2y;
+                                gridposz = sizeMenu.Nightstand2z;
+                            }
+                            else if (ObjectFollowsMouse.name == "Nightstand_3(Clone)")
+                            {
+                                gridposx = sizeMenu.Nightstand3x;
+                                gridposy = sizeMenu.Nightstand3y;
+                                gridposz = sizeMenu.Nightstand3z;
+                            }
+                            else if (ObjectFollowsMouse.name == "Carpet(Clone)")
+                            {
+                                gridposx = sizeMenu.Carpetx;
+                                gridposy = sizeMenu.Carpety;
+                                gridposz = sizeMenu.Carpetz;
+                            }
+                            else if (ObjectFollowsMouse.name == "Rug(Clone)")
+                            {
+                                gridposx = sizeMenu.Rugx;
+                                gridposy = sizeMenu.Rugy;
+                                gridposz = sizeMenu.Rugz;
+                            }
+                            else if (ObjectFollowsMouse.name == "Plant(Clone)")
+                            {
+                                gridposx = sizeMenu.Plantx;
+                                gridposy = sizeMenu.Planty;
+                                gridposz = sizeMenu.Plantz;
+                            }
+                            else if (ObjectFollowsMouse.name == "Floor_Lamp_1(Clone)")
+                            {
+                                gridposx = sizeMenu.FloorLamp1x;
+                                gridposy = sizeMenu.FloorLamp1y;
+                                gridposz = sizeMenu.FloorLamp1z;
+                            }
+                            else if (ObjectFollowsMouse.name == "Floor_Lamp_2(Clone)")
+                            {
+                                gridposx = sizeMenu.FloorLamp2x;
+                                gridposy = sizeMenu.FloorLamp2y;
+                                gridposz = sizeMenu.FloorLamp2z;
+                            }
+                            else if (ObjectFollowsMouse.name == "Table_Lamp(Clone)")
+                            {
+                                gridposx = sizeMenu.TableLampx;
+                                gridposy = sizeMenu.TableLampy;
+                                gridposz = sizeMenu.TableLampz;
+                            }
+                            else if (ObjectFollowsMouse.name == "D_Table_1(Clone)")
+                            {
+                                gridposx = sizeMenu.DTable1x;
+                                gridposy = sizeMenu.DTable1y;
+                                gridposz = sizeMenu.DTable1z;
+                            }
+                            else if (ObjectFollowsMouse.name == "D_Table_2(Clone)")
+                            {
+                                gridposx = sizeMenu.DTable2x;
+                                gridposy = sizeMenu.DTable2y;
+                                gridposz = sizeMenu.DTable2z;
+                            }
+                            else if (ObjectFollowsMouse.name == "Chair_1(Clone)")
+                            {
+                                gridposx = sizeMenu.Chair1x;
+                                gridposy = sizeMenu.Chair1y;
+                                gridposz = sizeMenu.Chair1z;
+                            }
+
                             if (ObjectFollowsMouse.name == "Sofa_4(Clone)" || ObjectFollowsMouse.name == "Shelf_2(Clone)" || ObjectFollowsMouse.name == "Chair_2(Clone)" || ObjectFollowsMouse.name == "Chair_3(Clone)" || ObjectFollowsMouse.name == "Fridge_2(Clone)"
-                                || ObjectFollowsMouse.name == "Dish_Washer(Clone)" || ObjectFollowsMouse.name == "Coffee_Table_2(Clone)") {
+                                || ObjectFollowsMouse.name == "Dish_Washer(Clone)" || ObjectFollowsMouse.name == "Coffee_Table_2(Clone)" || ObjectFollowsMouse.name == "Plant(Clone)") {
                                 Debug.Log(ObjectFollowsMouse.transform.eulerAngles + " SOFA4 EULERANGLE");
                                 if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y== 90f)
                                 {
                                     Debug.Log("1. if");
                                     //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
-                                    objectposition = new Vector3(a.x - gridposx / 200, a.y, a.z + gridposz / 200);
+                                    objectposition = new Vector3(a.x - gridposx / 200, a.y + 0.1f, a.z + gridposz / 200);
                                     //Debug.Log(" abc " + objectposition);
                                     //objectposition = new Vector3(a.x - b.size.x, a.y, a.z + b.size.z);
                                     //Debug.Log(" abc " + objectposition);
@@ -1329,19 +1959,19 @@ public class ClientButtonFunctions : MonoBehaviour
                                 {
                                     Debug.Log("2. if");
                                     //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
-                                    objectposition = new Vector3(a.x + gridposz / 200, a.y, a.z + gridposx / 200);
+                                    objectposition = new Vector3(a.x + gridposz / 200, a.y + 0.1f, a.z + gridposx / 200);
                                 }
                                 else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 270f)
                                 {
                                     Debug.Log("3. if");
                                     //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
-                                    objectposition = new Vector3(a.x + gridposx / 200, a.y, a.z - gridposz / 200);
+                                    objectposition = new Vector3(a.x + gridposx / 200, a.y + 0.1f, a.z - gridposz / 200);
                                 }
                                 else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 0f)
                                 {
                                     Debug.Log("4. if");
                                     //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
-                                    objectposition = new Vector3(a.x - gridposz / 200, a.y, a.z - gridposx / 200);
+                                    objectposition = new Vector3(a.x - gridposz / 200, a.y + 0.1f, a.z - gridposx / 200);
                                 }
                             }
                             else
@@ -1350,7 +1980,7 @@ public class ClientButtonFunctions : MonoBehaviour
                                 {
                                     Debug.Log("1. if");
                                     //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
-                                    objectposition = new Vector3(a.x - gridposx / 200, a.y, a.z + gridposz / 200);
+                                    objectposition = new Vector3(a.x - gridposx / 200, a.y + 0.1f, a.z + gridposz / 200);
                                     //Debug.Log(" abc " + objectposition);
                                     //objectposition = new Vector3(a.x - b.size.x, a.y, a.z + b.size.z);
                                     //Debug.Log(" abc " + objectposition);
@@ -1359,25 +1989,30 @@ public class ClientButtonFunctions : MonoBehaviour
                                 {
                                     Debug.Log("2. if");
                                     //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
-                                    objectposition = new Vector3(a.x + gridposz / 200, a.y, a.z + gridposx / 200);
+                                    objectposition = new Vector3(a.x + gridposz / 200, a.y + 0.1f, a.z + gridposx / 200);
                                 }
                                 else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 180f)
                                 {
                                     Debug.Log("3. if");
                                     //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
-                                    objectposition = new Vector3(a.x + gridposx / 200, a.y, a.z - gridposz / 200);
+                                    objectposition = new Vector3(a.x + gridposx / 200, a.y + 0.1f, a.z - gridposz / 200);
                                 }
                                 else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 270f)
                                 {
                                     Debug.Log("4. if");
                                     //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
-                                    objectposition = new Vector3(a.x - gridposz / 200, a.y, a.z - gridposx / 200);
+                                    objectposition = new Vector3(a.x - gridposz / 200, a.y + 0.1f, a.z - gridposx / 200);
                                 }
                             }
                             if(ObjectFollowsMouse.name == "Chair_Study(Clone)")
                             {
                                 objectposition = objectposition + new Vector3(0f, gridposy / 100f * 0.33f, 0f);
                                
+                            }
+                            if (ObjectFollowsMouse.name == "Rug(Clone)" || ObjectFollowsMouse.name == "Carpet(Clone)")
+                            {
+                                objectposition = objectposition - new Vector3(0f, 0.1f, 0f);
+
                             }
                             //Vector3 objectposition = new Vector3(a.x + BuildingSystem.posx / 200, a.y, a.z + BuildingSystem.posz / 200);
                             ObjectFollowsMouse.transform.position = objectposition;
@@ -1436,7 +2071,7 @@ public class ClientButtonFunctions : MonoBehaviour
                 if (Input.GetAxis("Mouse ScrollWheel") > 0)
                 {
                     if (ObjectFollowsMouse.name == "Sofa_4(Clone)" || ObjectFollowsMouse.name == "Shelf_2(Clone)" || ObjectFollowsMouse.name == "Chair_2(Clone)" || ObjectFollowsMouse.name == "Chair_3(Clone)" || ObjectFollowsMouse.name == "Fridge_2(Clone)"
-                || ObjectFollowsMouse.name == "Dish_Washer(Clone)" || ObjectFollowsMouse.name == "Coffee_Table_2(Clone)")
+                || ObjectFollowsMouse.name == "Dish_Washer(Clone)" || ObjectFollowsMouse.name == "Coffee_Table_2(Clone)" || ObjectFollowsMouse.name == "Plant(Clone)")
                     {
                         ObjectFollowsMouse.transform.Rotate(0, 0, 90f, Space.Self);
                     }
@@ -1448,7 +2083,7 @@ public class ClientButtonFunctions : MonoBehaviour
                 if (Input.GetAxis("Mouse ScrollWheel") < 0)
                 {
                     if (ObjectFollowsMouse.name == "Sofa_4(Clone)" || ObjectFollowsMouse.name == "Shelf_2(Clone)" || ObjectFollowsMouse.name == "Chair_2(Clone)" || ObjectFollowsMouse.name == "Chair_3(Clone)" || ObjectFollowsMouse.name == "Fridge_2(Clone)"
-                || ObjectFollowsMouse.name == "Dish_Washer(Clone)" || ObjectFollowsMouse.name == "Coffee_Table_2(Clone)")
+                || ObjectFollowsMouse.name == "Dish_Washer(Clone)" || ObjectFollowsMouse.name == "Coffee_Table_2(Clone)" || ObjectFollowsMouse.name == "Plant(Clone)")
                     {
                         ObjectFollowsMouse.transform.Rotate(0, 0, -90f, Space.Self);
                     }

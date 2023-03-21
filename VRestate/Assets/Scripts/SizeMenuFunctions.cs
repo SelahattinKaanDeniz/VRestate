@@ -176,6 +176,93 @@ public class SizeMenuFunctions : MonoBehaviour
     public float Shelf2y;
     public float Shelf2z;
 
+    public float Bed1x;
+    public float Bed1y;
+    public float Bed1z;
+
+    public float Bed2x;
+    public float Bed2y;
+    public float Bed2z;
+
+    public float Closetx;
+    public float Closety;
+    public float Closetz;
+
+    public float Dresserx;
+    public float Dressery;
+    public float Dresserz;
+    
+    public float Nightstand1x;
+    public float Nightstand1y;
+    public float Nightstand1z;
+
+    public float Nightstand2x;
+    public float Nightstand2y;
+    public float Nightstand2z;
+
+    public float Nightstand3x;
+    public float Nightstand3y;
+    public float Nightstand3z;
+
+    public float Carpetx;
+    public float Carpety;
+    public float Carpetz;
+
+    public float Rugx;
+    public float Rugy;
+    public float Rugz;
+
+    public float WallShelfx;
+    public float WallShelfy;
+    public float WallShelfz;
+
+    public float Mirrorx;
+    public float Mirrory;
+    public float Mirrorz;
+
+    public float Painting3x;
+    public float Painting3y;
+    public float Painting3z;
+
+    public float Plantx;
+    public float Planty;
+    public float Plantz;
+
+    public float WineRackx;
+    public float WineRacky;
+    public float WineRackz;
+
+    public float FloorLamp1x;
+    public float FloorLamp1y;
+    public float FloorLamp1z;
+
+    public float FloorLamp2x;
+    public float FloorLamp2y;
+    public float FloorLamp2z;
+
+    public float TableLampx;
+    public float TableLampy;
+    public float TableLampz;
+
+    public float WallLamp1x;
+    public float WallLamp1y;
+    public float WallLamp1z;
+
+    public float WallLamp2x;
+    public float WallLamp2y;
+    public float WallLamp2z;
+
+    public float DTable1x;
+    public float DTable1y;
+    public float DTable1z;
+
+    public float DTable2x;
+    public float DTable2y;
+    public float DTable2z;
+
+    public float Chair1x;
+    public float Chair1y;
+    public float Chair1z;
 
     // Start is called before the first frame update
     void Start()
@@ -565,7 +652,182 @@ public class SizeMenuFunctions : MonoBehaviour
                 //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
                 clientMenuFunctions.Shelf2.transform.localScale = new Vector3((length / 100) * (51.34407f / ClientButtonFunctions.Shelf2Size.x), (width / 100) * (63.60788f / ClientButtonFunctions.Shelf2Size.z), (height / 100) * (63.60788f / ClientButtonFunctions.Shelf2Size.y));
             }
-
+            else if (whichButtonClickedClient == "Bed_1")
+            {
+                Bed1x = width;
+                Bed1y = height;
+                Bed1z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Bed1.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.Bed1Size.x), (height / 100) * (1f / ClientButtonFunctions.Bed1Size.y), (length / 100) * (1f / ClientButtonFunctions.Bed1Size.z));
+            }
+            else if (whichButtonClickedClient == "Bed_2")
+            {
+                Bed2x = width;
+                Bed2y = height;
+                Bed2z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Bed2.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.Bed2Size.x), (height / 100) * (1f / ClientButtonFunctions.Bed2Size.y), (length / 100) * (1f / ClientButtonFunctions.Bed2Size.z));
+            }
+            else if (whichButtonClickedClient == "Closet")
+            {
+                Closetx = width;
+                Closety = height;
+                Closetz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Closet.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.ClosetSize.x), (height / 100) * (1f / ClientButtonFunctions.ClosetSize.y), (length / 100) * (1f / ClientButtonFunctions.ClosetSize.z));
+            }
+            else if (whichButtonClickedClient == "Dresser")
+            {
+                Dresserx = width;
+                Dressery = height;
+                Dresserz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Dresser.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.DresserSize.x), (height / 100) * (1f / ClientButtonFunctions.DresserSize.y), (length / 100) * (1f / ClientButtonFunctions.DresserSize.z));
+            }
+            else if (whichButtonClickedClient == "Nightstand_1")
+            {
+                Nightstand1x = width;
+                Nightstand1y = height;
+                Nightstand1z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Nightstand1.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.Nightstand1Size.x), (height / 100) * (1f / ClientButtonFunctions.Nightstand1Size.y), (length / 100) * (1f / ClientButtonFunctions.Nightstand1Size.z));
+            }
+            else if (whichButtonClickedClient == "Nightstand_2")
+            {
+                Nightstand2x = width;
+                Nightstand2y = height;
+                Nightstand2z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Nightstand2.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.Nightstand2Size.x), (height / 100) * (1f / ClientButtonFunctions.Nightstand2Size.y), (length / 100) * (1f / ClientButtonFunctions.Nightstand2Size.z));
+            }
+            else if (whichButtonClickedClient == "Nightstand_3")
+            {
+                Nightstand3x = width;
+                Nightstand3y = height;
+                Nightstand3z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Nightstand3.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.Nightstand3Size.x), (height / 100) * (1f / ClientButtonFunctions.Nightstand3Size.y), (length / 100) * (1f / ClientButtonFunctions.Nightstand3Size.z));
+            }
+            else if (whichButtonClickedClient == "Carpet")
+            {
+                Carpetx = width;
+                Carpety = height;
+                Carpetz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Carpet.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.CarpetSize.x), (height / 100) * (1f / ClientButtonFunctions.CarpetSize.y), (length / 100) * (1f / ClientButtonFunctions.CarpetSize.z));
+            }
+            else if (whichButtonClickedClient == "Rug")
+            {
+                Rugx = width;
+                Rugy = height;
+                Rugz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Rug.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.RugSize.x), (height / 100) * (1f / ClientButtonFunctions.RugSize.y), (length / 100) * (1f / ClientButtonFunctions.RugSize.z));
+            }
+            else if (whichButtonClickedClient == "Wall_Shelf")
+            {
+                WallShelfx = width;
+                WallShelfy = height;
+                WallShelfz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.WallShelf.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.WallShelfSize.x), (height / 100) * (1f / ClientButtonFunctions.WallShelfSize.y), (length / 100) * (1f / ClientButtonFunctions.WallShelfSize.z));
+            }
+            else if (whichButtonClickedClient == "Mirror")
+            {
+                Mirrorx = width;
+                Mirrory = height;
+                Mirrorz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Mirror.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.MirrorSize.x), (height / 100) * (1f / ClientButtonFunctions.MirrorSize.y), (length / 100) * (1f / ClientButtonFunctions.MirrorSize.z));
+            }
+            else if (whichButtonClickedClient == "Painting_3")
+            {
+                Painting3x = width;
+                Painting3y = height;
+                Painting3z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Painting3.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.Painting3Size.x), (height / 100) * (1f / ClientButtonFunctions.Painting3Size.y), (length / 100) * (1f / ClientButtonFunctions.Painting3Size.z));
+            }
+            else if (whichButtonClickedClient == "Plant")
+            {
+                Plantx = width;
+                Planty = height;
+                Plantz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Plant.transform.localScale = new Vector3((length / 100) * (50f / ClientButtonFunctions.PlantSize.x), (width / 100) * (50f / ClientButtonFunctions.PlantSize.z), (height / 100) * (50f / ClientButtonFunctions.PlantSize.y));
+            }
+            else if (whichButtonClickedClient == "Wine_Rack")
+            {
+                WineRackx = width;
+                WineRacky = height;
+                WineRackz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.WineRack.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.WineRackSize.x), (height / 100) * (1f / ClientButtonFunctions.WineRackSize.y), (length / 100) * (1f / ClientButtonFunctions.WineRackSize.z));
+            }
+            else if (whichButtonClickedClient == "Floor_Lamp_1")
+            {
+                FloorLamp1x = width;
+                FloorLamp1y = height;
+                FloorLamp1z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.FloorLamp1.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.FloorLamp1Size.x), (height / 100) * (1f / ClientButtonFunctions.FloorLamp1Size.y), (length / 100) * (1f / ClientButtonFunctions.FloorLamp1Size.z));
+            }
+            else if (whichButtonClickedClient == "Floor_Lamp_2")
+            {
+                FloorLamp2x = width;
+                FloorLamp2y = height;
+                FloorLamp2z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.FloorLamp2.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.FloorLamp2Size.x), (height / 100) * (1f / ClientButtonFunctions.FloorLamp2Size.y), (length / 100) * (1f / ClientButtonFunctions.FloorLamp2Size.z));
+            }
+            else if (whichButtonClickedClient == "Table_Lamp")
+            {
+                TableLampx = width;
+                TableLampy = height;
+                TableLampz = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.TableLamp.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.TableLampSize.x), (height / 100) * (1f / ClientButtonFunctions.TableLampSize.y), (length / 100) * (1f / ClientButtonFunctions.TableLampSize.z));
+            }
+            else if (whichButtonClickedClient == "Wall_Lamp_1")
+            {
+                WallLamp1x = width;
+                WallLamp1y = height;
+                WallLamp1z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.WallLamp1.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.WallLamp1Size.x), (height / 100) * (1f / ClientButtonFunctions.WallLamp1Size.y), (length / 100) * (1f / ClientButtonFunctions.WallLamp1Size.z));
+            }
+            else if (whichButtonClickedClient == "Wall_Lamp_2")
+            {
+                WallLamp2x = width;
+                WallLamp2y = height;
+                WallLamp2z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.WallLamp2.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.WallLamp2Size.x), (height / 100) * (1f / ClientButtonFunctions.WallLamp2Size.y), (length / 100) * (1f / ClientButtonFunctions.WallLamp2Size.z));
+            }
+            else if (whichButtonClickedClient == "D_Table_1")
+            {
+                DTable1x = width;
+                DTable1y = height;
+                DTable1z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.DTable1.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.DTable1Size.x), (height / 100) * (1f / ClientButtonFunctions.DTable1Size.y), (length / 100) * (1f / ClientButtonFunctions.DTable1Size.z));
+            }
+            else if (whichButtonClickedClient == "D_Table_2")
+            {
+                DTable2x = width;
+                DTable2y = height;
+                DTable2z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.DTable2.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.DTable2Size.x), (height / 100) * (1f / ClientButtonFunctions.DTable2Size.y), (length / 100) * (1f / ClientButtonFunctions.DTable2Size.z));
+            }
+            else if (whichButtonClickedClient == "Chair_1")
+            {
+                Chair1x = width;
+                Chair1y = height;
+                Chair1z = length;
+                //itemMenuFunctions.CabinetBase2.transform.localScale = new Vector3(length / 100, height / 100, width / 100);  //1.315
+                clientMenuFunctions.Chair1.transform.localScale = new Vector3((width / 100) * (1f / ClientButtonFunctions.Chair1Size.x), (height / 100) * (1f / ClientButtonFunctions.Chair1Size.y), (length / 100) * (1f / ClientButtonFunctions.Chair1Size.z));
+            }
 
             GameObject sizeMenu = GameObject.Find("SizeMenu");
             //sizeMenu.SetActive(false);
