@@ -41,3 +41,7 @@ html {
 .dene{
   margin-bottom:120px;
 }
+
+.leftBar{
+  flex-basis: 15%;
+}

@@ -9,7 +9,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.css';import { ThemeProvider, createTheme } from '@mui/material/styles';
 function App() {
 
   const router = createBrowserRouter([
@@ -33,11 +33,23 @@ function App() {
       errorElement: <ErrorPage />
     },
   ]);
-
+  const theme = createTheme({
+    typography: {
+      allVariants: {
+        fontFamily: 'Inter, sans-serif',
+        textTransform: 'none',
+        // color: '#0A1551'
+      },
+    },
+  });
+  
   return (
+    <ThemeProvider  theme={theme}>
     <AuthProvider>
       <RouterProvider router={router} />
     </AuthProvider>
+  </ThemeProvider>
+    
 
   );
 }

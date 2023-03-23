@@ -27,16 +27,17 @@ export default function Listing(){
 
   useEffect(()=>{console.log(estates)},[estates])
     return(
-    <Box sx={{ bgcolor: '#EBF6F5', color: 'black'}}>
+    <Box sx={{ width: '100%', color: 'black', borderRadius:"10px"}}>
       <nav aria-label="main mailbox folders">
         <List >
           {ESTATES.map((estate, index) => {
-            return <ListItem sx={{ marginTop:"10px"}} key={estate.title} onClick={() => { navigate(`/estate/${estate.id}`); }} disablePadding>
+            return <ListItem sx={{ margin:"0 auto", maxWidth: "900px"}} key={estate.title} onClick={() => { navigate(`/estate/${estate.id}`); }} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <CorporateFareIcon />
                 </ListItemIcon>
-                <ListItemText primary={estate.title + " | "+ estate.location_il} />
+                <ListItemText sx={{maxWidth: "300px"}} primary={estate.title } />
+                {/* <ListItemText primary={estate.title + " | "+ estate.locati on_il} /> */}
               </ListItemButton>
             </ListItem>
           })}
