@@ -1347,10 +1347,11 @@ public class ClientButtonFunctions : MonoBehaviour
         else
         {
             ObjectFollowsMouse.AddComponent<BoxCollider>();
-            /*if(ObjectFollowsMouse.name == "Chair_Study(Clone)")
+            /*if(ObjectFollowsMouse.name == "Modular_Cabinet(Clone)")
             {
-                ObjectFollowsMouse.GetComponent<BoxCollider>().size = new Vector3(0.8118632f, 1.4f, 0.7751738f);
-                ObjectFollowsMouse.GetComponent<BoxCollider>().center = new Vector3(0f, 0.75f, 0.03668194f);
+                ObjectFollowsMouse.GetComponent<BoxCollider>().size = new Vector3(2.191657f, 2.544047f, 0.6814618f);
+                ObjectFollowsMouse.GetComponent<BoxCollider>().center = new Vector3(0.3927033f, 1.340867f, 0.015f);
+                
 
             }*/
             if (ObjectFollowsMouse.name == "Sofa_4(Clone)" || ObjectFollowsMouse.name == "Shelf_2(Clone)" || ObjectFollowsMouse.name == "Chair_2(Clone)" || ObjectFollowsMouse.name == "Chair_3(Clone)" || ObjectFollowsMouse.name == "Fridge_2(Clone)" 
@@ -1366,6 +1367,10 @@ public class ClientButtonFunctions : MonoBehaviour
 
 
         ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+        if (ObjectFollowsMouse.name == "Carpet(Clone)" || ObjectFollowsMouse.name == "Rug(Clone)")
+        {
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = new Vector3(ObjectFollowsMouse.GetComponent<BoxCollider>().size.x, 0.01f, ObjectFollowsMouse.GetComponent<BoxCollider>().size.z);
+        }
         buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         Debug.Log(buildingSystemObjectFollowMouse + " BUILDINGSYSTEMOBJECTFOLLOWSMOUSE");
 
@@ -1637,6 +1642,10 @@ public class ClientButtonFunctions : MonoBehaviour
                                 Debug.Log("4. if");
                                 //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
                                 objectposition = new Vector3(a.x - gridposz / 200, a.y + 1.75f - gridposy / 200, a.z - 0.25f - 0.25f);
+                            }
+                            if(ObjectFollowsMouse.name == "TV(Clone)")
+                            {
+                                objectposition = new Vector3(objectposition.x, objectposition.y+ gridposy/200, objectposition.z);
                             }
                             //Vector3 objectposition = new Vector3(a.x + BuildingSystem.posx / 200, a.y + 2f, a.z + BuildingSystem.posz / 200);
                             ObjectFollowsMouse.transform.position = objectposition;
@@ -1950,7 +1959,7 @@ public class ClientButtonFunctions : MonoBehaviour
                                 {
                                     Debug.Log("1. if");
                                     //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
-                                    objectposition = new Vector3(a.x - gridposx / 200, a.y + 0.1f, a.z + gridposz / 200);
+                                    objectposition = new Vector3(a.x - gridposx / 200, a.y + 0.06f, a.z + gridposz / 200);
                                     //Debug.Log(" abc " + objectposition);
                                     //objectposition = new Vector3(a.x - b.size.x, a.y, a.z + b.size.z);
                                     //Debug.Log(" abc " + objectposition);
@@ -1959,19 +1968,19 @@ public class ClientButtonFunctions : MonoBehaviour
                                 {
                                     Debug.Log("2. if");
                                     //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
-                                    objectposition = new Vector3(a.x + gridposz / 200, a.y + 0.1f, a.z + gridposx / 200);
+                                    objectposition = new Vector3(a.x + gridposz / 200, a.y + 0.06f, a.z + gridposx / 200);
                                 }
                                 else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 270f)
                                 {
                                     Debug.Log("3. if");
                                     //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
-                                    objectposition = new Vector3(a.x + gridposx / 200, a.y + 0.1f, a.z - gridposz / 200);
+                                    objectposition = new Vector3(a.x + gridposx / 200, a.y + 0.06f, a.z - gridposz / 200);
                                 }
                                 else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 0f)
                                 {
                                     Debug.Log("4. if");
                                     //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
-                                    objectposition = new Vector3(a.x - gridposz / 200, a.y + 0.1f, a.z - gridposx / 200);
+                                    objectposition = new Vector3(a.x - gridposz / 200, a.y + 0.06f, a.z - gridposx / 200);
                                 }
                             }
                             else
@@ -1980,7 +1989,7 @@ public class ClientButtonFunctions : MonoBehaviour
                                 {
                                     Debug.Log("1. if");
                                     //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
-                                    objectposition = new Vector3(a.x - gridposx / 200, a.y + 0.1f, a.z + gridposz / 200);
+                                    objectposition = new Vector3(a.x - gridposx / 200, a.y + 0.06f, a.z + gridposz / 200);
                                     //Debug.Log(" abc " + objectposition);
                                     //objectposition = new Vector3(a.x - b.size.x, a.y, a.z + b.size.z);
                                     //Debug.Log(" abc " + objectposition);
@@ -1989,19 +1998,19 @@ public class ClientButtonFunctions : MonoBehaviour
                                 {
                                     Debug.Log("2. if");
                                     //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
-                                    objectposition = new Vector3(a.x + gridposz / 200, a.y + 0.1f, a.z + gridposx / 200);
+                                    objectposition = new Vector3(a.x + gridposz / 200, a.y + 0.06f, a.z + gridposx / 200);
                                 }
                                 else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 180f)
                                 {
                                     Debug.Log("3. if");
                                     //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
-                                    objectposition = new Vector3(a.x + gridposx / 200, a.y + 0.1f, a.z - gridposz / 200);
+                                    objectposition = new Vector3(a.x + gridposx / 200, a.y + 0.06f, a.z - gridposz / 200);
                                 }
                                 else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 270f)
                                 {
                                     Debug.Log("4. if");
                                     //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
-                                    objectposition = new Vector3(a.x - gridposz / 200, a.y + 0.1f, a.z - gridposx / 200);
+                                    objectposition = new Vector3(a.x - gridposz / 200, a.y + 0.06f, a.z - gridposx / 200);
                                 }
                             }
                             if(ObjectFollowsMouse.name == "Chair_Study(Clone)")
@@ -2011,7 +2020,7 @@ public class ClientButtonFunctions : MonoBehaviour
                             }
                             if (ObjectFollowsMouse.name == "Rug(Clone)" || ObjectFollowsMouse.name == "Carpet(Clone)")
                             {
-                                objectposition = objectposition - new Vector3(0f, 0.1f, 0f);
+                                objectposition = objectposition - new Vector3(0f, 0.04f, 0f);
 
                             }
                             //Vector3 objectposition = new Vector3(a.x + BuildingSystem.posx / 200, a.y, a.z + BuildingSystem.posz / 200);
