@@ -53,7 +53,6 @@ public class LoadModel : MonoBehaviour
 
     public GameObject Shower;
 
-    public GameObject Vanity3;
 
     public GameObject Toilet;
 
@@ -67,6 +66,25 @@ public class LoadModel : MonoBehaviour
          item_list = new List<GameObject>();
         item_list.Add(CubeWall);
         item_list.Add(Floor);
+        item_list.Add(CabinetBase1);
+        item_list.Add(CabinetBase2);
+        item_list.Add(CabinetBaseCorner);
+        item_list.Add(CabinetBaseSink);
+        item_list.Add(CabinetTall);
+        item_list.Add(CabinetWall1);
+        item_list.Add(CabinetWall2);
+        item_list.Add(Stove);
+        item_list.Add(Wall);
+        item_list.Add(Door1);
+        item_list.Add(Door2);
+        item_list.Add(Window);
+        item_list.Add(Frame);
+        item_list.Add(Rail);
+        item_list.Add(Bathtub);
+        item_list.Add(Shower);
+        item_list.Add(Toilet);
+        item_list.Add(Vanity1);
+
         readFromJson("Assets/Resources/test.txt");
         //item_list.Add(Cube);
         //item_list.Add(Capsule);

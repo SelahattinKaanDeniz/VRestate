@@ -13216,9 +13216,9 @@ MonoBehaviour:
   leftClickedButtonName: 
   mainCamera: {fileID: 2135651141}
   cameraRig: {fileID: 2040810739}
-  movementSpeed: 0.2
+  movementSpeed: 0.05
   movementTime: 1.5
-  cameraRotationAmount: 1
+  cameraRotationAmount: 0.4
   cameraScrollSpeed: 20
   panBorderThickness: 10
   panLimit: {x: 50, y: 50}
