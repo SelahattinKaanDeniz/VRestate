@@ -4,6 +4,8 @@ const ESTATES= [
         title:"first Estate",
         location_il:"ankara",
         estatePrice:"283482",
+        coordinatesX:"38.630554",
+        coordinatesY:"27.422222",
     },
     {
         id:"2",

@@ -31,7 +31,7 @@ export default function Listing(){
       <nav aria-label="main mailbox folders">
         <List >
           {ESTATES.map((estate, index) => {
-            return <ListItem sx={{ margin:"0 auto", maxWidth: "900px"}} key={estate.title} onClick={() => { navigate(`/estate/${estate.id}`); }} disablePadding>
+            return <ListItem sx={{ margin:"0 auto", maxWidth: "900px"}} key={estate.title} onClick={() => { navigate(`/estate/${estate.id}`, {state:{title:estate.title,price:estate.estatePrice,coordinatesX:estate.coordinatesX,coordinatesY:estate.coordinatesY}}); }} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <CorporateFareIcon />

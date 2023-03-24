@@ -2,6 +2,7 @@ import './App.css';
 import ErrorPage from "./routes/ErrorPage";
 import MainPage from "./routes/MainPage";
 import EstatePage from "./routes/EstatePage";
+import CreateEstatePage from "./routes/CreateEstatePage";
 import Login from "./routes/Login"
 import { AuthProvider } from "./utils/Auth";
 import { ProtectedRoute } from "./utils/ProtectedRoute";
@@ -10,6 +11,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';import { ThemeProvider, createTheme } from '@mui/material/styles';
+import SuccessPage from './routes/SuccessPage';
 function App() {
 
   const router = createBrowserRouter([
@@ -29,7 +31,23 @@ function App() {
     },
     {
       path: "/estate/:id",
-      element: <EstatePage />,
+      element: <ProtectedRoute>
+        <EstatePage />
+      </ProtectedRoute>,
+      errorElement: <ErrorPage />
+    },
+    {
+      path: "/create",
+      element: <ProtectedRoute>
+        <CreateEstatePage />
+      </ProtectedRoute>,
+      errorElement: <ErrorPage />
+    },
+    {
+      path: "/success",
+      element: <ProtectedRoute>
+        <SuccessPage />
+      </ProtectedRoute>,
       errorElement: <ErrorPage />
     },
   ]);
