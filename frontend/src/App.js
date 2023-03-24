@@ -12,6 +12,8 @@ import {
 } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.css';import { ThemeProvider, createTheme } from '@mui/material/styles';
 import SuccessPage from './routes/SuccessPage';
+import Estate from './routes/MyEstatesPage';
+import ProfilePage from './routes/ProfilePage';
 function App() {
 
   const router = createBrowserRouter([
@@ -47,6 +49,20 @@ function App() {
       path: "/success",
       element: <ProtectedRoute>
         <SuccessPage />
+      </ProtectedRoute>,
+      errorElement: <ErrorPage />
+    },
+    {
+      path: "/estates",
+      element: <ProtectedRoute>
+        <Estate />
+      </ProtectedRoute>,
+      errorElement: <ErrorPage />
+    },
+    {
+      path: "/profile",
+      element: <ProtectedRoute>
+        <ProfilePage />
       </ProtectedRoute>,
       errorElement: <ErrorPage />
     },

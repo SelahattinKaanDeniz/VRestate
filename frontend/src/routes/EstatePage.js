@@ -4,8 +4,8 @@ import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import Header from '../components/Header';
 import { MarkerF } from '@react-google-maps/api';
 const containerStyle = {
-  width: '600px',
-  height: '600px',
+  width: '400px',
+  height: '400px',
   margin: "0 auto"
 };
 
@@ -14,7 +14,7 @@ const containerStyle = {
 function EstatePage() {
   const { id } = useParams();// estate ID
   const {state} = useLocation();
-  const {coordinatesX, coordinatesY,title} =state;
+  const {coordinatesX, coordinatesY, title, price} =state;
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyCcwb_SbKqbxXJWktAikadVeCNlKSt9iAQ"
@@ -36,7 +36,9 @@ function EstatePage() {
 
   return(<>
     <Header />
-    {title}
+    <div style={{display:"flex", flexDirection:"column",justifyContent:"center",alignItems:"center",}}>
+    <h1>{title}</h1>
+    <div>Price: ${price}</div>
     {
       isLoaded ? 
       <GoogleMap
@@ -50,6 +52,8 @@ function EstatePage() {
       </GoogleMap> : <></>
     }
       
+    </div>
+   
     </>
   );
     

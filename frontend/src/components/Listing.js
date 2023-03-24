@@ -13,14 +13,19 @@ import { useNavigate } from "react-router-dom";
 import Header from './Header';
 import { useEffect, useState } from 'react';
 
-export default function Listing(){
+export default function Listing({myEstates}){
   const navigate = useNavigate();
   const [estates, setEstates] = useState([]);
   useEffect( ()=>{
+    if(!myEstates){
+      fetch("http://localhost:5002/estate/getEstates")
+      .then(response => response.json())
+      .then(data => setEstates(data.results));
+    }
+    else{
 
-    fetch("http://localhost:5002/estate/getEstates")
-    .then(response => response.json())
-    .then(data => setEstates(data.results));
+    }
+    
    
 
   },[])
@@ -31,7 +36,7 @@ export default function Listing(){
       <nav aria-label="main mailbox folders">
         <List >
           {ESTATES.map((estate, index) => {
-            return <ListItem sx={{ margin:"0 auto", maxWidth: "900px"}} key={estate.title} onClick={() => { navigate(`/estate/${estate.id}`, {state:{title:estate.title,price:estate.estatePrice,coordinatesX:estate.coordinatesX,coordinatesY:estate.coordinatesY}}); }} disablePadding>
+            return <ListItem sx={{ margin:"0 auto", maxWidth: "900px"}} key={estate.title} onClick={() => { navigate(`/estate/${estate.id}`, {state:{title:estate.title,price:estate.price,coordinatesX:estate.coordX,coordinatesY:estate.coordY,owner_id:estate.owner_id}}); }} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <CorporateFareIcon />

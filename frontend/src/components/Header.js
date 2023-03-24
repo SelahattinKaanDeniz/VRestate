@@ -15,9 +15,11 @@ export default function Header(){
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/estates">My Estates</Nav.Link>
+            <Nav.Link href="/create">Create New</Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        <Avatar>KU</Avatar>
+        
+        <Nav.Link href="/profile"> <Avatar>KU</Avatar></Nav.Link>
       </Container>
     </Navbar>
     )
