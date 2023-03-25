@@ -23,7 +23,7 @@ export default function Listing({myEstates}){
     if(!myEstates){
       fetch("http://localhost:5002/estate/getEstates")
       .then(response => response.json())
-      .then(data => setEstates(data.results));
+      .then(data => {setEstates(data.results);console.log(data.results)});
     }
     else{
 
@@ -41,11 +41,11 @@ export default function Listing({myEstates}){
         <List  >
           {ESTATES.map((estate, index) => {
             return <ListItem alignItems="flex-start" sx={{ margin:"0 auto", maxWidth: "900px", borderRadius:"10px", '& .MuiListItemButton-root:hover': {
-              bgcolor: '#e3f6fe',
+              bgcolor: '#eaf8fe',
               '&, & .MuiListItemIcon-root': {
-                color: '#e3f6fe',
+                color: '#eaf8fe',
               },
-            },}} key={estate.title} onClick={() => { navigate(`/estate/${estate.id}`, {state:{title:estate.title,price:estate.price,coordinatesX:estate.coordX,coordinatesY:estate.coordY,owner_id:estate.owner_id}}); }} disablePadding>
+            },}} key={estate.title} onClick={() => { navigate(`/estate/${estate.id}`, {state:{estate}}); }} disablePadding>
               <ListItemButton sx={{borderRadius:"10px"}}>
                 <ListItemIcon>
                   <CorporateFareIcon />
@@ -54,7 +54,7 @@ export default function Listing({myEstates}){
           primary={<div style={{color:"#758DFB"}}>
             {estate.title}
             <div>${estate.price}</div>
-            <div>{estate.m2_brut}m², {estate.room_type} </div>
+            <div>{estate.m2}m², {estate.room_type} </div>
             <div></div>
           </div>}
           secondary={

@@ -10,6 +10,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { MarkerF } from '@react-google-maps/api';
 import Alert from 'react-bootstrap/Alert';
+import Geocode from "react-geocode";
+
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 const containerStyle = {
   width: '500px',
@@ -17,6 +19,20 @@ const containerStyle = {
   margin: "0 auto",
   borderRadius: "20px"
 };
+Geocode.setApiKey("AIzaSyCcwb_SbKqbxXJWktAikadVeCNlKSt9iAQ");
+
+// set response language. Defaults to english.
+Geocode.setLanguage("en");
+
+
+// set location_type filter . Its optional.
+// google geocoder returns more that one address for given lat/lng.
+// In some case we need one address as response for which google itself provides a location_type filter.
+// So we can easily parse the result for fetching address components
+// ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, APPROXIMATE are the accepted values.
+// And according to the below google docs in description, ROOFTOP param returns the most accurate result.
+Geocode.setLocationType("ROOFTOP");
+
 
 const center = {
   lat: 39.925533,
@@ -63,14 +79,67 @@ function CreateEstatePage() {
     );
   };
 
-  const clickSubmit = (e)=>{
+  const  clickSubmit = async (e)=>{
     /// HERE WE SUBMITTT!!!
+    Geocode.fromLatLng(coordinates.lat, coordinates.lng).then(
+      (response) => {
+        const address = response.results[0].formatted_address;
+        let city, state, country;
+        for (let i = 0; i < response.results[0].address_components.length; i++) {
+          for (let j = 0; j < response.results[0].address_components[i].types.length; j++) {
+            switch (response.results[0].address_components[i].types[j]) {
+              case "locality":
+                city = response.results[0].address_components[i].long_name;
+                break;
+              case "administrative_area_level_1":
+                state = response.results[0].address_components[i].long_name;
+                break;
+              case "country":
+                country = response.results[0].address_components[i].long_name;
+                break;
+            }
+          }
+        }
+        console.log(state);
+        console.log(address);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+    console.log("jere")
     e.preventDefault();
     if(!title || !price || !roomType|| !size|| !coordinates ||!bathroomNumber || !floor || !furnished || !buildingAge || !balconyNumber || !buildingFees){
   
       setIsError(true);
     }
     else{
+      Geocode.fromLatLng(coordinates.lat, coordinates.lng).then(
+        (response) => {
+          const address = response.results[0].formatted_address;
+          let city, state, country;
+          for (let i = 0; i < response.results[0].address_components.length; i++) {
+            for (let j = 0; j < response.results[0].address_components[i].types.length; j++) {
+              switch (response.results[0].address_components[i].types[j]) {
+                case "locality":
+                  city = response.results[0].address_components[i].long_name;
+                  break;
+                case "administrative_area_level_1":
+                  state = response.results[0].address_components[i].long_name;
+                  break;
+                case "country":
+                  country = response.results[0].address_components[i].long_name;
+                  break;
+              }
+            }
+          }
+          console.log(city, state);
+          console.log(address);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
       navigate("/success")
     }
     console.log(e);

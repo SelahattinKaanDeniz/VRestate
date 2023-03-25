@@ -8,9 +8,13 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import SearchIcon from '@mui/icons-material/Search';
+
 function MainPage() {
   const navigate = useNavigate();
   const { clientId, onSuccess, onFailure, profile, onLogOutSuccess } = useAuth();
+  
+
+
   return(
     <>
      <Header/>
