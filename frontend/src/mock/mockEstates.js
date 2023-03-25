@@ -6,7 +6,10 @@ const ESTATES= [
         price:"283482",
         coordX:"38.630554",
         coordY:"27.422222",
-        room_type:"2+1"
+        room_type:"2+1",
+        m2_brut:"129",
+        bathroomCount:"2",
+        balconyCount:"1"
     },
     {
         id:"2",
@@ -15,7 +18,10 @@ const ESTATES= [
         price:"283482",
         coordX:"38.630554",
         coordY:"27.422222",
-        room_type:"2+1"
+        room_type:"2+1",
+        m2_brut:"129",
+        bathroomCount:"1",
+        balconyCount:"1"
 
     },
     {
@@ -25,7 +31,8 @@ const ESTATES= [
         price:"283482",
         coordX:"38.630554",
         coordY:"27.422222",
-        room_type:"2+1"
+        room_type:"2+1",
+        m2_brut:"129"
     },
     {
         id:"3",
@@ -34,7 +41,8 @@ const ESTATES= [
         price:"283482",
         coordX:"38.630554",
         coordY:"27.422222",
-        room_type:"2+1"
+        room_type:"2+1",
+        m2_brut:"129"
     },
     {
         id:"6",

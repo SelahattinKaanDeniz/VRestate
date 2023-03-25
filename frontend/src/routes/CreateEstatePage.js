@@ -32,8 +32,14 @@ function CreateEstatePage() {
   const [coordinates, setCoordinates] = useState(null);
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
-  const [roomType, setRoomType] = useState("");
+  const [roomType, setRoomType] = useState("1+0");
   const [size, setSize] = useState("");
+  const [bathroomNumber, setBathroomNumber] = useState("0");
+  const [floor, setFloor] = useState("0");
+  const [furnished, setFurnished] = useState("0");
+  const [buildingAge, setBuildingAge] = useState("0");
+  const [balconyNumber, setBalconyNumber] = useState("0");
+  const [buildingFees, setBuildingFees] = useState("");
   const [isError, setIsError] = useState(false);
   
   const onLoad = useCallback(function callback(map) {
@@ -60,7 +66,8 @@ function CreateEstatePage() {
   const clickSubmit = (e)=>{
     /// HERE WE SUBMITTT!!!
     e.preventDefault();
-    if(!title || !price || !roomType|| !size|| !coordinates){
+    if(!title || !price || !roomType|| !size|| !coordinates ||!bathroomNumber || !floor || !furnished || !buildingAge || !balconyNumber || !buildingFees){
+  
       setIsError(true);
     }
     else{
@@ -95,6 +102,14 @@ function CreateEstatePage() {
             <Form.Control onChange={(e)=>setPrice(e.target.value)} aria-label="Amount (to the nearest dollar)" />
             </InputGroup>
           </Form.Group>
+          <Form.Group className="mb-4" size="sm">
+          <Form.Label>Building Fees</Form.Label>
+          <InputGroup className="mb-3">
+            <InputGroup.Text>$</InputGroup.Text>
+            <Form.Control onChange={(e)=>setBuildingFees(e.target.value)} aria-label="Amount (to the nearest dollar)" />
+            <InputGroup.Text>Per Month</InputGroup.Text>
+            </InputGroup>
+          </Form.Group>
 
           
             <Form.Group className="mb-4" size="sm">
@@ -113,11 +128,74 @@ function CreateEstatePage() {
               <option value="4+3">4+3</option>
             </Form.Select>
           </Form.Group>
+
+          
+          <Form.Group className="mb-4" size="sm">
+            <Form.Label>Floor</Form.Label>
+            <Form.Select onChange={(e)=>setFloor(e.target.value)} aria-label="Default select example">
+              <option value="0">Ground Floor</option>
+              <option value="-1">-1</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </Form.Select>
+          </Form.Group>
+          <Form.Group className="mb-4" size="sm">
+            <Form.Label>Furnished</Form.Label>
+            <Form.Select onChange={(e)=>setFurnished(e.target.value)} aria-label="Default select example">
+              <option value="0">No</option>
+              <option value="1">Yes</option>
+            </Form.Select>
+          </Form.Group>
+
+           
+          <Form.Group className="mb-4" size="sm">
+            <Form.Label>Number of Bathrooms</Form.Label>
+            <Form.Select onChange={(e)=>setBathroomNumber(e.target.value)} aria-label="Default select example">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </Form.Select>
+          </Form.Group>
+          <Form.Group className="mb-4" size="sm">
+            <Form.Label>Number of Balconies</Form.Label>
+            <Form.Select onChange={(e)=>setBalconyNumber(e.target.value)} aria-label="Default select example">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </Form.Select>
+          </Form.Group>
+
+          <Form.Group  className="mb-3" size="sm">
+          <Form.Label>Building Age</Form.Label>
+          <InputGroup className="mb-3">
+            <Form.Control onChange={(e)=>setBuildingAge(e.target.value)} />
+            <InputGroup.Text>Years</InputGroup.Text>
+            </InputGroup>
+          </Form.Group>
+
           <Form.Group  className="mb-3" size="sm">
           <Form.Label>Size</Form.Label>
           <InputGroup className="mb-3">
             <Form.Control onChange={(e)=>setSize(e.target.value)} />
-            <InputGroup.Text>m^2</InputGroup.Text>
+            <InputGroup.Text>m² </InputGroup.Text>
             </InputGroup>
           </Form.Group>
 

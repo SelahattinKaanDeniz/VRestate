@@ -5,10 +5,14 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useAuth } from "../utils/Auth";
 import Avatar from '@mui/material/Avatar';
-
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import CustomToggle from './CustomToggle';
 export default function Header(){
+  const { onLogOutSuccess,profile } = useAuth();
+    const avatar= profile.name[0]+profile.surname[0];
     return(
-    <Navbar expand="lg">
+    <Navbar expand="md">
       <Container>
         <Navbar.Brand href="/">VRestate</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -18,8 +22,17 @@ export default function Header(){
             <Nav.Link href="/create">Create New</Nav.Link>
           </Nav>
         </Navbar.Collapse>
-        
-        <Nav.Link href="/profile"> <Avatar>KU</Avatar></Nav.Link>
+
+      
+        <Dropdown>
+        <Dropdown.Toggle as={ CustomToggle}>
+        <Avatar>{avatar}</Avatar>
+      </Dropdown.Toggle>
+          <Dropdown.Menu  > 
+        <Dropdown.Item href="/profile">Profile</Dropdown.Item>
+        <Dropdown.Item onClick={()=>{onLogOutSuccess()}} >Logout</Dropdown.Item>
+      </Dropdown.Menu></Dropdown>
+       
       </Container>
     </Navbar>
     )
