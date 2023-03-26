@@ -275,9 +275,117 @@ app.post('/estate/create', (req, res) => {
     })
 });
 
-app.post('/estate/update');
+app.post('/estate/update', (req, res) => {
+    if (req.query.id == null || req.query.ownerId == null) {
+        res.status(400).send({ message: "Params cannot be null" });
+        return;
+    }
+    let values = [];
+    values[values.length] = req.query.id
+    values[values.length] = req.query.ownerId
+    let query = 'select id from estate where id = ? and owner_id = ?';
+    connection.query(query, values, (error, results, fields) => {
+        if (error) {
+            res.statusMessage = 'Database Query Error';
+            res.status(500).send({ message: error });
+            return;
+        }
+        if (results.length == 0) {
+            res.status(400).send({ message: "No estate found to update" });
+            return;
+        }
+        values = [];
+        values[values.length] = req.body.title;
+        values[values.length] = req.body.head_photo_id;
+        values[values.length] = req.body.estate_type;
+        values[values.length] = req.body.category;
+        values[values.length] = req.body.price;
+        let date = new Date().toISOString().substring(0,10);
+        values[values.length] = date;
+        values[values.length] = req.body.ilce;
+        values[values.length] = req.body.il;
+        values[values.length] = req.body.coordX;
+        values[values.length] = req.body.coordY;
+        values[values.length] = req.body.room_type;
+        values[values.length] = req.body.m2;
+        values[values.length] = req.body.vr_id;
+        values[values.length] = req.query.id;
+        values[values.length] = req.query.ownerId;
+        query = 'update estate set title = ?, head_photo_id = ?, estate_type = ?, category = ?, price = ?, last_update = ?, location_ilce = ?, location_il = ?, coordX = ?, coordY = ?, room_type = ?, m2 = ?, vr_id = ? where id = ? and owner_id = ?'
+        connection.query(query, values, (error, results, fields) => {
+            if (error) {
+                res.statusMessage = 'Database Query Error';
+                res.status(500).send({ message: error });
+                return;
+            }
+            values = [];
+            values[values.length] = req.body.photo_ids;
+            values[values.length] = req.body.m2_brut;
+            values[values.length] = req.body.buildingAge;
+            values[values.length] = req.body.floors;
+            values[values.length] = req.body.buildingFloors;
+            values[values.length] = req.body.heatingSystem;
+            values[values.length] = req.body.balconyCount;
+            values[values.length] = req.body.bathroomCount;
+            values[values.length] = req.body.isFurnished;
+            values[values.length] = req.body.isBuildingComplex;
+            values[values.length] = req.body.buildingFees;
+            values[values.length] = req.body.complexName;
+            values[values.length] = req.body.isTradeable;
+            values[values.length] = req.query.id;
+            query = 'update estate_detail set photo_ids = ?, m2_brut = ?, buildingAge = ?, floors = ?, buildingFloors = ?, heatingSystem = ?, balconyCount = ?, bathroomCount = ?, isFurnished = ?, isBuildingComplex = ?, buildingFees = ?, complexName = ?, isTradeable = ? where id = ?'
+            connection.query(query, values, (error, results, fields) => {
+                console.log(query)
+                if (error) {
+                    res.statusMessage = 'Database Query Error';
+                    res.status(500).send({ message: error });
+                    return;
+                }
+                res.status(200).send({ message: "Estate Successfully Updated" });
+            })
+        })
+    })
 
-app.post('/estate/delete');
+});
+
+app.post('/estate/delete', (req, res) => {
+    if (req.query.id == null || req.query.ownerId == null) {
+        res.status(400).send({ message: "Params cannot be null" });
+        return;
+    }
+    let values = [];
+    values[values.length] = req.query.id
+    values[values.length] = req.query.ownerId
+    let query = 'select id from estate where id = ? and owner_id = ?';
+    connection.query(query, values, (error, results, fields) => {
+        if (error) {
+            res.statusMessage = 'Database Query Error';
+            res.status(500).send({ message: error });
+            return;
+        }
+        if (results.length == 0) {
+            res.status(400).send({ message: "No estate found to delete" });
+            return;
+        }
+        query = 'DELETE FROM estate_detail WHERE id = ' + req.query.id;
+        connection.query(query, (error, results, fields) => {
+            if (error) {
+                res.statusMessage = 'Database Query Error';
+                res.status(500).send({ message: error });
+                return;
+            }
+            query = 'DELETE FROM estate WHERE id = ' + req.query.id;
+            connection.query(query, (error, results, fields) => {
+                if (error) {
+                    res.statusMessage = 'Database Query Error';
+                    res.status(500).send({ message: error });
+                    return;
+                }
+                res.status(200).send({ message: "Estate Successfully Deleted" });
+            })
+        })
+    })
+});
 
 app.get('/estate/getEstates', (req, res) => {
     let query = 'Select * from estate'
