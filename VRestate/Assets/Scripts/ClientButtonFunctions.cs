@@ -1371,6 +1371,10 @@ public class ClientButtonFunctions : MonoBehaviour
         {
             ObjectFollowsMouse.GetComponent<BoxCollider>().size = new Vector3(ObjectFollowsMouse.GetComponent<BoxCollider>().size.x, 0.01f, ObjectFollowsMouse.GetComponent<BoxCollider>().size.z);
         }
+        if (ObjectFollowsMouse.name == "Wine_Rack(Clone)")
+        {
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = new Vector3(0.05f, ObjectFollowsMouse.GetComponent<BoxCollider>().size.y, ObjectFollowsMouse.GetComponent<BoxCollider>().size.z);
+        }
         buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         Debug.Log(buildingSystemObjectFollowMouse + " BUILDINGSYSTEMOBJECTFOLLOWSMOUSE");
 
