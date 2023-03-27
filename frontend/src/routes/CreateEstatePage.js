@@ -11,6 +11,7 @@ import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { MarkerF } from '@react-google-maps/api';
 import Alert from 'react-bootstrap/Alert';
 import Geocode from "react-geocode";
+import { useAuth } from "../utils/Auth";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 const containerStyle = {
@@ -39,24 +40,28 @@ const center = {
   lng: 	32.866287
 };
 function CreateEstatePage() {
+  const { profile } = useAuth();
   const navigate = useNavigate();
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyCcwb_SbKqbxXJWktAikadVeCNlKSt9iAQ"
   })
   const [map, setMap] = useState(null)
+  const [isError, setIsError] = useState(false);
+
+  //States For Estate PROPERTIES
   const [coordinates, setCoordinates] = useState(null);
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
-  const [roomType, setRoomType] = useState("1+0");
-  const [size, setSize] = useState("");
-  const [bathroomNumber, setBathroomNumber] = useState("0");
-  const [floor, setFloor] = useState("0");
-  const [furnished, setFurnished] = useState("0");
+  const [room_type, setRoom_type] = useState("1+0");
+  const [m2, setM2] = useState("");
+  const [bathroomCount, setBathroomCount] = useState("0");
+  const [floors, setFloors] = useState("0");
+  const [isFurnished, setIsFurnished] = useState("0");
   const [buildingAge, setBuildingAge] = useState("0");
-  const [balconyNumber, setBalconyNumber] = useState("0");
+  const [balconyCount, setBalconyCount] = useState("0");
   const [buildingFees, setBuildingFees] = useState("");
-  const [isError, setIsError] = useState(false);
+  const [image, setImage] = useState(null);
   
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
@@ -80,40 +85,33 @@ function CreateEstatePage() {
   };
 
   const  clickSubmit = async (e)=>{
-    /// HERE WE SUBMITTT!!!
-    Geocode.fromLatLng(coordinates.lat, coordinates.lng).then(
-      (response) => {
-        const address = response.results[0].formatted_address;
-        let city, state, country;
-        for (let i = 0; i < response.results[0].address_components.length; i++) {
-          for (let j = 0; j < response.results[0].address_components[i].types.length; j++) {
-            switch (response.results[0].address_components[i].types[j]) {
-              case "locality":
-                city = response.results[0].address_components[i].long_name;
-                break;
-              case "administrative_area_level_1":
-                state = response.results[0].address_components[i].long_name;
-                break;
-              case "country":
-                country = response.results[0].address_components[i].long_name;
-                break;
-            }
-          }
-        }
-        console.log(state);
-        console.log(address);
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-    console.log("jere")
     e.preventDefault();
-    if(!title || !price || !roomType|| !size|| !coordinates ||!bathroomNumber || !floor || !furnished || !buildingAge || !balconyNumber || !buildingFees){
+    if(image){
+      const data = new FormData();
+      data.append("file", image);
+      const imageResponse = await fetch('http://localhost:5002/upload', {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        headers: {
+          "Content-Type": "application/json",
+        },
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: data, // body data type must match "Content-Type" header
+      });
+      console.log(imageResponse);
+      return;
+    }
+    else{
+      console.log("nooo")
+    }
+    if(!title || !price || !room_type|| !m2|| !coordinates ||
+      !bathroomCount || !floors || !isFurnished || !buildingAge || 
+      !balconyCount || !buildingFees){
   
       setIsError(true);
     }
     else{
+
       Geocode.fromLatLng(coordinates.lat, coordinates.lng).then(
         (response) => {
           const address = response.results[0].formatted_address;
@@ -133,18 +131,45 @@ function CreateEstatePage() {
               }
             }
           }
-          console.log(city, state);
-          console.log(address);
+          return state;
         },
         (error) => {
-          console.error(error);
+          return ""
         }
-      );
-      navigate("/success")
+      ).then(async (il)=>{
+        const data={
+          il,
+          title,
+          price,
+          room_type,
+          m2,
+          coordX:coordinates.lat,
+          coordY:coordinates.lng,
+          bathroomCount,
+          floors,
+          isFurnished,
+          buildingAge , 
+          balconyCount,
+          buildingFees,
+          estate_type:"satilik",
+          category:"daire",
+          ilce:"",
+          owner_id:profile.id,
+          buildingFloors:4,
+        }
+        const response = await fetch('http://localhost:5002/estate/create', {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: "same-origin", // include, *same-origin, omit
+          headers: {
+            "Content-Type": "application/json",
+          },
+          referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+          body: JSON.stringify(data), // body data type must match "Content-Type" header
+        });
+        navigate("/success");
+      });
     }
-    console.log(e);
-    console.log(1)
-    console.log(title,price,roomType,size,coordinates);
   }
 
   const clickSubmit2 = (e)=>{
@@ -163,6 +188,12 @@ function CreateEstatePage() {
           <Form.Label>Title</Form.Label>
           <Form.Control onChange={(e)=>setTitle(e.target.value)} as="input" />
           </Form.Group>
+
+
+          <Form.Group controlId="file"  className="mb-3">
+          <Form.Label>Upload Image</Form.Label>
+          <Form.Control name="image" onChange={(e)=>setImage(e.target.files[0])}  type="file" />
+         </Form.Group>
 
           <Form.Group className="mb-4" size="sm">
           <Form.Label>Price</Form.Label>
@@ -183,7 +214,7 @@ function CreateEstatePage() {
           
             <Form.Group className="mb-4" size="sm">
             <Form.Label>Room Type</Form.Label>
-            <Form.Select onChange={(e)=>setRoomType(e.target.value)} aria-label="Default select example">
+            <Form.Select onChange={(e)=>setRoom_type(e.target.value)} aria-label="Default select example">
               <option value="1+0">1+0</option>
               <option value="1+1">1+1</option>
               <option value="2+0">2+0</option>
@@ -201,7 +232,7 @@ function CreateEstatePage() {
           
           <Form.Group className="mb-4" size="sm">
             <Form.Label>Floor</Form.Label>
-            <Form.Select onChange={(e)=>setFloor(e.target.value)} aria-label="Default select example">
+            <Form.Select onChange={(e)=>setFloors(e.target.value)} aria-label="Default select example">
               <option value="0">Ground Floor</option>
               <option value="-1">-1</option>
               <option value="1">1</option>
@@ -220,7 +251,7 @@ function CreateEstatePage() {
           </Form.Group>
           <Form.Group className="mb-4" size="sm">
             <Form.Label>Furnished</Form.Label>
-            <Form.Select onChange={(e)=>setFurnished(e.target.value)} aria-label="Default select example">
+            <Form.Select onChange={(e)=>setIsFurnished(e.target.value)} aria-label="Default select example">
               <option value="0">No</option>
               <option value="1">Yes</option>
             </Form.Select>
@@ -229,7 +260,7 @@ function CreateEstatePage() {
            
           <Form.Group className="mb-4" size="sm">
             <Form.Label>Number of Bathrooms</Form.Label>
-            <Form.Select onChange={(e)=>setBathroomNumber(e.target.value)} aria-label="Default select example">
+            <Form.Select onChange={(e)=>setBathroomCount(e.target.value)} aria-label="Default select example">
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -241,7 +272,7 @@ function CreateEstatePage() {
           </Form.Group>
           <Form.Group className="mb-4" size="sm">
             <Form.Label>Number of Balconies</Form.Label>
-            <Form.Select onChange={(e)=>setBalconyNumber(e.target.value)} aria-label="Default select example">
+            <Form.Select onChange={(e)=>setBalconyCount(e.target.value)} aria-label="Default select example">
               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -263,7 +294,7 @@ function CreateEstatePage() {
           <Form.Group  className="mb-3" size="sm">
           <Form.Label>Size</Form.Label>
           <InputGroup className="mb-3">
-            <Form.Control onChange={(e)=>setSize(e.target.value)} />
+            <Form.Control onChange={(e)=>setM2(e.target.value)} />
             <InputGroup.Text>m² </InputGroup.Text>
             </InputGroup>
           </Form.Group>
