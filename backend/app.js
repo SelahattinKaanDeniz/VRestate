@@ -16,6 +16,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 let mysql = require("mysql");
+const { json } = require("body-parser");
 
 let connection = mysql.createConnection({
     host: 'vrestate.clbfq7mnbhip.eu-west-3.rds.amazonaws.com',
@@ -300,7 +301,7 @@ app.post('/estate/update', (req, res) => {
         values[values.length] = req.body.estate_type;
         values[values.length] = req.body.category;
         values[values.length] = req.body.price;
-        let date = new Date().toISOString().substring(0,10);
+        let date = new Date().toISOString().substring(0, 10);
         values[values.length] = date;
         values[values.length] = req.body.ilce;
         values[values.length] = req.body.il;
@@ -435,7 +436,7 @@ app.get('/estate/getEstates', (req, res) => {
             //query+= ' id = '+req.query.id+' and';
         }
     }
-    if(req.query.detail == 'true'){
+    if (req.query.detail == 'true') {
         query += ' inner join estate_detail on estate.id = estate_detail.id'
     }
     console.log(query);
@@ -465,7 +466,57 @@ app.get('/checkLocation', (req, res) => {
 
 })
 
+app.post('/unity/save', (req, res) => {
+    if (req.query.id == null) {
+        res.status(400).send({ message: 'ID cannot be null!' });
+        return;
+    }
+    let query = 'select id from vr_model where id = ' + req.query.id;
+    console.log(req.body)
+    connection.query(query, (error, results, fields) => {
+        if (error) {
+            res.statusMessage = 'Database Query Error';
+            res.status(500).send({ message: error });
+            return;
+        }
+        if (results.length == 0) {
+            res.status(400).send({ message: 'VR model does not exist' });
+            return;
+        }
+        query = 'update vr_model set model = ? where id = ' + req.query.id;
+        let values = JSON.stringify(req.body);
+        connection.query(query, values, (error, results, fields) => {
+            if (error) {
+                res.statusMessage = 'Database Query Error';
+                res.status(500).send({ message: error });
+                return;
+            }
+            res.status(200).send({ message: 'Model successfully saved.' })
+        })
+    })
+})
 
+app.get('/unity/load', (req, res) => {
+    if (req.query.id == null) {
+        res.status(400).send({ message: 'ID cannot be null!' });
+        return;
+    }
+    let query = 'select * from vr_model where id = '+req.query.id;
+    connection.query(query, (error,results,fields) => {
+        if (error) {
+            res.statusMessage = 'Database Query Error';
+            res.status(500).send({ message: error });
+            return;
+        }
+        if(results.length == 0){
+            res.status(400).send({ message: 'VR model does not exist' });
+            return;
+        }
+        let jsonReply = JSON.parse(results[0].model);
+        res.status(200).json(jsonReply)
+    })
+
+})
 
 app.listen(5002, () => {
     connection.connect(function (err) {
