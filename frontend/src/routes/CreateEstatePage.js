@@ -61,6 +61,7 @@ function CreateEstatePage() {
   const [buildingAge, setBuildingAge] = useState("0");
   const [balconyCount, setBalconyCount] = useState("0");
   const [buildingFees, setBuildingFees] = useState("");
+  const [image, setImage] = useState(null);
   
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
@@ -85,6 +86,24 @@ function CreateEstatePage() {
 
   const  clickSubmit = async (e)=>{
     e.preventDefault();
+    if(image){
+      const data = new FormData();
+      data.append("file", image);
+      const imageResponse = await fetch('http://localhost:5002/upload', {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+        headers: {
+          "Content-Type": "application/json",
+        },
+        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: data, // body data type must match "Content-Type" header
+      });
+      console.log(imageResponse);
+      return;
+    }
+    else{
+      console.log("nooo")
+    }
     if(!title || !price || !room_type|| !m2|| !coordinates ||
       !bathroomCount || !floors || !isFurnished || !buildingAge || 
       !balconyCount || !buildingFees){
@@ -92,6 +111,7 @@ function CreateEstatePage() {
       setIsError(true);
     }
     else{
+
       Geocode.fromLatLng(coordinates.lat, coordinates.lng).then(
         (response) => {
           const address = response.results[0].formatted_address;
@@ -170,9 +190,9 @@ function CreateEstatePage() {
           </Form.Group>
 
 
-          <Form.Group controlId="formFile" className="mb-3">
+          <Form.Group controlId="file"  className="mb-3">
           <Form.Label>Upload Image</Form.Label>
-          <Form.Control type="file" />
+          <Form.Control name="image" onChange={(e)=>setImage(e.target.files[0])}  type="file" />
          </Form.Group>
 
           <Form.Group className="mb-4" size="sm">
