@@ -9,7 +9,13 @@ const ESTATES= [
         room_type:"2+1",
         m2:"129",
         bathroomCount:"2",
-        balconyCount:"1"
+        balconyCount:"1",
+        vr_id:"128312",
+        owner_id:"106691782026033381827",
+        buildingFees:"100",
+        isFurnished:"0",
+        floor:"2",
+        buildingAge:"5"
     },
     {
         id:"2",
@@ -21,7 +27,13 @@ const ESTATES= [
         room_type:"2+1",
         m2:"129",
         bathroomCount:"1",
-        balconyCount:"1"
+        balconyCount:"1",
+        vr_id:"1283121",
+        owner_id:"12",
+        buildingFees:"100",
+        isFurnished:"0",
+        floor:"2",
+        buildingAge:"5"
 
     },
     {

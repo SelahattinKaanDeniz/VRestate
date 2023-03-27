@@ -45,3 +45,8 @@ html {
 .leftBar{
   flex-basis: 15%;
 }
+
+.tdEdit{
+  display: flex;
+  justify-content: space-between;
+}
