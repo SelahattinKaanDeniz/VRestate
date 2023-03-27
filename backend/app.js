@@ -389,7 +389,7 @@ app.post('/estate/delete', (req, res) => {
 
 app.get('/estate/getEstates', (req, res) => {
     let query = 'Select * from estate'
-    if (req.query.searchFilter == true) {
+    if (req.query.searchFilter == 'true') {
         query = query + ' where'
         if (req.query.id != null || req.query.id != undefined) {
             query += ' id = ' + req.query.id + ' and';
@@ -434,6 +434,9 @@ app.get('/estate/getEstates', (req, res) => {
         if (req.query.price != null || req.query.price != undefined) {//todo minmax
             //query+= ' id = '+req.query.id+' and';
         }
+    }
+    if(req.query.detail == 'true'){
+        query += ' inner join estate_detail on estate.id = estate_detail.id'
     }
     console.log(query);
     connection.query(query, (error, results, fields) => {
