@@ -22,7 +22,7 @@ export default function Listing({myEstates}){
   const [estates, setEstates] = useState([]);
   useEffect( ()=>{
     if(!myEstates){
-      fetch("http://localhost:5002/estate/getEstates")
+      fetch("http://localhost:5002/estate/getEstates?detail=true")
       .then(response => response.json())
       .then(data => {setEstates(data.results);console.log(data.results)});
     }
@@ -40,7 +40,7 @@ export default function Listing({myEstates}){
       <nav aria-label="main mailbox folders">
      
         <List  >
-          {ESTATES.map((estate, index) => {
+          {estates.map((estate, index) => {
             return <ListItem alignItems="flex-start" sx={{ margin:"0 auto", maxWidth: "900px", borderRadius:"10px", '& .MuiListItemButton-root:hover': {
               bgcolor: '#eaf8fe',
               '&, & .MuiListItemIcon-root': {
