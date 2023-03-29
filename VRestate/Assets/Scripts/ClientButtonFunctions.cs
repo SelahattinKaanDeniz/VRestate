@@ -1357,7 +1357,18 @@ public class ClientButtonFunctions : MonoBehaviour
             if (ObjectFollowsMouse.name == "Sofa_4(Clone)" || ObjectFollowsMouse.name == "Shelf_2(Clone)" || ObjectFollowsMouse.name == "Chair_2(Clone)" || ObjectFollowsMouse.name == "Chair_3(Clone)" || ObjectFollowsMouse.name == "Fridge_2(Clone)" 
                 || ObjectFollowsMouse.name == "Dish_Washer(Clone)" || ObjectFollowsMouse.name == "Coffee_Table_2(Clone)" || ObjectFollowsMouse.name == "Plant(Clone)")
             {
-                ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.001f, 0.001f, 0.001f);
+                if (ObjectFollowsMouse.name == "Chair_2(Clone)")
+                {
+                    ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.001f, 0.005f, 0.001f);
+                } 
+                else if (ObjectFollowsMouse.name == "Chair_3(Clone)")
+                {
+                    ObjectFollowsMouse.GetComponent<BoxCollider>().size = new Vector3(ObjectFollowsMouse.GetComponent<BoxCollider>().size.x- 0.001f, ObjectFollowsMouse.GetComponent<BoxCollider>().size.y/1.5f, ObjectFollowsMouse.GetComponent<BoxCollider>().size.z-0.001f);
+                    //ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.001f, 0.001f, 0.001f);
+                }
+                else {
+                    ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.001f, 0.001f, 0.001f);
+                }
                 //ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size;
             }
             else {

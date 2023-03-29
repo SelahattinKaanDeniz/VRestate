@@ -13216,7 +13216,7 @@ MonoBehaviour:
   leftClickedButtonName: 
   mainCamera: {fileID: 2135651141}
   cameraRig: {fileID: 2040810739}
-  movementSpeed: 0.05
+  movementSpeed: 0.07
   movementTime: 1.5
   cameraRotationAmount: 0.4
   cameraScrollSpeed: 20
@@ -13250,6 +13250,8 @@ MonoBehaviour:
   Frame: {fileID: 4128345870912619340, guid: 49c03ae95ca37cd44b0cbe731837db93, type: 3}
   Rail: {fileID: 5802738121542309436, guid: fe1e736f92c3a0d4c873a9f068d14e46, type: 3}
   wallPrefab: {fileID: 2903521717756332882, guid: 7d3d7393bcf0f594b8c746c628485ce8,
+    type: 3}
+  floorPrefab: {fileID: 4388314611279343880, guid: ea08895399095d74cab7a1a9960c0b6b,
     type: 3}
   Bathtub: {fileID: 7141368030007136623, guid: 5ec4cf3ad90ba1e4585470b6481a4dec, type: 3}
   Shower: {fileID: 3744300529662111050, guid: 89242c7229c6eda4d87008318bf034d9, type: 3}

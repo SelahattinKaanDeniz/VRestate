@@ -23193,7 +23193,7 @@ MonoBehaviour:
   leftClickedButtonName: 
   mainCamera: {fileID: 1081704281923046071}
   cameraRig: {fileID: 1081704281903854849}
-  movementSpeed: 0.05
+  movementSpeed: 0.07
   movementTime: 1.5
   cameraRotationAmount: 0.4
   cameraScrollSpeed: 20
@@ -41727,7 +41727,6 @@ MonoBehaviour:
     type: 3}
   Bathtub: {fileID: 7141368030007136623, guid: 5ec4cf3ad90ba1e4585470b6481a4dec, type: 3}
   Shower: {fileID: 3744300529662111050, guid: 89242c7229c6eda4d87008318bf034d9, type: 3}
-  Vanity3: {fileID: 0}
   Toilet: {fileID: 4073640349705554942, guid: 056fd149f9aa9c94185253239c40d15a, type: 3}
   Vanity1: {fileID: 7261456135864374567, guid: 2e5ee4133898c1b44a943ba086ad86a8, type: 3}
   Cube: {fileID: 4582951929869739942}

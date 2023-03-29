@@ -14,6 +14,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     public GameObject settingsMenu;
     public MeshRenderer rend;
     public Material material;
+    bool isInteractionOpen = false;
 
     public  static string clickedButtonName = "";
     public string leftClickedButtonName;
@@ -102,6 +103,21 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     GameObject endPole;
     GameObject wall;
     public GameObject wallPrefab;
+
+    // Dynamic Wall Creation
+    bool creatingFloor = false;
+    bool deleteAfterFloorHold = false;
+    GameObject startFloor;
+    GameObject endFloor;
+    GameObject floor;
+    public GameObject floorPrefab;
+
+
+
+    /*Vector3 prevMousePosition;
+    public float sizingFactor = 0.5f;
+    Vector3 minimumScale = new Vector3(0.2f, 1.0f, 0.2f);*/
+
 
     //Bathroom
     public GameObject Bathtub;
@@ -819,6 +835,115 @@ public class ItemMenuButtonFunctions : MonoBehaviour
         wall.transform.localScale = new Vector3(wall.transform.localScale.x, wall.transform.localScale.y, (2*distance-1f)*(startPole.transform.localScale.z));
         //wall.transform.localScale = new Vector3(wall.transform.localScale.x, wall.transform.localScale.y, (2*distance-1)*startPole.transform.localScale.z);
     }
+
+    ///////////////////////////////////////////////
+    void SetStartFloor()
+    {
+        creatingFloor = true;
+        deleteAfterFloorHold = false;
+        followmouse = false;
+        startFloor = Instantiate(floorPrefab, new Vector3(4f, 10f, -18f), ObjectFollowsMouse.transform.rotation);
+        endFloor = Instantiate(floorPrefab, new Vector3(1000f, 10f, 1000f), startFloor.transform.rotation);
+        floor = (GameObject)Instantiate(floorPrefab, new Vector3(1000f, 10f, 1000f), Quaternion.identity);
+        startFloor.AddComponent<BoxCollider>();
+        endFloor.AddComponent<BoxCollider>();
+        floor.AddComponent<BoxCollider>();
+
+        int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
+        startFloor.layer = LayerIgnoreRaycast;
+        endFloor.layer = LayerIgnoreRaycast;
+        floor.layer = LayerIgnoreRaycast;
+
+        ObjectFollowsMouse.transform.position = new Vector3(1000, 1000, 1000);
+
+        //Vector3 mousepos = getWorldPoint();
+        //startPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
+
+        RaycastHit pos = getWorldPoint();
+
+        BoxCollider b = startFloor.GetComponent<BoxCollider>();
+
+        Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(pos);
+        //Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
+        Vector3 objectposition = new Vector3(a.x + 0.25f, a.y , a.z + 0.25f);
+        startFloor.transform.position = objectposition;
+
+        //startPole.transform.position = new Vector3(mousepos.x, mousepos.y, mousepos.z);
+
+        //Destroy(ObjectFollowsMouse);
+
+    }
+    void setEndFloor()
+    {
+        creatingFloor = false;
+
+        // Vector3 mousepos = getWorldPoint();
+        // endPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
+
+        RaycastHit pos = getWorldPoint();
+
+        BoxCollider b = endFloor.GetComponent<BoxCollider>();
+
+        Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(pos);
+        //Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
+        Vector3 objectposition = new Vector3(a.x + 0.25f, a.y , a.z + 0.25f);
+        endFloor.transform.position = objectposition;
+        startFloor.AddComponent<Rigidbody>();
+        startFloor.GetComponent<Rigidbody>().isKinematic = true;
+        endFloor.AddComponent<Rigidbody>();
+        endFloor.GetComponent<Rigidbody>().isKinematic = true;
+        floor.AddComponent<Rigidbody>();
+        floor.GetComponent<Rigidbody>().isKinematic = true;
+
+
+
+        //endPole.transform.position = new Vector3(mousepos.x, mousepos.y, mousepos.z);
+
+        /*for (int i = 0; i < itemModelCount.Length; i++)
+        {
+            itemModelCount[i] = 0;
+        }*/
+        foundcount = false;
+        Destroy(ObjectFollowsMouse);
+        followmouse = true;
+
+        int LayerDefault = LayerMask.NameToLayer("Default");
+        startFloor.layer = LayerDefault;
+        endFloor.layer = LayerDefault;
+        floor.layer = LayerDefault;
+
+
+
+    }
+    void adjustFloor()
+    {
+        //Vector3 mousepos = getWorldPoint();
+        //endPole.transform.position = new Vector3(mousepos.x, mousepos.y + wallPrefab.transform.localScale.y / 2, mousepos.z);
+
+        RaycastHit pos = getWorldPoint();
+
+        BoxCollider b = endFloor.GetComponent<BoxCollider>();
+
+        Vector3 a = BuildingSystem.current.SnapCoordinateToGrid(pos);
+        //Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
+        Vector3 objectposition = new Vector3(a.x + 0.25f, a.y, a.z + 0.25f);
+        endFloor.transform.position = objectposition;
+
+
+
+        // endPole.transform.position = new Vector3(mousepos.x, mousepos.y, mousepos.z);
+        startFloor.transform.LookAt(endFloor.transform.position);
+        endFloor.transform.LookAt(startFloor.transform.position);
+        //endPole.transform.rotation = new Quaternion(startPole.transform.rotation.x, startPole.transform.rotation.y, startPole.transform.rotation.z, startPole.transform.rotation.w);
+
+        float distance = Vector3.Distance(startFloor.transform.position, endFloor.transform.position);
+        //Debug.Log(distance);
+        floor.transform.position = startFloor.transform.position + distance / 2 * startFloor.transform.forward;
+        floor.transform.rotation = startFloor.transform.rotation;
+        floor.transform.localScale = new Vector3(floor.transform.localScale.x, floor.transform.localScale.y, (2 * distance - 1f) * (startFloor.transform.localScale.z));
+        //wall.transform.localScale = new Vector3(wall.transform.localScale.x, wall.transform.localScale.y, (2*distance-1)*startPole.transform.localScale.z);
+    }
+
     RaycastHit getWorldPoint()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
@@ -1324,6 +1449,34 @@ public class ItemMenuButtonFunctions : MonoBehaviour
 
 
                 }
+                else if (ObjectFollowsMouse.name == "Floor(Clone)")
+                {
+
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        Debug.Log("START");
+                        SetStartFloor();
+                    }
+                    else if ((Input.GetMouseButtonUp(0)))
+                    {
+                        if (deleteAfterFloorHold == false)
+                        {
+                            Debug.Log("END");
+                            setEndFloor();
+                        }
+                    }
+                    else
+                    {
+
+                        Debug.Log("ELSE");
+                        if (creatingFloor == true && deleteAfterFloorHold == false)
+                        {
+                            Debug.Log("ADJUST");
+                            adjustFloor();
+                        }
+                    }
+
+                }
                 else
                 {
                     if (Input.GetMouseButtonDown(0))
@@ -1404,6 +1557,26 @@ public class ItemMenuButtonFunctions : MonoBehaviour
 
                         
                     }
+                    else if (ObjectFollowsMouse.name == "Floor(Clone)")
+                    {
+
+                        if (creatingFloor == false)
+                        {
+                            Destroy(ObjectFollowsMouse);
+                            followmouse = true;
+                        }
+                        else
+                        {
+                            deleteAfterFloorHold = true;
+                            Destroy(startFloor);
+                            Destroy(endFloor);
+                            Destroy(floor);
+                            Destroy(ObjectFollowsMouse);
+                            followmouse = true;
+                        }
+
+
+                    }
                     else
                     {
                         Destroy(ObjectFollowsMouse);
@@ -1437,8 +1610,9 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                     Debug.Log(sizeMenu.transform.position + " sizemenuposition");
                     if (raycastHit.collider.tag == "3DModel" && (sizeMenu.transform.position == new Vector3(3960f,3540f,3000f)) && settingsMenu.active == false && IsMouseHoveringOnButton.onButton == false)
                     {
+                        //isInteractionOpen = true;
                         Selected3DObject = raycastHit.transform.gameObject;
-                        ObjectFollowsMouse = Selected3DObject;  // BURA CLIENTTAN SONRA EKLENDÝ
+                        //ObjectFollowsMouse = Selected3DObject;  // BURA CLIENTTAN SONRA EKLENDÝ
                         Debug.Log(Selected3DObject + "selected 3d object");
                         InteractionCanvas.SetActive(true);
 
@@ -1458,6 +1632,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                             if (Input.GetMouseButtonDown(0))
                             {
                                 InteractionCanvas.SetActive(false);
+                                //isInteractionOpen=false;
                             }
                         }
                     }
