@@ -104,9 +104,7 @@ function CreateEstatePage() {
     else{
       console.log("nooo")
     }
-    if(!title || !price || !room_type|| !m2|| !coordinates ||
-      !bathroomCount || !floors || !isFurnished || !buildingAge || 
-      !balconyCount || !buildingFees){
+    if(!title || !price || !m2|| !coordinates  || !buildingAge  || !buildingFees){
   
       setIsError(true);
     }
