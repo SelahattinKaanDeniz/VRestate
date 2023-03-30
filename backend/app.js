@@ -466,6 +466,49 @@ app.get('/checkLocation', (req, res) => {
 
 })
 
+app.post('/unity/assignId', (req, res) => {
+    let id = Math.floor(100000 + Math.random() * 900000);
+    let query = 'select id from vr_model'
+    connection.query(query, (error, results, fields) => {
+        console.log(1)
+        console.log(results)
+        if (error) {
+            res.statusMessage = 'Database Query Error';
+            res.status(500).send({ message: error });
+            return;
+        }
+        let flag = true;
+        while (flag) {
+            console.log('while')
+            for (let i = 0; i < results.length; i++) {
+                console.log(i +' i')
+                console.log(results[i])
+                if (id == results[i].id) {
+                    console.log('aynı id denk geldi tekrar.')
+                    flag = true;
+                    id = Math.floor(100000 + Math.random() * 900000);
+                    break;
+                }
+                if(i == results.length-1){
+                    flag = false;
+                }
+            }
+        }
+        query = 'insert into vr_model(id, model) values(' + id + ',null)'
+        connection.query(query, (error, results, fields) => {
+            if (error) {
+                res.statusMessage = 'Database Query Error';
+                res.status(500).send({ message: error });
+                return;
+            }
+            res.status(200).send({ message: 'VR ID successfully created.', id: id })
+        })
+    })
+
+
+
+});
+
 app.post('/unity/save', (req, res) => {
     if (req.query.id == null) {
         res.status(400).send({ message: 'ID cannot be null!' });
@@ -501,14 +544,14 @@ app.get('/unity/load', (req, res) => {
         res.status(400).send({ message: 'ID cannot be null!' });
         return;
     }
-    let query = 'select * from vr_model where id = '+req.query.id;
-    connection.query(query, (error,results,fields) => {
+    let query = 'select * from vr_model where id = ' + req.query.id;
+    connection.query(query, (error, results, fields) => {
         if (error) {
             res.statusMessage = 'Database Query Error';
             res.status(500).send({ message: error });
             return;
         }
-        if(results.length == 0){
+        if (results.length == 0) {
             res.status(400).send({ message: 'VR model does not exist' });
             return;
         }
