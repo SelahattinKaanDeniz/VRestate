@@ -86,6 +86,7 @@ function CreateEstatePage() {
 
   const  clickSubmit = async (e)=>{
     e.preventDefault();
+    let head_photo_id = "";
     if(image){
       const data = new FormData();
       data.append("file", image);
@@ -93,15 +94,13 @@ function CreateEstatePage() {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         body: data, // body data type must match "Content-Type" header
       });
-      const data2 = await imageResponse.json();
-      console.log(data2);
-      return;
+      const response_data = await imageResponse.json();
+      head_photo_id= response_data.id;
     }
     else{
       console.log("nooo")
     }
     if(!title || !price || !m2|| !coordinates  || !buildingAge  || !buildingFees){
-  
       setIsError(true);
     }
     else{
@@ -150,6 +149,7 @@ function CreateEstatePage() {
           ilce:"",
           owner_id:profile.id,
           buildingFloors:4,
+          head_photo_id,
         }
         const response = await fetch('http://localhost:5002/estate/create', {
           method: "POST", // *GET, POST, PUT, DELETE, etc.

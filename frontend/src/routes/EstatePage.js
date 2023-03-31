@@ -36,6 +36,7 @@ function EstatePage() {
   const [buildingAge, setBuildingAge] = useState(state.estate.buildingAge);
   const [balconyCount, setBalconyCount] = useState(state.estate.balconyCount);
   const [buildingFees, setBuildingFees] = useState(state.estate.buildingFees);
+  const [head_photo_id, setHead_photo_id] = useState(state.estate.head_photo_id);
   const [isError, setIsError] = useState(false);
 
   const [m2Edit, setM2Edit] = useState(false);
@@ -48,8 +49,19 @@ function EstatePage() {
   const [room_typeEdit, setRoom_typeEdit] = useState(false);
   const [priceEdit, setPriceEdit] = useState(false);
   const [titleEdit, setTitleEdit] = useState(false);
-  // const [image, setImage] = useState(null);
+  const [image, setImage] = useState(null);
 
+  useEffect( ()=>{
+    async function fetchData(){
+      if(head_photo_id){
+        const response = await fetch("http://localhost:5002/getImage?id="+head_photo_id);
+        const data= await response.blob();
+        const imageObjectURL = URL.createObjectURL(data);
+        setImage(imageObjectURL);
+      }
+    }
+    fetchData();
+  },[])
   const { id } = useParams();// estate ID
   const { profile } = useAuth();
   const handleEdit = (buttonType) =>{
@@ -240,6 +252,7 @@ function EstatePage() {
         <MarkerF position={{lat:parseFloat(coordX) , lng:parseFloat(coordY)}}></MarkerF>
       </GoogleMap> : <></>
     }
+    {image? <img src={image}></img> : ""}
     <div style={{display:"flex",margin:"0 auto", flexDirection:"column",maxWidth:"800px", justifyContent:"center", alignItems:"center",}}>
     <div style={{display:"flex", flexDirection:"row",justifyContent:"center",alignItems:"center", marginTop:"1rem", gap:"1rem"}}>
     
