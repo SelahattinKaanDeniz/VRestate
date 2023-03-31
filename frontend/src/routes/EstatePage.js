@@ -122,60 +122,76 @@ function EstatePage() {
       setIsError(true);
     }
     else{
-      let val="";
-      let type="";
-      if(buttonType === "m2"){
-        setM2Edit(false);
-        val=m2;
-        type="m2";
-      }
-      else if(buttonType === "bathroomCount"){
-        setBathroomCountEdit(false);
-        val=bathroomCount;
-        type="bathroomCount";
-      }
-      else if(buttonType === "title"){
-        setTitleEdit(false);
-        val=title;
-        type="title";
-      }
-      else if(buttonType === "price"){
-        setPriceEdit(false);
-        val=price;
-        type="price";
-      }
-      else if(buttonType === "room_type"){
-        setRoom_typeEdit(false);
-        val=room_type;
-        type="room_type";
-      }
-      else if(buttonType === "floors"){
-        setFloorsEdit(false);
-        val=floors;
-        type="floors";
-      }
-      else if(buttonType === "isFurnished"){
-        setIsFurnishedEdit(false);
-        val=isFurnished;
-        type=m2;
-      }
-      else if(buttonType === "buildingAge"){
-        setBuildingAgeEdit(false);
-        val=buildingAge;
-        type="buildingAge";
-      }
-      else if(buttonType === "balconyCount"){
-        setBalconyCountEdit(false);
-        val=balconyCount;
-        type="balconyCount";
-      }
-      else if(buttonType === "buildingFees"){
-        setBuildingFeesEdit(false);
-        val=buildingFees;
-        type="buildingFees";
-      }
+      // let val="";
+      // let type="";
+      // if(buttonType === "m2"){
+      //   setM2Edit(false);
+      //   val=m2;
+      //   type="m2";
+      // }
+      // else if(buttonType === "bathroomCount"){
+      //   setBathroomCountEdit(false);
+      //   val=bathroomCount;
+      //   type="bathroomCount";
+      // }
+      // else if(buttonType === "title"){
+      //   setTitleEdit(false);
+      //   val=title;
+      //   type="title";
+      // }
+      // else if(buttonType === "price"){
+      //   setPriceEdit(false);
+      //   val=price;
+      //   type="price";
+      // }
+      // else if(buttonType === "room_type"){
+      //   setRoom_typeEdit(false);
+      //   val=room_type;
+      //   type="room_type";
+      // }
+      // else if(buttonType === "floors"){
+      //   setFloorsEdit(false);
+      //   val=floors;
+      //   type="floors";
+      // }
+      // else if(buttonType === "isFurnished"){
+      //   setIsFurnishedEdit(false);
+      //   val=isFurnished;
+      //   type=m2;
+      // }
+      // else if(buttonType === "buildingAge"){
+      //   setBuildingAgeEdit(false);
+      //   val=buildingAge;
+      //   type="buildingAge";
+      // }
+      // else if(buttonType === "balconyCount"){
+      //   setBalconyCountEdit(false);
+      //   val=balconyCount;
+      //   type="balconyCount";
+      // }
+      // else if(buttonType === "buildingFees"){
+      //   setBuildingFeesEdit(false);
+      //   val=buildingFees;
+      //   type="buildingFees";
+      // }
       const data={
-        [type]:val
+        title,
+        price,
+        il: location_il,
+        coordX,
+        coordY,
+        room_type,
+        m2,
+        vr_id,
+        id,
+        owner_id,
+        buildingAge,
+        floors,
+        balconyCount,
+        bathroomCount,
+        isFurnished,
+        buildingFees,
+
       }
       const response = await fetch('http://localhost:5002/estate/update?id='+id+'&ownerId='+owner_id, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -187,7 +203,8 @@ function EstatePage() {
         referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         body: JSON.stringify(data), // body data type must match "Content-Type" header
       });
-      console.log(response);
+      const data_response = await response.json();
+      console.log(data_response);
       setIsError(false);
     }
 

@@ -90,7 +90,7 @@ app.get('/imageupload', function (req, res) {
     return res.end();
 })
 
-app.post('/upload', upload.single("image"), (req, res) => {
+app.post('/upload', upload.single("file"), (req, res) => {
     if (!req.file) {
         console.log("No file upload");
     } else {

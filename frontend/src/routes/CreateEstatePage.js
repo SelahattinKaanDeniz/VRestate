@@ -91,14 +91,10 @@ function CreateEstatePage() {
       data.append("file", image);
       const imageResponse = await fetch('http://localhost:5002/upload', {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        headers: {
-          "Content-Type": "application/json",
-        },
-        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         body: data, // body data type must match "Content-Type" header
       });
-      console.log(imageResponse);
+      const data2 = await imageResponse.json();
+      console.log(data2);
       return;
     }
     else{
@@ -190,7 +186,7 @@ function CreateEstatePage() {
 
           <Form.Group controlId="file"  className="mb-3">
           <Form.Label>Upload Image</Form.Label>
-          <Form.Control name="image" onChange={(e)=>setImage(e.target.files[0])}  type="file" />
+          <Form.Control type="file" name="image" accept="image/*"onChange={(e)=>setImage(e.target.files[0])} />
          </Form.Group>
 
           <Form.Group className="mb-4" size="sm">
