@@ -122,58 +122,36 @@ function EstatePage() {
       setIsError(true);
     }
     else{
-      // let val="";
-      // let type="";
-      // if(buttonType === "m2"){
-      //   setM2Edit(false);
-      //   val=m2;
-      //   type="m2";
-      // }
-      // else if(buttonType === "bathroomCount"){
-      //   setBathroomCountEdit(false);
-      //   val=bathroomCount;
-      //   type="bathroomCount";
-      // }
-      // else if(buttonType === "title"){
-      //   setTitleEdit(false);
-      //   val=title;
-      //   type="title";
-      // }
-      // else if(buttonType === "price"){
-      //   setPriceEdit(false);
-      //   val=price;
-      //   type="price";
-      // }
-      // else if(buttonType === "room_type"){
-      //   setRoom_typeEdit(false);
-      //   val=room_type;
-      //   type="room_type";
-      // }
-      // else if(buttonType === "floors"){
-      //   setFloorsEdit(false);
-      //   val=floors;
-      //   type="floors";
-      // }
-      // else if(buttonType === "isFurnished"){
-      //   setIsFurnishedEdit(false);
-      //   val=isFurnished;
-      //   type=m2;
-      // }
-      // else if(buttonType === "buildingAge"){
-      //   setBuildingAgeEdit(false);
-      //   val=buildingAge;
-      //   type="buildingAge";
-      // }
-      // else if(buttonType === "balconyCount"){
-      //   setBalconyCountEdit(false);
-      //   val=balconyCount;
-      //   type="balconyCount";
-      // }
-      // else if(buttonType === "buildingFees"){
-      //   setBuildingFeesEdit(false);
-      //   val=buildingFees;
-      //   type="buildingFees";
-      // }
+      if(buttonType === "m2"){
+        setM2Edit(false);
+      }
+      else if(buttonType === "bathroomCount"){
+        setBathroomCountEdit(false);
+      }
+      else if(buttonType === "title"){
+        setTitleEdit(false);
+      }
+      else if(buttonType === "price"){
+        setPriceEdit(false);
+      }
+      else if(buttonType === "room_type"){
+        setRoom_typeEdit(false);
+      }
+      else if(buttonType === "floors"){
+        setFloorsEdit(false);
+      }
+      else if(buttonType === "isFurnished"){
+        setIsFurnishedEdit(false);
+      }
+      else if(buttonType === "buildingAge"){
+        setBuildingAgeEdit(false);
+      }
+      else if(buttonType === "balconyCount"){
+        setBalconyCountEdit(false);
+      }
+      else if(buttonType === "buildingFees"){
+        setBuildingFeesEdit(false);
+      }
       const data={
         title,
         price,
