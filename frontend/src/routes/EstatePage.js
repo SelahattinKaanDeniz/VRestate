@@ -13,6 +13,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import DoneIcon from '@mui/icons-material/Done';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Image from 'react-bootstrap/esm/Image';
 
 const containerStyle = {
   width: '100%',
@@ -37,6 +38,7 @@ function EstatePage() {
   const [balconyCount, setBalconyCount] = useState(state.estate.balconyCount);
   const [buildingFees, setBuildingFees] = useState(state.estate.buildingFees);
   const [head_photo_id, setHead_photo_id] = useState(state.estate.head_photo_id);
+  const [image, setImage] = useState(state.estate.image);
   const [isError, setIsError] = useState(false);
 
   const [m2Edit, setM2Edit] = useState(false);
@@ -49,18 +51,9 @@ function EstatePage() {
   const [room_typeEdit, setRoom_typeEdit] = useState(false);
   const [priceEdit, setPriceEdit] = useState(false);
   const [titleEdit, setTitleEdit] = useState(false);
-  const [image, setImage] = useState(null);
 
   useEffect( ()=>{
-    async function fetchData(){
-      if(head_photo_id){
-        const response = await fetch("http://localhost:5002/getImage?id="+head_photo_id);
-        const data= await response.blob();
-        const imageObjectURL = URL.createObjectURL(data);
-        setImage(imageObjectURL);
-      }
-    }
-    fetchData();
+    
   },[])
   const { id } = useParams();// estate ID
   const { profile } = useAuth();
@@ -181,7 +174,7 @@ function EstatePage() {
         bathroomCount,
         isFurnished,
         buildingFees,
-
+        head_photo_id,
       }
       const response = await fetch('http://localhost:5002/estate/update?id='+id+'&ownerId='+owner_id, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -252,7 +245,6 @@ function EstatePage() {
         <MarkerF position={{lat:parseFloat(coordX) , lng:parseFloat(coordY)}}></MarkerF>
       </GoogleMap> : <></>
     }
-    {image? <img src={image}></img> : ""}
     <div style={{display:"flex",margin:"0 auto", flexDirection:"column",maxWidth:"800px", justifyContent:"center", alignItems:"center",}}>
     <div style={{display:"flex", flexDirection:"row",justifyContent:"center",alignItems:"center", marginTop:"1rem", gap:"1rem"}}>
     
@@ -269,14 +261,15 @@ function EstatePage() {
     }
      
     {/* <div style={{fontSize:"20px", color:"#5a79c8"}}>${price} </div> */}
-      
+    
     </div>
+    <Image style={{ maxHeight:"400px", maxWidth:"400px",margin:"20px"}} src={image} rounded={true}/>
     {
       isError && 
         <Alert style={{marginTop:"1rem", textAlign:"center" }} variant="danger">Please Fill All Areas and Select from Map!
         </Alert>
      }
-    <Table striped bordered hover>
+    <Table striped bordered hover style={{marginBottom:"80px"}}>
      
       <tbody>
         {

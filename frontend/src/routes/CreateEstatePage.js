@@ -130,27 +130,53 @@ function CreateEstatePage() {
           return ""
         }
       ).then(async (il)=>{
-        const data={
-          il,
-          title,
-          price,
-          room_type,
-          m2,
-          coordX:coordinates.lat,
-          coordY:coordinates.lng,
-          bathroomCount,
-          floors,
-          isFurnished,
-          buildingAge , 
-          balconyCount,
-          buildingFees,
-          estate_type:"satilik",
-          category:"daire",
-          ilce:"",
-          owner_id:profile.id,
-          buildingFloors:4,
-          head_photo_id,
+        let data={};
+        if(head_photo_id){
+          data={
+            il,
+            title,
+            price,
+            room_type,
+            m2,
+            coordX:coordinates.lat,
+            coordY:coordinates.lng,
+            bathroomCount,
+            floors,
+            isFurnished,
+            buildingAge , 
+            balconyCount,
+            buildingFees,
+            estate_type:"satilik",
+            category:"daire",
+            ilce:"",
+            owner_id:profile.id,
+            buildingFloors:4,
+            head_photo_id,
+          }
         }
+        else{
+          data={
+            il,
+            title,
+            price,
+            room_type,
+            m2,
+            coordX:coordinates.lat,
+            coordY:coordinates.lng,
+            bathroomCount,
+            floors,
+            isFurnished,
+            buildingAge , 
+            balconyCount,
+            buildingFees,
+            estate_type:"satilik",
+            category:"daire",
+            ilce:"",
+            owner_id:profile.id,
+            buildingFloors:4,
+          }
+        }
+        
         const response = await fetch('http://localhost:5002/estate/create', {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached

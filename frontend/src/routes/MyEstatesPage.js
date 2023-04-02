@@ -7,7 +7,6 @@ export default function Estate(){
         <>
           <Header/>
           <Listing myEstates={true} /> 
-          {/* here give the id for requesting backend */}
         </>
     );
 }
