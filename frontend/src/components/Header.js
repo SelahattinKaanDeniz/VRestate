@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useAuth } from "../utils/Auth";
-import Avatar from '@mui/material/Avatar';
+import UserAvatar from './UserAvatar';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import CustomToggle from './CustomToggle';
@@ -26,7 +26,7 @@ export default function Header(){
       
         <Dropdown>
         <Dropdown.Toggle as={ CustomToggle}>
-        <Avatar>{avatar}</Avatar>
+        <UserAvatar/>
       </Dropdown.Toggle>
           <Dropdown.Menu  > 
         <Dropdown.Item href="/profile">Profile</Dropdown.Item>

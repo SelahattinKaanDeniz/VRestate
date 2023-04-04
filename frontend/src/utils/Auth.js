@@ -18,7 +18,8 @@ export const AuthProvider = ({ children }) => {
       id:profile_information.sub,
       name: profile_information.given_name,
       surname: profile_information.family_name,
-      mail: profile_information.email
+      mail: profile_information.email,
+      other: profile_information,
     };
     setProfile(profile);
     console.log(profile);
