@@ -79,6 +79,15 @@ public class ClientButtonFunctions : MonoBehaviour
     public GameObject TV;
     public static Vector3 TVSize;
 
+    public bool cornerCabinetSizeSelected = false;
+    public bool dishWasherSizeSelected = false;
+    public bool fridge1SizeSelected = false;
+    public bool fridge2SizeSelected = false;
+    public bool rangeHoodSizeSelected = false;
+    public bool stoveSizeSelected = false;
+    public bool tvSizeSelected = false;
+    
+
     //Living Room
     public GameObject Sofa1;
     public static Vector3 Sofa1Size;
@@ -111,6 +120,20 @@ public class ClientButtonFunctions : MonoBehaviour
     public GameObject Bench;
     public static Vector3 BenchSize;
 
+    public bool sofa1SizeSelected = false;
+    public bool sofa4SizeSelected = false;
+    public bool chair2SizeSelected = false;
+    public bool chair3SizeSelected = false;
+    public bool barCabinetSizeSelected = false;
+    public bool coffeeTable1SizeSelected = false;
+    public bool coffeeTable2SizeSelected = false;
+    public bool modularCabinetSizeSelected = false;
+    public bool shelf1SizeSelected = false;
+    public bool tvStandSizeSelected = false;
+    public bool table1SizeSelected = false;
+    public bool table2SizeSelected = false;
+    public bool benchSizeSelected = false;
+
     //Bathroom
     //public GameObject CornerCabinet;
     //public static Vector3 CornerCabinetSize;
@@ -118,6 +141,9 @@ public class ClientButtonFunctions : MonoBehaviour
     public static Vector3 HamperSize;
     public GameObject TowelRack2;
     public static Vector3 TowelRack2Size;
+
+    public bool hamperSizeSelected = false;
+    public bool towelRack2SizeSelected = false;
 
     //Study Room
     public GameObject ComputerTable;
@@ -130,6 +156,11 @@ public class ClientButtonFunctions : MonoBehaviour
     //public static Vector3 Shelf1Size;
     public GameObject Shelf2;
     public static Vector3 Shelf2Size;
+
+    public bool computerTableSizeSelected = false;
+    public bool computerSizeSelected = false;
+    public bool chairStudySizeSelected = false;
+    public bool shelf2SizeSelected = false;
 
     //Bedroom
     public GameObject Bed1;
@@ -147,6 +178,14 @@ public class ClientButtonFunctions : MonoBehaviour
     public GameObject Nightstand3;
     public static Vector3 Nightstand3Size;
 
+    public bool bed1SizeSelected = false;
+    public bool bed2SizeSelected = false;
+    public bool closetSizeSelected = false;
+    public bool dresserSizeSelected = false;
+    public bool nightstand1SizeSelected = false;
+    public bool nightstand2SizeSelected = false;
+    public bool nightstand3SizeSelected = false;
+
     //Decoration
     public GameObject Carpet;
     public static Vector3 CarpetSize;
@@ -163,6 +202,14 @@ public class ClientButtonFunctions : MonoBehaviour
     public GameObject WallShelf;
     public static Vector3 WallShelfSize;
 
+    public bool carpetSizeSelected = false;
+    public bool rugSizeSelected = false;
+    public bool mirrorSizeSelected = false;
+    public bool painting3SizeSelected = false;
+    public bool plantSizeSelected = false;
+    public bool wallShelfSizeSelected = false;
+    
+
     //Lamp
     public GameObject FloorLamp1;
     public static Vector3 FloorLamp1Size;
@@ -175,6 +222,11 @@ public class ClientButtonFunctions : MonoBehaviour
     public GameObject WallLamp2;
     public static Vector3 WallLamp2Size;
 
+    public bool floorLamp1SizeSelected = false;
+    public bool floorLamp2SizeSelected = false;
+    public bool tableLampSizeSelected = false;
+   
+
     //Dining Room
     public GameObject DTable1;
     public static Vector3 DTable1Size;
@@ -182,6 +234,10 @@ public class ClientButtonFunctions : MonoBehaviour
     public static Vector3 DTable2Size;
     public GameObject Chair1;
     public static Vector3 Chair1Size;
+
+    public bool dTable1SizeSelected = false;
+    public bool dTable2SizeSelected = false;
+    public bool chair1SizeSelected = false;
 
 
     public bool foundcount = false;
@@ -508,8 +564,10 @@ public class ClientButtonFunctions : MonoBehaviour
     {
         leftClickedButtonName = EventSystem.current.currentSelectedGameObject.name;
         foundcount = false;
+        int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
+        
 
-        if (leftClickedButtonName == "Corner_Cabinet")
+        if (leftClickedButtonName == "Corner_Cabinet" && cornerCabinetSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -525,10 +583,14 @@ public class ClientButtonFunctions : MonoBehaviour
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
 
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Dish_Washer")
+        else if (leftClickedButtonName == "Dish_Washer" && dishWasherSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -542,10 +604,15 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(DishWasher, new Vector3(4f, 2f, -18f), Quaternion.Euler(new Vector3(-90, 90, 0)));
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.001f, 0.001f, 0.001f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
+
         }       
-        else if (leftClickedButtonName == "Fridge_1")
+        else if (leftClickedButtonName == "Fridge_1" && fridge1SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -559,10 +626,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Fridge1, new Vector3(4f, 2f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Fridge_2")
+        else if (leftClickedButtonName == "Fridge_2" && fridge2SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -576,10 +647,15 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Fridge2, new Vector3(4f, 2f, -18f), Quaternion.Euler(new Vector3(-90, 90, 0)));
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.001f, 0.001f, 0.001f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
+
         }
-        else if (leftClickedButtonName == "Range_Hood")
+        else if (leftClickedButtonName == "Range_Hood" && rangeHoodSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -593,10 +669,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(RangeHood, new Vector3(4f, 2f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Stove")
+        else if (leftClickedButtonName == "Stove" && stoveSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -610,10 +690,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Stove, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "TV")
+        else if (leftClickedButtonName == "TV" && tvSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -627,10 +711,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(TV, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Sofa_1")
+        else if (leftClickedButtonName == "Sofa_1" && sofa1SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -644,10 +732,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Sofa1, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Sofa_4")
+        else if (leftClickedButtonName == "Sofa_4" && sofa4SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -661,10 +753,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Sofa4, new Vector3(4f, 10f, -18f), Quaternion.Euler(new Vector3(-90, 90, 0)));
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.001f, 0.001f, 0.001f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Chair_2")
+        else if (leftClickedButtonName == "Chair_2" && chair2SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -678,10 +774,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Chair2, new Vector3(4f, 10f, -18f), Quaternion.Euler(new Vector3(-90, 90, 0)));
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.001f, 0.005f, 0.001f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Chair_3")
+        else if (leftClickedButtonName == "Chair_3" && chair3SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -695,10 +795,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Chair3, new Vector3(4f, 10f, -18f), Quaternion.Euler(new Vector3(-90, 90, 0)));
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = new Vector3(ObjectFollowsMouse.GetComponent<BoxCollider>().size.x - 0.001f, ObjectFollowsMouse.GetComponent<BoxCollider>().size.y / 1.5f, ObjectFollowsMouse.GetComponent<BoxCollider>().size.z - 0.001f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Bar_Cabinet")
+        else if (leftClickedButtonName == "Bar_Cabinet" && barCabinetSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -712,10 +816,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(BarCabinet, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Coffee_Table_1")
+        else if (leftClickedButtonName == "Coffee_Table_1" && coffeeTable1SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -729,10 +837,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(CoffeeTable1, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Coffee_Table_2")
+        else if (leftClickedButtonName == "Coffee_Table_2" && coffeeTable2SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -746,10 +858,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(CoffeeTable2, new Vector3(4f, 10f, -18f), Quaternion.Euler(new Vector3(-90, 90, 0)));
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.001f, 0.001f, 0.001f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Modular_Cabinet")
+        else if (leftClickedButtonName == "Modular_Cabinet" && modularCabinetSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -763,10 +879,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(ModularCabinet, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Shelf_1")
+        else if (leftClickedButtonName == "Shelf_1" && shelf1SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -780,10 +900,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Shelf1, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "TV_Stand_1")
+        else if (leftClickedButtonName == "TV_Stand_1" && tvStandSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -797,10 +921,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(TVStand, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Table_1")
+        else if (leftClickedButtonName == "Table_1" && table1SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -814,10 +942,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Table1, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Table_2")
+        else if (leftClickedButtonName == "Table_2" && table2SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -831,10 +963,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Table2, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Bench")
+        else if (leftClickedButtonName == "Bench" && benchSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -848,10 +984,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Bench, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Hamper")
+        else if (leftClickedButtonName == "Hamper" && hamperSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -865,10 +1005,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Hamper, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Towel_Rack_2")
+        else if (leftClickedButtonName == "Towel_Rack_2" && towelRack2SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -882,10 +1026,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(TowelRack2, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Computer_Table")
+        else if (leftClickedButtonName == "Computer_Table" && computerTableSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -899,10 +1047,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(ComputerTable, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Computer")
+        else if (leftClickedButtonName == "Computer" && computerSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -916,10 +1068,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Computer, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Chair_Study")
+        else if (leftClickedButtonName == "Chair_Study" && chairStudySizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -933,10 +1089,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(ChairStudy, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Shelf_2")
+        else if (leftClickedButtonName == "Shelf_2" && shelf2SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -950,10 +1110,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Shelf2, new Vector3(4f, 10f, -18f), Quaternion.Euler(new Vector3(-90, 90, 0)));
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.001f, 0.001f, 0.001f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Bed_1")
+        else if (leftClickedButtonName == "Bed_1" && bed1SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -967,10 +1131,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Bed1, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Bed_2")
+        else if (leftClickedButtonName == "Bed_2" && bed2SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -984,10 +1152,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Bed2, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Closet")
+        else if (leftClickedButtonName == "Closet" && closetSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1001,10 +1173,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Closet, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Dresser")
+        else if (leftClickedButtonName == "Dresser" && dresserSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1018,10 +1194,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Dresser, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Nightstand_1")
+        else if (leftClickedButtonName == "Nightstand_1" && nightstand1SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1035,10 +1215,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Nightstand1, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Nightstand_2")
+        else if (leftClickedButtonName == "Nightstand_2" && nightstand2SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1052,10 +1236,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Nightstand2, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Nightstand_3")
+        else if (leftClickedButtonName == "Nightstand_3" && nightstand3SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1069,10 +1257,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Nightstand3, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Carpet")
+        else if (leftClickedButtonName == "Carpet" && carpetSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1086,10 +1278,15 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Carpet, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = new Vector3(ObjectFollowsMouse.GetComponent<BoxCollider>().size.x, 0.01f, ObjectFollowsMouse.GetComponent<BoxCollider>().size.z);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Rug")
+        else if (leftClickedButtonName == "Rug" && rugSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1103,10 +1300,15 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Rug, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = new Vector3(ObjectFollowsMouse.GetComponent<BoxCollider>().size.x, 0.01f, ObjectFollowsMouse.GetComponent<BoxCollider>().size.z);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Wall_Shelf")
+        else if (leftClickedButtonName == "Wall_Shelf" && wallShelfSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1120,10 +1322,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(WallShelf, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Mirror")
+        else if (leftClickedButtonName == "Mirror" && mirrorSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1137,10 +1343,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Mirror, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Painting_3")
+        else if (leftClickedButtonName == "Painting_3" && painting3SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1154,10 +1364,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Painting3, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Plant")
+        else if (leftClickedButtonName == "Plant" && plantSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1171,10 +1385,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Plant, new Vector3(4f, 10f, -18f), Quaternion.Euler(new Vector3(-90, 90, 0)));
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.001f, 0.001f, 0.001f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Wine_Rack")
+        else if (leftClickedButtonName == "Wine_Rack" )
         {
             if (isButtonClicked == true)
             {
@@ -1188,10 +1406,15 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(WineRack, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = new Vector3(0.05f, ObjectFollowsMouse.GetComponent<BoxCollider>().size.y, ObjectFollowsMouse.GetComponent<BoxCollider>().size.z);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Floor_Lamp_1")
+        else if (leftClickedButtonName == "Floor_Lamp_1" && floorLamp1SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1205,10 +1428,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(FloorLamp1, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Floor_Lamp_2")
+        else if (leftClickedButtonName == "Floor_Lamp_2" && floorLamp2SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1222,10 +1449,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(FloorLamp2, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Table_Lamp")
+        else if (leftClickedButtonName == "Table_Lamp" && tableLampSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1239,8 +1470,12 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(TableLamp, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
         else if (leftClickedButtonName == "Wall_Lamp_1")
         {
@@ -1256,8 +1491,12 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(WallLamp1, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
         else if (leftClickedButtonName == "Wall_Lamp_2")
         {
@@ -1273,10 +1512,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(WallLamp2, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "D_Table_1")
+        else if (leftClickedButtonName == "D_Table_1" && dTable1SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1290,10 +1533,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(DTable1, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "D_Table_2")
+        else if (leftClickedButtonName == "D_Table_2" && dTable2SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1307,10 +1554,14 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(DTable2, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Chair_1")
+        else if (leftClickedButtonName == "Chair_1" && chair1SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -1324,14 +1575,21 @@ public class ClientButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Chair1, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
         
         //????
-        int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
-        ObjectFollowsMouse.layer = LayerIgnoreRaycast;
-        if (ObjectFollowsMouse.name == "NewDoor1(Clone)" || ObjectFollowsMouse.name == "NewDoor2(Clone)" || ObjectFollowsMouse.name == "NewWindow2(Clone)" || ObjectFollowsMouse.name == "Frame(Clone)" || ObjectFollowsMouse.name == "Rail(Clone)")
+        /*int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
+        ObjectFollowsMouse.layer = LayerIgnoreRaycast;*/
+
+        
+
+        /*if (ObjectFollowsMouse.name == "NewDoor1(Clone)" || ObjectFollowsMouse.name == "NewDoor2(Clone)" || ObjectFollowsMouse.name == "NewWindow2(Clone)" || ObjectFollowsMouse.name == "Frame(Clone)" || ObjectFollowsMouse.name == "Rail(Clone)")
         {
             ObjectFollowsMouse.AddComponent<BoxCollider>();
             ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
@@ -1343,10 +1601,10 @@ public class ClientButtonFunctions : MonoBehaviour
 
             }
 
-        }
-        else
-        {
-            ObjectFollowsMouse.AddComponent<BoxCollider>();
+        }*/
+        //else
+        //{
+        //ObjectFollowsMouse.AddComponent<BoxCollider>();
             /*if(ObjectFollowsMouse.name == "Modular_Cabinet(Clone)")
             {
                 ObjectFollowsMouse.GetComponent<BoxCollider>().size = new Vector3(2.191657f, 2.544047f, 0.6814618f);
@@ -1354,7 +1612,7 @@ public class ClientButtonFunctions : MonoBehaviour
                 
 
             }*/
-            if (ObjectFollowsMouse.name == "Sofa_4(Clone)" || ObjectFollowsMouse.name == "Shelf_2(Clone)" || ObjectFollowsMouse.name == "Chair_2(Clone)" || ObjectFollowsMouse.name == "Chair_3(Clone)" || ObjectFollowsMouse.name == "Fridge_2(Clone)" 
+            /*if (ObjectFollowsMouse.name == "Sofa_4(Clone)" || ObjectFollowsMouse.name == "Shelf_2(Clone)" || ObjectFollowsMouse.name == "Chair_2(Clone)" || ObjectFollowsMouse.name == "Chair_3(Clone)" || ObjectFollowsMouse.name == "Fridge_2(Clone)" 
                 || ObjectFollowsMouse.name == "Dish_Washer(Clone)" || ObjectFollowsMouse.name == "Coffee_Table_2(Clone)" || ObjectFollowsMouse.name == "Plant(Clone)")
             {
                 if (ObjectFollowsMouse.name == "Chair_2(Clone)")
@@ -1373,11 +1631,11 @@ public class ClientButtonFunctions : MonoBehaviour
             }
             else {
                 ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
-            }
-        }
+            }*/
+       // }
 
 
-        ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+       /* ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
         if (ObjectFollowsMouse.name == "Carpet(Clone)" || ObjectFollowsMouse.name == "Rug(Clone)")
         {
             ObjectFollowsMouse.GetComponent<BoxCollider>().size = new Vector3(ObjectFollowsMouse.GetComponent<BoxCollider>().size.x, 0.01f, ObjectFollowsMouse.GetComponent<BoxCollider>().size.z);
@@ -1386,7 +1644,7 @@ public class ClientButtonFunctions : MonoBehaviour
         {
             ObjectFollowsMouse.GetComponent<BoxCollider>().size = new Vector3(0.05f, ObjectFollowsMouse.GetComponent<BoxCollider>().size.y, ObjectFollowsMouse.GetComponent<BoxCollider>().size.z);
         }
-        buildingSystemObjectFollowMouse = ObjectFollowsMouse;
+        buildingSystemObjectFollowMouse = ObjectFollowsMouse;*/
         Debug.Log(buildingSystemObjectFollowMouse + " BUILDINGSYSTEMOBJECTFOLLOWSMOUSE");
 
 
@@ -1633,7 +1891,7 @@ public class ClientButtonFunctions : MonoBehaviour
 
                             if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 0f)
                             {
-                                Debug.Log("1. if");
+                                //Debug.Log("1. if");
                                 //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
                                 objectposition = new Vector3(a.x - 0.25f - 0.25f, a.y + 1.75f - gridposy / 200, a.z + gridposz / 200);
                                 //Debug.Log(" abc " + objectposition);
@@ -1642,19 +1900,19 @@ public class ClientButtonFunctions : MonoBehaviour
                             }
                             else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 90f)
                             {
-                                Debug.Log("2. if");
+                                //Debug.Log("2. if");
                                 //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
                                 objectposition = new Vector3(a.x + gridposz / 200, a.y + 1.75f - gridposy / 200, a.z + 0.25f + 0.25f);
                             }
                             else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 180f)
                             {
-                                Debug.Log("3. if");
+                                //Debug.Log("3. if");
                                 //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
                                 objectposition = new Vector3(a.x + 0.25f + 0.25f, a.y + 1.75f - gridposy / 200, a.z - gridposz / 200);
                             }
                             else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 270f)
                             {
-                                Debug.Log("4. if");
+                                //Debug.Log("4. if");
                                 //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
                                 objectposition = new Vector3(a.x - gridposz / 200, a.y + 1.75f - gridposy / 200, a.z - 0.25f - 0.25f);
                             }
@@ -1722,7 +1980,7 @@ public class ClientButtonFunctions : MonoBehaviour
                             //Debug.Log(a + " aaa");
                             //Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
                             Vector3 objectposition = Vector3.zero;
-                            Debug.Log(ObjectFollowsMouse.transform.eulerAngles.y + " obje rotation y");
+                            //Debug.Log(ObjectFollowsMouse.transform.eulerAngles.y + " obje rotation y");
                             float gridposx = 0;
                             float gridposy = 0;
                             float gridposz = 0;
@@ -1969,10 +2227,10 @@ public class ClientButtonFunctions : MonoBehaviour
 
                             if (ObjectFollowsMouse.name == "Sofa_4(Clone)" || ObjectFollowsMouse.name == "Shelf_2(Clone)" || ObjectFollowsMouse.name == "Chair_2(Clone)" || ObjectFollowsMouse.name == "Chair_3(Clone)" || ObjectFollowsMouse.name == "Fridge_2(Clone)"
                                 || ObjectFollowsMouse.name == "Dish_Washer(Clone)" || ObjectFollowsMouse.name == "Coffee_Table_2(Clone)" || ObjectFollowsMouse.name == "Plant(Clone)") {
-                                Debug.Log(ObjectFollowsMouse.transform.eulerAngles + " SOFA4 EULERANGLE");
+                                //Debug.Log(ObjectFollowsMouse.transform.eulerAngles + " SOFA4 EULERANGLE");
                                 if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y== 90f)
                                 {
-                                    Debug.Log("1. if");
+                                    //Debug.Log("1. if");
                                     //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
                                     objectposition = new Vector3(a.x - gridposx / 200, a.y + 0.06f, a.z + gridposz / 200);
                                     //Debug.Log(" abc " + objectposition);
@@ -1981,19 +2239,19 @@ public class ClientButtonFunctions : MonoBehaviour
                                 }
                                 else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 180f)
                                 {
-                                    Debug.Log("2. if");
+                                    //Debug.Log("2. if");
                                     //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
                                     objectposition = new Vector3(a.x + gridposz / 200, a.y + 0.06f, a.z + gridposx / 200);
                                 }
                                 else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 270f)
                                 {
-                                    Debug.Log("3. if");
+                                    //Debug.Log("3. if");
                                     //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
                                     objectposition = new Vector3(a.x + gridposx / 200, a.y + 0.06f, a.z - gridposz / 200);
                                 }
                                 else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 0f)
                                 {
-                                    Debug.Log("4. if");
+                                    //Debug.Log("4. if");
                                     //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
                                     objectposition = new Vector3(a.x - gridposz / 200, a.y + 0.06f, a.z - gridposx / 200);
                                 }
@@ -2002,7 +2260,7 @@ public class ClientButtonFunctions : MonoBehaviour
                             {
                                 if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 0f)
                                 {
-                                    Debug.Log("1. if");
+                                    //Debug.Log("1. if");
                                     //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
                                     objectposition = new Vector3(a.x - gridposx / 200, a.y + 0.06f, a.z + gridposz / 200);
                                     //Debug.Log(" abc " + objectposition);
@@ -2011,19 +2269,19 @@ public class ClientButtonFunctions : MonoBehaviour
                                 }
                                 else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 90f)
                                 {
-                                    Debug.Log("2. if");
+                                    //Debug.Log("2. if");
                                     //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
                                     objectposition = new Vector3(a.x + gridposz / 200, a.y + 0.06f, a.z + gridposx / 200);
                                 }
                                 else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 180f)
                                 {
-                                    Debug.Log("3. if");
+                                    //Debug.Log("3. if");
                                     //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
                                     objectposition = new Vector3(a.x + gridposx / 200, a.y + 0.06f, a.z - gridposz / 200);
                                 }
                                 else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 270f)
                                 {
-                                    Debug.Log("4. if");
+                                    //Debug.Log("4. if");
                                     //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
                                     objectposition = new Vector3(a.x - gridposz / 200, a.y + 0.06f, a.z - gridposx / 200);
                                 }
@@ -2127,9 +2385,9 @@ public class ClientButtonFunctions : MonoBehaviour
                         //ObjectFollowsMouse.AddComponent<BoxCollider>();
                         int LayerDefault = LayerMask.NameToLayer("Default");
                         ObjectFollowsMouse.layer = LayerDefault;
-                        Debug.Log(ObjectFollowsMouse.GetComponent<MeshRenderer>().bounds.size);
-                        Debug.Log(ObjectFollowsMouse.GetComponent<BoxCollider>().bounds.size);
-                        Debug.Log(cube.GetComponent<MeshRenderer>().bounds.size);
+                        //Debug.Log(ObjectFollowsMouse.GetComponent<MeshRenderer>().bounds.size);
+                        //Debug.Log(ObjectFollowsMouse.GetComponent<BoxCollider>().bounds.size);
+                        //Debug.Log(cube.GetComponent<MeshRenderer>().bounds.size);
 
 
                         //Böyle yapýnca NewDoor2 modeli kendi içinde collision veriyor prefabý düzenle
@@ -2206,7 +2464,7 @@ public class ClientButtonFunctions : MonoBehaviour
                 //Debug.Log(raycastHit.point);
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Debug.Log(sizeMenu.transform.position + " sizemenuposition");
+                    //Debug.Log(sizeMenu.transform.position + " sizemenuposition");
                     if (raycastHit.collider.tag == "3DModel" && (sizeMenu.transform.position == new Vector3(3960f, 3540f, 3000f)) && settingsMenu.active == false && IsMouseHoveringOnButton.onButton == false)
                     {
                         Selected3DObject = raycastHit.transform.gameObject;

@@ -1,10 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
-
-using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class IsMouseHoveringOnButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -14,7 +10,7 @@ public class IsMouseHoveringOnButton : MonoBehaviour, IPointerEnterHandler, IPoi
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
         //Output to console the GameObject's name and the following message
-        Debug.Log("Cursor Entering " + name + " GameObject");
+        //Debug.Log("Cursor Entering " + name + " GameObject");
         onButton = true;
     }
 
@@ -22,7 +18,7 @@ public class IsMouseHoveringOnButton : MonoBehaviour, IPointerEnterHandler, IPoi
     public void OnPointerExit(PointerEventData pointerEventData)
     {
         //Output the following message with the GameObject's name
-        Debug.Log("Cursor Exiting " + name + " GameObject");
+        //Debug.Log("Cursor Exiting " + name + " GameObject");
         onButton = false;
     }
 }

@@ -270,8 +270,8 @@ public class SizeMenuFunctions : MonoBehaviour
         GameObject canvas = GameObject.Find("Canvas");
         itemMenuFunctions = canvas.GetComponent<ItemMenuButtonFunctions>();
         clientMenuFunctions = canvas.GetComponent<ClientButtonFunctions>();
-        Debug.Log(itemMenuFunctions + " itemmenufunctions");
-        Debug.Log(clientMenuFunctions + " clientmenufunctions");
+        //Debug.Log(itemMenuFunctions + " itemmenufunctions");
+        //Debug.Log(clientMenuFunctions + " clientmenufunctions");
 
 
     }
@@ -309,16 +309,16 @@ public class SizeMenuFunctions : MonoBehaviour
         { 
             if(whichButtonClicked == "Cabinet_Base_1")
             {
-                Debug.Log(CabinetBase1x + " " + CabinetBase1y + CabinetBase1z + "size if içi öncesi cabinetbase1");
+                itemMenuFunctions.cabinetBase1SizeSelected = true;
                 CabinetBase1x = width;
                 CabinetBase1y = height;
-                CabinetBase1z = length;
-                Debug.Log(CabinetBase1x + " " + CabinetBase1y + CabinetBase1z + "size if içi cabinetbase1");
+                CabinetBase1z = length;            
                 //itemMenuFunctions.CabinetBase1.transform.localScale = new Vector3(length / 100, height / 100, width / 100);
                 itemMenuFunctions.CabinetBase1.transform.localScale = new Vector3((width/100)*(1f/ ItemMenuButtonFunctions.CabinetBase1Size.x), (height/100) * (1f / ItemMenuButtonFunctions.CabinetBase1Size.y), ( length/100) * (1f / ItemMenuButtonFunctions.CabinetBase1Size.z));
             }
             else if (whichButtonClicked == "Cabinet_Base_2")
             {
+                itemMenuFunctions.cabinetBase2SizeSelected = true;
                 CabinetBase2x = width;
                 CabinetBase2y = height;
                 CabinetBase2z = length;
@@ -327,6 +327,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClicked == "Cabinet_Base_Corner")
             {
+                itemMenuFunctions.cabinetBaseCornerSizeSelected = true;
                 CabinetBaseCornerx = width;
                 CabinetBaseCornery = height;
                 CabinetBaseCornerz = length;
@@ -335,6 +336,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClicked == "Cabinet_Base_Sink")
             {
+                itemMenuFunctions.cabinetBaseSinkSizeSelected = true;
                 CabinetBaseSinkx = width;
                 CabinetBaseSinky = height;
                 CabinetBaseSinkz = length;
@@ -343,6 +345,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClicked == "Cabinet_Tall")
             {
+                itemMenuFunctions.cabinetTallSizeSelected = true;
                 CabinetTallx = width;
                 CabinetTally = height;
                 CabinetTallz = length;
@@ -351,6 +354,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClicked == "Cabinet_Wall_1")
             {
+                itemMenuFunctions.cabinetWall1SizeSelected = true;
                 CabinetWall1x = width;
                 CabinetWall1y = height;
                 CabinetWall1z = length;
@@ -359,6 +363,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClicked == "Cabinet_Wall_2")
             {
+                itemMenuFunctions.cabinetWall2SizeSelected = true;
                 CabinetWall2x = width;
                 CabinetWall2y = height;
                 CabinetWall2z = length;
@@ -378,6 +383,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClicked == "Stove")
             {
+                itemMenuFunctions.stoveSizeSelected = true;
                 Stovex = width;
                 Stovey = height;
                 Stovez = length;
@@ -386,6 +392,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClicked == "Bathtub")
             {
+                itemMenuFunctions.bathtubSizeSelected = true;
                 Bathtubx = width;
                 Bathtuby = height;
                 Bathtubz = length;
@@ -394,6 +401,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClicked == "Shower")
             {
+                itemMenuFunctions.showerSizeSelected = true;
                 Showerx = width;
                 Showery = height;
                 Showerz = length;
@@ -403,6 +411,7 @@ public class SizeMenuFunctions : MonoBehaviour
             
             else if (whichButtonClicked == "Toilet")
             {
+                itemMenuFunctions.toiletSizeSelected = true;
                 Toiletx = width;
                 Toilety = height;
                 Toiletz = length;
@@ -411,6 +420,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClicked == "Vanity_1")
             {
+                itemMenuFunctions.vanity1SizeSelected = true;
                 Vanity1x = width;
                 Vanity1y = height;
                 Vanity1z = length;
@@ -419,6 +429,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClicked == "Vanity_3")
             {
+                itemMenuFunctions.vanity3SizeSelected = true;
                 Vanity3x = width;
                 Vanity3z = height;
                 Vanity3y = length;
@@ -443,6 +454,7 @@ public class SizeMenuFunctions : MonoBehaviour
             //CLIENT MODELLERÝ ÝÇÝN
             else if (whichButtonClickedClient == "Corner_Cabinet")
             {
+                clientMenuFunctions.cornerCabinetSizeSelected = true;
                 CornerCabinetx = width;
                 CornerCabinety = height;
                 CornerCabinetz = length;
@@ -451,6 +463,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Dish_Washer")
             {
+                clientMenuFunctions.dishWasherSizeSelected = true;
                 DishWasherx = width;
                 DishWashery = height;
                 DishWasherz = length;
@@ -459,6 +472,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Fridge_1")
             {
+                clientMenuFunctions.fridge1SizeSelected = true;
                 Fridge1x = width;
                 Fridge1y = height;
                 Fridge1z = length;
@@ -467,6 +481,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Fridge_2")
             {
+                clientMenuFunctions.fridge2SizeSelected = true;
                 Fridge2x = width;
                 Fridge2y = height;
                 Fridge2z = length;
@@ -475,6 +490,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Range_Hood")
             {
+                clientMenuFunctions.rangeHoodSizeSelected = true;
                 RangeHoodx = width;
                 RangeHoody = height;
                 RangeHoodz = length;
@@ -483,6 +499,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Stove")
             {
+                clientMenuFunctions.stoveSizeSelected = true;
                 Stovex = width;
                 Stovey = height;
                 Stovez = length;
@@ -491,6 +508,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "TV")
             {
+                clientMenuFunctions.tvSizeSelected = true;
                 TVx = width;
                 TVy = height;
                 TVz = length;
@@ -499,7 +517,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Sofa_1")
             {
-                Debug.Log("sofa1 button clicked");
+                clientMenuFunctions.sofa1SizeSelected = true;
                 Sofa1x = width;
                 Sofa1y = height;
                 Sofa1z = length;
@@ -508,6 +526,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Sofa_4")
             {
+                clientMenuFunctions.sofa4SizeSelected = true;
                 Sofa4x = width;
                 Sofa4y = height;
                 Sofa4z = length;
@@ -516,6 +535,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Chair_2")
             {
+                clientMenuFunctions.chair2SizeSelected = true;
                 Chair2x = width;
                 Chair2y = height;
                 Chair2z = length;
@@ -524,6 +544,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Chair_3")
             {
+                clientMenuFunctions.chair3SizeSelected = true;
                 Chair3x = width;
                 Chair3y = height;
                 Chair3z = length;
@@ -532,6 +553,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Bar_Cabinet")
             {
+                clientMenuFunctions.barCabinetSizeSelected = true;
                 BarCabinetx = width;
                 BarCabinety = height;
                 BarCabinetz = length;
@@ -540,6 +562,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Coffee_Table_1")
             {
+                clientMenuFunctions.coffeeTable1SizeSelected = true;
                 CoffeeTable1x = width;
                 CoffeeTable1y = height;
                 CoffeeTable1z = length;
@@ -548,6 +571,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Coffee_Table_2")
             {
+                clientMenuFunctions.coffeeTable2SizeSelected = true;
                 CoffeeTable2x = width;
                 CoffeeTable2y = height;
                 CoffeeTable2z = length;
@@ -556,6 +580,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Modular_Cabinet")
             {
+                clientMenuFunctions.modularCabinetSizeSelected = true;
                 ModularCabinetx = width;
                 ModularCabinety = height;
                 ModularCabinetz = length;
@@ -564,6 +589,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Shelf_1")
             {
+                clientMenuFunctions.shelf1SizeSelected = true;
                 Shelf1x = width;
                 Shelf1y = height;
                 Shelf1z = length;
@@ -572,6 +598,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "TV_Stand_1")
             {
+                clientMenuFunctions.tvStandSizeSelected = true;
                 TVStandx = width;
                 TVStandy = height;
                 TVStandz = length;
@@ -580,6 +607,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Table_1")
             {
+                clientMenuFunctions.table1SizeSelected = true;
                 Table1x = width;
                 Table1y = height;
                 Table1z = length;
@@ -588,6 +616,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Table_2")
             {
+                clientMenuFunctions.table2SizeSelected = true;
                 Table2x = width;
                 Table2y = height;
                 Table2z = length;
@@ -596,6 +625,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Bench")
             {
+                clientMenuFunctions.benchSizeSelected = true;
                 Benchx = width;
                 Benchy = height;
                 Benchz = length;
@@ -604,6 +634,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Hamper")
             {
+                clientMenuFunctions.hamperSizeSelected = true;
                 Hamperx = width;
                 Hampery = height;
                 Hamperz = length;
@@ -612,6 +643,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Towel_Rack_2")
             {
+                clientMenuFunctions.towelRack2SizeSelected = true;
                 TowelRack2x = width;
                 TowelRack2y = height;
                 TowelRack2z = length;
@@ -620,6 +652,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Computer_Table")
             {
+                clientMenuFunctions.computerTableSizeSelected = true;
                 ComputerTablex = width;
                 ComputerTabley = height;
                 ComputerTablez = length;
@@ -628,6 +661,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Computer")
             {
+                clientMenuFunctions.computerSizeSelected = true;
                 Computerx = width;
                 Computery = height;
                 Computerz = length;
@@ -636,6 +670,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Chair_Study")
             {
+                clientMenuFunctions.chairStudySizeSelected = true;
                 ChairStudyx = width;
                 ChairStudyy = height;
                 ChairStudyz = length;
@@ -646,6 +681,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Shelf_2")
             {
+                clientMenuFunctions.shelf2SizeSelected = true;
                 Shelf2x = width;
                 Shelf2y = height;
                 Shelf2z = length;
@@ -654,6 +690,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Bed_1")
             {
+                clientMenuFunctions.bed1SizeSelected = true;
                 Bed1x = width;
                 Bed1y = height;
                 Bed1z = length;
@@ -662,6 +699,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Bed_2")
             {
+                clientMenuFunctions.bed2SizeSelected = true;
                 Bed2x = width;
                 Bed2y = height;
                 Bed2z = length;
@@ -670,6 +708,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Closet")
             {
+                clientMenuFunctions.closetSizeSelected = true;
                 Closetx = width;
                 Closety = height;
                 Closetz = length;
@@ -678,6 +717,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Dresser")
             {
+                clientMenuFunctions.dresserSizeSelected = true;
                 Dresserx = width;
                 Dressery = height;
                 Dresserz = length;
@@ -686,6 +726,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Nightstand_1")
             {
+                clientMenuFunctions.nightstand1SizeSelected = true;
                 Nightstand1x = width;
                 Nightstand1y = height;
                 Nightstand1z = length;
@@ -694,6 +735,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Nightstand_2")
             {
+                clientMenuFunctions.nightstand2SizeSelected = true;
                 Nightstand2x = width;
                 Nightstand2y = height;
                 Nightstand2z = length;
@@ -702,6 +744,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Nightstand_3")
             {
+                clientMenuFunctions.nightstand3SizeSelected = true;
                 Nightstand3x = width;
                 Nightstand3y = height;
                 Nightstand3z = length;
@@ -710,6 +753,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Carpet")
             {
+                clientMenuFunctions.carpetSizeSelected = true;
                 Carpetx = width;
                 Carpety = height;
                 Carpetz = length;
@@ -718,6 +762,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Rug")
             {
+                clientMenuFunctions.rugSizeSelected = true;
                 Rugx = width;
                 Rugy = height;
                 Rugz = length;
@@ -726,6 +771,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Wall_Shelf")
             {
+                clientMenuFunctions.wallShelfSizeSelected = true;
                 WallShelfx = width;
                 WallShelfy = height;
                 WallShelfz = length;
@@ -734,6 +780,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Mirror")
             {
+                clientMenuFunctions.mirrorSizeSelected = true;
                 Mirrorx = width;
                 Mirrory = height;
                 Mirrorz = length;
@@ -742,6 +789,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Painting_3")
             {
+                clientMenuFunctions.painting3SizeSelected = true;
                 Painting3x = width;
                 Painting3y = height;
                 Painting3z = length;
@@ -750,6 +798,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Plant")
             {
+                clientMenuFunctions.plantSizeSelected = true;
                 Plantx = width;
                 Planty = height;
                 Plantz = length;
@@ -767,6 +816,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Floor_Lamp_1")
             {
+                clientMenuFunctions.floorLamp1SizeSelected = true;
                 FloorLamp1x = width;
                 FloorLamp1y = height;
                 FloorLamp1z = length;
@@ -775,6 +825,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Floor_Lamp_2")
             {
+                clientMenuFunctions.floorLamp2SizeSelected = true;
                 FloorLamp2x = width;
                 FloorLamp2y = height;
                 FloorLamp2z = length;
@@ -783,6 +834,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Table_Lamp")
             {
+                clientMenuFunctions.tableLampSizeSelected = true;
                 TableLampx = width;
                 TableLampy = height;
                 TableLampz = length;
@@ -807,6 +859,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "D_Table_1")
             {
+                clientMenuFunctions.dTable1SizeSelected = true;
                 DTable1x = width;
                 DTable1y = height;
                 DTable1z = length;
@@ -815,6 +868,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "D_Table_2")
             {
+                clientMenuFunctions.dTable2SizeSelected = true;
                 DTable2x = width;
                 DTable2y = height;
                 DTable2z = length;
@@ -823,6 +877,7 @@ public class SizeMenuFunctions : MonoBehaviour
             }
             else if (whichButtonClickedClient == "Chair_1")
             {
+                clientMenuFunctions.chair1SizeSelected = true;
                 Chair1x = width;
                 Chair1y = height;
                 Chair1z = length;
@@ -866,7 +921,6 @@ public class SizeMenuFunctions : MonoBehaviour
     {
         whichButtonClicked = ItemMenuButtonFunctions.clickedButtonName;
         whichButtonClickedClient = ClientButtonFunctions.clickedButtonName;
-        Debug.Log(CabinetBase1x + " " + CabinetBase1y + CabinetBase1z + "size cabinetbase1");
         
 
     }

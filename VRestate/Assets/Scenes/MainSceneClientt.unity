@@ -6266,6 +6266,50 @@ MonoBehaviour:
   onMiddleClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &259320654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 259320656}
+  - component: {fileID: 259320655}
+  m_Layer: 0
+  m_Name: SaveModeltoVR
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &259320655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259320654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa8030c866654042bd2d0585ba708a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &259320656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259320654}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &261646175
 GameObject:
   m_ObjectHideFlags: 0
@@ -18550,7 +18594,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: save
+  m_text: see in VR
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2d4c4ccb19e2baa4ca0eb6e075c0eb31, type: 2}
   m_sharedMaterial: {fileID: -4884920756015000901, guid: 2d4c4ccb19e2baa4ca0eb6e075c0eb31,
@@ -20664,8 +20708,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SaveModel, Assembly-CSharp
+      - m_Target: {fileID: 259320655}
+        m_TargetAssemblyTypeName: SaveModeltoVR, Assembly-CSharp
         m_MethodName: writeToJson
         m_Mode: 1
         m_Arguments:
@@ -23351,6 +23395,13 @@ MonoBehaviour:
     type: 3}
   Stove: {fileID: 6563838313664328344, guid: a4ac7a1790b66fd4ca703d0c4ba51022, type: 3}
   TV: {fileID: 4689226894193179518, guid: c54dfe29bcb517a4ebc38225c41a7fd9, type: 3}
+  cornerCabinetSizeSelected: 0
+  dishWasherSizeSelected: 0
+  fridge1SizeSelected: 0
+  fridge2SizeSelected: 0
+  rangeHoodSizeSelected: 0
+  stoveSizeSelected: 0
+  tvSizeSelected: 0
   Sofa1: {fileID: 8886124330212641047, guid: 0757f540218025b4a8dcda2ff1006b2e, type: 3}
   Sofa4: {fileID: 3301342839811228629, guid: 2a4e9a48cc851584eaa3a0e411e66e6a, type: 3}
   Chair2: {fileID: 8721174018069334436, guid: fe5f1944027a9fa4dbf083f2836ea80b, type: 3}
@@ -23368,9 +23419,24 @@ MonoBehaviour:
   Table1: {fileID: 3049558954230743570, guid: 4fa1dccc3a5c09b4ab6074e0fc140a92, type: 3}
   Table2: {fileID: 8286159240867770889, guid: 33db7751e6bacc94096164a2d4b1fe1a, type: 3}
   Bench: {fileID: 1862998171075469701, guid: 20f435967f3bd9a4cb54a2bc416f308c, type: 3}
+  sofa1SizeSelected: 0
+  sofa4SizeSelected: 0
+  chair2SizeSelected: 0
+  chair3SizeSelected: 0
+  barCabinetSizeSelected: 0
+  coffeeTable1SizeSelected: 0
+  coffeeTable2SizeSelected: 0
+  modularCabinetSizeSelected: 0
+  shelf1SizeSelected: 0
+  tvStandSizeSelected: 0
+  table1SizeSelected: 0
+  table2SizeSelected: 0
+  benchSizeSelected: 0
   Hamper: {fileID: 49466371236599065, guid: 034d8c917434bba47b6067c252685453, type: 3}
   TowelRack2: {fileID: 8279955937161603826, guid: 3b71a6ab5fe34e74c9d56ecc8a301d6f,
     type: 3}
+  hamperSizeSelected: 0
+  towelRack2SizeSelected: 0
   ComputerTable: {fileID: 6059311969288204754, guid: 81244e3a2ee04a3479068d870d0aee00,
     type: 3}
   Computer: {fileID: 8834555463695471288, guid: 5c1734f6092bcdd41a8e6c1282127bf4,
@@ -23378,6 +23444,10 @@ MonoBehaviour:
   ChairStudy: {fileID: 6734625961916197926, guid: 45de0e37ae72e6b448238af101d030bf,
     type: 3}
   Shelf2: {fileID: 4587601146940044803, guid: 85dbb15214e95da44899e7e11536325a, type: 3}
+  computerTableSizeSelected: 0
+  computerSizeSelected: 0
+  chairStudySizeSelected: 0
+  shelf2SizeSelected: 0
   Bed1: {fileID: 2694240043121185471, guid: 6bb9e4bfabdd0ef4d8e1d00e86ac3d25, type: 3}
   Bed2: {fileID: 7305173631126260798, guid: 3f5132eff74e9144d8c8cb039cb3d4e5, type: 3}
   Closet: {fileID: 6626559130697794280, guid: fc322d318fa64514baceeae88e78be83, type: 3}
@@ -23388,6 +23458,13 @@ MonoBehaviour:
     type: 3}
   Nightstand3: {fileID: 8286159240867770889, guid: 1df234c9d7d8d534cb64ea3a22875671,
     type: 3}
+  bed1SizeSelected: 0
+  bed2SizeSelected: 0
+  closetSizeSelected: 0
+  dresserSizeSelected: 0
+  nightstand1SizeSelected: 0
+  nightstand2SizeSelected: 0
+  nightstand3SizeSelected: 0
   Carpet: {fileID: 3229395703317075604, guid: dcdd4629aa77f7c438c529c7b44e7d29, type: 3}
   Rug: {fileID: 4937497809460757748, guid: e18084192991e3c46bcc0680e9ea8c14, type: 3}
   Mirror: {fileID: 7657885185060156224, guid: 9fd19b9bbc04eb641aee8e62dca680c8, type: 3}
@@ -23398,6 +23475,12 @@ MonoBehaviour:
     type: 3}
   WallShelf: {fileID: 6115401817655117302, guid: c6de27aab27bbb045b344880a58293fc,
     type: 3}
+  carpetSizeSelected: 0
+  rugSizeSelected: 0
+  mirrorSizeSelected: 0
+  painting3SizeSelected: 0
+  plantSizeSelected: 0
+  wallShelfSizeSelected: 0
   FloorLamp1: {fileID: 3179298799171826495, guid: 0460958269ced504ca72f16d86b47079,
     type: 3}
   FloorLamp2: {fileID: 6128961266140710966, guid: b751628a15954dd439d4b8d9c96536e3,
@@ -23408,9 +23491,15 @@ MonoBehaviour:
     type: 3}
   WallLamp2: {fileID: 6837892984068275802, guid: c7e3fa477d0a28840947b57140e83a2e,
     type: 3}
+  floorLamp1SizeSelected: 0
+  floorLamp2SizeSelected: 0
+  tableLampSizeSelected: 0
   DTable1: {fileID: 526601781762302659, guid: 78ec2f85130007a4585f2cb965493f2c, type: 3}
   DTable2: {fileID: 4492067569295475246, guid: a14a2e010e3c6ff41bb1ca12b3d35826, type: 3}
   Chair1: {fileID: 6531713347734078665, guid: 0bb359e68e4e58140acfc83833d4db6d, type: 3}
+  dTable1SizeSelected: 0
+  dTable2SizeSelected: 0
+  chair1SizeSelected: 0
   foundcount: 0
   cube: {fileID: 4582951929869739942}
   InteractionCanvas: {fileID: 1882135878937342524}
@@ -27861,31 +27950,7 @@ MonoBehaviour:
       m_Calls: []
   onRightClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1156356217}
-        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
-        m_MethodName: ItemMenuButtonsRightClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 182304708423301765}
-        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
-        m_MethodName: sizeMenuOpenFunction
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onMiddleClick:
     m_PersistentCalls:
       m_Calls: []
@@ -40261,31 +40326,7 @@ MonoBehaviour:
       m_Calls: []
   onRightClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1156356217}
-        m_TargetAssemblyTypeName: ClientButtonFunctions, Assembly-CSharp
-        m_MethodName: ItemMenuButtonsRightClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 182304708423301765}
-        m_TargetAssemblyTypeName: SizeMenuFunctions, Assembly-CSharp
-        m_MethodName: sizeMenuOpenFunction
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onMiddleClick:
     m_PersistentCalls:
       m_Calls: []

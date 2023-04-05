@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;  
 using System.IO;
 using System;
+using UnityEngine.Networking;
 
 public class SaveModel : MonoBehaviour
 {
@@ -31,7 +32,7 @@ public class SaveModel : MonoBehaviour
     }
 
     public void writeToJson() {
-        StreamWriter writer = new StreamWriter("Assets/Resources/test.txt", true);
+        StreamWriter writer = new StreamWriter("Assets/Resources/test.txt", false);
         foreach (GameObject child in scene.GetRootGameObjects())
         {
 
@@ -71,35 +72,84 @@ public class SaveModel : MonoBehaviour
 
         writer.Write("]");
         writer.Close();
+
+
+        ////////////////// HTTP REQUESTLÝ SAVE
+        
+        //StartCoroutine(writeToJson_Coroutine());
+
     }
 
-
-    public void readFromJson(string path)
+    public IEnumerator writeToJson_Coroutine()
     {
-        StreamReader reader = new StreamReader(path);
-
-        // List<ItemData> ret = new List<ItemData>();
-
-        string json = reader.ReadToEnd();
-        json = json
-            .TrimEnd(new Char[] { '}', ']' })
-            .TrimStart(new Char[] { '{', '[' });
-
-        string[] tokens = json.Split("},{");
-
-        ItemData item;
-        foreach (string token in tokens)
+        foreach (GameObject child in scene.GetRootGameObjects())
         {
-            if (!String.Equals(token, ""))
+
+            Debug.Log(child.name + " --- " + child.tag);
+
+            if (child.activeInHierarchy && String.Equals(child.tag, "3DModel"))
             {
-                item = JsonUtility.FromJson<ItemData>("{" + token + "}");
-                //ret.Add(item);
-                //Instantiate(DishWasher, new Vector3(4f, 2f, -18f), Quaternion.Euler(new Vector3(-90, 90, 0)));
+                single_item = new ItemData(
+                    child.name,
+                    string.Format("{0:N5}", child.transform.position.x),
+                    string.Format("{0:N5}", child.transform.position.y),
+                    string.Format("{0:N5}", child.transform.position.z),
+                    string.Format("{0:N5}", child.transform.rotation.w),
+                    string.Format("{0:N5}", child.transform.rotation.x),
+                    string.Format("{0:N5}", child.transform.rotation.y),
+                    string.Format("{0:N5}", child.transform.rotation.z),
+                    string.Format("{0:N5}", child.transform.localScale.x),
+                    string.Format("{0:N5}", child.transform.localScale.y),
+                    string.Format("{0:N5}", child.transform.localScale.z)
+                );
+
+                item_list.Add(JsonUtility.ToJson(single_item, false));
             }
+
+        }
+        string json = "[";
+        //writer.Write("[");
+
+        int count = item_list.Count, i = 0;
+        foreach (string s in item_list)
+        {
+            if (i == count - 1)
+            {
+                //writer.Write(s);
+                json += s;
+
+            }
+            else
+            {
+                //writer.Write(s + ",");
+                json += s + ",";
+
+            }
+            i++;
         }
 
-        reader.Close();
+        //writer.Write("]");
+        json += "]";
+        //writer.Close();
+        string postID = MainMenu.modelId;
+        //var req = new UnityWebRequest($"http://localhost:5002/unity/save?id={postID}", "POST");
+        var req = new UnityWebRequest("http://10.3.192.113:5000/data", "POST");
+        byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
+        req.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
+        req.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+        req.SetRequestHeader("Content-Type", "application/json");
 
+        //Send the request then wait here until it returns
+        yield return req.SendWebRequest();
+
+        if (req.isNetworkError)
+        {
+            Debug.Log("Error While Sending: " + req.error);
+        }
+        else
+        {
+            Debug.Log("Received: " + req.downloadHandler.text);
+        }
     }
-    
+           
 }

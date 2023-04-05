@@ -76,7 +76,16 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     public static Vector3 CabinetWall2Size;
     public GameObject Stove;
     public static Vector3 StoveSize;
-    
+
+    public bool cabinetBase1SizeSelected = false;
+    public bool cabinetBase2SizeSelected = false;
+    public bool cabinetBaseCornerSizeSelected = false;
+    public bool cabinetBaseSinkSizeSelected = false;
+    public bool cabinetTallSizeSelected = false;
+    public bool cabinetWall1SizeSelected = false;
+    public bool cabinetWall2SizeSelected = false;
+    public bool stoveSizeSelected = false;
+
     //Construction
     public GameObject Floor;
     public static Vector3 FloorSize;
@@ -132,12 +141,18 @@ public class ItemMenuButtonFunctions : MonoBehaviour
     public static Vector3 Vanity1Size;
     public bool foundcount = false;
 
+    public bool bathtubSizeSelected = false;
+    public bool showerSizeSelected = false;
+    public bool vanity3SizeSelected = false;
+    public bool toiletSizeSelected = false;
+    public bool vanity1SizeSelected = false;
 
 
 
 
 
-   
+
+
 
 
 
@@ -280,8 +295,9 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             itemModelCount[i] = 0;
         }*/
         foundcount = false;
+        int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
 
-        if (leftClickedButtonName == "Cabinet_Base_1")
+        if (leftClickedButtonName == "Cabinet_Base_1" && cabinetBase1SizeSelected == true)
         {
             if (isButtonClicked == true)
             {                
@@ -297,11 +313,15 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
 
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[0]= 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Cabinet_Base_2")
+        else if (leftClickedButtonName == "Cabinet_Base_2" && cabinetBase2SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -316,11 +336,15 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
 
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[1] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Cabinet_Base_Corner")
+        else if (leftClickedButtonName == "Cabinet_Base_Corner" && cabinetBaseCornerSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -334,11 +358,15 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(CabinetBaseCorner, new Vector3(4f, 2f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[2] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Cabinet_Base_Sink")
+        else if (leftClickedButtonName == "Cabinet_Base_Sink" && cabinetBaseSinkSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -352,11 +380,15 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(CabinetBaseSink, new Vector3(4f, 2f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[3] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Cabinet_Tall")
+        else if (leftClickedButtonName == "Cabinet_Tall" && cabinetTallSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -370,11 +402,15 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(CabinetTall, new Vector3(4f, 2f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[4] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Cabinet_Wall_1")
+        else if (leftClickedButtonName == "Cabinet_Wall_1" && cabinetWall1SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -388,11 +424,15 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(CabinetWall1, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[5] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Cabinet_Wall_2")
+        else if (leftClickedButtonName == "Cabinet_Wall_2" && cabinetWall2SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -406,9 +446,13 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(CabinetWall2, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[6] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
         else if (leftClickedButtonName == "Wall")
         {
@@ -424,11 +468,15 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(wallPrefab, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[9] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Stove")
+        else if (leftClickedButtonName == "Stove" && stoveSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -442,9 +490,13 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Stove, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[15] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
         else if (leftClickedButtonName == "Floor")
         {
@@ -460,11 +512,15 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Floor, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[20] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Bathtub")
+        else if (leftClickedButtonName == "Bathtub" && bathtubSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -478,11 +534,15 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Bathtub, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[30] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Shower")
+        else if (leftClickedButtonName == "Shower" && showerSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -496,9 +556,13 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Shower, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[31] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
         else if (leftClickedButtonName == "Sink")
         {
@@ -514,11 +578,15 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Vanity3, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[32] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Toilet")
+        else if (leftClickedButtonName == "Toilet" && toiletSizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -532,11 +600,15 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Toilet, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[33] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Vanity_1")
+        else if (leftClickedButtonName == "Vanity_1" && vanity1SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -550,11 +622,15 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Vanity1, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[34] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
-        else if (leftClickedButtonName == "Vanity_3")
+        else if (leftClickedButtonName == "Vanity_3" && vanity3SizeSelected == true)
         {
             if (isButtonClicked == true)
             {
@@ -568,9 +644,13 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Vanity3, new Vector3(4f, 10f, -18f), Quaternion.Euler(new Vector3(-90, 180, 0)));
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[35] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
         else if (leftClickedButtonName == "Door_1")
         {
@@ -586,9 +666,20 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Door1, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[36] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            for (int i = 0; i < ObjectFollowsMouse.transform.childCount; i++)
+            {
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.AddComponent<BoxCollider>();
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size = ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+
+            }
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
         else if (leftClickedButtonName == "Door_2")
         {
@@ -604,9 +695,20 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Door2, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[37] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            for (int i = 0; i < ObjectFollowsMouse.transform.childCount; i++)
+            {
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.AddComponent<BoxCollider>();
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size = ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+
+            }
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
         else if (leftClickedButtonName == "Window")
         {
@@ -622,9 +724,21 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Window, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[38] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            for (int i = 0; i < ObjectFollowsMouse.transform.childCount; i++)
+            {
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.AddComponent<BoxCollider>();
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size = ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+
+            }
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
+
         }
         else if (leftClickedButtonName == "Frame")
         {
@@ -640,9 +754,20 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Frame, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[39] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            for (int i = 0; i < ObjectFollowsMouse.transform.childCount; i++)
+            {
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.AddComponent<BoxCollider>();
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size = ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+
+            }
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
         else if (leftClickedButtonName == "Rail")
         {
@@ -658,16 +783,28 @@ public class ItemMenuButtonFunctions : MonoBehaviour
             ObjectFollowsMouse = Instantiate(Rail, new Vector3(4f, 10f, -18f), Quaternion.identity);
             objectToPlace = ObjectFollowsMouse.GetComponent<PlaceableObject>();
             ObjectFollowsMouse.AddComponent<ObjectDrag>();
-
+            ObjectFollowsMouse.layer = LayerIgnoreRaycast;
             //itemModelCount[40] = 1;
             foundcount = true;
+            ObjectFollowsMouse.AddComponent<BoxCollider>();
+            ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+            for (int i = 0; i < ObjectFollowsMouse.transform.childCount; i++)
+            {
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.AddComponent<BoxCollider>();
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size = ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+
+            }
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+            buildingSystemObjectFollowMouse = ObjectFollowsMouse;
         }
 
 
-
-        int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
-        ObjectFollowsMouse.layer = LayerIgnoreRaycast;
-        if (ObjectFollowsMouse.name == "NewDoor1(Clone)" || ObjectFollowsMouse.name == "NewDoor2(Clone)" || ObjectFollowsMouse.name == "NewWindow2(Clone)" || ObjectFollowsMouse.name == "Frame(Clone)" || ObjectFollowsMouse.name == "Rail(Clone)")
+        /// BURADAKÝ KODLARI (LAYER + (IF ELSE'ÝN ÝÇÝNÝ) + BUILDINGSYSTEMOBJECTFOLLOWMOUSE) ÝLK BAÞTA SIZE GÝRME ZORUNLULUÐU ÝÇÝN HER BÝR LEFTCLICKEDBUTTONNAME METHODUNUN ÝÇÝNE EKLEDÝM
+        
+        //int LayerIgnoreRaycast = LayerMask.NameToLayer("Ignore Raycast");
+        //ObjectFollowsMouse.layer = LayerIgnoreRaycast;
+        /*if (ObjectFollowsMouse.name == "NewDoor1(Clone)" || ObjectFollowsMouse.name == "NewDoor2(Clone)" || ObjectFollowsMouse.name == "NewWindow2(Clone)" || ObjectFollowsMouse.name == "Frame(Clone)" || ObjectFollowsMouse.name == "Rail(Clone)")
         {
             ObjectFollowsMouse.AddComponent<BoxCollider>();
             ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
@@ -678,17 +815,19 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                 ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size = ObjectFollowsMouse.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
 
             }
-            
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+
         }
         else
         {
             ObjectFollowsMouse.AddComponent<BoxCollider>();
             ObjectFollowsMouse.GetComponent<BoxCollider>().size = ObjectFollowsMouse.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
-        }
+            ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
+        }*/
        
 
-        ObjectFollowsMouse.GetComponent<BoxCollider>().isTrigger = true;
-        buildingSystemObjectFollowMouse = ObjectFollowsMouse;
+      
+        //buildingSystemObjectFollowMouse = ObjectFollowsMouse;
 
 
 
@@ -1115,7 +1254,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                             }
                             if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 0f)
                             {
-                                Debug.Log("1. if");
+                                //Debug.Log("1. if");
                                 //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
                                 objectposition = new Vector3(a.x - 0.25f - 0.25f, a.y + 2.5f - gridposy / 200, a.z + gridposz / 200);
                                 //Debug.Log(" abc " + objectposition);
@@ -1124,19 +1263,19 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                             }
                             else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 90f)
                             {
-                                Debug.Log("2. if");
+                                //Debug.Log("2. if");
                                 //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
                                 objectposition = new Vector3(a.x  + gridposz / 200, a.y + 2.5f - gridposy / 200, a.z + 0.25f + 0.25f);
                             }
                             else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 180f)
                             {
-                                Debug.Log("3. if");
+                                //Debug.Log("3. if");
                                 //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
                                 objectposition = new Vector3(a.x +0.25f + 0.25f, a.y + 2.5f - gridposy / 200, a.z - gridposz / 200 );
                             }
                             else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 270f)
                             {
-                                Debug.Log("4. if");
+                                //Debug.Log("4. if");
                                 //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
                                 objectposition = new Vector3(a.x  - gridposz / 200, a.y + 2.5f - gridposy / 200, a.z - 0.25f - 0.25f);
                             }
@@ -1232,7 +1371,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                             //Debug.Log(a + " aaa");
                             //Debug.Log(b.size.x + " " + b.size.z + " SIZEEEE");
                             Vector3 objectposition= Vector3.zero;
-                            Debug.Log(ObjectFollowsMouse.transform.eulerAngles.y + " obje rotation y");
+                            //Debug.Log(ObjectFollowsMouse.transform.eulerAngles.y + " obje rotation y");
                             float gridposx = 0;
                             float gridposy = 0;
                             float gridposz = 0;
@@ -1304,7 +1443,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                             }
                             if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 0f)
                             {
-                                Debug.Log("1. if");
+                                //Debug.Log("1. if");
                                 //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
                                 objectposition = new Vector3(a.x - gridposx / 200, a.y, a.z + gridposz / 200);
                                 //Debug.Log(" abc " + objectposition);
@@ -1313,19 +1452,19 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                             }
                             else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 90f)
                             {
-                                Debug.Log("2. if");
+                                //Debug.Log("2. if");
                                 //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z - 0.25f);
                                 objectposition = new Vector3(a.x + gridposz / 200, a.y, a.z + gridposx / 200);
                             }
                             else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 180f)
                             {
-                                Debug.Log("3. if");
+                                //Debug.Log("3. if");
                                 //hit.point = new Vector3(hit.point.x - 0.25f, hit.point.y, hit.point.z + 0.25f);
                                 objectposition = new Vector3(a.x + gridposx / 200, a.y, a.z - gridposz / 200);
                             }
                             else if (ObjectFollowsMouse.tag == "3DModel" && ObjectFollowsMouse.transform.eulerAngles.y == 270f)
                             {
-                                Debug.Log("4. if");
+                                //Debug.Log("4. if");
                                 //hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z + 0.25f);
                                 objectposition = new Vector3(a.x - gridposz / 200, a.y, a.z - gridposx / 200);
                             }
@@ -1425,24 +1564,24 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                 {
                     if (Input.GetMouseButtonDown(0))
                     {
-                        Debug.Log("START");
+                        //Debug.Log("START");
                         SetStart();
                     }
                     else if ((Input.GetMouseButtonUp(0)))
                     {
                         if (deleteAfterWallHold == false)
                         {
-                            Debug.Log("END");
+                            //Debug.Log("END");
                             setEnd();
                         }
                     }
                     else
                     {
                         
-                        Debug.Log("ELSE");
+                        //Debug.Log("ELSE");
                         if (creatingWall == true && deleteAfterWallHold== false)
                         {
-                            Debug.Log("ADJUST");
+                            //Debug.Log("ADJUST");
                             adjust();
                         }
                     }
@@ -1454,24 +1593,24 @@ public class ItemMenuButtonFunctions : MonoBehaviour
 
                     if (Input.GetMouseButtonDown(0))
                     {
-                        Debug.Log("START");
+                        //Debug.Log("START");
                         SetStartFloor();
                     }
                     else if ((Input.GetMouseButtonUp(0)))
                     {
                         if (deleteAfterFloorHold == false)
                         {
-                            Debug.Log("END");
+                            //Debug.Log("END");
                             setEndFloor();
                         }
                     }
                     else
                     {
 
-                        Debug.Log("ELSE");
+                        //Debug.Log("ELSE");
                         if (creatingFloor == true && deleteAfterFloorHold == false)
                         {
-                            Debug.Log("ADJUST");
+                            //Debug.Log("ADJUST");
                             adjustFloor();
                         }
                     }
@@ -1488,8 +1627,8 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                             //ObjectFollowsMouse.AddComponent<BoxCollider>();
                             int LayerDefault = LayerMask.NameToLayer("Default");
                             ObjectFollowsMouse.layer = LayerDefault;
-                            Debug.Log(ObjectFollowsMouse.GetComponent<MeshRenderer>().bounds.size);
-                            Debug.Log(cube.GetComponent<MeshRenderer>().bounds.size);
+                            //Debug.Log(ObjectFollowsMouse.GetComponent<MeshRenderer>().bounds.size);
+                            //Debug.Log(cube.GetComponent<MeshRenderer>().bounds.size);
 
 
                             //Böyle yapýnca NewDoor2 modeli kendi içinde collision veriyor prefabý düzenle
@@ -1607,7 +1746,7 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                 //Debug.Log(raycastHit.point);
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Debug.Log(sizeMenu.transform.position + " sizemenuposition");
+                   //Debug.Log(sizeMenu.transform.position + " sizemenuposition");
                     if (raycastHit.collider.tag == "3DModel" && (sizeMenu.transform.position == new Vector3(3960f,3540f,3000f)) && settingsMenu.active == false && IsMouseHoveringOnButton.onButton == false)
                     {
                         //isInteractionOpen = true;

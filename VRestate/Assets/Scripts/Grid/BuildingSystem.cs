@@ -150,10 +150,10 @@ public class BuildingSystem : MonoBehaviour
                 if (ClientButtonFunctions.buildingSystemObjectFollowMouse.name == "Sofa_4(Clone)" || ClientButtonFunctions.buildingSystemObjectFollowMouse.name == "Shelf_2(Clone)" || ClientButtonFunctions.buildingSystemObjectFollowMouse.name == "Chair_2(Clone)" || ClientButtonFunctions.buildingSystemObjectFollowMouse.name == "Chair_3(Clone)" || ClientButtonFunctions.buildingSystemObjectFollowMouse.name == "Fridge_2(Clone)"
                 || ClientButtonFunctions.buildingSystemObjectFollowMouse.name == "Dish_Washer(Clone)" || ClientButtonFunctions.buildingSystemObjectFollowMouse.name == "Coffee_Table_2(Clone)")
                 {
-                    Debug.Log("BUILDINGSYSTEM IF GÝRDÝ");
+                    //Debug.Log("BUILDINGSYSTEM IF GÝRDÝ");
                     if ((ClientButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ClientButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 90f))
                     {
-                        Debug.Log("BUILDINGSYSTEM 1. IF GÝRDÝ");
+                        //Debug.Log("BUILDINGSYSTEM 1. IF GÝRDÝ");
                         hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
                         //Debug.Log("snapcoordinate 1.if" + hit.point);
                     }
@@ -178,10 +178,10 @@ public class BuildingSystem : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("BUILDINGSYSTEM ELSE GÝRDÝ");
+                    //Debug.Log("BUILDINGSYSTEM ELSE GÝRDÝ");
                     if ((ClientButtonFunctions.buildingSystemObjectFollowMouse.tag == "3DModel" && ClientButtonFunctions.buildingSystemObjectFollowMouse.transform.eulerAngles.y == 0f))
                     {
-                        Debug.Log("BUILDINGSYSTEM ELSE 1. IF GÝRDÝ");
+                        //Debug.Log("BUILDINGSYSTEM ELSE 1. IF GÝRDÝ");
                         hit.point = new Vector3(hit.point.x + 0.25f, hit.point.y, hit.point.z - 0.25f);
                         //Debug.Log("snapcoordinate 1.if" + hit.point);
                     }

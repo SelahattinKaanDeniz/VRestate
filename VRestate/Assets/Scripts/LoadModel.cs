@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System;
+using UnityEngine.Networking;
+using System.Text.RegularExpressions;
 
 public class LoadModel : MonoBehaviour
 {
@@ -133,6 +135,66 @@ public class LoadModel : MonoBehaviour
 
         reader.Close();
 
+        //////////////////////////  HTTP REQUESTLÝ LOAD
+        
+        //StartCoroutine(readFromJson_Coroutine());
 
+
+    }
+    public IEnumerator readFromJson_Coroutine()
+    {
+        string json = "";
+        string url = "http://10.3.192.113:5000/data";
+        using(UnityWebRequest request = UnityWebRequest.Get(url)){
+            yield return request.SendWebRequest();
+
+            if (request.isNetworkError || request.isHttpError)
+            {
+                Debug.Log(request.error);
+            }
+            else
+            {
+                Debug.Log(request.downloadHandler.text);
+                json = request.downloadHandler.text;
+            }
+        }
+
+        // List<ItemData> ret = new List<ItemData>();
+        //json = json.Replace(" ", "");
+        json = Regex.Replace(json, @"\s+", String.Empty);
+        json = json
+            .TrimEnd(new Char[] { '}', ']' })
+            .TrimStart(new Char[] { '{', '[' });
+
+        string[] tokens = json.Split("},{");
+
+        ItemData item;
+        foreach (string token in tokens)
+        {
+            if (!String.Equals(token, ""))
+            {
+                Debug.Log(token + " token");
+                item = JsonUtility.FromJson<ItemData>("{" + token + "}");
+                //ret.Add(item);
+                foreach (GameObject s in item_list)
+                {
+                    if (s.name + "(Clone)" == item.id)
+                    {
+                        GameObject obj;
+                        obj = Instantiate(s, new Vector3(float.Parse(item.pos_x), float.Parse(item.pos_y), float.Parse(item.pos_z)), new Quaternion(float.Parse(item.rotation_x), float.Parse(item.rotation_y), float.Parse(item.rotation_z), float.Parse(item.rotation_w)));
+                        obj.transform.localScale = new Vector3(float.Parse(item.scale_x), float.Parse(item.scale_y), float.Parse(item.scale_z));
+                        obj.AddComponent<BoxCollider>();
+                        obj.GetComponent<BoxCollider>().size = obj.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+                        obj.GetComponent<BoxCollider>().isTrigger = true;
+                        obj.AddComponent<Rigidbody>();
+                        obj.GetComponent<Rigidbody>().isKinematic = true;
+                        obj.tag = "Untagged";
+                    }
+                }
+                //Instantiate(DishWasher, new Vector3(4f, 2f, -18f), Quaternion.Euler(new Vector3(-90, 90, 0)));
+            }
+        }
+
+        //reader.Close();
     }
 }

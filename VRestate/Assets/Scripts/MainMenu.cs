@@ -2,9 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
+using System.Web;
+
 
 public class MainMenu : MonoBehaviour
 {
+    public static string userId;
+    public static string type;
+    public static string modelId;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,18 +26,48 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
+        //Debug.Log(Application.absoluteURL);
+        string q = "?modelId=712123&userId=123891284912&type=client";
+        var query = HttpUtility.ParseQueryString(q);
+
+        //var query = HttpUtility.ParseQueryString(Application.absoluteURL);       
+        userId = query["userID"];
+        type = query["type"];
+        modelId = query["modelId"];
+        Debug.Log("userId " + userId);
+        Debug.Log("type " + type);
+        if(type== "client")
+        {
+            StartCoroutine(DelaySceneLoadClient());
+        }
+        else if (type == "seller")
+        {
+            StartCoroutine(DelaySceneLoadSeller());
+        }
+
         // SceneManager.LoadScene(1);
-        StartCoroutine(DelaySceneLoad());
+
+        //StartCoroutine(DelaySceneLoadSeller());
+        //StartCoroutine(DelaySceneLoadClient());
+        
     }
-    IEnumerator DelaySceneLoad()
+    IEnumerator DelaySceneLoadSeller()
     {
-        yield return new WaitForSeconds(0.26f);
+        yield return new WaitForSeconds(0.01f);
         SceneManager.LoadScene(1);
+
+    }
+
+    IEnumerator DelaySceneLoadClient()
+    {
+        yield return new WaitForSeconds(0.01f);
+        SceneManager.LoadScene(3);
+
     }
 
     IEnumerator DelaySceneQuit()
     {
-        yield return new WaitForSeconds(0.26f);
+        yield return new WaitForSeconds(0.01f);
         Application.Quit();
     }
 

@@ -13514,6 +13514,14 @@ MonoBehaviour:
   CabinetWall2: {fileID: 2598695457691825753, guid: 9099fe81828bfba4e8b095444ddbd7e7,
     type: 3}
   Stove: {fileID: 6563838313664328344, guid: 661c50ebae266fd40a46d34eee6e9a44, type: 3}
+  cabinetBase1SizeSelected: 0
+  cabinetBase2SizeSelected: 0
+  cabinetBaseCornerSizeSelected: 0
+  cabinetBaseSinkSizeSelected: 0
+  cabinetTallSizeSelected: 0
+  cabinetWall1SizeSelected: 0
+  cabinetWall2SizeSelected: 0
+  stoveSizeSelected: 0
   Floor: {fileID: 4388314611279343880, guid: ea08895399095d74cab7a1a9960c0b6b, type: 3}
   Wall: {fileID: 4027410733452808839, guid: f239b9af7d445fb4982f2dc3871e6467, type: 3}
   Door1: {fileID: 5846597318128675477, guid: b04c8465905c0c7498a1eccda8d17e25, type: 3}
@@ -13531,6 +13539,11 @@ MonoBehaviour:
   Toilet: {fileID: 4073640349705554942, guid: 056fd149f9aa9c94185253239c40d15a, type: 3}
   Vanity1: {fileID: 7261456135864374567, guid: 2e5ee4133898c1b44a943ba086ad86a8, type: 3}
   foundcount: 0
+  bathtubSizeSelected: 0
+  showerSizeSelected: 0
+  vanity3SizeSelected: 0
+  toiletSizeSelected: 0
+  vanity1SizeSelected: 0
   cube: {fileID: 254663336}
   InteractionCanvas: {fileID: 2076731268}
 --- !u!114 &1156356218
