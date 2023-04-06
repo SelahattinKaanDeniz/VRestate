@@ -81,6 +81,7 @@ app.get('/apitest', (req, res) => {
 
 
 //test için html donen endpoint. frontendi tamamlandığında silinecek
+/*
 app.get('/imageupload', function (req, res) {
     res.writeHead(200, { 'Content-Type': 'text/html' });
     res.write('<form action="/upload" enctype="multipart/form-data" method="post">');
@@ -89,6 +90,7 @@ app.get('/imageupload', function (req, res) {
     res.write('</form>');
     return res.end();
 })
+*/
 
 app.post('/upload', upload.single("file"), (req, res) => {
     if (!req.file) {
