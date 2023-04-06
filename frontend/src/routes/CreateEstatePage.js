@@ -90,7 +90,7 @@ function CreateEstatePage() {
     if(image){
       const data = new FormData();
       data.append("file", image);
-      const imageResponse = await fetch('http://localhost:5002/upload', {
+      const imageResponse = await fetch('http://vrestate.tech:5002/upload', {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         body: data, // body data type must match "Content-Type" header
       });
