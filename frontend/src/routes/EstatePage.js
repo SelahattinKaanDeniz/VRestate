@@ -52,9 +52,6 @@ function EstatePage() {
   const [priceEdit, setPriceEdit] = useState(false);
   const [titleEdit, setTitleEdit] = useState(false);
 
-  useEffect( ()=>{
-    
-  },[])
   const { id } = useParams();// estate ID
   const { profile } = useAuth();
   const handleEdit = (buttonType) =>{
