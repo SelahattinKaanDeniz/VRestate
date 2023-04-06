@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { useAuth } from "../utils/Auth";
 import UserAvatar from "../components/UserAvatar";
-import { Divider } from "@mui/material";
+import { Divider, IconButton } from "@mui/material";
 import Listing from "../components/Listing";
 import { useNavigate } from "react-router-dom";
 import Box from '@mui/material/Box';
@@ -19,6 +19,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import LaunchIcon from '@mui/icons-material/Launch';
 function ProfilePage(){
     const { profile } = useAuth();
     const navigate = useNavigate();
@@ -70,8 +71,8 @@ function ProfilePage(){
               key={estate.title}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell component="th" scope="row">
-                {estate.title}
+              <TableCell component="th" scope="row"> 
+                {estate.title} <IconButton onClick={()=>{navigate(`/estate/${estate.id}`, {state:{estate}})}} ><LaunchIcon/></IconButton>
               </TableCell>
               <TableCell align="right">{estate.price}</TableCell>
               <TableCell align="right">{estate.create_date.slice(0,10)}</TableCell>
