@@ -60,9 +60,12 @@ function CreateEstatePage() {
   const [isFurnished, setIsFurnished] = useState("0");
   const [buildingAge, setBuildingAge] = useState("0");
   const [balconyCount, setBalconyCount] = useState("0");
+  const [ifVrUsed, setIfVrUsed] = useState("yes");
+  const [vr_id, setVr_id] = useState(null);
   const [buildingFees, setBuildingFees] = useState("");
   const [image, setImage] = useState(null);
   
+
   const onLoad = useCallback(function callback(map) {
     const bounds = new window.google.maps.LatLngBounds(center);
     map.fitBounds(bounds);
@@ -86,19 +89,26 @@ function CreateEstatePage() {
 
   const  clickSubmit = async (e)=>{
     e.preventDefault();
-    let head_photo_id = "";
+
+    let head_photo_id = null;
+    let vrId = "";
     if(image){
       const data = new FormData();
       data.append("file", image);
-      const imageResponse = await fetch('http://localhost:5002/upload', {
+      const imageResponse = await fetch('http://vrestate.tech:5002/upload', {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         body: data, // body data type must match "Content-Type" header
       });
       const response_data = await imageResponse.json();
       head_photo_id= response_data.id;
     }
-    else{
-      console.log("nooo")
+    if(ifVrUsed==="yes"){
+      const result = await fetch("http://vrestate.tech:5002/unity/assignId",{
+        method:"POST"
+      });
+      const vrIdData = await result.json();
+      vrId = vrIdData.id;
+      setVr_id(vrId);
     }
     if(!title || !price || !m2|| !coordinates  || !buildingAge  || !buildingFees){
       setIsError(true);
@@ -130,52 +140,28 @@ function CreateEstatePage() {
           return ""
         }
       ).then(async (il)=>{
-        let data={};
-        if(head_photo_id){
-          data={
-            il,
-            title,
-            price,
-            room_type,
-            m2,
-            coordX:coordinates.lat,
-            coordY:coordinates.lng,
-            bathroomCount,
-            floors,
-            isFurnished,
-            buildingAge , 
-            balconyCount,
-            buildingFees,
-            estate_type:"satilik",
-            category:"daire",
-            ilce:"",
-            owner_id:profile.id,
-            buildingFloors:4,
-            head_photo_id,
-          }
+        let  data={
+          il,
+          title,
+          price,
+          room_type,
+          m2,
+          coordX:coordinates.lat,
+          coordY:coordinates.lng,
+          bathroomCount,
+          floors,
+          isFurnished,
+          buildingAge , 
+          balconyCount,
+          buildingFees,
+          estate_type:"satilik",
+          category:"daire",
+          ilce:"",
+          owner_id:profile.id,
+          buildingFloors:4,
         }
-        else{
-          data={
-            il,
-            title,
-            price,
-            room_type,
-            m2,
-            coordX:coordinates.lat,
-            coordY:coordinates.lng,
-            bathroomCount,
-            floors,
-            isFurnished,
-            buildingAge , 
-            balconyCount,
-            buildingFees,
-            estate_type:"satilik",
-            category:"daire",
-            ilce:"",
-            owner_id:profile.id,
-            buildingFloors:4,
-          }
-        }
+        head_photo_id && (data.head_photo_id=head_photo_id);
+        vrId && (data.vr_id=vrId);
         
         const response = await fetch('http://localhost:5002/estate/create', {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -303,6 +289,15 @@ function CreateEstatePage() {
             </Form.Select>
           </Form.Group>
 
+
+          <Form.Group className="mb-4" size="sm">
+            <Form.Label>Will You use VR Editor?</Form.Label>
+            <Form.Select onChange={(e)=>setIfVrUsed(e.target.value)} aria-label="Default select example">
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </Form.Select>
+          </Form.Group>
+        
           <Form.Group  className="mb-3" size="sm">
           <Form.Label>Building Age</Form.Label>
           <InputGroup className="mb-3">

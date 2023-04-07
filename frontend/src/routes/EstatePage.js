@@ -438,7 +438,15 @@ function EstatePage() {
     </Table>
 
     {
-      vr_id && <Button style={{textAlign:"center"}} variant="contained">Display in VR <ThreeDRotationIcon style={{fill:"white", marginLeft:"8px"}}/></Button>
+      vr_id && <Button onClick={(e)=>{
+        e.preventDefault();
+        if(isUserOwner){
+          window.location.href=`http://vrestate.s3-website.eu-west-3.amazonaws.com?modelId=${vr_id}712123&userId=${profile.id}&type=seller`
+        }
+        else{
+          window.location.href=`http://vrestate.s3-website.eu-west-3.amazonaws.com?modelId=${vr_id}712123&userId=${profile.id}&type=client`
+        }
+      }} style={{textAlign:"center",marginBottom:"20px"}} variant="contained"> {isUserOwner? "Edit in VR" : "Display in VR"} <ThreeDRotationIcon style={{fill:"white", marginLeft:"8px"}}/></Button>
     }
      
    
