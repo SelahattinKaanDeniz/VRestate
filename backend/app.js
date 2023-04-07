@@ -481,7 +481,7 @@ app.get('/checkLocation', (req, res) => {
             return;
         }
         let json = JSON.parse(body);
-        console.log(json.status);
+        console.log(json);
         res.send(body)
         //res.send({country:body.country,region:body.regionName});
     })
