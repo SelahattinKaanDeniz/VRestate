@@ -196,9 +196,24 @@ app.post('/login', (req, res) => {
                     return console.error(error);
                 }
                 else {
-
-                    res.status(200);
-                    res.send('User Successfully Created!');
+                    let currentLocation;
+                    let ip = req.socket.remoteAddress.substring(req.socket.remoteAddress.indexOf(':', 2) + 1);
+                    request('http://ip-api.com/json/' + ip, (error, response, body) => {
+                        if (error) {
+                            currentLocation = null;
+                        }
+                        currentLocation = body;
+                    })
+                    let query3 = 'INSERT INTO profile (id, createDate, currentLocation, profileType) values (\'' + req.body.id + '\',\'' + new Date().toISOString() + '\',\'' + currentLocation + '\',\'' + 'Standard' + '\')';
+                    connection.query(query3, (error, results, fields) => {
+                        if (error) {
+                            res.statusMessage = 'Database Query Error: ' + error;
+                            res.status(500).end();
+                            return console.error(error);
+                        }
+                        res.status(200);
+                        res.send('User Successfully Created!')
+                    })
                 }
 
             });
@@ -438,6 +453,9 @@ app.get('/estate/getEstates', (req, res) => {
             //query+= ' id = '+req.query.id+' and';
         }
     }
+    if (query.search('and') > 0) {
+        query = query.substring(0, query.length - 3);
+    }
     if (req.query.detail == 'true') {
         query += ' inner join estate_detail on estate.id = estate_detail.id'
     }
@@ -462,6 +480,8 @@ app.get('/checkLocation', (req, res) => {
             res.status(400).send({ message: error });
             return;
         }
+        let json = JSON.parse(body);
+        console.log(json.status);
         res.send(body)
         //res.send({country:body.country,region:body.regionName});
     })
@@ -483,7 +503,7 @@ app.post('/unity/assignId', (req, res) => {
         while (flag) {
             console.log('while')
             for (let i = 0; i < results.length; i++) {
-                console.log(i +' i')
+                console.log(i + ' i')
                 console.log(results[i])
                 if (id == results[i].id) {
                     console.log('aynı id denk geldi tekrar.')
@@ -491,7 +511,7 @@ app.post('/unity/assignId', (req, res) => {
                     id = Math.floor(100000 + Math.random() * 900000);
                     break;
                 }
-                if(i == results.length-1){
+                if (i == results.length - 1) {
                     flag = false;
                 }
             }
@@ -559,6 +579,27 @@ app.get('/unity/load', (req, res) => {
         }
         let jsonReply = JSON.parse(results[0].model);
         res.status(200).json(jsonReply)
+    })
+
+})
+
+app.get('/unity/estateDetails', (req, res) => {
+    if (req.query.modelId == null) {
+        res.status(400).send({ message: 'Model ID cannot be null!' });
+        return;
+    }
+    let query = 'Select * from estate where vr_id = ' + req.query.modelId + ' inner join estate_detail on estate.id = estate_detail.id ';
+    connection.query(query, (error, results, fields) => {
+        if (error) {
+            res.statusMessage = 'Database Query Error';
+            res.status(500).send({ message: error });
+            return;
+        }
+        if (results.length == 0) {
+            res.status(400).send({ message: 'Estate does not exist' });
+            return;
+        }
+        res.status(200).send(results[0]);
     })
 
 })
