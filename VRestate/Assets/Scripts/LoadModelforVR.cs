@@ -6,7 +6,12 @@ using System.IO;
 using System;
 public class LoadModelforVR : MonoBehaviour
 {
+
+    public GameObject VRCamera;
     List<GameObject> item_list;
+    public static Vector3 VRCameraSpawnPoint;
+    public GameObject NewDoor2WithAnim;
+
     public GameObject CabinetBase1;
 
     public GameObject CabinetBase2;
@@ -22,6 +27,7 @@ public class LoadModelforVR : MonoBehaviour
     public GameObject CabinetWall2;
 
     public GameObject Stove;
+
 
 
     //Construction
@@ -177,6 +183,11 @@ public class LoadModelforVR : MonoBehaviour
     public GameObject Cube;
     public GameObject Capsule;
 
+    GameObject exteriordoor;
+    float exteriordoorRotationy = 10f;
+
+    Vector3 firstcamerapos = new Vector3(0.00f, 0.20f, 0.00f);
+
     // Start is called before the first frame update
     void Start()
     {
@@ -254,10 +265,35 @@ public class LoadModelforVR : MonoBehaviour
 
         readFromArrayList();
 
+        
+
         //item_list.Add(Cube);
         //item_list.Add(Capsule);
 
     }
+
+    private void Update()
+    {
+        //Debug.Log("Kamera pozisyonu: " + VRCamera.transform.position);
+
+        if(VRCamera.transform.position == firstcamerapos)
+        {
+            VRCamera.transform.position = VRCameraSpawnPoint;
+        }
+    }
+    /*private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireSphere(new Vector3(17.25f - 0.5f, 0.05f, -14.25f - 1f), 0.2f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(new Vector3(17.25f + 0.5f, 0.05f, -14.25f - 1f), 0.2f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(new Vector3(17.25f + 1f, 0.05f, -14.25f + 0.5f), 0.2f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(new Vector3(17.25f + 1f, 0.05f, -14.25f - 0.5f), 0.2f);
+        
+    }*/
 
     public void readFromArrayList()
     {
@@ -266,26 +302,41 @@ public class LoadModelforVR : MonoBehaviour
         {
             if (!String.Equals(token, ""))
             {
-                Debug.Log(token + " token");
+                //Debug.Log(token + " token");
                 item = JsonUtility.FromJson<ItemData>(token);
                 //ret.Add(item);
                 foreach (GameObject s in item_list)
                 {
                     if (s.name + "(Clone)" == item.id)
                     {
-                        GameObject obj;
-                        obj = Instantiate(s, new Vector3(float.Parse(item.pos_x), float.Parse(item.pos_y), float.Parse(item.pos_z)), new Quaternion(float.Parse(item.rotation_x), float.Parse(item.rotation_y), float.Parse(item.rotation_z), float.Parse(item.rotation_w)));
-                        Destroy(obj.GetComponent<PlaceableObject>());
-                        obj.transform.localScale = new Vector3(float.Parse(item.scale_x), float.Parse(item.scale_y), float.Parse(item.scale_z));
-                        obj.AddComponent<BoxCollider>();
-                        obj.GetComponent<BoxCollider>().size = obj.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
-                        obj.GetComponent<BoxCollider>().isTrigger = true;
-                        obj.AddComponent<Rigidbody>();
-                        obj.GetComponent<Rigidbody>().isKinematic = true;
-                        obj.tag = "Untagged";
-
+                        
+                        GameObject obj = null;
+                        if (item.id != "NewDoor2(Clone)")
+                        {
+                            obj = Instantiate(s, new Vector3(float.Parse(item.pos_x), float.Parse(item.pos_y), float.Parse(item.pos_z)), new Quaternion(float.Parse(item.rotation_x), float.Parse(item.rotation_y), float.Parse(item.rotation_z), float.Parse(item.rotation_w)));
+                            Destroy(obj.GetComponent<PlaceableObject>());
+                            obj.transform.localScale = new Vector3(float.Parse(item.scale_x), float.Parse(item.scale_y), float.Parse(item.scale_z));
+                            obj.AddComponent<BoxCollider>();
+                            obj.GetComponent<BoxCollider>().size = obj.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+                            obj.GetComponent<BoxCollider>().isTrigger = true;
+                            obj.AddComponent<Rigidbody>();
+                            obj.GetComponent<Rigidbody>().isKinematic = true;
+                            obj.tag = "Untagged";
+                        }
+                        if (item.id == "NewDoor1(Clone)")
+                        {
+                            exteriordoor = obj;
+                            exteriordoorRotationy = obj.transform.localRotation.eulerAngles.y;
+                        }
+                        if (item.id == "NewDoor2(Clone)")
+                        {
+                            
+                            obj = Instantiate(NewDoor2WithAnim, new Vector3(float.Parse(item.pos_x), float.Parse(item.pos_y), float.Parse(item.pos_z)), new Quaternion(float.Parse(item.rotation_x), float.Parse(item.rotation_y), float.Parse(item.rotation_z), float.Parse(item.rotation_w)));
+                            obj.transform.localScale = new Vector3(float.Parse(item.scale_x), float.Parse(item.scale_y), float.Parse(item.scale_z));                           
+                            obj.tag = "Untagged";
+                        }
                         // Çatý için
-                        if(item.id == "Floor(Clone)")
+                        if (item.id == "Floor(Clone)")
                         {
                             obj = Instantiate(s, new Vector3(float.Parse(item.pos_x), 2.99f, float.Parse(item.pos_z)), new Quaternion(float.Parse(item.rotation_x), float.Parse(item.rotation_y), float.Parse(item.rotation_z), float.Parse(item.rotation_w)));
                             Destroy(obj.GetComponent<PlaceableObject>());
@@ -297,11 +348,180 @@ public class LoadModelforVR : MonoBehaviour
                             obj.GetComponent<Rigidbody>().isKinematic = true;
                             obj.tag = "Untagged";
                         }
+                        
                     }
                 }
                 //Instantiate(DishWasher, new Vector3(4f, 2f, -18f), Quaternion.Euler(new Vector3(-90, 90, 0)));
             }
+            //GameObject exteriordoor = GameObject.Find("NewDoor1(Clone)");
+            Debug.Log(exteriordoorRotationy);
+            //float exteriordoorRotationy = exteriordoor.transform.rotation.y;
+
+
+            Debug.Log(exteriordoor + " EXTERIORDOOR");
+
+            if (exteriordoor != null)
+            {
+                bool isfound = false;
+                if (exteriordoorRotationy == 90f)
+                {
+
+                    Collider[] intersectingleftup = Physics.OverlapSphere(new Vector3(exteriordoor.transform.position.x - 0.5f, 0.05f, exteriordoor.transform.position.z - 1f), 0.2f);
+                    //OnDrawGizmos();
+                    if (intersectingleftup.Length != 0 && isfound == false)
+                    {
+                        for (int i = 0; i < intersectingleftup.Length; i++)
+                        {
+                            Debug.Log(intersectingleftup[i].gameObject.name + " left");
+                            if (intersectingleftup[i].gameObject.name == "Floor(Clone)")
+                            {
+                                Debug.Log(exteriordoor + " SOLUNDA FLOOR BULDU");
+                                VRCamera.transform.position = new Vector3(exteriordoor.transform.position.x - 0.5f , 0.2f, exteriordoor.transform.position.z - 1f);
+                                VRCamera.transform.rotation = Quaternion.Euler(0f, 270f, 0f);
+                                isfound = true;
+                                break;
+                            }
+                        }
+                    }
+
+
+                    Collider[] intersectingright = Physics.OverlapSphere(new Vector3(exteriordoor.transform.position.x + 0.5f, 0.05f, exteriordoor.transform.position.z - 1f), 0.2f);
+                    //OnDrawGizmos();
+                    if (intersectingright.Length != 0 && isfound == false)
+                    {
+                        for (int i = 0; i < intersectingright.Length; i++)
+                        {
+                            Debug.Log(intersectingright[i].gameObject.name + " right");
+                            if (intersectingright[i].gameObject.name == "Floor(Clone)")
+                            {
+                                Debug.Log(exteriordoor + " SAÐINDA FLOOR BULDU");
+                                VRCamera.transform.position = new Vector3(exteriordoor.transform.position.x + 0.5f, 0.2f, exteriordoor.transform.position.z - 1f);
+                                VRCamera.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+                                isfound = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (exteriordoorRotationy == 270f)
+                {
+
+                    Collider[] intersectingleftup = Physics.OverlapSphere(new Vector3(exteriordoor.transform.position.x - 0.5f, 0.05f, exteriordoor.transform.position.z + 1f), 0.2f);
+                    //OnDrawGizmos();
+                    if (intersectingleftup.Length != 0 && isfound == false)
+                    {
+                        for (int i = 0; i < intersectingleftup.Length; i++)
+                        {
+                            Debug.Log(intersectingleftup[i].gameObject.name + " left");
+                            if (intersectingleftup[i].gameObject.name == "Floor(Clone)")
+                            {
+                                Debug.Log(exteriordoor + " SOLUNDA FLOOR BULDU");
+                                VRCamera.transform.position = new Vector3(exteriordoor.transform.position.x - 0.5f, 0.2f, exteriordoor.transform.position.z + 1f);
+                                VRCamera.transform.rotation = Quaternion.Euler(0f, 270f, 0f);
+                                isfound = true;
+                                break;
+                            }
+                        }
+                    }
+
+
+                    Collider[] intersectingright = Physics.OverlapSphere(new Vector3(exteriordoor.transform.position.x + 0.5f, 0.05f, exteriordoor.transform.position.z + 1f), 0.2f);
+                    //OnDrawGizmos();
+                    if (intersectingright.Length != 0 && isfound == false)
+                    {
+                        for (int i = 0; i < intersectingright.Length; i++)
+                        {
+                            Debug.Log(intersectingright[i].gameObject.name + " right");
+                            if (intersectingright[i].gameObject.name == "Floor(Clone)")
+                            {
+                                Debug.Log(exteriordoor + " SAÐINDA FLOOR BULDU");
+                                VRCamera.transform.position = new Vector3(exteriordoor.transform.position.x + 0.5f , 0.2f, exteriordoor.transform.position.z + 1f);
+                                VRCamera.transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+                                isfound = true;
+                                break;
+                            }
+                        }
+
+                    }
+                }
+                else if (exteriordoorRotationy == 180f)
+                {
+                    Collider[] intersectingforward = Physics.OverlapSphere(new Vector3(exteriordoor.transform.position.x - 1f, 0.05f, exteriordoor.transform.position.z + 0.5f), 0.2f);
+                    //OnDrawGizmos();
+                    if (intersectingforward.Length != 0 && isfound == false)
+                    {
+                        for (int i = 0; i < intersectingforward.Length; i++)
+                        {
+                            Debug.Log(intersectingforward[i].gameObject.name + " forward");
+                            if (intersectingforward[i].gameObject.name == "Floor(Clone)")
+                            {
+                                Debug.Log(exteriordoor + " ÝLERÝSÝNDE FLOOR BULDU");
+                                VRCamera.transform.position = new Vector3(exteriordoor.transform.position.x - 1f, 0.2f, exteriordoor.transform.position.z + 0.5f );
+                                VRCamera.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                                isfound = true;
+                                break;
+                            }
+                        }
+                    }
+                    Collider[] intersectingback = Physics.OverlapSphere(new Vector3(exteriordoor.transform.position.x - 1f, 0.05f, exteriordoor.transform.position.z - 0.5f), 0.2f);
+                    //OnDrawGizmos();
+                    if (intersectingback.Length != 0 && isfound == false)
+                    {
+                        for (int i = 0; i < intersectingback.Length; i++)
+                        {
+                            Debug.Log(intersectingback[i].gameObject.name + " back");
+                            if (intersectingback[i].gameObject.name == "Floor(Clone)")
+                            {
+                                Debug.Log(exteriordoor + " ARKASINDA FLOOR BULDU");
+                                VRCamera.transform.position = new Vector3(exteriordoor.transform.position.x - 1f, 0.2f, exteriordoor.transform.position.z - 0.5f );
+                                VRCamera.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                                isfound = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+                else if (exteriordoorRotationy == 0f)
+                {
+                    Collider[] intersectingforward = Physics.OverlapSphere(new Vector3(exteriordoor.transform.position.x + 1f, 0.05f, exteriordoor.transform.position.z + 0.5f), 0.2f);
+                    //OnDrawGizmos();
+                    if (intersectingforward.Length != 0 && isfound == false)
+                    {
+                        for (int i = 0; i < intersectingforward.Length; i++)
+                        {
+                            Debug.Log(intersectingforward[i].gameObject.name + " forward");
+                            if (intersectingforward[i].gameObject.name == "Floor(Clone)")
+                            {
+                                Debug.Log(exteriordoor + " ÝLERÝSÝNDE FLOOR BULDU");
+                                VRCamera.transform.position = new Vector3(exteriordoor.transform.position.x + 1f, 0.2f, exteriordoor.transform.position.z + 0.5f );
+                                VRCamera.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+                                isfound = true;
+                                break;
+                            }
+                        }
+                    }
+                    Collider[] intersectingback = Physics.OverlapSphere(new Vector3(exteriordoor.transform.position.x + 1f, 0.05f, exteriordoor.transform.position.z - 0.5f), 0.2f);
+                    //OnDrawGizmos();
+                    if (intersectingback.Length != 0 && isfound == false)
+                    {
+                        for (int i = 0; i < intersectingback.Length; i++)
+                        {
+                            Debug.Log(intersectingback[i].gameObject.name + " back");
+                            if (intersectingback[i].gameObject.name == "Floor(Clone)")
+                            {
+                                Debug.Log(exteriordoor + " ARKASINDA FLOOR BULDU");
+                                VRCamera.transform.position = new Vector3(exteriordoor.transform.position.x + 1f, 0.2f, exteriordoor.transform.position.z - 0.5f -2f);
+                                VRCamera.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                                isfound = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
         }
+        Debug.Log(VRCamera.transform.position + "KAMERANIN SON POZÝSYONU");
+        VRCameraSpawnPoint = VRCamera.transform.position;
     }
 
     public void readFromJson(string path)

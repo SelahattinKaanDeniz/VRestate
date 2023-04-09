@@ -27,7 +27,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         //Debug.Log(Application.absoluteURL);
-        string q = "?modelId=712123&userId=123891284912&type=client";
+        string q = "?modelId=1&userId=123891284912&type=client";
         var query = HttpUtility.ParseQueryString(q);
 
         //var query = HttpUtility.ParseQueryString(Application.absoluteURL);       
@@ -61,7 +61,7 @@ public class MainMenu : MonoBehaviour
     IEnumerator DelaySceneLoadClient()
     {
         yield return new WaitForSeconds(0.01f);
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(2);
 
     }
 

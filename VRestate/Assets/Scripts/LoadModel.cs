@@ -95,7 +95,7 @@ public class LoadModel : MonoBehaviour
 
     public void readFromJson(string path)
     {
-        StreamReader reader = new StreamReader(path);
+        /*StreamReader reader = new StreamReader(path);
 
         // List<ItemData> ret = new List<ItemData>();
 
@@ -133,19 +133,24 @@ public class LoadModel : MonoBehaviour
             }
         }
 
-        reader.Close();
+        reader.Close();*/
 
         //////////////////////////  HTTP REQUESTLÝ LOAD
         
-        //StartCoroutine(readFromJson_Coroutine());
+        StartCoroutine(readFromJson_Coroutine());
 
 
     }
     public IEnumerator readFromJson_Coroutine()
     {
         string json = "";
-        string url = "http://10.3.192.113:5000/data";
-        using(UnityWebRequest request = UnityWebRequest.Get(url)){
+
+        // string url = "http://10.3.192.113:5000/data";
+        string postID = MainMenu.modelId;
+        Debug.Log("postid " + postID);
+        string url = "http://vrestate.tech:5002/unity/load?id=" + postID;
+        Debug.Log(url);
+        using (UnityWebRequest request = UnityWebRequest.Get(url)){
             yield return request.SendWebRequest();
 
             if (request.isNetworkError || request.isHttpError)

@@ -32,7 +32,7 @@ public class SaveModel : MonoBehaviour
     }
 
     public void writeToJson() {
-        StreamWriter writer = new StreamWriter("Assets/Resources/test.txt", false);
+        /*StreamWriter writer = new StreamWriter("Assets/Resources/test.txt", false);
         foreach (GameObject child in scene.GetRootGameObjects())
         {
 
@@ -71,12 +71,12 @@ public class SaveModel : MonoBehaviour
         }
 
         writer.Write("]");
-        writer.Close();
-
+        writer.Close();*/
+        
 
         ////////////////// HTTP REQUESTLÝ SAVE
         
-        //StartCoroutine(writeToJson_Coroutine());
+        StartCoroutine(writeToJson_Coroutine());
 
     }
 
@@ -132,8 +132,8 @@ public class SaveModel : MonoBehaviour
         json += "]";
         //writer.Close();
         string postID = MainMenu.modelId;
-        //var req = new UnityWebRequest($"http://localhost:5002/unity/save?id={postID}", "POST");
-        var req = new UnityWebRequest("http://10.3.192.113:5000/data", "POST");
+        var req = new UnityWebRequest($"http://vrestate.tech:5002/unity/save?id={postID}", "POST");
+        //var req = new UnityWebRequest("http://10.3.192.113:5000/data", "POST");
         byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
         req.uploadHandler = (UploadHandler)new UploadHandlerRaw(jsonToSend);
         req.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();

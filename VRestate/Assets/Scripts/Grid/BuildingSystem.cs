@@ -50,7 +50,7 @@ public class BuildingSystem : MonoBehaviour
             return;
         }*/
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        /*if (Input.GetKeyDown(KeyCode.Return))
         {
             ItemMenuButtonFunctions.objectToPlace.Rotate();
         }
@@ -72,7 +72,7 @@ public class BuildingSystem : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Escape))
         {
             Destroy(ItemMenuButtonFunctions.objectToPlace.gameObject);
-        }
+        }*/
     }
 
     #endregion

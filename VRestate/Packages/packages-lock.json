@@ -99,7 +99,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {
-      "version": "1.4.4",
+      "version": "1.5.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -326,6 +326,16 @@
       },
       "url": "https://registry.npmjs.org"
     },
+    "io.extendreality.tilia.input.unityinputsystem": {
+      "version": "2.4.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "io.extendreality.zinnia.unity": "2.10.0",
+        "com.unity.inputsystem": "1.5.0"
+      },
+      "url": "https://registry.npmjs.org"
+    },
     "io.extendreality.tilia.interactions.interactables.unity": {
       "version": "2.11.7",
       "depth": 0,
@@ -373,7 +383,7 @@
       "url": "https://registry.npmjs.org"
     },
     "io.extendreality.zinnia.unity": {
-      "version": "2.9.0",
+      "version": "2.10.0",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
