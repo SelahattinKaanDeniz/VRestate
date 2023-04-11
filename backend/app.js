@@ -157,7 +157,7 @@ app.get('/login/check', (req, res) => {
 });
 
 app.get('/login/getById', (req, res) => {
-    let query = 'SELECT * FROM vrestate.user WHERE id = \'' + req.query.id + '\'';
+    let query = 'SELECT * FROM user inner join profile on user.id = profile.id  WHERE user.id = ' + req.query.id;
 
     connection.query(query, (error, results, fields) => {
         if (error) {
@@ -197,23 +197,26 @@ app.post('/login', (req, res) => {
                 }
                 else {
                     let currentLocation;
-                    let ip = req.socket.remoteAddress.substring(req.socket.remoteAddress.indexOf(':', 2) + 1);
+                    //let ip = req.socket.remoteAddress.substring(req.socket.remoteAddress.indexOf(':', 2) + 1);
+                    let ip = "176.89.195.54";
                     request('http://ip-api.com/json/' + ip, (error, response, body) => {
                         if (error) {
                             currentLocation = null;
                         }
-                        currentLocation = body;
+                        console.log((JSON.parse(body)).regionName)
+                        currentLocation = ((JSON.parse(body)).regionName);
+                        let query3 = 'INSERT INTO profile (id, createDate, currentLocation, profileType) values (\'' + req.body.id + '\',\'' + new Date().toISOString() + '\',\'' + currentLocation + '\',\'' + 'Standard' + '\')';
+                        connection.query(query3, (error, results, fields) => {
+                            if (error) {
+                                res.statusMessage = 'Database Query Error: ' + error;
+                                res.status(500).end();
+                                return console.error(error);
+                            }
+                            res.status(200);
+                            res.send('User Successfully Created!')
+                        })
                     })
-                    let query3 = 'INSERT INTO profile (id, createDate, currentLocation, profileType) values (\'' + req.body.id + '\',\'' + new Date().toISOString() + '\',\'' + currentLocation + '\',\'' + 'Standard' + '\')';
-                    connection.query(query3, (error, results, fields) => {
-                        if (error) {
-                            res.statusMessage = 'Database Query Error: ' + error;
-                            res.status(500).end();
-                            return console.error(error);
-                        }
-                        res.status(200);
-                        res.send('User Successfully Created!')
-                    })
+
                 }
 
             });
@@ -407,14 +410,23 @@ app.post('/estate/delete', (req, res) => {
 
 app.get('/estate/getEstates', (req, res) => {
     let query = 'Select * from estate'
+    if (req.query.detail == 'true') {
+        query += ' inner join estate_detail on estate.id = estate_detail.id'
+    }
+    if (req.query.user == 'true') {
+        query += ' inner join user on user.id = estate.owner_id'
+        if (req.query.userDetail == 'true') {
+            query += ' inner join profile on profile.id = estate.owner_id'
+        }
+    }
     if (req.query.searchFilter == 'true') {
         query = query + ' where'
         if (req.query.id != null || req.query.id != undefined) {
-            query += ' id = ' + req.query.id + ' and';
+            query += ' estate.id = ' + req.query.id + ' and';
         }
 
         if (req.query.title != null || req.query.title != undefined) {
-            query += ' title like %' + req.query.title + '% and';
+            query += ' title like \'%' + req.query.title + '%\' and';
         }
 
         if (req.query.estate_type != null || req.query.estate_type != undefined) {
@@ -456,9 +468,8 @@ app.get('/estate/getEstates', (req, res) => {
     if (query.search('and') > 0) {
         query = query.substring(0, query.length - 3);
     }
-    if (req.query.detail == 'true') {
-        query += ' inner join estate_detail on estate.id = estate_detail.id'
-    }
+
+    
     console.log(query);
     connection.query(query, (error, results, fields) => {
         if (error) {
@@ -588,7 +599,7 @@ app.get('/unity/estateDetails', (req, res) => {
         res.status(400).send({ message: 'Model ID cannot be null!' });
         return;
     }
-    let query = 'Select * from estate where vr_id = ' + req.query.modelId + ' inner join estate_detail on estate.id = estate_detail.id ';
+    let query = 'Select * from estate inner join estate_detail on estate.id = estate_detail.id where estate.vr_id = ' + req.query.modelId + '';
     connection.query(query, (error, results, fields) => {
         if (error) {
             res.statusMessage = 'Database Query Error';
