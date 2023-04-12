@@ -19,7 +19,7 @@ async function main() {
 
         console.log('Connected to the MySQL server.');
     });
-    let pageHTMLS = [await axios.get("https://www.hepsiemlak.com/emlak", {httpAgent:socksAgent, httpsAgent:socksAgent}), await axios.get("https://www.hepsiemlak.com/emlak?page=2", {httpAgent:socksAgent, httpsAgent:socksAgent}), await axios.get("https://www.hepsiemlak.com/emlak?page=3", {httpAgent:socksAgent, httpsAgent:socksAgent}), await axios.get("https://www.hepsiemlak.com/emlak?page=4", {httpAgent:socksAgent, httpsAgent:socksAgent}), await axios.get("https://www.hepsiemlak.com/emlak?page=5", {httpAgent:socksAgent, httpsAgent:socksAgent})];
+    let pageHTMLS = [await axios.get("https://www.hepsiemlak.com/emlak", { httpAgent: socksAgent, httpsAgent: socksAgent }), await axios.get("https://www.hepsiemlak.com/emlak?page=2", { httpAgent: socksAgent, httpsAgent: socksAgent }), await axios.get("https://www.hepsiemlak.com/emlak?page=3", { httpAgent: socksAgent, httpsAgent: socksAgent }), await axios.get("https://www.hepsiemlak.com/emlak?page=4", { httpAgent: socksAgent, httpsAgent: socksAgent }), await axios.get("https://www.hepsiemlak.com/emlak?page=5", { httpAgent: socksAgent, httpsAgent: socksAgent })];
     let productURLS = [];
     console.log('asd')
     for (let i = 0; i < 3; i++) {
@@ -33,7 +33,7 @@ async function main() {
     console.log(productURLS);
     pageHTMLS = [];
     for (let i = 0; i < productURLS.length; i++) {
-        pageHTMLS.push(await axios.get(productURLS[i], {httpAgent:socksAgent, httpsAgent:socksAgent}));
+        pageHTMLS.push(await axios.get(productURLS[i], { httpAgent: socksAgent, httpsAgent: socksAgent }));
         console.log(i)
     }
     for (let i = 0; i < pageHTMLS.length; i++) {
@@ -107,7 +107,11 @@ async function main() {
         values[values.length] = (specs[7].replaceAll(' ', ''));
         currentEstate.m2 = parseInt(specs[8].replace(/\s\s+/g, ' ').replaceAll(' ', '').replace('m2', ''));
         values[values.length] = parseInt(specs[8].replace(/\s\s+/g, ' ').replaceAll(' ', '').replace('m2', ''));
-        let returnedData = (await axios.post("http://vrestate.tech:5002/unity/assignId"), {httpAgent:socksAgent, httpsAgent:socksAgent}).data
+        let response = await axios.post("http://vrestate.tech:5002/unity/assignId", {
+            httpAgent: socksAgent,
+            httpsAgent: socksAgent,
+        });
+        let returnedData = response.data;
         console.log(returnedData);
         let vrid = returnedData.id;
         currentEstate.vr_id = vrid
@@ -117,11 +121,11 @@ async function main() {
 
         let query = 'insert into hepsi_estate(id,title,head_photo_url,estate_type,category,price,create_date,location_ilce,location_il,coordX,coordY,room_type,m2,vr_id,url) values (?)';
         await connection.query(query, [values], (error, results, fields) => {
-            if(error){
+            if (error) {
                 console.log(error)
                 return;
             }
-            console.log(currentEstate.id +' is successfully added to db!');
+            console.log(currentEstate.id + ' is successfully added to db!');
         })
     }
 }
