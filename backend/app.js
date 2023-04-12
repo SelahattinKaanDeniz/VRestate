@@ -205,14 +205,14 @@ app.post('/profile/update', (req, res) => {
     values[values.length] = req.body.paymentInfo;
     values[values.length] = req.body.profileType;
     values[values.length] = req.body.phone;
-    let query = 'update profile set TC_no = ?, photo_id = ?, paymentInfo = ?, profileType = ?, phone = ? where id = '+req.query.id;
-    connection.query(query, values, (error,results) => {
+    let query = 'update profile set TC_no = ?, photo_id = ?, paymentInfo = ?, profileType = ?, phone = ? where id = ' + req.query.id;
+    connection.query(query, values, (error, results) => {
         if (error) {
             res.statusMessage = 'Database Query Error';
             res.status(500).send({ message: error });
             return;
         }
-        res.status(200).send({message:'User Profile Successfully Updated.'});
+        res.status(200).send({ message: 'User Profile Successfully Updated.' });
     })
 
 })
@@ -231,14 +231,14 @@ app.get('/profile/updateLocation', (req, res) => {
         }
         console.log((JSON.parse(body)).regionName)
         currentLocation = ((JSON.parse(body)).regionName);
-        let query = 'update profile set currentLocation = '+currentLocation+' where id = '+req.query.id;
+        let query = 'update profile set currentLocation = ' + currentLocation + ' where id = ' + req.query.id;
         connection.query(query, (error, results) => {
             if (error) {
                 res.statusMessage = 'Database Query Error';
                 res.status(500).send({ message: error });
                 return;
             }
-            res.status(200).send({message:'User Location Successfully Updated.'});
+            res.status(200).send({ message: 'User Location Successfully Updated.' });
         })
     });
 })
@@ -248,14 +248,14 @@ app.post('/profile/updateName', (req, res) => {
         res.status(400).send({ message: "Params cannot be null" });
         return;
     }
-    let query = 'update user set name = '+req.body.name+', surname = '+req.body.surname+' where id = '+req.query.id;
-    connection.query(query, (error,results) => {
+    let query = 'update user set name = ' + req.body.name + ', surname = ' + req.body.surname + ' where id = ' + req.query.id;
+    connection.query(query, (error, results) => {
         if (error) {
             res.statusMessage = 'Database Query Error';
             res.status(500).send({ message: error });
             return;
         }
-        res.status(200).send({message:'User Name/Surname Successfully Updated.'});
+        res.status(200).send({ message: 'User Name/Surname Successfully Updated.' });
     })
 })
 
@@ -762,10 +762,23 @@ app.get('/unity/estateDetails', (req, res) => {
             return;
         }
         if (results.length == 0) {
-            res.status(400).send({ message: 'Estate does not exist' });
-            return;
+            query = 'Select * from hepsi_estate where vr_id = ' + req.query.modelId + '';
+            connection.query(query, (error, results) => {
+                if (error) {
+                    res.statusMessage = 'Database Query Error';
+                    res.status(500).send({ message: error });
+                    return;
+                }
+                if (results.length == 0) {
+                    res.status(400).send({ message: 'Estate does not exist' });
+                    return;
+                }
+                res.status(200).send(results[0]);
+                return;
+            })
         }
         res.status(200).send(results[0]);
+        return;
     })
 
 })
