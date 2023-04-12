@@ -1,5 +1,7 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const httpsProxyAgent = require('https-proxy-agent');
+const socksAgent = new httpsProxyAgent('socks://bora:Bobbob117@185.254.239.84:80');
 let mysql = require("mysql");
 let connection = mysql.createConnection({
     host: 'vrestate.clbfq7mnbhip.eu-west-3.rds.amazonaws.com',
@@ -17,7 +19,7 @@ async function main() {
 
         console.log('Connected to the MySQL server.');
     });
-    let pageHTMLS = [await axios.get("https://www.hepsiemlak.com/emlak"), await axios.get("https://www.hepsiemlak.com/emlak?page=2"), await axios.get("https://www.hepsiemlak.com/emlak?page=3"), await axios.get("https://www.hepsiemlak.com/emlak?page=4"), await axios.get("https://www.hepsiemlak.com/emlak?page=5")];
+    let pageHTMLS = [await axios.get("https://www.hepsiemlak.com/emlak", {httpAgent:socksAgent, httpsAgent:socksAgent}), await axios.get("https://www.hepsiemlak.com/emlak?page=2", {httpAgent:socksAgent, httpsAgent:socksAgent}), await axios.get("https://www.hepsiemlak.com/emlak?page=3", {httpAgent:socksAgent, httpsAgent:socksAgent}), await axios.get("https://www.hepsiemlak.com/emlak?page=4", {httpAgent:socksAgent, httpsAgent:socksAgent}), await axios.get("https://www.hepsiemlak.com/emlak?page=5", {httpAgent:socksAgent, httpsAgent:socksAgent})];
     let productURLS = [];
     console.log('asd')
     for (let i = 0; i < 3; i++) {
@@ -31,7 +33,7 @@ async function main() {
     console.log(productURLS);
     pageHTMLS = [];
     for (let i = 0; i < productURLS.length; i++) {
-        pageHTMLS.push(await axios.get(productURLS[i]));
+        pageHTMLS.push(await axios.get(productURLS[i], {httpAgent:socksAgent, httpsAgent:socksAgent}));
         console.log(i)
     }
     for (let i = 0; i < pageHTMLS.length; i++) {
