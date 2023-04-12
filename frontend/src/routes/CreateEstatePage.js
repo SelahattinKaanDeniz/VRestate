@@ -63,6 +63,7 @@ function CreateEstatePage() {
   const [ifVrUsed, setIfVrUsed] = useState("yes");
   const [vr_id, setVr_id] = useState(null);
   const [buildingFees, setBuildingFees] = useState("");
+  const [estate_type, setEstate_type] = useState("Satılık");
   const [image, setImage] = useState(null);
   
 
@@ -154,8 +155,8 @@ function CreateEstatePage() {
           buildingAge , 
           balconyCount,
           buildingFees,
-          estate_type:"satilik",
-          category:"daire",
+          estate_type,
+          category:"Daire",
           ilce:"",
           owner_id:profile.id,
           buildingFloors:4,
@@ -163,7 +164,7 @@ function CreateEstatePage() {
         head_photo_id && (data.head_photo_id=head_photo_id);
         vrId && (data.vr_id=vrId);
         
-        const response = await fetch('http://localhost:5002/estate/create', {
+        const response = await fetch('http://vrestate.tech:5002/estate/create', {
           method: "POST", // *GET, POST, PUT, DELETE, etc.
           cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
           credentials: "same-origin", // include, *same-origin, omit
@@ -173,7 +174,12 @@ function CreateEstatePage() {
           referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
           body: JSON.stringify(data), // body data type must match "Content-Type" header
         });
+        let statusCode = await response.status;
+        if(statusCode==200)
         navigate("/success");
+        else{
+          navigate("/fail");
+        }
       });
     }
   }
@@ -196,23 +202,35 @@ function CreateEstatePage() {
           </Form.Group>
 
 
-          <Form.Group controlId="file"  className="mb-3">
+          <Form.Group controlId="file"  className="mb-4">
           <Form.Label>Upload Image</Form.Label>
           <Form.Control type="file" name="image" accept="image/*"onChange={(e)=>setImage(e.target.files[0])} />
          </Form.Group>
+
+         <Form.Group className="mb-4" size="sm">
+            <Form.Label>For Rent / For Sale</Form.Label>
+            <Form.Select onChange={(e)=>setEstate_type(e.target.value)} aria-label="Default select example">
+              <option value="Satılık">For Sale</option>
+              <option value="Kiralık">For Rent</option>
+            </Form.Select>
+          </Form.Group>
 
           <Form.Group className="mb-4" size="sm">
           <Form.Label>Price</Form.Label>
           <InputGroup className="mb-3">
             <InputGroup.Text>$</InputGroup.Text>
-            <Form.Control onChange={(e)=>setPrice(e.target.value)} aria-label="Amount (to the nearest dollar)" />
+            <Form.Control type="number" onChange={(e)=>setPrice(e.target.value)} aria-label="Amount (to the nearest dollar)" />
+            {
+              estate_type=="Kiralık" && <InputGroup.Text>Per Month</InputGroup.Text>
+            }
             </InputGroup>
           </Form.Group>
+
           <Form.Group className="mb-4" size="sm">
           <Form.Label>Building Fees</Form.Label>
           <InputGroup className="mb-3">
             <InputGroup.Text>$</InputGroup.Text>
-            <Form.Control onChange={(e)=>setBuildingFees(e.target.value)} aria-label="Amount (to the nearest dollar)" />
+            <Form.Control  type="number" onChange={(e)=>setBuildingFees(e.target.value)} aria-label="Amount (to the nearest dollar)" />
             <InputGroup.Text>Per Month</InputGroup.Text>
             </InputGroup>
           </Form.Group>
@@ -301,7 +319,7 @@ function CreateEstatePage() {
           <Form.Group  className="mb-3" size="sm">
           <Form.Label>Building Age</Form.Label>
           <InputGroup className="mb-3">
-            <Form.Control onChange={(e)=>setBuildingAge(e.target.value)} />
+            <Form.Control type="number" onChange={(e)=>setBuildingAge(e.target.value)} />
             <InputGroup.Text>Years</InputGroup.Text>
             </InputGroup>
           </Form.Group>
@@ -309,7 +327,7 @@ function CreateEstatePage() {
           <Form.Group  className="mb-3" size="sm">
           <Form.Label>Size</Form.Label>
           <InputGroup className="mb-3">
-            <Form.Control onChange={(e)=>setM2(e.target.value)} />
+            <Form.Control type="number" onChange={(e)=>setM2(e.target.value)} />
             <InputGroup.Text>m² </InputGroup.Text>
             </InputGroup>
           </Form.Group>

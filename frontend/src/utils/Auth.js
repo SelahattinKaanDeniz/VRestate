@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
     };
     setProfile(profile);
     console.log(profile);
-    const response = await fetch("http://localhost:5002/login", { // LOOK CORS POLICY!
+    const response = await fetch("http://http://vrestate.tech:5002/login", { // LOOK CORS POLICY!
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

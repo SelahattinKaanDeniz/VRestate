@@ -28,16 +28,15 @@ export default function Listing({myEstates}){
   const { profile } = useAuth();
   const navigate = useNavigate();
   const [estates, setEstates] = useState([]);
-  const [filteredEstates, setFilteredEstates] = useState([]);
   useEffect( ()=>{
     async function fetchEstates(isMyEstates){
-      fetch("http://localhost:5002/estate/getEstates?detail=true")
+      fetch("http://localhost:5002/estate/getEstates?detail=true&user=true")
       .then(response => response.json())
       .then(async (data) => {
         const currentEstates= data.results;
         console.log(currentEstates);
         const arrEstates= [];
-        
+
         await Promise.all(currentEstates.map(async (e) => {
           const obj = await fetchData(e);
           arrEstates.push(obj);
@@ -49,13 +48,10 @@ export default function Listing({myEstates}){
             myEstates.push(e);
           }
         })
-        setEstates(myEstates);
-        setFilteredEstates(myEstates);
+        setEstates((oldEstates)=>[...oldEstates,...myEstates]);
        }
        else{
-
-         setEstates(arrEstates);
-         setFilteredEstates(arrEstates);
+         setEstates((oldEstates)=>[...oldEstates,...arrEstates]);
        }
       })
     }
@@ -71,8 +67,18 @@ export default function Listing({myEstates}){
         return e;
       }
     }
+    async function fetchHepsiEmlak(){
+      fetch("http://vrestate.tech:5002/estate/getEstatesH").then(
+        (response)=> response.json()
+      ).then(
+        (emlakEstates)=>{
+          setEstates([...estates,...emlakEstates.results]);
+        }
+      );
+    }
     if(!myEstates){
       fetchEstates(false);
+      fetchHepsiEmlak();
     }
     else{
       fetchEstates(true);
@@ -89,20 +95,6 @@ export default function Listing({myEstates}){
     console.log(e.target.value);
   }
   const columns=[
-    // {
-    //   field:"icon",
-    //   editable:"false",
-    //   headerClassName: 'hideRightSeparator',
-    //   width:"400",
-    //   renderCell:(params)=>{
-    //     const estate=params.row;
-    //     return(
-    //       estate.image ?<Image style={{ maxHeight:"120px", maxWidth:"120px"}} src={estate.image} rounded={true}/>:<ListItemIcon style={{flexBasis:"20%", display:"flex", alignItems:"center",justifyContent:"center"}}>
-    //                <CorporateFareIcon />
-    //                </ListItemIcon>
-    //     )
-    //   }
-    // },
     {
       field:"Image",
       headerName:"",
@@ -112,12 +104,17 @@ export default function Listing({myEstates}){
       flex:0.5,
       renderCell: (params)=>{
         const estate= params.row;
-        return(
-    
-estate.image ?<Image style={{ maxHeight:"120px", maxWidth:"120px"}} src={estate.image} rounded={true}/>:<ListItemIcon style={{flexBasis:"20%", display:"flex", alignItems:"center",justifyContent:"center"}}>
-                   <CorporateFareIcon />
-                   </ListItemIcon>
-        )
+        if(estate.image){
+          return <Image style={{ maxHeight:"120px", maxWidth:"120px"}} src={estate.image} rounded={true}/>
+        }
+        else if(estate.head_photo_url){
+           return <Image style={{ maxHeight:"120px", maxWidth:"120px"}} src={estate.head_photo_url} rounded={true}/>
+        }
+        else{
+          return <ListItemIcon style={{flexBasis:"20%", display:"flex", alignItems:"center",justifyContent:"center"}}>
+          <CorporateFareIcon />
+         </ListItemIcon>
+        }
       },
     },
     {
@@ -127,15 +124,15 @@ estate.image ?<Image style={{ maxHeight:"120px", maxWidth:"120px"}} src={estate.
       renderCell: (params)=>{
         const estate= params.row;
         return(
-         
-                   <ListItemText
+         <ListItemText  primaryTypographyProps={ { style: { whiteSpace: "normal" } }}
           primary={<div style={{color:"#758DFB"}}>
             {estate.title}
-            <div>${estate.price}</div>
+            <div>{estate.type=="HepsiEmlak"?"₺":"$"}{estate.price}</div>
             <div>{estate.m2}m², {estate.room_type} </div>
             <div></div>
           </div>}
           secondary={
+            estate.type=="HepsiEmlak" ? <></> :
             <React.Fragment>
             
               With {estate.bathroomCount} Bathrooms, {estate.balconyCount} Balconies
@@ -144,15 +141,15 @@ estate.image ?<Image style={{ maxHeight:"120px", maxWidth:"120px"}} src={estate.
         />
         )
       },
-      flex:1
+      flex:2
     },
 
 
     {
       field:"Price",
       editable:"false",
-      flex:1,
-      valueGetter: (a)=>`$${a.row.price}`
+      flex:0.5,
+      valueGetter: (a)=>`${a.row.type=="HepsiEmlak"?"₺":"$"}${a.row.price}`
     },
     {
       field:"M²",
@@ -161,28 +158,22 @@ estate.image ?<Image style={{ maxHeight:"120px", maxWidth:"120px"}} src={estate.
       valueGetter: (a)=>`${a.row.m2}m²`
     },
     {
-      field:"Balcony Count",
+      field:"City",
       editable:"false",
       flex:0.5,
-      valueGetter: (a)=>`${a.row.balconyCount}`
+      valueGetter: (a)=>a.row.location_il ? `${a.row.location_il}`: "-"
     },
     {
-      field:"Bathroom Count",
+      field:"Estate Type",
       editable:"false",
       flex:0.5,
-      valueGetter: (a)=>`${a.row.balconyCount}`
+      valueGetter: (a)=>a.row.estate_type=="Satılık"?"Sale":"Rent"
     },
     {
       field:"Listed By",
       editable:"false",
-      flex:0.5,
-      valueGetter: (a)=>`${a.row.balconyCount}`
-    },
-    {
-      field:"Owner",
-      editable:"false",
       flex:1,
-      valueGetter: (a)=>`${a.row.m2}m²`
+      valueGetter: (a)=> (a.row.name && a.row.surname) ?`${a.row.name} ${a.row.surname}`:"-"
     },
     { 
       field:"Go",
@@ -194,7 +185,7 @@ estate.image ?<Image style={{ maxHeight:"120px", maxWidth:"120px"}} src={estate.
       renderCell:(a)=>{
         const estate = a.row;
         return(
-        <Button onClick={() => navigate(`/estate/${estate.id}`, {state:{estate}})} > Go Details</Button>
+        estate.type=="HepsiEmlak" ? <Button onClick={() => navigate(estate.url)} > Go Hepsi Emlak Page</Button>: <Button onClick={() => navigate(`/estate/${estate.id}`, {state:{estate}})} > Go Details</Button>
         )
       }
     },
@@ -226,72 +217,5 @@ estate.image ?<Image style={{ maxHeight:"120px", maxWidth:"120px"}} src={estate.
         options={options}
       />
     </Box>
-    // <Box sx={{ width: '100%', color: 'black', borderRadius:"10px"}}>
-      
-    //      <div className='filterContainer'>
-    //   <Autocomplete
-    //     id="free-solo-demo"
-    //     sx={{margin:"0 auto",maxWidth:"200px"}}
-    //     freeSolo
-    //     onInput={handleSearch}
-    //     options={["as"]}
-    //     renderInput={(params) => <TextField {...params} label="Search" size='small'  InputProps={{
-    //       endAdornment: (
-    //         <SearchIcon />
-    //       ),
-    //     }}/>}
-    //   />
-      
-    //   </div>
-    //   <nav aria-label="main mailbox folders">
-    //   {/* <DataGrid
-    //     rows={estates}
-    //     columns= {{}}
-    //     pageSize={5}
-    //     rowsPerPageOptions={[5]}
-    //     checkboxSelection
-    //   /> */}
-    //     <Table  >
-          
-    //       {estates.map((estate, index) => {
-    //         return <ListItem alignItems="flex-start" sx={{ margin:"0 auto", maxWidth: "1000px", borderRadius:"10px", '& .MuiListItemButton-root:hover': {
-    //           bgcolor: '#eaf8fe',
-    //           '&, & .MuiListItemIcon-root': {
-    //             color: '#eaf8fe',
-    //           },
-    //         },}} key={estate.title} onClick={() => { navigate(`/estate/${estate.id}`, {state:{estate}}); }} disablePadding>
-              
-    //           <ListItemButton sx={{borderRadius:"10px" ,display:"flex", gap:"10px", height:"120px"}}>
-    //             <div style={{flexBasis:"20%",display:"flex", alignItems:"center",justifyContent:"center"}}>
-    //             {estate.image ?<Image style={{ maxHeight:"120px", maxWidth:"120px"}} src={estate.image} rounded={true}/>:<ListItemIcon style={{flexBasis:"20%", display:"flex", alignItems:"center",justifyContent:"center"}}>
-    //               <CorporateFareIcon />
-    //             </ListItemIcon>}
-    //             </div>
-
-    //             <ListItemText
-    //       primary={<div style={{color:"#758DFB"}}>
-    //         {estate.title}
-    //         <div>${estate.price}</div>
-    //         <div>{estate.m2}m², {estate.room_type} </div>
-    //         <div></div>
-    //       </div>}
-    //       secondary={
-    //         <React.Fragment>
-            
-    //           With {estate.bathroomCount} Bathrooms, {estate.balconyCount} Balconies
-    //         </React.Fragment>
-    //       }
-    //     />
-    //             <ListItemText sx={{maxWidth: "300px"}} primary={<div>
-                
-    //             </div> } />
-    //             {/* <ListItemText primary={estate.title + " | "+ estate.locati on_il} /> */}
-                
-    //           </ListItemButton>
-    //         </ListItem>
-    //       })}
-    //     </Table>
-    //   </nav>
-    // </Box>
     );
 }

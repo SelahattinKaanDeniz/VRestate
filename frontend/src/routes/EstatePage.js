@@ -14,7 +14,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Image from 'react-bootstrap/esm/Image';
-
+import Card from 'react-bootstrap/Card';
 const containerStyle = {
   width: '100%',
   height: '200px',
@@ -52,6 +52,17 @@ function EstatePage() {
   const [priceEdit, setPriceEdit] = useState(false);
   const [titleEdit, setTitleEdit] = useState(false);
 
+  const [user, setUser]= useState({});
+
+  useEffect(()=>{
+    const fetchUser= async ()=>{
+      const f1=await fetch(`http://localhost:5002/profile/getProfile?id=${owner_id}`);
+      const info = await f1.json();
+      setUser(info[0]);
+    }
+
+    fetchUser();
+  },[])
   const { id } = useParams();// estate ID
   const { profile } = useAuth();
   const handleEdit = (buttonType) =>{
@@ -173,7 +184,7 @@ function EstatePage() {
         buildingFees,
         head_photo_id,
       }
-      const response = await fetch('http://localhost:5002/estate/update?id='+id+'&ownerId='+owner_id, {
+      const response = await fetch('http://vrestate.tech:5002/estate/update?id='+id+'&ownerId='+owner_id, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
         credentials: "same-origin", // include, *same-origin, omit
@@ -436,6 +447,32 @@ function EstatePage() {
       
       </tbody>
     </Table>
+    <Card style={{minWidth:"400px", marginBottom:"50px"}}>
+      <Card.Header>Seller Information</Card.Header>
+      <Card.Body style={{display:"flex", justifyContent:"center",alignItems:"center",textAlign:"center",flexDirection:"column"}}>
+        {
+          user.name && 
+          <Card.Text>
+          Name: {user.name}
+          </Card.Text>
+        }
+        
+        {
+          user.surname && 
+        
+          <Card.Text>
+           Surname: {user.surname}
+          </Card.Text>
+        }
+        {
+          user.mail && 
+          <Card.Text>
+           Email: {user.mail}
+          </Card.Text>
+        }
+        <a href={`mailto:${user.mail}`}  >Send Mail </a>
+      </Card.Body>
+    </Card>
 
     {
       vr_id && <Button onClick={(e)=>{
@@ -446,7 +483,7 @@ function EstatePage() {
         else{
           window.location.href=`http://vrestate.s3-website.eu-west-3.amazonaws.com?modelId=${vr_id}&userId=${profile.id}&type=client`
         }
-      }} style={{textAlign:"center",marginBottom:"20px"}} variant="contained"> {isUserOwner? "Edit in VR" : "Display in VR"} <ThreeDRotationIcon style={{fill:"white", marginLeft:"8px"}}/></Button>
+      }} style={{textAlign:"center",marginBottom:"60px"}} variant="contained"> {isUserOwner? "Edit in VR" : "Display in VR"} <ThreeDRotationIcon style={{fill:"white", marginLeft:"8px"}}/></Button>
     }
      
    

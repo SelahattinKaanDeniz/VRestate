@@ -14,6 +14,7 @@ import 'bootstrap/dist/css/bootstrap.css';import { ThemeProvider, createTheme } 
 import SuccessPage from './routes/SuccessPage';
 import Estate from './routes/MyEstatesPage';
 import ProfilePage from './routes/ProfilePage';
+import FailPage from './routes/FailPage';
 function App() {
 
   const router = createBrowserRouter([
@@ -49,6 +50,13 @@ function App() {
       path: "/success",
       element: <ProtectedRoute>
         <SuccessPage />
+      </ProtectedRoute>,
+      errorElement: <ErrorPage />
+    },
+    {
+      path: "/fail",
+      element: <ProtectedRoute>
+        <FailPage/>
       </ProtectedRoute>,
       errorElement: <ErrorPage />
     },
