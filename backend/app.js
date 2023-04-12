@@ -483,6 +483,76 @@ app.get('/estate/getEstates', (req, res) => {
     })
 });
 
+app.get('/estate/getEstatesH', (req, res) => {
+    let query = 'Select * from hepsi_estate'
+    if (req.query.searchFilter == 'true') {
+        query = query + ' where'
+        if (req.query.id != null || req.query.id != undefined) {
+            query += ' estate.id = ' + req.query.id + ' and';
+        }
+
+        if (req.query.title != null || req.query.title != undefined) {
+            query += ' title like \'%' + req.query.title + '%\' and';
+        }
+
+        if (req.query.url != null || req.query.url != undefined) {
+            query += ' url like \'%' + req.query.url + '%\' and';
+        }
+
+        if (req.query.estate_type != null || req.query.estate_type != undefined) {
+            query += ' estate_type = ' + req.query.estate_type + ' and';
+        }
+
+        if (req.query.category != null || req.query.category != undefined) {
+            query += ' category = ' + req.query.category + ' and';
+        }
+
+        if (req.query.priceMin != null || req.query.priceMin != undefined) {
+            query += ' price >= ' + req.query.priceMin + ' and';
+        }
+
+        if (req.query.priceMax != null || req.query.priceMax != undefined) {
+            query += ' price <= ' + req.query.priceMax + ' and';
+        }
+
+        if (req.query.create_date != null || req.query.create_date != undefined) {//todo date min max
+            //query+= ' id = '+req.query.id+' and';
+        }
+
+        if (req.query.location_il != null || req.query.location_il != undefined) {
+            query += ' location_il = ' + req.query.location_il + ' and';
+        }
+
+        if (req.query.location_ilce != null || req.query.location_ilce != undefined) {
+            query += ' location_ilce = ' + req.query.location_ilce + ' and';
+        }
+
+        if (req.query.room_type != null || req.query.room_type != undefined) {
+            query += ' room_type = ' + req.query.room_type + ' and';
+        }
+
+        if (req.query.price != null || req.query.price != undefined) {//todo minmax
+            //query+= ' id = '+req.query.id+' and';
+        }
+    }
+    if (query.search('and') > 0) {
+        query = query.substring(0, query.length - 3);
+    }
+
+    
+    console.log(query);
+    connection.query(query, (error, results, fields) => {
+        if (error) {
+            res.statusMessage = 'Database Query Error';
+            res.status(500).send({ message: error });
+            return;
+        }
+        res.status(200).send({
+            results
+        })
+    })
+});
+
 //json mu gidiyor control.
 app.get('/checkLocation', (req, res) => {
     let ip = req.socket.remoteAddress.substring(req.socket.remoteAddress.indexOf(':', 2) + 1);
