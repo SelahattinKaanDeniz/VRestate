@@ -17,7 +17,7 @@ async function main() {
 
         console.log('Connected to the MySQL server.');
     });
-    let pageHTMLS = [await axios.get("https://www.hepsiemlak.com/emlak"), await axios.get("https://www.hepsiemlak.com/emlak?page=2"), await axios.get("https://www.hepsiemlak.com/emlak?page=3")];
+    let pageHTMLS = [await axios.get("https://www.hepsiemlak.com/emlak"), await axios.get("https://www.hepsiemlak.com/emlak?page=2"), await axios.get("https://www.hepsiemlak.com/emlak?page=3"), await axios.get("https://www.hepsiemlak.com/emlak?page=4"), await axios.get("https://www.hepsiemlak.com/emlak?page=5")];
     let productURLS = [];
     console.log('asd')
     for (let i = 0; i < 3; i++) {
