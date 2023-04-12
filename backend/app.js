@@ -493,9 +493,9 @@ app.get('/estate/getEstates', (req, res) => {
     let query = 'Select * from estate'
     if (req.query.detail == 'true') {
         if (req.query.user == 'true') {
-            query = 'select estate.*, estate_detail.*, user.name, user.surname, user.phone, user.mail from estate inner join estate_detail on estate.id = estate_detail.id inner join user on user.id = estate.owner_id'
+            query = 'select estate.*, estate_detail.*, user.name, user.surname, user.mail from estate inner join estate_detail on estate.id = estate_detail.id inner join user on user.id = estate.owner_id'
             if (req.query.userDetail == 'true') {
-                query = 'select estate.*, estate_detail.*, user.name, user.surname, user.phone, user.mail, profile.TC_no, profile.photo_id, profile.createDate, profile.currentLocation, profile.paymentInfo, profile.profileType from estate inner join estate_detail on estate.id = estate_detail.id inner join user on user.id = estate.owner_id '
+                query = 'select estate.*, estate_detail.*, user.name, user.surname, user.phone, user.mail, profile.TC_no, profile.photo_id, profile.createDate, profile.currentLocation, profile.paymentInfo, profile.profileType, profile.phone from estate inner join estate_detail on estate.id = estate_detail.id inner join user on user.id = estate.owner_id '
                 query += ' inner join profile on profile.id = estate.owner_id'
             }
         }
