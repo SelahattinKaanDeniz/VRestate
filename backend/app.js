@@ -776,6 +776,7 @@ app.get('/unity/estateDetails', (req, res) => {
                 res.status(200).send(results[0]);
                 return;
             })
+            return;
         }
         res.status(200).send(results[0]);
         return;
