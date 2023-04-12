@@ -17,6 +17,7 @@ const upload = multer({ storage: storage });
 
 let mysql = require("mysql");
 const { json } = require("body-parser");
+const { error } = require("console");
 
 let connection = mysql.createConnection({
     host: 'vrestate.clbfq7mnbhip.eu-west-3.rds.amazonaws.com',
@@ -747,6 +748,22 @@ app.get('/unity/load', (req, res) => {
         res.status(200).json(jsonReply)
     })
 
+})
+
+app.get('/unity/userDetails', (req,res) => {
+    if (req.query.ownerId == null) {
+        res.status(400).send({ message: 'Owner ID cannot be null!' });
+        return;
+    }
+    let query = 'select * from user inner join profile on user.id = profile.id where user.id = '+req.query.ownerId;
+    connection.query(query, (error,results) => {
+        if (error) {
+            res.statusMessage = 'Database Query Error';
+            res.status(500).send({ message: error });
+            return;
+        }
+        res.status(200).send(results[0]);
+    })
 })
 
 app.get('/unity/estateDetails', (req, res) => {
