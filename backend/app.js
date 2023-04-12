@@ -178,6 +178,87 @@ app.get('/login/getById', (req, res) => {
 
 });
 
+app.get('/profile/getProfile', (req, res) => {
+    if (req.query.id == null || req.query.id == undefined) {
+        res.status(400).send({ message: "Params cannot be null" });
+        return;
+    }
+    let query = 'select * from user inner join profile on user.id = profile.id where user.id = ' + req.query.id;
+    connection.query(query, (error, results) => {
+        if (error) {
+            res.statusMessage = 'Database Query Error';
+            res.status(500).send({ message: error });
+            return;
+        }
+        res.status(200).send(results);
+    })
+})
+
+app.post('/profile/update', (req, res) => {
+    if (req.query.id == null || req.query.id == undefined) {
+        res.status(400).send({ message: "Params cannot be null" });
+        return;
+    }
+    let values = []
+    values[values.length] = req.body.TC_no;
+    values[values.length] = req.body.photo_id;
+    values[values.length] = req.body.paymentInfo;
+    values[values.length] = req.body.profileType;
+    values[values.length] = req.body.phone;
+    let query = 'update profile set TC_no = ?, photo_id = ?, paymentInfo = ?, profileType = ?, phone = ? where id = '+req.query.id;
+    connection.query(query, values, (error,results) => {
+        if (error) {
+            res.statusMessage = 'Database Query Error';
+            res.status(500).send({ message: error });
+            return;
+        }
+        res.status(200).send({message:'User Profile Successfully Updated.'});
+    })
+
+})
+
+app.get('/profile/updateLocation', (req, res) => {
+    if (req.query.id == null || req.query.id == undefined) {
+        res.status(400).send({ message: "Params cannot be null" });
+        return;
+    }
+    let currentLocation;
+    let ip = req.socket.remoteAddress.substring(req.socket.remoteAddress.indexOf(':', 2) + 1);
+    //let ip = "176.89.195.54";
+    request('http://ip-api.com/json/' + ip, (error, response, body) => {
+        if (error) {
+            currentLocation = null;
+        }
+        console.log((JSON.parse(body)).regionName)
+        currentLocation = ((JSON.parse(body)).regionName);
+        let query = 'update profile set currentLocation = '+currentLocation+' where id = '+req.query.id;
+        connection.query(query, (error, results) => {
+            if (error) {
+                res.statusMessage = 'Database Query Error';
+                res.status(500).send({ message: error });
+                return;
+            }
+            res.status(200).send({message:'User Location Successfully Updated.'});
+        })
+    });
+})
+
+app.post('/profile/updateName', (req, res) => {
+    if (req.query.id == null || req.query.id == undefined || req.body.name == null || req.body.name == undefined || req.body.surname == null || req.body.surname == undefined) {
+        res.status(400).send({ message: "Params cannot be null" });
+        return;
+    }
+    let query = 'update user set name = '+req.body.name+', surname = '+req.body.surname+' where id = '+req.query.id;
+    connection.query(query, (error,results) => {
+        if (error) {
+            res.statusMessage = 'Database Query Error';
+            res.status(500).send({ message: error });
+            return;
+        }
+        res.status(200).send({message:'User Name/Surname Successfully Updated.'});
+    })
+})
+
 app.post('/login', (req, res) => {
     let query = 'SELECT * FROM vrestate.user WHERE mail = \'' + req.body.mail + '\'';
 
@@ -197,8 +278,8 @@ app.post('/login', (req, res) => {
                 }
                 else {
                     let currentLocation;
-                    //let ip = req.socket.remoteAddress.substring(req.socket.remoteAddress.indexOf(':', 2) + 1);
-                    let ip = "176.89.195.54";
+                    let ip = req.socket.remoteAddress.substring(req.socket.remoteAddress.indexOf(':', 2) + 1);
+                    //let ip = "176.89.195.54";
                     request('http://ip-api.com/json/' + ip, (error, response, body) => {
                         if (error) {
                             currentLocation = null;
@@ -418,11 +499,11 @@ app.get('/estate/getEstates', (req, res) => {
                 query += ' inner join profile on profile.id = estate.owner_id'
             }
         }
-        else{
+        else {
             query += ' inner join estate_detail on estate.id = estate_detail.id'
         }
     }
-    
+
     if (req.query.searchFilter == 'true') {
         query = query + ' where'
         if (req.query.id != null || req.query.id != undefined) {
@@ -473,7 +554,7 @@ app.get('/estate/getEstates', (req, res) => {
         query = query.substring(0, query.length - 3);
     }
 
-    
+
     console.log(query);
     connection.query(query, (error, results, fields) => {
         if (error) {
@@ -543,7 +624,7 @@ app.get('/estate/getEstatesH', (req, res) => {
         query = query.substring(0, query.length - 3);
     }
 
-    
+
     console.log(query);
     connection.query(query, (error, results, fields) => {
         if (error) {
