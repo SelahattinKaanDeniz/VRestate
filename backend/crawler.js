@@ -108,7 +108,7 @@ async function main() {
         currentEstate.m2 = parseInt(specs[8].replace(/\s\s+/g, ' ').replaceAll(' ', '').replace('m2', ''));
         values[values.length] = parseInt(specs[8].replace(/\s\s+/g, ' ').replaceAll(' ', '').replace('m2', ''));
         let returnedData = (await axios.post("http://vrestate.tech:5002/unity/assignId"), {httpAgent:socksAgent, httpsAgent:socksAgent}).data
-        console.log(data);
+        console.log(returnedData);
         let vrid = returnedData.id;
         currentEstate.vr_id = vrid
         values[values.length] = vrid
