@@ -18,7 +18,7 @@ function MainPage() {
   return(
     <>
      <Header/>
-     <div style={{marginTop:"12rem",width: '100%', margin: '0 auto',display:"flex",flexDirection:"column"}} >
+     <div style={{marginTop:"12rem",width: '100%', height: '89vh', margin: '0 auto',display:"flex",flexDirection:"column"}} >
   
      {/* <Button sx={{width:"150px",marginLeft:"auto"}} variant="contained" onClick={() => { navigate(`/create`); }} >CREATE NEW</Button> */}
       <Listing />

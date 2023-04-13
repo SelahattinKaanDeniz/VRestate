@@ -473,7 +473,7 @@ function EstatePage() {
         <a href={`mailto:${user.mail}`}  >Send Mail </a>
       </Card.Body>
     </Card>
-
+    
     {
       vr_id && <Button onClick={(e)=>{
         e.preventDefault();

@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useAuth } from "../utils/Auth";
+import img from '../images/VRestate_logo3.png'
 import UserAvatar from './UserAvatar';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
@@ -14,7 +15,7 @@ export default function Header(){
     return(
     <Navbar expand="md">
       <Container>
-        <Navbar.Brand href="/">VRestate</Navbar.Brand>
+        <Navbar.Brand href="/"><img src={img} class='HeaderLogo'></img></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">

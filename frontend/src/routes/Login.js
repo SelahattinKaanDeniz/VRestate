@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {
   Navigate,
 } from 'react-router-dom';
-import img from '../images/vr_img.png';
+import img from '../images/VRestate_logo2.png'
 import { useAuth } from "../utils/Auth";
 import { GoogleLogin } from '@react-oauth/google';
 
@@ -25,7 +25,7 @@ const Login = () => {
       </div>
       {/* <GoogleLogout clientId={CLIENT_ID} buttonText="Log out" onLogoutSuccess={onLogOutSuccess} /> */}
       <div className="Container-1">
-        <h1> VRestate</h1>
+        <h1> Login</h1>
         <GoogleLogin
         onSuccess={onSuccess}
         onError={onFailure}

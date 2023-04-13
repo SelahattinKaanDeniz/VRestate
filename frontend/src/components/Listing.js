@@ -30,7 +30,7 @@ export default function Listing({myEstates}){
   const [estates, setEstates] = useState([]);
   useEffect( ()=>{
     async function fetchEstates(isMyEstates){
-      fetch("http://localhost:5002/estate/getEstates?detail=true&user=true")
+      fetch("http://vrestate.tech:5002/estate/getEstates?detail=true&user=true")
       .then(response => response.json())
       .then(async (data) => {
         const currentEstates= data.results;
