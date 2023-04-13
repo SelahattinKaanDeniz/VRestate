@@ -48,7 +48,7 @@ export default function Listing({myEstates}){
             myEstates.push(e);
           }
         })
-        setEstates((oldEstates)=>[...oldEstates,...myEstates]);
+        setEstates(myEstates);
        }
        else{
          setEstates((oldEstates)=>[...oldEstates,...arrEstates]);
@@ -173,7 +173,21 @@ export default function Listing({myEstates}){
       field:"Listed By",
       editable:"false",
       flex:1,
-      valueGetter: (a)=> (a.row.name && a.row.surname) ?`${a.row.name} ${a.row.surname}`:"-"
+      renderCell: (a)=> (a.row.name && a.row.surname) ?`${a.row.name} ${a.row.surname}`:<Image src='https://www.hepsiemlak.com/_nuxt/img/logo-multi.9153507.svg' />
+    },
+    { 
+      field:"VR",
+      headerName:"",
+      editable:"false",
+      disableColumnMenu:true,
+      sortable:false,
+      flex:1,
+      renderCell:(a)=>{
+        const estate = a.row;
+        return(
+        estate.type=="HepsiEmlak" ? <><Button onClick={() => window.location=`http://vrestate.s3-website.eu-west-3.amazonaws.com?modelId=${estate.vr_id}&userId=${profile.id}&type=seller`} >Edit in Editor</Button> <Button onClick={() => window.location=`http://vrestate.s3-website.eu-west-3.amazonaws.com?modelId=${estate.vr_id}&userId=${profile.id}&type=client`} >See in VR</Button></>: <></>
+        )
+      }
     },
     { 
       field:"Go",
@@ -185,7 +199,7 @@ export default function Listing({myEstates}){
       renderCell:(a)=>{
         const estate = a.row;
         return(
-        estate.type=="HepsiEmlak" ? <Button onClick={() => navigate(estate.url)} > Go Hepsi Emlak Page</Button>: <Button onClick={() => navigate(`/estate/${estate.id}`, {state:{estate}})} > Go Details</Button>
+        estate.type=="HepsiEmlak" ? <Button onClick={() => window.location=estate.url} > Go Hepsi Emlak Page</Button>: <Button onClick={() => navigate(`/estate/${estate.id}`, {state:{estate}})} > Go Details</Button>
         )
       }
     },
