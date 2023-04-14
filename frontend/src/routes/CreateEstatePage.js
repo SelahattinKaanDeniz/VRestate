@@ -119,6 +119,7 @@ function CreateEstatePage() {
       Geocode.fromLatLng(coordinates.lat, coordinates.lng).then(
         (response) => {
           const address = response.results[0].formatted_address;
+          console.log(address);
           let city, state, country;
           for (let i = 0; i < response.results[0].address_components.length; i++) {
             for (let j = 0; j < response.results[0].address_components[i].types.length; j++) {
@@ -126,7 +127,7 @@ function CreateEstatePage() {
                 case "locality":
                   city = response.results[0].address_components[i].long_name;
                   break;
-                case "administrative_area_level_1":
+                case "administrative_area_level_2":
                   state = response.results[0].address_components[i].long_name;
                   break;
                 case "country":

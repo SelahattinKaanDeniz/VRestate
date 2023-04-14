@@ -21,6 +21,7 @@ export default function Header(){
           <Nav className="me-auto">
             <Nav.Link href="/estates">My Estates</Nav.Link>
             <Nav.Link href="/create">Create New</Nav.Link>
+            <Nav.Link href="/maps">Map</Nav.Link>
           </Nav>
         </Navbar.Collapse>
 

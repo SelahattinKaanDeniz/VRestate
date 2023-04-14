@@ -451,21 +451,21 @@ function EstatePage() {
       <Card.Header>Seller Information</Card.Header>
       <Card.Body style={{display:"flex", justifyContent:"center",alignItems:"center",textAlign:"center",flexDirection:"column"}}>
         {
-          user.name && 
+          user?.name && 
           <Card.Text>
           Name: {user.name}
           </Card.Text>
         }
         
         {
-          user.surname && 
+          user?.surname && 
         
           <Card.Text>
            Surname: {user.surname}
           </Card.Text>
         }
         {
-          user.mail && 
+          user?.mail && 
           <Card.Text>
            Email: {user.mail}
           </Card.Text>
@@ -478,10 +478,10 @@ function EstatePage() {
       vr_id && <Button onClick={(e)=>{
         e.preventDefault();
         if(isUserOwner){
-          window.location.href=`http://vrestate.s3-website.eu-west-3.amazonaws.com?modelId=${vr_id}&userId=${profile.id}&type=seller`
+          window.open(`http://vrestate.s3-website.eu-west-3.amazonaws.com?modelId=${vr_id}&userId=${profile.id}&type=seller`);
         }
         else{
-          window.location.href=`http://vrestate.s3-website.eu-west-3.amazonaws.com?modelId=${vr_id}&userId=${profile.id}&type=client`
+          window.open(`http://vrestate.s3-website.eu-west-3.amazonaws.com?modelId=${vr_id}&userId=${profile.id}&type=client`);
         }
       }} style={{textAlign:"center",marginBottom:"60px"}} variant="contained"> {isUserOwner? "Edit in VR" : "Display in VR"} <ThreeDRotationIcon style={{fill:"white", marginLeft:"8px"}}/></Button>
     }

@@ -15,6 +15,7 @@ import SuccessPage from './routes/SuccessPage';
 import Estate from './routes/MyEstatesPage';
 import ProfilePage from './routes/ProfilePage';
 import FailPage from './routes/FailPage';
+import MapsPage from './routes/MapsPage';
 function App() {
 
   const router = createBrowserRouter([
@@ -71,6 +72,13 @@ function App() {
       path: "/profile",
       element: <ProtectedRoute>
         <ProfilePage />
+      </ProtectedRoute>,
+      errorElement: <ErrorPage />
+    },
+    {
+      path: "/maps",
+      element: <ProtectedRoute>
+        <MapsPage />
       </ProtectedRoute>,
       errorElement: <ErrorPage />
     },

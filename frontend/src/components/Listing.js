@@ -185,7 +185,7 @@ export default function Listing({myEstates}){
       renderCell:(a)=>{
         const estate = a.row;
         return(
-        estate.type=="HepsiEmlak" ? <><Button onClick={() => window.location=`http://vrestate.s3-website.eu-west-3.amazonaws.com?modelId=${estate.vr_id}&userId=${profile.id}&type=seller`} >Edit in Editor</Button> <Button onClick={() => window.location=`http://vrestate.s3-website.eu-west-3.amazonaws.com?modelId=${estate.vr_id}&userId=${profile.id}&type=client`} >See in VR</Button></>: <></>
+        estate.type=="HepsiEmlak" ? <><Button onClick={() =>  window.open(`http://vrestate.s3-website.eu-west-3.amazonaws.com?modelId=${estate.vr_id}&userId=${profile.id}&type=seller`)} >Edit in Editor</Button> <Button onClick={() => window.open(`http://vrestate.s3-website.eu-west-3.amazonaws.com?modelId=${estate.vr_id}&userId=${profile.id}&type=client`)} >See in VR</Button></>: <></>
         )
       }
     },
@@ -199,7 +199,7 @@ export default function Listing({myEstates}){
       renderCell:(a)=>{
         const estate = a.row;
         return(
-        estate.type=="HepsiEmlak" ? <Button onClick={() => window.location=estate.url} > Go Hepsi Emlak Page</Button>: <Button onClick={() => navigate(`/estate/${estate.id}`, {state:{estate}})} > Go Details</Button>
+        estate.type=="HepsiEmlak" ? <Button onClick={() => window.open(estate.url)} > Go Hepsi Emlak Page</Button>: <Button onClick={() => navigate(`/estate/${estate.id}`, {state:{estate}})} > Go Details</Button>
         )
       }
     },
