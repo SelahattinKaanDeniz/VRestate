@@ -193,7 +193,6 @@ GameObject:
   - component: {fileID: 6869262292548208649}
   - component: {fileID: 2154267685643475299}
   - component: {fileID: 737297534857112043}
-  - component: {fileID: 2679747796382391823}
   m_Layer: 0
   m_Name: CubeWall__1_
   m_TagString: 3DModel
@@ -266,16 +265,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2679747796382391823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8202083182625665532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55467d7fcc46c3046aed8c860bb224c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isColliding: 0

@@ -14,7 +14,7 @@ namespace SojaExiles
 
 		float timer = 0f; 
 
-	    float timerMax = 10f;
+	    float timerMax = 3f;
 
 		bool collisionhappened = false;
 

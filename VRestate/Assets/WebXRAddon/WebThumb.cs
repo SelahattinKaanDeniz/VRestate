@@ -10,4 +10,6 @@ public class WebThumb : BooleanAction
     {
         Receive(controller.GetButton(WebXRController.ButtonTypes.Thumbstick));
     }
+
+    
 }

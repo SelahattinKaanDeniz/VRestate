@@ -12,28 +12,36 @@ public class MainMenu : MonoBehaviour
     public static string type;
     public static string modelId;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
+
+
+
 
     public void StartGame()
     {
         //Debug.Log(Application.absoluteURL);
-        string q = "?modelId=1&userId=123891284912&type=client";
+        //string q = "http://127.0.0.1:5500/?modelId=1&userId=123891284912&type=client";
+         
+        /////
+        
+        string q = Application.absoluteURL;
+        q = q.Substring(q.IndexOf("?"));
+        Debug.Log(q);
+        
+        //////
+        
+
+        //string q = "?modelId=1&userId=123891284912&type=client";
+        //string q = "?modelId=893263&userId=123891284912&type=client";
+
         var query = HttpUtility.ParseQueryString(q);
 
         //var query = HttpUtility.ParseQueryString(Application.absoluteURL);       
-        userId = query["userID"];
+        userId = query["userId"];
         type = query["type"];
         modelId = query["modelId"];
+        Debug.Log("modelId " + modelId);
         Debug.Log("userId " + userId);
         Debug.Log("type " + type);
         if(type== "client")

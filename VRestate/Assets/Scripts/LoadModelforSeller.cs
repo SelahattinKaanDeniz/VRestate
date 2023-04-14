@@ -7,7 +7,7 @@ using System;
 using UnityEngine.Networking;
 using System.Text.RegularExpressions;
 
-public class LoadModel : MonoBehaviour
+public class LoadModelforSeller : MonoBehaviour
 {
     List<GameObject> item_list;
     public GameObject CabinetBase1;
@@ -43,6 +43,9 @@ public class LoadModel : MonoBehaviour
 
     public GameObject Rail;
 
+
+
+
     // Dynamic Wall Creation
 
     public GameObject CubeWall;
@@ -56,16 +59,13 @@ public class LoadModel : MonoBehaviour
     public GameObject Toilet;
 
     public GameObject Vanity1;
-
-
     public GameObject Cube;
     public GameObject Capsule;
 
     // Start is called before the first frame update
     void Start()
     {
-         item_list = new List<GameObject>();
-        
+        item_list = new List<GameObject>();
         item_list.Add(CubeWall);
         item_list.Add(Floor);
         item_list.Add(CabinetBase1);
@@ -87,14 +87,7 @@ public class LoadModel : MonoBehaviour
         item_list.Add(Toilet);
         item_list.Add(Vanity1);
 
-       
-
-      
         readFromJson("Assets/Resources/test.txt");
-          
-
-      
-        
         //item_list.Add(Cube);
         //item_list.Add(Capsule);
 
@@ -143,12 +136,11 @@ public class LoadModel : MonoBehaviour
         reader.Close();*/
 
         //////////////////////////  HTTP REQUESTLÝ LOAD
-        
+
         StartCoroutine(readFromJson_Coroutine());
 
 
     }
-  
     public IEnumerator readFromJson_Coroutine()
     {
         string json = "";
@@ -158,7 +150,8 @@ public class LoadModel : MonoBehaviour
         Debug.Log("postid " + postID);
         string url = "http://vrestate.tech:5002/unity/load?id=" + postID;
         Debug.Log(url);
-        using (UnityWebRequest request = UnityWebRequest.Get(url)){
+        using (UnityWebRequest request = UnityWebRequest.Get(url))
+        {
             yield return request.SendWebRequest();
 
             if (request.isNetworkError || request.isHttpError)
@@ -184,7 +177,7 @@ public class LoadModel : MonoBehaviour
         ItemData item;
         foreach (string token in tokens)
         {
-            if (!String.Equals(token, "") && !String.Equals(token, "null"))
+            if (!String.Equals(token, ""))
             {
                 Debug.Log(token + " token");
                 item = JsonUtility.FromJson<ItemData>("{" + token + "}");
@@ -201,17 +194,7 @@ public class LoadModel : MonoBehaviour
                         obj.GetComponent<BoxCollider>().isTrigger = true;
                         obj.AddComponent<Rigidbody>();
                         obj.GetComponent<Rigidbody>().isKinematic = true;
-                        Scene m_Scene = SceneManager.GetActiveScene();
-                        Debug.Log(m_Scene.name);
-                        if(m_Scene.name == "MainScene")
-                        {
-                            obj.tag = "3DModel";
-                        }
-                        else
-                        {
-                            obj.tag = "Untagged";
-                        }
-                        
+                        obj.tag = "Untagged";
                     }
                 }
                 //Instantiate(DishWasher, new Vector3(4f, 2f, -18f), Quaternion.Euler(new Vector3(-90, 90, 0)));

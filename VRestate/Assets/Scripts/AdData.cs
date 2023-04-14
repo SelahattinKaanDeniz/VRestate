@@ -20,6 +20,22 @@ public class AdData
     [SerializeField] public string m2;
     [SerializeField] public string vr_id;
     [SerializeField] public string owner_id;
+    [SerializeField] public string type;
+    [SerializeField] public string head_photo_url;
+
+
+    //
+
+
+    [SerializeField] public string name;
+    [SerializeField] public string surname;
+    [SerializeField] public string mail;
+    [SerializeField] public string phone;
+    [SerializeField] public string paymentInfo;
+    [SerializeField] public string currentLocation;
+    [SerializeField] public string TC_no;
+
+
 
     public AdData(
        string id,
@@ -37,7 +53,16 @@ public class AdData
        string room_type,
        string m2,
        string vr_id,
-       string owner_id
+       string owner_id,
+       string type,
+       string head_photo_url,
+       string name,
+       string surname,
+       string mail,
+       string phone,
+       string paymentInfo,
+       string currentLocation,
+       string TC_no
 
     )
     {
@@ -57,6 +82,16 @@ public class AdData
         this.m2 = m2;
         this.vr_id = vr_id;
         this.owner_id = owner_id;
+        this.type= type;
+        this.head_photo_url = head_photo_url;
+        this.name = name;
+        this.surname = surname;
+        this.mail = mail;
+        this.phone = phone;
+        this.paymentInfo = paymentInfo;
+        this.currentLocation = currentLocation;
+        this.TC_no = TC_no;
+        
     }
 }
 

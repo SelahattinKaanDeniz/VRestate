@@ -18,6 +18,7 @@ public class SaveModeltoVR : MonoBehaviour
 
 
         item_list = new List<string>();
+     
 
 
 
@@ -29,7 +30,7 @@ public class SaveModeltoVR : MonoBehaviour
             Debug.Log(">>" + d.id + " " + d.pos_x + "<<");
         }*/
     }
-
+    
 
     public void writeToJson()
     {
@@ -62,7 +63,7 @@ public class SaveModeltoVR : MonoBehaviour
         }
         for(int i = 0;i < item_list.Count; i++)
         {
-            Debug.Log(item_list[i]);
+            //Debug.Log(item_list[i]);
         }
         /*writer.Write("[");
 

@@ -1746,7 +1746,11 @@ public class ItemMenuButtonFunctions : MonoBehaviour
                 //Debug.Log(raycastHit.point);
                 if (Input.GetMouseButtonDown(0))
                 {
-                   //Debug.Log(sizeMenu.transform.position + " sizemenuposition");
+                    Debug.Log(raycastHit.collider.tag);
+                    Debug.Log(sizeMenu.transform.position);
+                    Debug.Log(settingsMenu.active);
+                    Debug.Log(IsMouseHoveringOnButton.onButton);
+                    //Debug.Log(sizeMenu.transform.position + " sizemenuposition");
                     if (raycastHit.collider.tag == "3DModel" && (sizeMenu.transform.position == new Vector3(3960f,3540f,3000f)) && settingsMenu.active == false && IsMouseHoveringOnButton.onButton == false)
                     {
                         //isInteractionOpen = true;

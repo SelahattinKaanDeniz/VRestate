@@ -7,6 +7,8 @@ public class WebFloatX : FloatAction
     public WebXRController controller;
     private float xAxis;
 
+
+
     // Update is called once per frame
     void Update()
     {
@@ -16,4 +18,5 @@ public class WebFloatX : FloatAction
         //print("xAxis " + xAxis);
         Receive(xAxis);
     }
+   
 }

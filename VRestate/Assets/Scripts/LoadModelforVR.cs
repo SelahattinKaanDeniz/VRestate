@@ -322,6 +322,89 @@ public class LoadModelforVR : MonoBehaviour
                             obj.AddComponent<Rigidbody>();
                             obj.GetComponent<Rigidbody>().isKinematic = true;
                             obj.tag = "Untagged";
+                            if (item.id == "NewWindow2(Clone)")
+                            {
+                                for (int i = 0; i < obj.transform.childCount; i++)
+                                {
+                                    obj.transform.GetChild(i).gameObject.AddComponent<BoxCollider>();
+                                    obj.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                                    obj.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size = obj.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+                                    obj.transform.GetChild(i).gameObject.AddComponent<Rigidbody>();
+                                    obj.transform.GetChild(i).gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                                    obj.transform.GetChild(i).gameObject.tag = "Untagged";
+                                    if(obj.transform.GetChild(i).gameObject.name == "Window")
+                                    {
+                                        obj.transform.GetChild(i).GetChild(0).gameObject.AddComponent<BoxCollider>();
+                                        obj.transform.GetChild(i).GetChild(0).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                                        //s.transform.GetChild(i).GetChild(0).gameObject.GetComponent<BoxCollider>().size = s.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+                                        obj.transform.GetChild(i).GetChild(0).gameObject.AddComponent<Rigidbody>();
+                                        obj.transform.GetChild(i).GetChild(0).gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                                        obj.transform.GetChild(i).GetChild(0).gameObject.tag = "Untagged";
+                                        //
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.AddComponent<BoxCollider>();
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                                        // s.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<BoxCollider>().size = s.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.AddComponent<Rigidbody>();
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.tag = "Untagged";
+                                        //
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.AddComponent<BoxCollider>();
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                                        // s.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<BoxCollider>().size = s.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.AddComponent<Rigidbody>();
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(1).gameObject.tag = "Untagged";
+                                        //
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(0).GetChild(0).gameObject.AddComponent<BoxCollider>();
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                                        // s.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<BoxCollider>().size = s.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(0).GetChild(0).gameObject.AddComponent<Rigidbody>();
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(0).GetChild(0).gameObject.tag = "Untagged";
+                                        //
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(1).GetChild(0).gameObject.AddComponent<BoxCollider>();
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(1).GetChild(0).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                                        // s.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<BoxCollider>().size = s.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(1).GetChild(0).gameObject.AddComponent<Rigidbody>();
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(1).GetChild(0).gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(1).GetChild(0).gameObject.tag = "Untagged";
+                                    }
+
+                                }
+                            }
+                            if (item.id == "NewDoor1(Clone)")
+                            {
+                                for (int i = 0; i < obj.transform.childCount; i++)
+                                {
+                                    if (obj.transform.GetChild(i).gameObject.name != "Door_1")
+                                    {
+                                        obj.transform.GetChild(i).gameObject.AddComponent<BoxCollider>();
+                                        obj.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                                        obj.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size = obj.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+                                        obj.transform.GetChild(i).gameObject.AddComponent<Rigidbody>();
+                                        obj.transform.GetChild(i).gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                                        obj.transform.GetChild(i).gameObject.tag = "Untagged";
+                                    }
+                                    if (obj.transform.GetChild(i).gameObject.name == "Door_1")
+                                    {
+                                        Debug.Log("CHILD GÝRDÝ");
+                                        obj.transform.GetChild(i).GetChild(0).gameObject.AddComponent<BoxCollider>();
+                                        obj.transform.GetChild(i).GetChild(0).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                                        //s.transform.GetChild(i).GetChild(0).gameObject.GetComponent<BoxCollider>().size = s.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+                                        obj.transform.GetChild(i).GetChild(0).gameObject.AddComponent<Rigidbody>();
+                                        obj.transform.GetChild(i).GetChild(0).gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                                        obj.transform.GetChild(i).GetChild(0).gameObject.tag = "Untagged";
+                                        //
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.AddComponent<BoxCollider>();
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<BoxCollider>().isTrigger = true;
+                                        // s.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<BoxCollider>().size = s.transform.GetChild(i).gameObject.GetComponent<BoxCollider>().size - new Vector3(0.1f, 0.1f, 0.1f);
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.AddComponent<Rigidbody>();
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                                        obj.transform.GetChild(i).GetChild(0).GetChild(0).gameObject.tag = "Untagged";
+                                    }
+
+                                }
+                            }
                         }
                         if (item.id == "NewDoor1(Clone)")
                         {

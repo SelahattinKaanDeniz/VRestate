@@ -2325,9 +2325,10 @@ public class ClientButtonFunctions : MonoBehaviour
                                 for (int i = 0; i < ObjectFollowsMouse.transform.childCount; i++)
                                 {
                                     rend = ObjectFollowsMouse.transform.GetChild(i).GetComponent<MeshRenderer>();
+                                    //Debug.Log(rend.name + " rend name");
                                     for (int j = 0; j < rend.materials.Length; j++)
                                     {
-                                        if (ObjectFollowsMouse.name == "Computer(Clone)")
+                                        if (rend.name == "Computer")
                                         {
                                             rend.materials[j].color = Color.black;
                                         }
