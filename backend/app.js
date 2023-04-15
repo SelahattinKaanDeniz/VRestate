@@ -230,6 +230,7 @@ app.get('/profile/updateLocation', (req, res) => {
         if (error) {
             currentLocation = null;
         }
+        console.log((JSON.parse(body)))
         console.log((JSON.parse(body)).regionName)
         currentLocation = ((JSON.parse(body)).regionName);
         let query = 'update profile set currentLocation = \'' + currentLocation + '\' where id = ' + req.query.id;
