@@ -232,7 +232,7 @@ app.get('/profile/updateLocation', (req, res) => {
         }
         console.log((JSON.parse(body)).regionName)
         currentLocation = ((JSON.parse(body)).regionName);
-        let query = 'update profile set currentLocation = ' + currentLocation + ' where id = ' + req.query.id;
+        let query = 'update profile set currentLocation = \'' + currentLocation + '\' where id = ' + req.query.id;
         connection.query(query, (error, results) => {
             if (error) {
                 res.statusMessage = 'Database Query Error';
