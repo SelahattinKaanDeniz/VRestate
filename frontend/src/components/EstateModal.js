@@ -34,21 +34,24 @@ export default function EstateModal({open, handleOpen, handleClose, estate,onGoE
             {"Title: "+estate.title}
           </Typography>
           {
+                estate.price && <span>${estate.price}  <br/></span>
+            }
+          {
             estate.image?
                 <Image style={{ maxHeight:"120px", maxWidth:"120px"}} src={estate.image} rounded={true}/>
                 :<></>          }
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             {
-                estate.location_il && <div>{estate.location_il}</div>
+                estate.location_il && <span>{estate.location_il}  <br/></span>
             }
             {
-                estate.location_ilce && <div>{estate.location_ilce}</div>
+                estate.location_ilce && <span>{estate.location_ilce}  <br/></span>
             }
             {
-                estate.room_type && <div>{estate.room_type}</div>
+                estate.room_type && <span>{estate.room_type}  <br/></span>
             }
             {
-                estate.m2 && <div>{estate.m2+"m²"}</div>
+                estate.m2 && <span>{estate.m2+"m²"} <br/></span>
             }
 
            

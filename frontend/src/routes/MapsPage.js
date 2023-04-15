@@ -32,7 +32,13 @@ export default function MapsPage(){
             .then(response => response.json())
             .then(async (data) => {
               const currentEstates= data.results;
-              setEstates(currentEstates);
+              const arrEstates= [];
+
+            await Promise.all(currentEstates.map(async (e) => {
+              const obj = await fetchData(e);
+              arrEstates.push(obj);
+            }));
+            setEstates(arrEstates);
             })
         }
         async function fetchUserLocation(){
@@ -47,6 +53,18 @@ export default function MapsPage(){
               })
             }
           })
+        }
+        async function fetchData(e){
+          if(e.head_photo_id){
+            const response = await fetch("http://vrestate.tech:5002/getImage?id="+e.head_photo_id);
+            const data= await response.blob();
+            const imageObjectURL = URL.createObjectURL(data);
+            e.image=imageObjectURL;
+            return e;
+          }
+          else{
+            return e;
+          }
         }
           fetchEstates();
           fetchUserLocation();
@@ -88,7 +106,7 @@ export default function MapsPage(){
                 if(estate.coordX){
                     console.log(estate.coordX);
                    return <> <MarkerF key={estate.id} onClick={()=>{setOpen(estate.id)}} position={{lat:parseFloat(estate.coordX) , lng:parseFloat(estate.coordY)}}></MarkerF>
-                              <EstateModal  key={estate.id} handleClose={handleClose} open={open} estate={estate} onGoEstate={()=>{onGoEstate(estate)}}  /></>;
+                              <EstateModal handleClose={handleClose} open={open} estate={estate} onGoEstate={()=>{onGoEstate(estate)}}  /></>;
                 }
                }
                 )}
