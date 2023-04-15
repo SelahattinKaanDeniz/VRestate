@@ -24,10 +24,28 @@ import { Table } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
 
-export default function Listing({myEstates}){
+export default function Listing({myEstates, searchSpeech}){
   const { profile } = useAuth();
   const navigate = useNavigate();
   const [estates, setEstates] = useState([]);
+  const [filterModel, setFilterModel] = useState({
+    items: [
+      {
+        field: 'title',
+        operator: 'contains',
+        value: searchSpeech,
+      },
+    ],
+  });
+  useEffect(()=>{setFilterModel({
+    items: [
+      {
+        field: 'title',
+        operator: 'contains',
+        value: searchSpeech,
+      },
+    ],
+  })},[searchSpeech])
   useEffect( ()=>{
     console.log("effect is used")
     async function fetchEstates(isMyEstates){
@@ -222,6 +240,8 @@ export default function Listing({myEstates}){
         rows={estates}
         columns={columns}
         rowHeight={150}
+        filterModel={filterModel}
+        onFilterModelChange={(newFilterModel) => setFilterModel(newFilterModel)}
         initialState={{
           pagination: {
             paginationModel: {
