@@ -29,6 +29,7 @@ export default function Listing({myEstates}){
   const navigate = useNavigate();
   const [estates, setEstates] = useState([]);
   useEffect( ()=>{
+    console.log("effect is used")
     async function fetchEstates(isMyEstates){
       fetch("http://vrestate.tech:5002/estate/getEstates?detail=true&user=true")
       .then(response => response.json())
@@ -72,18 +73,20 @@ export default function Listing({myEstates}){
         (response)=> response.json()
       ).then(
         (emlakEstates)=>{
-          setEstates([...estates,...emlakEstates.results]);
+          setEstates((arr)=>[...arr,...emlakEstates.results]);
         }
       );
     }
     if(!myEstates){
-      fetchEstates(false);
-      fetchHepsiEmlak();
+      fetchNotMyEstates();
     }
     else{
       fetchEstates(true);
     }
-    
+    async function fetchNotMyEstates(){
+      await fetchEstates(false);
+      await fetchHepsiEmlak();
+    }
    
 
   },[])
@@ -199,7 +202,8 @@ export default function Listing({myEstates}){
       renderCell:(a)=>{
         const estate = a.row;
         return(
-        estate.type=="HepsiEmlak" ? <Button onClick={() => window.open(estate.url)} > Go Hepsi Emlak Page</Button>: <Button onClick={() => navigate(`/estate/${estate.id}`, {state:{estate}})} > Go Details</Button>
+        estate.type=="HepsiEmlak" ? <Button onClick={() => window.open(estate.url)} > Go Hepsi Emlak Page</Button>: 
+        <Button onClick={() => navigate(`/estate/${estate.id}`, {state:{estate}})} > Go Details</Button>
         )
       }
     },
@@ -225,6 +229,7 @@ export default function Listing({myEstates}){
             },
           },
         }}
+        getRowId={(row)=>row.id}
         pageSizeOptions={[5]}
         disableRowSelectionOnClick
         hideColumnsHeader

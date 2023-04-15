@@ -2,12 +2,30 @@ import Header from "../components/Header";
 import { useEffect, useState, useCallback } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import { MarkerF } from '@react-google-maps/api';
+import EstateModal from "../components/EstateModal";
+import { useNavigate } from "react-router-dom";
 const containerStyle = {
     width: '100%',
-    height: '100vh',
+    height: '90vh',
   };
+
+
+
 export default function MapsPage(){
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen(null);
+  const navigate = useNavigate();
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "AIzaSyCcwb_SbKqbxXJWktAikadVeCNlKSt9iAQ"
+    });
     const [estates, setEstates]= useState([]);
+    const [center, setCenter] = useState({
+      lat: 39.925533,
+      lng: 	32.866287
+    })
+
+
     useEffect(()=>{
         async function fetchEstates(){
             fetch("http://vrestate.tech:5002/estate/getEstates?detail=true&user=true")
@@ -16,37 +34,51 @@ export default function MapsPage(){
               const currentEstates= data.results;
               setEstates(currentEstates);
             })
-          }
-         
+        }
+        async function fetchUserLocation(){
+          fetch("http://vrestate.tech:5002/checkLocation")
+          .then((response)=>response.json())
+          .then(async (data)=>{
+            console.log(data);
+            if(data && data.lat && data.lon){
+              setCenter({
+                lat: data.lat,
+                lng: data.lon
+              })
+            }
+          })
+        }
           fetchEstates();
-        
+          fetchUserLocation();
     },[])
 
     useEffect(()=>console.log(estates),[estates]);
     const [map, setMap] = useState(null)
-    const { isLoaded } = useJsApiLoader({
-        id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyCcwb_SbKqbxXJWktAikadVeCNlKSt9iAQ"
-      });
-      const onLoad = useCallback(function callback(map) {
-        // const bounds = new window.google.maps.LatLngBounds({lat:parseFloat(coordinatesX) , lng:parseFloat(coordinatesY)});
-        // map.fitBounds(bounds);
-    
-        map.panTo({lat:parseFloat(39.9255) , lng:parseFloat(32.8663)});
-    
-      }, [])
+
+    const onLoad = useCallback(function callback(map) {
+      const bounds = new window.google.maps.LatLngBounds(center);
+      map.fitBounds(bounds);
+  
+      setMap(map)
+      map.panTo(center);
+    }, [])
     
       const onUnmount = useCallback(function callback(map) {
         setMap(null)
       }, []);
+
+    const onGoEstate = (estate)=>{
+      navigate(`/estate/${estate.id}`, {state:{estate}})
+    }
     return (
        <>
         <Header />
         {
+          
             isLoaded ? 
             <GoogleMap
               mapContainerStyle={containerStyle}
-              center={{lat:parseFloat(100) , lng:parseFloat(100)}}
+              center={center}
               zoom={11.9}
               onLoad={onLoad}
               onUnmount={onUnmount}
@@ -55,12 +87,13 @@ export default function MapsPage(){
                {
                 if(estate.coordX){
                     console.log(estate.coordX);
-                   return  <MarkerF onClick={()=>{console.log("kjdskj")}} position={{lat:parseFloat(estate.coordX) , lng:parseFloat(estate.coordY)}}></MarkerF>;
+                   return <> <MarkerF key={estate.id} onClick={()=>{setOpen(estate.id)}} position={{lat:parseFloat(estate.coordX) , lng:parseFloat(estate.coordY)}}></MarkerF>
+                              <EstateModal  key={estate.id} handleClose={handleClose} open={open} estate={estate} onGoEstate={()=>{onGoEstate(estate)}}  /></>;
                 }
                }
                 )}
               
-            </GoogleMap> : <></>
+            </GoogleMap> : <div>Not Loaded!</div>
           }
         </>
     );

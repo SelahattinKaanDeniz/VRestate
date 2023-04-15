@@ -13,7 +13,7 @@ import Alert from 'react-bootstrap/Alert';
 import Geocode from "react-geocode";
 import { useAuth } from "../utils/Auth";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
 const containerStyle = {
   width: '500px',
   height: '500px',
@@ -91,6 +91,7 @@ function CreateEstatePage() {
   const  clickSubmit = async (e)=>{
     e.preventDefault();
 
+
     let head_photo_id = null;
     let vrId = "";
     if(image){
@@ -123,6 +124,7 @@ function CreateEstatePage() {
           let city, state, country;
           for (let i = 0; i < response.results[0].address_components.length; i++) {
             for (let j = 0; j < response.results[0].address_components[i].types.length; j++) {
+              console.log(response.results[0].address_components[i]);
               switch (response.results[0].address_components[i].types[j]) {
                 case "locality":
                   city = response.results[0].address_components[i].long_name;

@@ -453,7 +453,7 @@ function EstatePage() {
         {
           user?.name && 
           <Card.Text>
-          Name: {user.name}
+          Name: {user?.name}
           </Card.Text>
         }
         
@@ -461,16 +461,22 @@ function EstatePage() {
           user?.surname && 
         
           <Card.Text>
-           Surname: {user.surname}
+           Surname: {user?.surname}
           </Card.Text>
         }
         {
           user?.mail && 
           <Card.Text>
-           Email: {user.mail}
+           Email: {user?.mail}
           </Card.Text>
         }
-        <a href={`mailto:${user.mail}`}  >Send Mail </a>
+        {
+          user?.paymentInfo && 
+          <Card.Text>
+           Payment Info(IBAN): {user?.paymentInfo}
+          </Card.Text>
+        }
+        <a href={`mailto:${user?.mail}`}  >Send Mail </a>
       </Card.Body>
     </Card>
     

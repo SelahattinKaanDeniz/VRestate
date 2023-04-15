@@ -51,6 +51,11 @@ function ProfilePage(){
           console.log(currentEstates);
         });
         fetchUser();
+        fetch("http://vrestate.tech:5002/profile/updateLocation?id="+profile.id)
+        .then(response=>response.json())
+        .then(data=>{
+          console.log(data);
+        })
     },[])
   
     useEffect(()=>{
@@ -75,24 +80,28 @@ function ProfilePage(){
      
           <Form.Group className="mb-4" size="sm">
           <Form.Label>Full Name</Form.Label>
-          <Form.Control value={profile.name+" "+profile.surname} disabled as="input" />
+          <Form.Control value={profile?.name+" "+profile.surname} disabled as="input" />
           </Form.Group>
 
           <Form.Group className="mb-4" size="sm">
           <Form.Label>Email</Form.Label>
-          <Form.Control value={profile.mail} disabled as="input" />
+          <Form.Control value={profile?.mail} disabled as="input" />
           </Form.Group>
 
           <Form.Group className="mb-4" size="sm">
           <Form.Label>Phone</Form.Label>
-          <Form.Control value={user.phone ? user.phone : ''} onChange={(e)=>setUser({...user,phone:e.target.value})} type="number" as="input" />
+          <Form.Control value={user?.phone ? user.phone : ''} onChange={(e)=>setUser({...user,phone:e.target.value})} type="number" as="input" />
           </Form.Group>
 
           <Form.Group className="mb-4" size="sm">
           <Form.Label>TC</Form.Label>
-          <Form.Control value={user.TC_no ? user.TC_no : ''} onChange={(e)=>setUser({...user,TC_no:e.target.value})} type="number" as="input" />
+          <Form.Control value={user?.TC_no ? user.TC_no : ''} onChange={(e)=>setUser({...user,TC_no:e.target.value})} type="number" as="input" />
           </Form.Group>
 
+          <Form.Group className="mb-4" size="sm">
+          <Form.Label>Payment Info(IBAN)</Form.Label>
+          <Form.Control value={user?.paymentInfo} as="input"  onChange={(e)=>setUser({...user,paymentInfo:e.target.value})} />
+          </Form.Group>
           
           {
             success && <Alert  variant="success">
