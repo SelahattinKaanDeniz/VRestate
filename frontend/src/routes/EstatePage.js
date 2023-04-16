@@ -24,7 +24,7 @@ const containerStyle = {
 
 function EstatePage() {
   const {state} = useLocation();
-  const {location_il, owner_id, vr_id} = state.estate;
+  const {location_il, owner_id, vr_id, estate_type, location_ilce} = state.estate;
   const [coordX, setCoordX] = useState(state.estate.coordX);
   const [coordY, setCoordY] = useState(state.estate.coordY);
   const [title, setTitle] = useState(state.estate.title);
@@ -183,7 +183,11 @@ function EstatePage() {
         isFurnished,
         buildingFees,
         head_photo_id,
+        estate_type,
+        category:"Daire",
+        ilce: location_ilce
       }
+      console.log(data);
       const response = await fetch('http://vrestate.tech:5002/estate/update?id='+id+'&ownerId='+owner_id, {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached

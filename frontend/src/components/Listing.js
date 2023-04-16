@@ -221,7 +221,7 @@ export default function Listing({myEstates, searchSpeech}){
         const estate = a.row;
         return(
         estate.type=="HepsiEmlak" ? <Button onClick={() => window.open(estate.url)} > Go Hepsi Emlak Page</Button>: 
-        <Button onClick={() => navigate(`/estate/${estate.id}`, {state:{estate}})} > Go Details</Button>
+        <Button onClick={() => {console.log(estate);navigate(`/estate/${estate.id}`, {state:{estate}});}} > Go Details</Button>
         )
       }
     },

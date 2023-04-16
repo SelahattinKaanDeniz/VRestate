@@ -91,7 +91,6 @@ function CreateEstatePage() {
   const  clickSubmit = async (e)=>{
     e.preventDefault();
 
-
     let head_photo_id = null;
     let vrId = "";
     if(image){
@@ -120,13 +119,13 @@ function CreateEstatePage() {
       Geocode.fromLatLng(coordinates.lat, coordinates.lng).then(
         (response) => {
           const address = response.results[0].formatted_address;
-          console.log(address);
+          console.log(response.results[0]);
           let city, state, country;
           for (let i = 0; i < response.results[0].address_components.length; i++) {
             for (let j = 0; j < response.results[0].address_components[i].types.length; j++) {
               console.log(response.results[0].address_components[i]);
               switch (response.results[0].address_components[i].types[j]) {
-                case "locality":
+                case "administrative_area_level_1":
                   city = response.results[0].address_components[i].long_name;
                   break;
                 case "administrative_area_level_2":
@@ -138,12 +137,12 @@ function CreateEstatePage() {
               }
             }
           }
-          return state;
+          return [city, state];
         },
         (error) => {
           return ""
         }
-      ).then(async (il)=>{
+      ).then(async ([il,ilce])=>{
         let  data={
           il,
           title,
@@ -160,7 +159,7 @@ function CreateEstatePage() {
           buildingFees,
           estate_type,
           category:"Daire",
-          ilce:"",
+          ilce,
           owner_id:profile.id,
           buildingFloors:4,
         }
