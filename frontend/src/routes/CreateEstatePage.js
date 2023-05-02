@@ -144,7 +144,7 @@ function CreateEstatePage() {
         }
       ).then(async ([il,ilce])=>{
         let  data={
-          il,
+          ...(il? {il: il}: {il:""}),
           title,
           price,
           room_type,
@@ -159,7 +159,7 @@ function CreateEstatePage() {
           buildingFees,
           estate_type,
           category:"Daire",
-          ilce,
+          ...(ilce? {ilce: ilce}: {ilce:""}),
           owner_id:profile.id,
           buildingFloors:4,
         }
