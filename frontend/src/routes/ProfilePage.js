@@ -32,11 +32,11 @@ function ProfilePage(){
     const [fail, setFail] = useState(false);
     useEffect( ()=>{
       const fetchUser= async ()=>{
-        const f1=await fetch(`http://localhost:5002/profile/getProfile?id=${profile.id}`);
+        const f1=await fetch(`http://vrestate.tech:5002/profile/getProfile?id=${profile.id}`);
         const info = await f1.json();
         setUser(info[0]);
       }
-        fetch("http://localhost:5002/estate/getEstates?detail=true")
+        fetch("http://vrestate.tech:5002/estate/getEstates?detail=true")
         .then(response => response.json())
         .then(async (data) => {
           const currentEstates= data.results;
@@ -119,7 +119,7 @@ function ProfilePage(){
           <Button style={{ marginTop:"1rem"}} onClick={ async (e)=>{
             e.preventDefault();
             console.log(user);
-            const response = await fetch("http://localhost:5002/profile/update?id="+user.id, {
+            const response = await fetch("http://vrestate.tech:5002/profile/update?id="+user.id, {
               method: "POST", // *GET, POST, PUT, DELETE, etc.
               cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
               credentials: "same-origin", // include, *same-origin, omit

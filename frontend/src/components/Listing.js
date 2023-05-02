@@ -91,6 +91,9 @@ export default function Listing({myEstates, searchSpeech}){
         (response)=> response.json()
       ).then(
         (emlakEstates)=>{
+          emlakEstates.results.forEach((es)=>{
+            es.title= es.title.toLowerCase();
+          })
           setEstates((arr)=>[...arr,...emlakEstates.results]);
         }
       );

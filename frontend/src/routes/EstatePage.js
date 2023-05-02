@@ -56,7 +56,7 @@ function EstatePage() {
 
   useEffect(()=>{
     const fetchUser= async ()=>{
-      const f1=await fetch(`http://localhost:5002/profile/getProfile?id=${owner_id}`);
+      const f1=await fetch(`http://vrestate.tech:5002/profile/getProfile?id=${owner_id}`);
       const info = await f1.json();
       setUser(info[0]);
     }
@@ -231,7 +231,7 @@ function EstatePage() {
       id:id,
       ownerId:owner_id
     }
-    const response = await fetch('http://localhost:5002/estate/delete?id='+id+'&ownerId='+owner_id, {
+    const response = await fetch('http://vrestate.tech:5002/estate/delete?id='+id+'&ownerId='+owner_id, {
       method: "POST", // *GET, POST, PUT, DELETE, etc.
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       credentials: "same-origin", // include, *same-origin, omit
