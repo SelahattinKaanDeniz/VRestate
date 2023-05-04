@@ -1,0 +1,58 @@
+*{
+  /* border: 1px solid; */
+  font-family: 'Inter', sans-serif;
+  color:#222222;
+}
+
+html {
+  /* background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% ); */
+  /* background-color: #F0FFFF; */
+}
+
+.HeaderLogo{
+  width: 200px;
+  height: 70px;
+  padding-bottom: 10px;
+}
+
+.LoginContainer {
+  width: 700px;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+  margin-top: 11rem;
+
+}
+
+.image {
+  /* background-color: red; */
+  border-radius: 100%;
+  clip-path: circle();
+  /*background-image: linear-gradient(109.6deg, rgba(156, 252, 248, 1) 11.2%, rgba(110, 123, 251, 1) 91.1%);*/
+
+
+}
+
+.Container-1 {
+  /* border-right: 1px solid; */
+  width: 408px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.dene{
+  margin-bottom:120px;
+}
+
+.leftBar{
+  flex-basis: 15%;
+}
+
+.tdEdit{
+  display: flex;
+  justify-content: space-between;
+}
